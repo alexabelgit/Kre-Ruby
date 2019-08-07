@@ -1,0 +1,76 @@
+require: rubocop-rspec
+
+# Inspect all files
+AllCops:
+  RSpec:
+    Patterns:
+    - 'factories'
+  Exclude:
+    - 'db/schema.rb'
+    - 'db/migrate/*'
+    - 'config/**/*'
+    - 'script/**/*'
+
+Rails:
+  Enabled: true
+
+Metrics/MethodLength:
+  Max: 15
+  Exclude:
+    - db/migrate/*
+
+Metrics/LineLength:
+  Max: 120
+
+Metrics/ClassLength:
+  Exclude:
+    - test/**/*
+
+Metrics/ModuleLength:
+  Exclude:
+    - test/**/*
+
+Metrics/BlockLength:
+  Exclude:
+    - test/**/*
+
+Style/SymbolArray:
+  Enabled: false
+
+Style/StringLiterals:
+  Enabled: false
+
+Style/HashSyntax:
+  Enabled: true
+  EnforcedStyle: ruby19_no_mixed_keys
+
+# no need for 'fail' alias, it's the same and just make it harder
+Style/SignalException:
+  EnforcedStyle: only_raise
+
+Layout/ExtraSpacing:
+  AllowForAlignment: true
+
+Layout/SpaceBeforeFirstArg:
+  AllowForAlignment: true
+
+# usually it doesn't affect code in bad way by reusing same name instead
+# of coming with some short version
+Lint/ShadowingOuterLocalVariable:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+# disable frozen_string_literal for migrations
+Style/FrozenStringLiteralComment:
+  Exclude:
+    - 'db/migrate/*'
+
+# disable multiline procs warning, it has some problems with multiline lambdas
+# as well. However no way to force procs instead of lambdas until this PR https://github.com/bbatsov/rubocop/issues/1520
+Style/Lambda:
+  EnforcedStyle: literal
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
