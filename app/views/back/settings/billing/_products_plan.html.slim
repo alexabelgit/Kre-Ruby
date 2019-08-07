@@ -1,0 +1,30 @@
+.plan {
+  data-behavior = "plan"
+  data-plan-id  = plan.id
+  data-status   = plan.status
+  class         = "plan--#{plan.status}"
+}
+
+  - if plan.active?
+    .plan__ribbon.plan__ribbon--success = hc_icon 'check'
+
+  - if plan.renewable?
+    .plan__ribbon.plan__ribbon--warning = hc_icon 'exclamation'
+
+  - if plan.suggested?
+    .plan__popularity-box Suggested
+
+  h3.plan__name = plan.name
+  .plan__price  = plan.price
+
+  ul.plan__features
+
+    li.plan__feature
+      span = plan.product_limits
+    - if plan.gifted_products_message?
+      li.plan__feature.plan__gifted-message
+        span = plan.products_limits_with_gifted_products
+
+
+  .plan__c2a-wrapper data-behavior="#{plan.call_to_action_behavior}"
+    = plan.call_to_action

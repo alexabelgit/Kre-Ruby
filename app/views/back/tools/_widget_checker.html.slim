@@ -1,0 +1,15 @@
+#widget-console__checker
+  - embeddables.each do |code|
+    - if widget_code_embedded?(code)
+      span.hc-color__success
+        = hc_icon 'check-circle md success'
+        |&nbsp;#{code.capitalize.humanize} detected
+    - else
+      - if code == "stylesheet"
+        span.hc-color__danger
+          = hc_icon 'exclamation-circle md danger'
+          |&nbsp;#{code.capitalize.humanize} not detected
+      - else
+        span.hc-color__warning
+          = hc_icon 'exclamation-circle md warning'
+          |&nbsp;#{code.capitalize.humanize} not detected

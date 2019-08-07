@@ -1,0 +1,10 @@
+var selector = '[data-hc="sidebar"]';
+jQuery(selector).html('<%= escape_javascript(render 'front/widgets/sidebar', store: @store, reviews: @reviews, questions: @questions, disable_product_links: false) %>');
+jQuery(selector).remotify().sidify().tabify().hc_lightbox().hc_dropdown();
+jQuery('.hc-sidebar').find('[data-role="tabs-container"]').scroll(function() {
+  var header = jQuery('.hc-sidebar').find('[data-role="header"]');
+  if ($(this).scrollTop() > 0)
+    header.addClass('has-shadow');
+  else
+    header.removeClass('has-shadow');
+});

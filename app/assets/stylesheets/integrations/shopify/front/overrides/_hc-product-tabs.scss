@@ -1,0 +1,8 @@
+.hc-product-tabs {
+  @extend %margin-y__md;
+  @extend %padding__md;
+}
+
+.hc-product-tabs__content a {
+  @extend %font-size__inherit;
+}

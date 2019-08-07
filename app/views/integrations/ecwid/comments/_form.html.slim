@@ -1,0 +1,28 @@
+/ comment*
+
+.comment-form data-model="comment"
+  = form_for [:back, comment.commentable, comment], remote: true, namespace: "#{ comment.commentable_type }-#{ comment.commentable_id }" do |f|
+    = render 'shared/form/errors', resource: comment
+
+    = hidden_field_tag :app, 'ecwid'
+
+    div
+      = f.label :body,
+        "Reply to #{ comment.commentable_type.downcase }",
+        class: 'hide-unless-screen-reader'
+
+      = f.text_area :body,
+        required:    true,
+        rows:        2,
+        placeholder: 'Type your answer here',
+        class:       'form-control'
+
+    = f.submit 'Reply & Publish', class: 'btn btn-primary'
+
+    - question = comment.commentable # TODO this needs to become dynamic since comment.commentable can be a review as well
+    =< link_to 'Archive',
+       back_question_path(question, question: { status: :archived }, app: 'ecwid'),
+       method: :put,
+       remote: true,
+       id:     'archive-question',
+       class:  'btn btn-default'

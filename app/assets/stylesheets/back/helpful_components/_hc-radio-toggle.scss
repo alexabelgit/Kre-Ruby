@@ -1,0 +1,27 @@
+.hc-radio-toggle {
+
+}
+
+.hc-radio-toggle__main-label {
+  @extend %display__block;
+}
+
+.hc-radio-toggle__togglable {
+  @extend %display__none;
+  @extend %margin-top__md;
+  @extend %width__20rem;
+}
+
+.hc-radio-toggle {
+  input[type="radio"]:first-of-type:checked {
+    &~ .hc-radio-toggle__togglable:first-of-type {
+      @extend %display__block;
+    }
+  }
+
+  input[type="radio"]:nth-of-type(2):checked {
+    &~ .hc-radio-toggle__togglable:nth-of-type(2) {
+      @extend %display__block;
+    }
+  }
+}

@@ -1,0 +1,245 @@
+- content_for :main_class, 'boxed'
+- render 'layouts/back/sub_navs/settings'
+
+section.design
+  h1 = title 'Design'
+
+  = render layout: 'helpful_components/collapsible/item',
+            locals: {name: 'design_global',
+                      title: 'Global',
+                      heading: :h3} do
+
+    = tip 'Global design settings applicaple on all widgets'
+    .settings__about
+      .settings__description
+        = form_for( [:back, @store.settings(:design)],
+          as:       :settings,
+          url:      { action: :update,
+                      anchor: 'branding' },
+          method:   :put,
+          html:     { id: 'branding', class: 'settings-form' } ) do |f|
+
+          = render 'shared/form/errors', resource: @store.settings(:design)
+
+          input type="hidden" name="type"        value="design"
+          input type="hidden" name="redirect_to" value=design_back_settings_path
+          input type="hidden" name="view"        value="design"
+
+          .settings-form__control
+            = render      'helpful_components/checkbox_toggle/checkbox_toggle',
+              f:          f,
+              field:      :show_hc_branding,
+              txt:        'Display HelpfulCrowd branding',
+              txt_on:     'Branding visible',
+              txt_off:    'Branding is disabled',
+              hint:       'Create immediate trust and credibility with shoppers by displaying the HelpfulCrowd branding',
+              show_label: false
+
+            = render 'front/components/hc_powered_by',
+              display_text: true
+
+          .settings-form__control
+            = render 'helpful_components/checkbox_toggle/checkbox_toggle',
+              f:     f,
+              field: :show_user_avatar,
+              txt:   'Show user avatar on Review/Q&A'
+
+          .settings-form__control
+            = render      'helpful_components/checkbox_toggle/checkbox_toggle',
+              f:          f,
+              field:      :show_store_logo_on_comment,
+              txt: 'Show store avatar on Review/Q&A replies'
+
+          .settings__about
+            .settings__description
+              .settings-form__control
+                div Pagination Style
+                - {classic: 'Classic', modern: 'Modern'}.each do |key, value|
+                  .hc-form__radio-group
+                    => f.radio_button :pagination_style,  key, required: true, data: {target: 'mockup_image', trigger: key}
+                    => f.label        :pagination_style,  value: value
+                = form_hint "Choose the pagination style as per your store design"
+
+            .settings__mockup style="text-align: right;"
+              = image_tag t('classic', scope: 'back.design.pagination.styles.mockup_image_url'), data: {image: 'classic'}
+              = image_tag t('modern', scope: 'back.design.pagination.styles.mockup_image_url'), data: {image: 'modern'}
+
+          = render 'back/settings/submit'
+
+  = render layout: 'helpful_components/collapsible/item',
+           locals: { name:    'theme',
+                     title:   'Theme',
+                     heading: :h3 } do
+
+    = tip "Set the theme for HelpfulCrowd widgets visible on your website. \
+           Choose 'light' theme if your website has dark text on light background \
+           or choose 'dark' theme if your website has light text on dark background."
+
+    = form_for( [:back, @store.settings(:design)],
+      as:       :settings,
+      url:      { action: :update,
+                  anchor: 'theme' },
+      method:   :put,
+      html:     { id: 'theme', class: 'settings-form' } ) do |f|
+
+      = render 'shared/form/errors', resource: @store.settings(:design)
+
+      input type="hidden" name="type"        value="design"
+      input type="hidden" name="redirect_to" value=design_back_settings_path
+      input type="hidden" name="view"        value="design"
+
+      .settings-form__control
+        - {light: 'Classic (Light)', dark: 'Classic (Dark)'}.each do |key, value|
+          .hc-form__radio-group
+            => f.radio_button :theme,       key, required: true
+            => f.label        :theme,       value: value
+
+      = render 'back/settings/submit'
+
+  = render layout: 'helpful_components/collapsible/item',
+           locals: { name:    'rounded-corners',
+                     title:   'Corners',
+                     heading: :h3 } do
+
+    .settings__about
+      .settings__description
+        = tip "Set the corners for HelpfulCrowd widgets visible on your website. Choose 'square' if want your widgets to have hard corners or choose 'round' if you want smooth corners."
+
+        = form_for( [:back, @store.settings(:design)],
+          as:       :settings,
+          url:      { action: :update,
+                      anchor: 'rounded' },
+          method:   :put,
+          html:     { id: 'rounded', class: 'settings-form' } ) do |f|
+
+          = render 'shared/form/errors', resource: @store.settings(:design)
+
+          input type="hidden" name="type"        value="design"
+          input type="hidden" name="redirect_to" value=design_back_settings_path
+          input type="hidden" name="view"        value="design"
+
+          .settings-form__control
+            - {false: 'Square', true: 'Round'}.each do |key, value|
+              .hc-form__radio-group
+                => f.radio_button :rounded,       key, required: true, data: {trigger: value.downcase, target: 'mockup_image'}
+                => f.label        "rounded_#{key}", value
+          = render 'back/settings/submit'
+
+      .settings__mockup
+        = image_tag t('rounded', scope: 'back.widgets.product_tabs.mockup_image_url'), data: {image: 'round'}
+        = image_tag t('squared', scope: 'back.widgets.product_tabs.mockup_image_url'), data: {image: 'square'}
+
+
+  = render layout: 'helpful_components/collapsible/item',
+           locals: { name:    'shadows',
+                     title:   'Shadows',
+                     heading: :h3 } do
+
+    .settings__about
+      .settings__description
+        = tip "Enable if you want to show drop shadows for review and Q&A cards for HelpfulCrowd widgets visible on your website."
+
+        = form_for( [:back, @store.settings(:design)],
+          as:       :settings,
+          url:      { action: :update,
+                      anchor: 'shadows' },
+          method:   :put,
+          html:     { id: 'shadows', class: 'settings-form' } ) do |f|
+
+          = render 'shared/form/errors', resource: @store.settings(:design)
+
+          input type="hidden" name="type"        value="design"
+          input type="hidden" name="redirect_to" value=design_back_settings_path
+          input type="hidden" name="view"        value="design"
+
+          .settings-form__control
+            = render      'helpful_components/checkbox_toggle/checkbox_toggle',
+              f:          f,
+              field:      :shadows,
+              txt: '',
+              txt_on:     'Enabled',
+              txt_off:    'Disable',
+              show_label: false,
+              data_target:'mockup_image'
+
+          = render 'back/settings/submit'
+
+      .settings__mockup
+        = image_tag t('shadows', scope: 'back.widgets.product_tabs.mockup_image_url'), data: {image: '1'}
+        = image_tag t('noshadows', scope: 'back.widgets.product_tabs.mockup_image_url'), data: {image: '0'}
+
+
+  = render layout: 'helpful_components/collapsible/item',
+           locals: { name:    'color-scheme',
+                     title:   'Color Scheme',
+                     heading: :h3 } do
+
+    = tip   "This is a sneak peek into one of our upcoming add-ons enabling you to \
+             fully customize colors of HelpfulCrowd content on your website. At the \
+             moment this affects only the sidebar trigger background color.",
+      type: 'warning',
+      icon: 'exclamation-circle'
+
+    = form_for( [:back, @store.settings(:design)],
+      as:       :settings,
+      url:      { action: :update,
+                  anchor: 'colors' },
+      method:   :put,
+      html:     { id: 'colors', class: 'settings-form' } ) do |f|
+
+      = render 'shared/form/errors', resource: @store.settings(:design)
+
+      input type="hidden" name="type"        value="design"
+      input type="hidden" name="redirect_to" value=design_back_settings_path
+      input type="hidden" name="view"        value="design"
+
+      .settings-form__control
+        = f.label       :primary_color, class: 'settings-form__label'
+        = f.color_field :primary_color, class: 'settings-form__color-picker'
+
+      = render 'back/settings/submit'
+
+
+  = render layout: 'helpful_components/collapsible/item',
+           locals: { name:    'custom-css',
+                     title:   'Custom CSS',
+                     heading: :h3 } do
+
+    = tip "Customize your widget appearence with direct CSS editing (for advanced users)."
+
+    = form_for( [:back, @store.settings(:design)],
+      as:       :settings,
+      url:      { action: :update,
+                  anchor: 'theme' },
+      method:   :put,
+      html:     { id: 'theme', class: 'settings-form' } ) do |f|
+
+      = render 'shared/form/errors', resource: @store.settings(:design)
+
+      input type="hidden" name="type"        value="design"
+      input type="hidden" name="redirect_to" value=design_back_settings_path
+      input type="hidden" name="view"        value="design"
+
+      .settings-form__control
+        = render      'helpful_components/checkbox_toggle/checkbox_toggle',
+          f:          f,
+          field:      :custom_stylesheet_active,
+          txt: '',
+          txt_on:     'Enabled',
+          txt_off:    'Disabled',
+          show_label: false
+
+      #settings-design__tips.hc-well
+        ul
+          li Make sure the syntax is correct. Otherwise styles won't apply.
+          li Use '!important' keyword to make sure you styles override the default ones.
+          li See an example:
+        #settings-custom_stylesheet_example
+          = image_tag "custom_css_example.jpg"
+
+      #settings-form__custom_stylesheet
+
+      .settings-form__control
+        = f.text_area :custom_stylesheet_code, id: 'settings-form__custom_stylesheet-textarea'
+
+      = render 'back/settings/submit'

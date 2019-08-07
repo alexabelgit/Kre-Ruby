@@ -1,0 +1,44 @@
+section.billing__change-plan data-purpose="summary-section" class="#{@presenter.hide_when_subscribed_class}"
+    h2
+      span Confirm changes
+
+    .change-plan
+      .change-plan__plans
+        .change-plan__old
+          - if @presenter.subscription?
+            h3
+              => hc_icon 'times-circle'
+              =  'Cancelling'
+            = render 'back/bundles/show', bundle: @presenter.active_bundle_presenter
+
+          - elsif @presenter.trial?
+            h3
+              => hc_icon 'times-circle'
+              =  'Cancelling'
+
+            .change-plan__trial Trial
+
+          - else
+            h3 No active subscription
+
+        .change-plan__new
+          h3
+            => hc_icon 'check-circle'
+            =  'Switching to'
+
+          div data-purpose="bundle-summary-container"
+            - if @presenter.subscription?
+              = render 'back/bundles/upgrade', bundle: @presenter.upgrade_bundle_presenter
+
+            - else
+              = render 'back/bundles/show', bundle: @presenter.draft_bundle_presenter
+
+          = link_to 'javascript:',
+            data:   { behavior:     'subscribe',
+                      disable_with: "#{ spinner_icon } Applying changes" },
+            class:  'change-plan__button' do
+
+            => hc_icon 'check'
+            =  'Apply changes'
+
+          =< link_to "Cancel", "javascript:", class: 'hc-secondary-button'

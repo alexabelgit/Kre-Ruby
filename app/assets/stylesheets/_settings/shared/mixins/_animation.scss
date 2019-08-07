@@ -1,0 +1,17 @@
+// TODO Wetsify required
+
+@mixin animation(
+  $name,
+  $delay:           0,
+  $timing-function: ease-in-out,
+  $duration:        .5s,
+  $iteration-count: 1,
+  $fill-mode:       forwards
+){
+  animation-delay:           $delay;
+  animation-duration:        $duration;
+  animation-fill-mode:       $fill-mode;
+  animation-iteration-count: $iteration-count;
+  animation-name:            $name;
+  animation-timing-function: $timing-function
+}

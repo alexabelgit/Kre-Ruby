@@ -1,0 +1,8 @@
+= content_for :recipient
+  = @user.first_name
+
+p
+  | Your reviews export file is now ready and you can access it in HelpfulCrowd
+    control panel.
+
+= call_to_action 'Download file', downloads_back_tools_url

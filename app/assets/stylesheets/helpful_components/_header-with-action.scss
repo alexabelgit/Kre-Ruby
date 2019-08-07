@@ -1,0 +1,45 @@
+.header-with-action {
+  @include flexbox(
+    $align-items:     center,
+    $flex-wrap:       wrap,
+    $justify-content: space-between
+  );
+
+  @extend %margin-bottom__md;
+
+  h1, h2, h3, h4, h5, h6,
+  .header-with-action__heading {
+    @extend %margin-bottom__0;
+  }
+
+}
+
+.header-with-action__action-wrapper > a,
+.header-with-action__action {
+  @extend .hc-primary-button;
+}
+
+.header-with-action__search {
+  @extend %display__inline-flex;
+
+  input[type="search"] {
+    @extend %width__auto;
+  }
+
+  &:not(:last-child) {
+    @extend %margin-right__md;
+  }
+}
+
+.header-with-action__wrapper {
+  @include flexbox(
+          $align-items:     flex-end,
+          $flex-wrap:       wrap,
+          $justify-content: flex-end
+  );
+
+  a {
+    @extend %margin-right__xs;
+    @extend %margin-left__xs;
+  }
+}

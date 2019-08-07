@@ -1,0 +1,12 @@
+= content_for :recipient
+  = @review.user.first_name
+
+.flagged
+  p
+    | Following review for
+    =<> link_to @review.product.name, back_product_url(@review.product)
+    | has been flagged as inappropriate:
+
+  = render 'review', review: @review
+
+= call_to_action('Go to review', back_review_url(@review))

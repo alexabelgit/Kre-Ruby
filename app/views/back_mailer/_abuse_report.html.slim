@@ -1,0 +1,34 @@
+table.table
+  tbody
+    tr
+      td ID
+      td = abuse_report.hashid
+    tr
+      td Reported item:
+      td
+        = link_to       "#{ abuse_report.abusable.hashid } (#{ abuse_report.abusable.class.name.downcase })",
+          controller:   "back/#{ abuse_report.abusable.class.name.tableize }",
+          action:       "show",
+          id:           abuse_report.abusable.hashid
+    tr
+      td Reported by:
+      td = AbuseReport.humane_enum_name(:source, abuse_report.source)
+    tr
+      td Reported at:
+      td = ApplicationController.helpers.humane_datetime(abuse_report.created_at)
+    tr
+      td Reason:
+      td = AbuseReport.humane_enum_name(:reason, abuse_report.reason)
+
+    - if abuse_report.additional_info
+      tr
+        td Additional details:
+        td = abuse_report.additional_info
+    tr
+      td Status:
+      td = abuse_report.status.humanize
+    tr
+      td Decision:
+      td = abuse_report.decision.humanize
+
+= call_to_action 'View report', back_abuse_report_url(abuse_report)

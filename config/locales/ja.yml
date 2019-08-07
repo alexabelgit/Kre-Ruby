@@ -1,0 +1,429 @@
+---
+"ja":
+  "activerecord":
+    "errors":
+      "models":
+        "abuse_report":
+          "attributes":
+            "additional_info":
+              "blank": >-
+                「その他」を選択した場合、その理由を明記する必要があります
+            "reason":
+              "blank": >-
+                ^理由を選択する必要があります
+        "product":
+          "attributes":
+            "id_from_provider":
+              "taken": >-
+                ^IDは一意である必要があります。あなたが入力したものは他の製品にすでに使用されています
+        "review":
+          "attributes":
+            "customer":
+              "must_be_authenticated": >-
+                ^レビューを書くにはログインする必要があります
+            "product_ids":
+              "cannot_be_repeated": >-
+                ^すでにこの商品のレビューを書いています
+              "taken": >-
+                ^すでにこの購入のレビューを書いています
+            "review_request_id":
+              "request_must_be_sent": >-
+                ^今この購入のレビューを書くことはできません
+            "source":
+              "cannot_be_voluntary": >-
+                ^今この購入のレビューを書くことはできません
+        "review_request":
+          "attributes":
+            "order_id":
+              "blank": >-
+                は対応する顧客なしでは作成できません。有効なメールアドレスを入力してください。
+    "models":
+      "comment":
+        "one": >-
+          コメント
+        "other": >-
+          コメント
+      "customer":
+        "one": >-
+          顧客
+        "other": >-
+          顧客
+      "product":
+        "one": >-
+          商品
+        "other": >-
+          商品
+      "product_group":
+        "one": >-
+          商品グループ
+        "other": >-
+          商品グループ
+      "question":
+        "one": >-
+          質問
+        "other": >-
+          質問
+      "review":
+        "one": >-
+          レビュー
+        "other": >-
+          レビュー
+      "review_request":
+        "one": >-
+          レビューリクエスト
+        "other": >-
+          レビューリクエスト
+  "answer":
+    "one": >-
+      回答
+    "other": >-
+      回答
+  "cancel": >-
+    キャンセル
+  "counterify":
+    "characters":
+      "exceeded": >-
+        文字数制限を超過しています
+      "remaining":
+        "one": >-
+          残り1文字
+        "other": >-
+          残り%{count}文字
+  "default_templates":
+    "email":
+      "critical_review_followup_mail_body": "<p>[customer_name]様、</p>\r\n<p>レビューを書いていただき誠にありがとうございます。</p>\r\n<p>[store_name]チームより</p>"
+      "critical_review_followup_mail_subject": >-
+        レビューを書いていただき誠にありがとうございます。
+      "positive_review_followup_mail_body": "<p>[customer_name]様、</p>\r\n<p>レビューを書いていただき誠にありがとうございます。</p>\r\n<p>[store_name]チームより</p>"
+      "positive_review_followup_mail_subject": >-
+        レビューを書いていただき誠にありがとうございます。
+      "question_answer_mail_body": "<p>[customer_name]様、</p>\r\n<p>[product_name]に関する質問について、私たちの代表者より回答がありました:
+        [answer]</p>\r\n<p>あなたの質問: </p>\r\n<p>[question]</p>\r\n<p>[product_link]</p>\r\n<p>[store_name]チームより</p>"
+      "question_answer_mail_subject": >-
+        あなたの[store_name]への質問に対する回答がありました
+      "repeat_review_request_mail_body": "<p>[customer_name]様、</p>\r\n<p>最近購入した商品について、今から回答しても決して遅くはありません。</p>\r\n<p>これまでの満足度について、星をクリックして評価してみましょう:
+        </p>\r\n<p>[products]</p>\r\n<p>ご満足いだたけませんでしたか？その場合は私たちにご連絡ください。</p>\r\n<p>[store_name]チームより</p>"
+      "repeat_review_request_mail_subject": >-
+        [store_name]の最近の購入のレビューに関するリマインダー
+      "review_answer_mail_body": "<p>[customer_name]様、</p>\r\n<p>あなたの[product_name]に関するレビューについて、私たちの代表より回答がありました:</p>\r\n<p>[reply]</p>\r\n<p>あなたのレビュー:</p>\r\n<p>[review]</p>\r\n<p>[product_link]</p>\r\n<p>[store_name]チームより</p>"
+      "review_answer_mail_subject": >-
+        [store_name]のレビューに対する回答がありました
+      "review_request_mail_body": "<p>[customer_name]様、</p>\r\n<p>これまでの感想について、星をクリックして評価してみましょう:</p>\r\n<p>[products]</p>\r\n<p>満足していただけませんでしたか？その場合は私たちまでご連絡ください。</p>\r\n<p>[store_name]チームより</p>"
+      "review_request_mail_subject": >-
+        [store_name]で最近購入したものをレビューする
+  "embed": >-
+    埋め込む
+  "errors":
+    "messages":
+      "already_confirmed": >-
+        はすでに登録済みです。ログインしてください。
+      "confirmation_period_expired": >-
+        は%{period}までに確認する必要があります。新しくリクエストしてください。
+      "expired": >-
+        の有効期限が切れました。新しくリクエストしてください。
+      "not_found": >-
+        は見つかりませんでした
+      "not_locked": >-
+        は凍結されていません
+      "not_saved":
+        "one": >-
+          エラーが発生したため%{resource}は保存されませんでした:
+        "other": >-
+          %{count}件のエラーが発生したため、%{resource}は保存されませんでした:
+  "flash":
+    "submitted_successfully":
+      "question": >-
+        ご質問いただきありがとうございます！私たちはあなたの質問を受信しました。それに対する回答が行われた場合、メールでお知らせします
+      "review": >-
+        ありがとうございます！あなたのレビューを受信しました
+      "subscribed": >-
+        %{store}への登録が完了しました。
+      "unsubscribed": >-
+        %{store}への登録解除が完了しました。
+  "front":
+    "based_on_reviews_count":
+      "one": >-
+        1レビュー
+      "other": >-
+        %{count}レビュー
+    "components":
+      "customer_form":
+        "email":
+          "hint": >-
+            あなたのメールは公開されません
+          "label": >-
+            あなたのメール
+        "name":
+          "hint": >-
+            あなたの氏名はイニシャルとして表示されます
+          "hint_update_html": >-
+            あなたの氏名は<strong>%{initials}</strong>として表示されます
+          "label": >-
+            あなたの氏名
+      "privacy_notice":
+        "link_content": >-
+          プライバシーポリシー
+        "with_name":
+          "html": "このフォームを送信することにより、あなたはあなたのコンテンツとあなたの氏名\r\n<strong>%{name}</strong>が私たちの%{link}に従ってオンラインで公開されることに\r\n同意するものとします。"
+        "without_name":
+          "html": "このフォームを送信することにより、あなたのコンテンツと氏名が私たちの\r\n%{link}に従ってオンラインで公開される可能性があることに同意するものとします。"
+    "continue_shopping": >-
+      ショッピングを続ける
+    "flags":
+      "new":
+        "already_flagged": >-
+          あなたはすでにこの%{item}にフラグを立てています
+        "flag_as_inappropriate": >-
+          この%{item}にフラグを立てるのは不適切です
+      "show":
+        "flag_submitted": >-
+          ありがとうございます
+    "mailer":
+      "excuses":
+        "question_answered_html": >-
+          %{store}に対して行った質問の最新情報を得るため、%{helpfulcrowd}からこのメールを受信しました。
+        "review_answered_html": >-
+          %{store}について書いたレビューの最新情報を得るため、%{helpfulcrowd}からこのメールを受信しました。
+        "review_follow_up_html": >-
+          %{store}について最近書いたレビューへの返信として、%{helpfulcrowd}からこのメールを受信しました。
+        "review_request_html": >-
+          %{store}に対して最近行った注文への返信として、%{helpfulcrowd}からこのメールを受信しました。
+      "helpers":
+        "call_to_action":
+          "view_product": >-
+            商品ページに移動
+    "products":
+      "questions":
+        "form":
+          "question_html": >-
+            %{product}について、何を知りたいですか？
+        "new":
+          "title": >-
+            質問する
+      "view_product": >-
+        商品ページに移動
+    "review_requests":
+      "reviews":
+        "form":
+          "rating_html": >-
+            %{reviewable}について、あなたの経験を評価してください
+        "new":
+          "already_reviewed_html": >-
+            あなたはすでに%{reviewable}のレビューを書いています
+          "review_other_purchases":
+            "one": >-
+              他の購入のレビューを書く
+            "other": >-
+              他の購入のレビューを書く
+          "title": >-
+            購入のレビューを書く
+    "search":
+      "label": >-
+        検索:
+      "placeholder": >-
+        キーワードを入力してください
+    "share":
+      "button": >-
+        共有
+    "sort_by": >-
+      並べ替え:
+    "sort_options":
+      "most_helpful": >-
+        最も参考になった
+      "most_recent": >-
+        最新
+      "rating_asc": >-
+        評価: 最低
+      "rating_desc": >-
+        評価: 最高
+    "suppressions":
+      "manage_subscriptions":
+        "subscribe_question_html": >-
+          %{store}の代わりにHelpfulCrowdがあなたにメールを送信できるようにしますか？
+        "unsubscribe_question_html": >-
+          %{store}の代わりにHelpfulCrowdがあなたにメールを送信できないようにしますか？
+    "votes":
+      "upvote": >-
+        参考になった
+      "upvotes_count":
+        "one": >-
+          %{count}人がこの%{item}を参考になったと評価しています
+        "other": >-
+          %{count}人がこの%{item}を参考になったと評価しています
+    "widgets":
+      "products":
+        "rating":
+          "qa":
+            "html":
+              "one": >-
+                1件の質問
+              "other": >-
+                %{count}件の質問
+          "reviews":
+            "html":
+              "one": >-
+                1件のレビュー
+              "other": >-
+                %{count}件のレビュー
+        "summary":
+          "qa":
+            "html":
+              "one": >-
+                1件の質問
+              "other": >-
+                %{count}件の質問
+            "new": >-
+              質問する
+          "reviews":
+            "html":
+              "one": >-
+                1件のレビュー
+              "other": >-
+                %{count}件のレビュー
+            "new": >-
+              レビューを書く
+        "tabs":
+          "questions":
+            "new": >-
+              質問をする
+            "search":
+              "label": >-
+                検索:
+              "placeholder": >-
+                検索のQ&A
+            "title": >-
+              Q&A
+            "write_first": >-
+              この商品について最初の質問をする
+          "reviews":
+            "based_on_reviews":
+              "html": >-
+                %{reviews_count}に基づく
+            "media_gallery":
+              "images":
+                "one": >-
+                  画像1枚
+                "other": >-
+                  画像%{count}枚
+              "search":
+                "label": >-
+                  検索:
+                "placeholder": >-
+                  検索レビュー
+              "title": "顧客\r\nメディア"
+              "videos":
+                "one": >-
+                  1動画
+                "other": >-
+                  %{count}動画
+            "new": >-
+              レビューを書く
+            "rating": >-
+              %{rating}/5 星
+            "title": >-
+              顧客レビュー
+            "write_first": >-
+              この商品の最初のレビューを書きましょう
+          "titles":
+            "questions": >-
+              質問と回答
+            "questions_responsive": >-
+              Q&A
+            "reviews": >-
+              レビューと評価
+            "reviews_responsive": >-
+              レビュー
+      "sidebar":
+        "default_title": >-
+          レビュー | Q&A
+    "with_incentive":
+      "reviews":
+        "text": >-
+          レビュワーは、このレビューを書くことに対するインセンティブを与えられた可能性があります
+    "write_review": >-
+      レビューを書く
+  "helpers":
+    "friendly_rating": >-
+      まだレビューはありません
+    "label":
+      "customer":
+        "email": >-
+          顧客のメールアドレス
+        "name": >-
+          顧客の氏名
+      "product_group":
+        "name": >-
+          氏名
+    "placeholder":
+      "promotion":
+        "template": >-
+          ブラックフライデーの週にすべての注文で送料無料！
+    "submit":
+      "product_group":
+        "create": >-
+          グループ作成
+        "update": >-
+          グループをアップデート
+      "question":
+        "create": >-
+          質問をする
+      "review":
+        "create": >-
+          レビューを送信
+  "layouts":
+    "mailer":
+      "front":
+        "manage_subscriptions": >-
+          登録を管理
+        "unsubscribe": >-
+          登録解除
+  "load_more": >-
+    さらにロードする
+  "privacy_policy": >-
+    プライバシーポリシー
+  "question_facebook_post_template": "[customer_name]\r\nQ: [question]\r\nA: [answer]"
+  "question_tweet_template": "[customer_name]\r\nQ: [question]\r\nA: [answer]"
+  "rating_1": >-
+    最低
+  "rating_2": >-
+    悪い
+  "rating_3": >-
+    まあまあ
+  "rating_4": >-
+    良い
+  "rating_5": >-
+    最高
+  "read_less": >-
+    元に戻す
+  "read_more": >-
+    レビュー全文を読む
+  "recaptcha":
+    "errors":
+      "verification_failed": >-
+        reCAPTCHA認証に失敗しました。
+    "label": >-
+      スパムとの戦いにご協力ください
+  "report": >-
+    レポート
+  "review_facebook_post_template": "[customer_name]の[product_name]に関する意見についてチェックしましょう:\r\n\r\n[rating]\r\n\"[feedback]\""
+  "review_tweet_template": "[customer_name]:\r\n[product_name] - [rating], \"[feedback]\""
+  "settings":
+    "default":
+      "review_slider_c2a_text": >-
+        すべて表示
+  "stars":
+    "one": >-
+      星1つ
+    "other": >-
+      星%{count}つ
+  "verified":
+    "agent":
+      "description": >-
+        %{store}は%{author}に勤務しています
+      "label": >-
+        %{store}
+    "customer":
+      "description": >-
+        %{author}はこの商品を購入しています
+      "label": >-
+        承認された購入者

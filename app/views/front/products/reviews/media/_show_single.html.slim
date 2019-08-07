@@ -1,0 +1,30 @@
+/ medium*
+/ review*
+/ count*
+
+- visibility_class = (count == 0 ? "hc-media__medium--visible" : "")
+
+- reviewable_name = review.product.present? ? review.product.name : review.store.name
+- if medium.image?
+  .hc-media__medium.hc-media__medium--single class="#{visibility_class}" data-model="medium" data-id=medium.hashid data-src=cl_image_path(medium.cloudinary_public_id) data-sub-html=reviewable_name
+    = cl_image_tag    medium.cloudinary_public_id,
+      transformation: [{width: 320, crop: :fit, quality: "auto:best" }],
+      class:          "hc-media__thumb #{ 'hc-media__thumb--explicit' if medium.explicit? }"
+
+    .hc-media__thumb-text
+      = image_count(review)
+      = video_count(review)
+
+- elsif medium.video?
+  - poster = cl_video_thumbnail_path(medium.cloudinary_public_id)
+  .hc-media__medium.hc-media__medium--single class="#{visibility_class}" data-model="medium" data-id=medium.hashid data-html="#hc-video-#{medium.hashid}" data-poster=poster data-sub-html=reviewable_name
+    = cl_video_thumbnail_tag medium.cloudinary_public_id,
+      transformation:        [{ width: 320, crop: :fit, quality: "auto:best"}],
+      class:                 'hc-media__thumb hc-media__thumb--video'
+
+    div id="hc-video-#{medium.hashid}" style="display:none;"
+      = cl_video_tag(medium.cloudinary_public_id, controls: true, source_types: ['mp4'], class: 'lg-video-object lg-html5')
+
+    .hc-media__thumb-text
+      = image_count(review)
+      = video_count(review)

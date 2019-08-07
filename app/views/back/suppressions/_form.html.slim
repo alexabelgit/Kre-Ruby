@@ -1,0 +1,18 @@
+= form_for [:back, @suppression] do |f|
+  = render 'shared/form/errors', resource: @suppression
+
+  .hc-form__control.hc-form__control--lg
+    = f.label :email, 'Email address',  class: 'hc-form__label'
+
+    = f.email_field :email,
+      required:     true,
+      autofocus:    true,
+      placeholder:  'customer@example.com',
+      class:        'hc-form__input'
+
+  .hc-form__actions
+    => button_tag 'Suppress',
+       data:      { disable_with: "#{ spinner_icon } Suppressing" },
+       class:     'settings-form__submit'
+
+    =  link_to  'Cancel', back_suppressions_path, class: 'hc-secondary-button'

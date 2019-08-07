@@ -1,0 +1,105 @@
+.discount-coupon__info {
+  @include flexbox(
+    $align-items: center,
+    $flex-wrap: wrap
+  );
+}
+
+.discount-coupon__code-n-id {
+
+}
+
+.discount-coupon__code {
+}
+
+.discount-coupon__id {
+  @extend %color__pale;
+}
+
+.discount-coupons__paging {
+  @extend %paging;
+}
+
+.discount-coupon__option {
+  display: none;
+}
+
+.discount-coupon__revealer {
+  @extend %padding-bottom__md;
+}
+
+.discount-coupon__revealer--label {
+  @extend %margin__xs;
+}
+
+.discount-coupon__revealer[data-reveals="reusable"]:checked ~ .discount-coupon__option.discount-coupon__option--reusable {
+  display: block;
+}
+
+.discount-coupon__revealer[data-reveals="unique"]:checked ~ .discount-coupon__option.discount-coupon__option--unique {
+  display: block;
+}
+
+.discount-coupon__discount-sequence {
+  @extend %margin__xs;
+  @extend %padding-bottom__md;
+}
+
+.discount-coupon__option--after-radio {
+  @extend %margin-top__md;
+}
+
+.discount-coupon__in-use {
+
+  > span {
+    @extend %hide-unless-screen-reader;
+  }
+
+  &.discount-coupon__in-use--true {
+    @extend %color__success;
+  }
+
+  &.discount-coupon__in-use--false {
+    @extend %color__danger;
+  }
+
+}
+
+.discount-coupon__publish {
+  @extend .hc-success-button--small;
+}
+
+.discount-coupon__archive {
+  @extend .hc-danger-button--small;
+}
+
+.discount-coupon-archive-icon {
+  @extend %cursor__pointer;
+  @extend %color__warning;
+}
+
+.discount-coupon__form-fields {
+  width: 100%;
+  .hc-form__control {
+    width: 50%;
+  }
+  .discount-coupon__option {
+    width: 100%;
+  }
+  .hc-form__date-select {
+    width: 51%;
+    select {
+      width: 32%;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .hc-form__control {
+      width: 100%;
+    }
+  }
+}
+
+#discount_coupon_name {
+  width: 100%;
+}

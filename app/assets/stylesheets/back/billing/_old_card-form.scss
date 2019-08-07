@@ -1,0 +1,47 @@
+.card-form {
+  @extend .hc-card;
+  @extend %margin-y__xl;
+  @extend %margin-x__auto;
+}
+
+.card-form__card-details {
+  @include flexbox(
+    $flex-wrap: wrap
+  );
+}
+
+.card-form__number {
+  @extend %flex__1;
+  @extend %margin-bottom__md;
+  @extend %margin-right__md;
+}
+
+.card-form__other-details {
+  @extend %flex__1;
+  @extend %margin-bottom__md;
+  @extend %display__flex;
+}
+
+.card-form__expiration-selects {
+  @extend %display__flex;
+  select {
+    @extend %flex__1;
+
+    &:first-of-type {
+      @extend %margin-right__xs;
+    }
+  }
+}
+
+.card-form__cvv {
+  @extend %flex__1;
+  @extend %margin-right__md;
+
+  input {
+    @extend %width__100pct;
+  }
+}
+
+.card-form__expiration {
+  @extend %flex__1;
+}

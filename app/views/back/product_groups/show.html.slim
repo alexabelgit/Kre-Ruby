@@ -1,0 +1,52 @@
+- content_for :main_class, 'boxed'
+= render 'back/products/sub_nav'
+
+header.header-with-action
+  h1
+    =  title @product_group.name
+
+    =< render 'back/shared/addon_icon'
+
+  = link_to edit_back_product_group_path,
+    class: 'hc-secondary-button' do
+
+    => hc_icon 'pencil'
+    |  Edit
+
+section.product-group-details__overview-wrapper
+  .product-group-details__overview
+
+    .product-group-details__overview-item
+      ' Rating:
+      = stars_and_rating(@product_group.rating)
+
+    .product-group-details__overview-item
+      | Published reviews: #{ @product_group.reviews.published.count }
+
+    .product-group-details__overview-item
+      | Published questions: #{ @product_group.questions.published.count }
+
+section
+  h2 Products
+
+  .responsive-table
+    table.table
+      thead
+        tr
+          th Product
+          th Rating
+          th Reviews
+          th Questions
+
+      tbody
+        - @product_group.products.a24z.each do |product|
+          tr
+            td = link_to back_product_path(product), class: 'product__name' do
+              =  product.get_highlights(:name)
+              =< stamp_product_if_archived_or_hidden(product)
+
+            td = stars_and_rating(product.individual_rating)
+
+            td = product.individual_reviews.published.count
+
+            td = product.individual_questions.published.count

@@ -1,0 +1,22 @@
+/ f*
+/ field*        - pass either both `f` and `field` or `custom_input`
+/ custom_input* - pass this to override generated file_field and have a custom
+                  input[type="file"] element. Provided custom input should have
+                  class="hc-upload-button__hidden-input" and
+                  data-hc-upload-button-input attributes
+/ multiple
+
+- multiple     ||= false
+- custom_input ||= false
+
+label.hc-upload-button data-hc-upload-button=""
+  - if custom_input
+    = custom_input
+  - else
+    = f.file_field field,
+      multiple:    multiple,
+      class:       "hc-upload-button__hidden-input",
+      data:        { hc_upload_button_input: true }
+
+  span.hc-upload-button__button> Choose file
+  span.hc-upload-button__filename data-hc-upload-button-filename="" No file chosen

@@ -1,0 +1,80 @@
+- content_for :main_class, 'boxed'
+- render 'layouts/back/sub_navs/settings'
+
+h1 = title 'Account settings'
+
+section#personal-info.users__section
+
+  h2 Personal information
+
+  = form_for( [:back, @user],
+    url:      back_user_path(@user),
+    method:   :put,
+    html:     { id: 'personal-info', class: 'users-form' } ) do |f|
+
+    = render 'shared/form/errors', resource: @user
+
+    .users-form__control
+      = f.label      :first_name, class: 'users-form__label'
+      = f.text_field :first_name, autofocus: true, class: 'users-form__input'
+
+    .users-form__control
+      = f.label      :last_name, class: 'users-form__label'
+      = f.text_field :last_name, class: 'users-form__input'
+
+    .users-form__control
+      = f.label       :email, class: 'users-form__label'
+      = f.email_field :email, class: 'users-form__input'
+
+      - if @user.pending_reconfirmation?
+        span.hc-form__hint Pending: #{@user.unconfirmed_email}
+
+    .hc-form__actions
+      = f.submit 'Update', class: 'users-form__submit'
+
+- unless @user.shopify?
+  section#password.users__section
+
+    h2 Password
+
+    = form_for( [:back, @user],
+      url:      back_user_path(@user),
+      method:   :put,
+      html:     { id: 'password', class: 'users-form' }) do |f|
+
+      = render 'shared/form/errors', resource: @user
+
+      .users-form__control
+        = f.label          :password, 'New password', class: 'users-form__label'
+        = f.password_field :password, autofocus: true, autocomplete: 'off', class: 'users-form__input'
+
+        span.hc-form__hint
+          | At least #{ User.password_length.min } characters. Leave blank if you don't wish to change.
+        // TODO | User.password_length.min should be @minimum_password_length
+        // but does not work after form validation errors. Issue submitted to GH
+        // Someone fixed it but it's not yet included in current devise (4.2.0)
+
+      .users-form__control
+        = f.label          :password_confirmation,                      class: 'users-form__label'
+        = f.password_field :password_confirmation, autocomplete: 'off', class: 'users-form__input'
+
+      = f.hidden_field :first_name, value: @user.first_name
+      = f.hidden_field :last_name,  value: @user.last_name
+      = f.hidden_field :email,      value: @user.email
+
+      .hc-form__actions
+        = f.submit 'Update', class: 'users-form__submit'
+
+section#deactivate.users__section
+
+  h2 Deactivate account
+
+  p Unhappy with our app?
+
+  = button_to 'Deactivate your account',
+    users_path,
+    data:   {  prompt: true,
+              'prompt-message': "Sorry to see you go :( To deactivate your account, please type in 'DEACTIVATE'.",
+              'prompt-confirm': 'DEACTIVATE' },
+    method: :delete,
+    class:  'users-form__deactivate'

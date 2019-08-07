@@ -1,0 +1,18 @@
+/ display_text
+/ minimize
+
+// The default value cannot be set with the above method if the values are false or nil. Hence using local_assigns.fetch method.
+- display_text      = local_assigns.fetch :display_text, true
+- minimize        ||= false
+
+.hc-powered-by
+  .hc-powered-by__pretext
+    | Independently
+    br
+    | collected by
+  = render        'shared/logo',
+    new_tab:      true,
+    path:         'https://www.helpfulcrowd.com',
+    minimize:     minimize,
+    size:         'small',
+    display_text: display_text

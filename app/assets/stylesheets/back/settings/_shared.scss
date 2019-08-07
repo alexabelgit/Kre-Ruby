@@ -1,0 +1,9 @@
+.settings-section {
+  @extend %background-color__white;
+  @extend %simple-card;
+
+  &:not(:last-of-type) {
+    @extend %margin-bottom__md;
+  }
+
+}

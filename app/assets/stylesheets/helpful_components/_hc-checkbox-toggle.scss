@@ -1,0 +1,77 @@
+// TODO @mizurnix - add style for :focus, now nothing happens and you can't tell if toggler is focused or not. Important for keyboards only users
+
+.hc-checkbox-toggle__input {
+  @extend %hide-unless-screen-reader;
+}
+
+.hc-checkbox-toggle__label {
+  @extend %display__inline-block;
+}
+
+.hc-checkbox-toggle__icon {
+  @extend %line-height__1em;
+  @extend %vertical-align__middle;
+  @extend %cursor__pointer;
+}
+
+.hc-checkbox-toggle__label-disabled,
+.hc-checkbox-toggle__label-enabled {
+  @extend %user-select__none;
+}
+
+.hc-checkbox-toggle__label {
+  @extend %color__pale;
+
+  .hc-checkbox-toggle__icon {
+    &.hc-checkbox-toggle__icon--off {
+      @extend %display__inline-block;
+    }
+
+    &.hc-checkbox-toggle__icon--on {
+      @extend %display__none;
+    }
+  }
+
+  .hc-checkbox-toggle__label-disabled {
+    @extend %display__inline-block;
+  }
+
+  .hc-checkbox-toggle__label-enabled {
+    @extend %display__none;
+  }
+}
+
+.hc-checkbox-toggle__input:checked + .hc-checkbox-toggle__label {
+  .hc-checkbox-toggle__icon {
+    &.hc-checkbox-toggle__icon--off {
+      @extend %display__none;
+    }
+
+    &.hc-checkbox-toggle__icon--on {
+      @extend %display__inline-block;
+    }
+  }
+
+  .hc-checkbox-toggle__label-disabled {
+    @extend %display__none;
+  }
+
+  .hc-checkbox-toggle__label-enabled {
+    @extend %display__inline-block;
+  }
+}
+
+.hc-checkbox-toggle__input:checked + .hc-checkbox-toggle__label {
+  @extend %color__success;
+}
+
+.hc-checkbox-toggle.hc-checkbox-toggle--warning {
+  .hc-checkbox-toggle__input:checked + .hc-checkbox-toggle__label {
+    @extend %color__warning;
+  }
+}
+
+.hc-checkbox-toggle__label-title {
+  @extend %color__dark;
+  @extend %display__block;
+}

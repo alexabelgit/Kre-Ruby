@@ -1,0 +1,14 @@
+@import "../erb/hc-code";
+
+.hc-code__wrapper {
+  @extend %margin__0;
+}
+
+.hc-code {
+  @extend %background-color__light;
+  @extend %border__base;
+  @extend %border-radius__base;
+  @extend %overflow__auto;
+  @extend %padding__xs--px;
+  @extend %font-size__85pct;
+}

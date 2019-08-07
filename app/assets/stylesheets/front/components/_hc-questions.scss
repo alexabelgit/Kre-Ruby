@@ -1,0 +1,34 @@
+.hc-questions__list {
+  @extend %margin-bottom__md;
+  &.hc-questions__list--single_column {
+  }
+
+  &.hc-questions__list--masonry {
+    @extend %column-count__3;
+    @extend %column-gap__1em;
+    @extend %column-width__15em;
+  }
+}
+
+.hc-questions__new {
+  a {
+    @extend %color__link;
+    @extend %underline-on-hover;
+  }
+}
+
+.hc-question__footer {
+  @extend %font-size__80pct;
+  @extend %border-top__1px__solid;
+  @extend %padding-top__sm;
+}
+
+.hc-questions-tab .hc-product-tab--actions-bar .hc-product-tab--actions{
+  @extend %border__0;
+  @extend %margin-bottom__md;
+  @extend %margin-top__md;
+}
+
+.hc-questions-tab .hc-product-tab-filters{
+  @extend %flex__1;
+}

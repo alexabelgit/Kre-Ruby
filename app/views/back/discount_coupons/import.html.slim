@@ -1,0 +1,40 @@
+- content_for :main_class, 'boxed'
+= render 'layouts/back/sub_navs/tools'
+
+h1 Import discount coupons
+
+section.seed__section
+
+  - if @store.settings(:background_workers).discount_coupon_seed_running
+    = render   'shared/system_messages/custom',
+      type:    'warning',
+      body:    'We are importing your discount coupons. Please check again later.',
+      persist: true
+
+  - else
+    p Select first and last order dates below to send review requests
+      to customers who have previously purchased online with you.
+
+    p If you are migrating from another review app, carefully select the dates to ensure that
+      customers do not receive repeated review requests.
+
+    p To import existing reviews use <a href="#import-reviews" data-turbolinks="false">review importer</a>.
+
+    = form_tag(sync_back_discount_coupons_path(@promotion), method: :post) do |f|
+      .hc-form__control
+        = label_tag :seed_valid_from_start_1i, 'Valid from greater than and less then', class: 'hc-form__label hc-form__input--md'
+        = date_select('seed', 'valid_from_start', { start_year: DateTime.current.year - 5, end_year: DateTime.current.year + 10, default: (DateTime.current - 3.months) }, html_options = {class: 'hc-form__input--md'})
+
+        ' -
+        / = label_tag :seed_valid_from_end_1i, 'Valid from less then', class: 'hc-form__label hc-form__input--md'
+        = date_select('seed', 'valid_from_end', { start_year: DateTime.current.year - 5, end_year: DateTime.current.year + 10, default: (DateTime.current) }, html_options = {class: 'hc-form__input--md'})
+
+      .hc-form__control
+        = label_tag :seed_valid_until_start_1i, 'Valid until greated then and less then', class: 'hc-form__label hc-form__input--md'
+        = date_select('seed', 'valid_until_start', { start_year: DateTime.current.year - 5, end_year: DateTime.current.year + 10, default: (DateTime.current + 3.months) }, html_options = {class: 'hc-form__input--md'})
+
+        ' -
+        / = label_tag :seed_valid_until_end_1i, 'Valid until less then', class: 'hc-form__label hc-form__input--md'
+        = date_select('seed', 'valid_until_end', { start_year: DateTime.current.year - 5, end_year: DateTime.current.year + 10, default: (DateTime.current + 6.months) }, html_options = {class: 'hc-form__input--md'})
+
+      = render 'shared/form/submit', value: 'Import'

@@ -1,0 +1,18 @@
+/ heading
+/ name*
+/ title
+
+- title   ||= name.humanize
+- heading ||= :h2
+- id        = name + '_' + SecureRandom.base58
+
+section.hc-collapsible-item id=name
+  input.hc-collapsible-item__toggler id="collapsible-item--#{ id }" type='checkbox'
+  header.hc-collapsible-item__header
+    = content_tag heading, title, class: 'hc-collapsible-item__heading'
+    label.hc-collapsible-item__toggler for="collapsible-item--#{ id }"
+      .hc-collapsible-item__icon
+        = hc_icon 'chevron-left'
+
+  section.hc-collapsible-item__content
+    = yield

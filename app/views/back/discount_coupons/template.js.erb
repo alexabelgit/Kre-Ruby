@@ -1,0 +1,4 @@
+jQuery('[data-role="available-promotion-placeholders"]').replaceWith('<%= escape_javascript(render 'back/shared/available_promotion_placeholders', placeholders: @available_placeholders) %>');
+jQuery('[data-previewable="sample_data"]').replaceWith('<%= escape_javascript(render 'plugins/previewable_sample_data', data:  @placeholders_hash) %>');
+jQuery('[data-previewable="button"]').click();
+jQuery(document).copy_to_clipboard();

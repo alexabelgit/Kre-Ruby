@@ -1,0 +1,8 @@
+- store ||= current_store
+
+- unless store.settings(:questions).enabled.to_b
+  = render   'shared/system_messages/custom',
+    type:    'warning',
+    body:    'You have disabled this feature and Q&A content is not displaying on your website. You can reenable it from settings.',
+    persist: true,
+    action:  { name: 'Go to settings', url: features_back_settings_path, type: 'secondary' }

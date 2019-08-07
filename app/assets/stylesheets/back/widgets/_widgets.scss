@@ -1,0 +1,21 @@
+.widget__section {
+  @extend %margin-bottom__lg;
+}
+
+.widget__about {
+  @extend %margin-bottom__lg;
+  @include flexbox(
+    $flex-wrap: wrap
+  );
+}
+
+.widget__description,
+.widget__mockup {
+  @extend %flex-grow__1;
+  @extend %flex-shrink__1;
+  @extend %flex-basis__20rem;
+}
+
+.widget__mockup {
+  @extend %margin__md;
+}

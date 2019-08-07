@@ -1,0 +1,40 @@
+.nav {
+  @extend %background-color__dark;
+
+  @extend %max-width__100pct;
+  @extend %overflow__auto;
+  @extend %white-space__nowrap; // TODO test if child elements need white-space: normal;
+
+  @extend %display__flex;
+}
+
+%nav__button {
+  @extend %flex__0__1__auto;
+  @extend %white-space__nowrap;
+}
+
+.nav__button {
+  @extend %nav__button;
+
+  @include button(
+    dark,
+    white,
+    $border-color:  'transparent',
+    $border-radius:  0,
+    $padding-x:     $button--large__padding-x,
+    $padding-y:     $button--large__padding-y
+  );
+}
+
+.nav__button--active {
+  @extend %nav__button;
+
+  @include button(
+    brand-1,
+    white,
+    $border-color:  'transparent',
+    $border-radius:  0,
+    $padding-x:     $button--large__padding-x,
+    $padding-y:     $button--large__padding-y
+  );
+}

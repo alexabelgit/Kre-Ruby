@@ -1,0 +1,186 @@
+- content_for :main_class, 'boxed store-details'
+
+.heading-and-action
+  h1 = @store.name
+
+  div
+    => link_to admin_store_downloads_path(@store), class: 'hc-secondary-button' do
+      => hc_icon 'download'
+      =  "Downloads"
+
+    = link_to settings_admin_store_path(@store), class: 'hc-secondary-button' do
+      => hc_icon 'cog'
+      =  "Settings"
+
+section.store-details__section
+  h2 Overview
+
+  = info_with_label(link_to("#{hc_icon 'external-link'} #{@store.url}".html_safe, @store.url, target: '_blank'), 'Website', html_class: 'flex__1-vs-3')
+
+  .info-with-label.flex__1-vs-3
+    span.info-with-label__label.bold Store owner
+    span.info-with-label__info
+      => @store.user.full_name
+      span.hc-badge.hc-badge--info = @store.user.role
+      = link_to("#{hc_icon 'user-secret'} Impersonate".html_safe, impersonate_admin_user_path(@store.user), method: :post, class: 'hc-secondary-button--small float__right')
+  = info_with_label(mail_to(@store.user.email, "#{hc_icon 'envelope'} #{@store.user.email}".html_safe),   'Contact email', html_class: 'flex__1-vs-3')
+  = info_with_label link_to("#{hc_icon('phone') + ' ' + @store.phone}".html_safe, "tel:#{@store.phone}"), 'Phone',         html_class: 'flex__1-vs-3'
+
+  br
+
+  = info_with_label(humane_date(@store.created_at),             'Member since', html_class: 'flex__1-vs-3')
+  = info_with_label(progress_bar(@store.onboarding[:progress]), 'Onboarding',   html_class: 'flex__1-vs-3')
+
+  br
+  br
+
+  = info_with_label(@store.review_requests.count, 'Review requests', html_class: 'flex__1-vs-3')
+  = info_with_label(@store.reviews.count,         'Reviews',         html_class: 'flex__1-vs-3')
+  = info_with_label(@store.questions.count,       'Q&A',             html_class: 'flex__1-vs-3')
+  = info_with_label(@store.products.count,        'Products',        html_class: 'flex__1-vs-3')
+  = info_with_label(@store.active_products_count, 'Active products', html_class: 'flex__1-vs-3')
+
+section.store-details__section
+  h2 Actions
+  => link_to 'Export reviews to CSV', export_reviews_admin_store_downloads_path(@store),
+     method: :post,
+     class:  'hc-secondary-button'
+
+  => link_to 'Export Questions to CSV', export_questions_admin_store_downloads_path(@store),
+     method: :post,
+     class:  'hc-secondary-button'
+
+  => link_to 'Export products to CSV', export_products_admin_store_path(@store, format: :csv),
+          method: :post,
+          class: 'hc-secondary-button'
+
+  => link_to 'Sync Products', sync_products_admin_store_path(@store),
+     method: :post,
+     remote: true,
+     class:  'hc-secondary-button'
+
+  - if @store.shopify?
+    => link_to 'Re-sync shopify store', sync_shopify_admin_store_path(@store),
+       method: :post,
+       remote: true,
+       class:  'hc-secondary-button'
+
+  - if @store.active_subscription&.gifted?
+    - if @store.withheld?
+      => link_to 'Unhold free plan', release_hold_admin_store_path(@store), method: :post, class: 'hc-secondary-button'
+    - else
+      => link_to 'Withhold free plan', withhold_admin_store_path(@store), method: :post, class: 'hc-secondary-button'
+
+
+section.store-details__section
+  h2 Review requests
+
+  = info_with_label(@store.review_requests.cancelled.count, 'Cancelled', html_class: 'flex__1-vs-3')
+  = info_with_label(@store.review_requests.scheduled.count, 'Scheduled', html_class: 'flex__1-vs-3')
+  br
+  = info_with_label(@store.review_requests.pending.count,    'Pending',    html_class: 'flex__1-vs-3')
+  = info_with_label(@store.review_requests.incomplete.count, 'Incomplete', html_class: 'flex__1-vs-3')
+  = info_with_label(@store.review_requests.complete.count,   'Complete',   html_class: 'flex__1-vs-3')
+  = info_with_label(@store.review_requests.sent.count,       'Total sent', html_class: 'flex__1-vs-3')
+  br
+  = info_with_label(@store.review_requests.count, 'Total', html_class: 'flex__1-vs-3')
+
+section.store-details__section
+  h2 Reviews
+
+  = info_with_label(@store.reviews.published.count, 'Published', html_class: 'flex__1-vs-3')
+  = info_with_label(@store.reviews.archived.count,  'Archived',  html_class: 'flex__1-vs-3')
+  = info_with_label(@store.reviews.pending.count,   'Pending',   html_class: 'flex__1-vs-3')
+  br
+  = info_with_label(@store.reviews.imported.count,      'Imported',              html_class: 'flex__1-vs-3')
+  = info_with_label(@store.reviews.from_provider.count, 'Requested by HC',       html_class: 'flex__1-vs-3')
+  = info_with_label(@store.reviews.manual.count,        'Requested by merchant', html_class: 'flex__1-vs-3')
+  br
+  = info_with_label(@store.reviews.count, 'Total', html_class: 'flex__1-vs-3')
+
+section.store-details__section
+  h2 Q&A
+
+  = info_with_label(@store.questions.published.count, 'Published', html_class: 'flex__1-vs-3')
+  = info_with_label(@store.questions.archived.count,  'Archived',  html_class: 'flex__1-vs-3')
+  = info_with_label(@store.questions.pending.count,   'Pending',   html_class: 'flex__1-vs-3')
+  br
+  = info_with_label(@store.questions.answered.count,   'Answered',   html_class: 'flex__1-vs-3')
+  = info_with_label(@store.questions.unanswered.count, 'Unanswered', html_class: 'flex__1-vs-3')
+  br
+  = info_with_label(@store.questions.count, 'Total', html_class: 'flex__1-vs-3')
+
+section.store-details__section
+  h2 Subscription
+  = info_with_label(@presenter.billing_status, 'Billing status')
+  = info_with_label(@store.active_addons.map(&:name).join(' • '), 'Active addons') if @store.addons_feature_enabled?
+  br
+  = info_with_label(@presenter.registered_at, 'Registered at')
+  - if @presenter.can_be_billed?
+    - if @presenter.subscription?
+      = info_with_label(@presenter.subscription_state, 'Subscription state')
+      br
+      = info_with_label(@presenter.monthly_charge, 'Monthly charge')
+      = info_with_label(@presenter.next_billing_at, 'Next billing date')
+      - if @presenter.products_based_billing?
+        = info_with_label(@presenter.products_amount, 'Products amount')
+        = info_with_label(@presenter.products_quota || 'Unlimited', 'Products limit')
+      - else
+        = info_with_label(@presenter.orders_and_quota, 'Orders used this month')
+      br
+      = info_with_label(@presenter.overages, 'Overages to charge this month')
+      - if @presenter.chargebee_subscription?
+        = info_with_label(@presenter.subscription_provider_id, 'Subscription Chargebee ID')
+      br
+      - if @presenter.products_based_billing?
+        strong Gifted products ( increases max products limit):
+        = form_for @store, url: grant_products_admin_store_path(@store), method: :post do |f|
+          = f.number_field :amount, min: 0, value: @store.active_subscription&.gifted_products_amount || 50
+          = f.submit 'Update', class: 'hc-secondary-button'
+      - else
+        = form_for @store, url: grant_orders_admin_store_path(@store), method: :post do |f|
+          = f.number_field :amount, min: 0, value: 50
+          = f.submit 'Give free orders', class: 'hc-secondary-button'
+    - else
+      = info_with_label(@presenter.trial_until, 'Trial until')
+      = form_for @store, url: extend_trial_admin_store_path(@store), method: :post do |f|
+        = f.date_field :new_trial_date, min: @store.trial_ends_at, value: @store.trial_ends_at.to_date
+        = f.submit 'Extend trial', class: 'hc-secondary-button'
+
+section.store-details__section
+  h2 Products
+
+  = info_with_label(@store.products.count, 'Total', html_class: 'flex__1-vs-3')
+
+  .store-details__rating-chart
+    | Store rating based on #{@store.reviews.published.count} published reviews:
+    = render 'shared/rating_chart', reviews: @store.reviews.published
+
+section.store-details__section.dangerous-zone
+  h2 Dangerous zone
+  - if @store.user.deleted?
+    = button_to reactivate_admin_user_path(@store.user),
+    data:   {  prompt: true, 'prompt-message': "To reactivate this store, please type in 'REACTIVATE'.", 'prompt-confirm': 'REACTIVATE' }, method: :post, class:  'hc-primary-button' do
+      => hc_icon 'check'
+      | Reactivate store
+  - else
+    = button_to deactivate_admin_user_path(@store.user),
+    data:   {  prompt: true, 'prompt-message': "To deactivate this store, please type in 'DEACTIVATE'.", 'prompt-confirm': 'DEACTIVATE' }, method: :post, class:  'hc-warning-button' do
+      => hc_icon 'ban'
+      | Deactivate store
+
+  - if @store.products_based_billing?
+    = button_to change_pricing_model_admin_store_path(@store, store: { pricing_model: :orders }), method: :post, class: 'hc-warning-button' do
+      | Use orders based billing
+  - else
+    = button_to change_pricing_model_admin_store_path(@store, store: { pricing_model: :products }), method: :post, class: 'hc-warning-button' do
+      | Use products based billing
+
+section.store-details__section.dangerous-zone
+  h2 Non reversible actions
+  = button_to 'Anonymize store', anonymize_admin_store_path(@store), data: { prompt: true, 'prompt-message': "To anonymize all customers for this store, please type in 'ANONYMIZE'. This action is irreversible!", 'prompt-confirm': 'ANONYMIZE' }, method: :post, remote: true, class: 'hc-danger-button'
+
+  = button_to 'Delete data', delete_data_admin_store_path(@store), data: { prompt: true, 'prompt-message': "To delete all data for this store, please type in 'DELETEALL'. This action is irreversible!", 'prompt-confirm': 'DELETEALL' }, method: :post, remote: true, class: 'hc-danger-button'
+
+  = button_to 'Delete imported reviews', delete_imported_reviews_admin_store_path(@store), data: { prompt: true, 'prompt-message': "To delete all imported reviews for this store, please type in 'DELETEALL'. This action is irreversible!", 'prompt-confirm': 'DELETEALL' }, method: :post, remote: true, class: 'hc-danger-button'
+  

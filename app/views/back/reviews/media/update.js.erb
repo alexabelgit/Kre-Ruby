@@ -1,0 +1,5 @@
+var selector = '[data-model="medium"][data-id="<%= @medium.hashid %>"]';
+jQuery(selector).find('[data-status-toggler-container="true"]')
+                .replaceWith('<%= escape_javascript(render 'back/reviews/media/status_toggler', review: @medium.mediable, medium: @medium, toggler_no_hover: true ) %>');
+jQuery(selector).detoggle_lightbox().find('[data-role="medium-status-toggler"]')
+                .mouseleave( function() { jQuery(this).removeClass('hc-media__toggler--no-hover')} );

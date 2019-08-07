@@ -1,0 +1,179 @@
+HC_JS.helpers = {
+    init_tabs_container: function(product_id, container){
+      var wrapper   = container.find('[data-hc="product-tabs"][data-hc-id="' + product_id + '"]');
+      var tabs_view = null;
+
+      if (wrapper.length > 0) {
+        tabs_view = wrapper;
+      }
+      else {
+        tabs_view = container.append('<div class="hc-widget"><div data-hc="product-tabs" data-hc-id="' + product_id + '"></div></div>');
+      }
+
+      return tabs_view;
+    },
+
+    init_rating_container: function(name_container, product_id, type){
+      if (!(name_container instanceof jQuery))
+        name_container = jQuery(name_container);
+      if (!type)
+        type = 'sibling';
+
+      var rating_container = null;
+      var selector         = '[data-hc="product-rating"][data-hc-id="' + product_id + '"]';
+      var html             = '<div class="hc-widget"><div data-hc="product-rating" data-hc-id="' + product_id + '"></div></div>';
+
+      switch(type) {
+        case 'sibling':
+          rating_container = name_container.siblings(selector);
+          if (rating_container.length <= 0)
+            rating_container = name_container.after(html);
+          break;
+        case 'child':
+          rating_container = name_container.find(selector);
+          if (rating_container.length <= 0)
+            rating_container = name_container.append(html);
+          break;
+      }
+
+      return rating_container;
+    },
+
+    init_summary_container: function(name_container, product_id, type){
+      if (!(name_container instanceof jQuery))
+        name_container = jQuery(name_container);
+      if (!type)
+        type = 'sibling';
+
+      var rating_container = null;
+      var selector         = '[data-hc="product-summary"][data-hc-id="' + product_id + '"]';
+      var html             = '<div class="hc-widget"><div data-hc="product-summary" data-hc-id="' + product_id + '"></div></div>';
+
+      switch(type) {
+        case 'sibling':
+          rating_container = name_container.siblings(selector);
+          if (rating_container.length <= 0)
+            rating_container = name_container.after(html);
+          break;
+        case 'child':
+        case 'child/prepend':
+          rating_container = name_container.find(selector);
+          if (rating_container.length <= 0)
+            if (type == 'child/prepend')
+              rating_container = name_container.prepend(html);
+            else
+              rating_container = name_container.append(html);
+          break;
+      }
+
+      return rating_container;
+    },
+
+    init_form_container: function(container, order_id, product_id){
+      if (!(container instanceof jQuery))
+        container = jQuery(container);
+
+      var wrapper = container.find('[data-hc="review-form"][data-hc-id="' + order_id + '-' + product_id + '"]');
+
+      if (wrapper.length <= 0) {
+        wrapper = jQuery('<div class="hc-widget"><div data-hc="review-form" data-hc-id="' + order_id + '-' + product_id + '"></div></div>');
+        container.append(wrapper);
+      }
+
+      return wrapper;
+    },
+
+    init_sidebar_widget: function(container){
+      if (!(container instanceof jQuery))
+        container = jQuery(container);
+
+      var wrapper = jQuery('body [data-hc="sidebar"]');
+
+      if (wrapper.length <= 0) {
+        wrapper = container.append('<div class="hc-widget"><div data-hc="sidebar"></div></div>');
+      }
+
+      return wrapper;
+    },
+
+    init_review_journal_widget: function(container){
+      if (!(container instanceof jQuery))
+        container = jQuery(container);
+
+      var wrapper = jQuery('[data-hc="review-journal"],[data-hc="review-book"]');
+
+      if (wrapper.length <= 0) {
+        wrapper = container.append('<div class="hc-widget"><div data-hc="review-journal"></div></div>');
+      }
+
+      return wrapper;
+    },
+
+    init_review_slider_widget: function(container){
+      if (!(container instanceof jQuery))
+        container = jQuery(container);
+
+      var wrapper = jQuery('body [data-hc="review-slider"]');
+
+      if (wrapper.length <= 0) {
+        wrapper = container.append('<div class="hc-widget"><div data-hc="review-slider"></div></div>');
+      }
+
+      return wrapper;
+    },
+
+    ajax_setup: function(){
+      var url_part = '<%= Rails.configuration.urls_config.app_url %>'
+
+      jQuery.ajaxPrefilter(function(options, originalOptions, xhr) {
+        if (options.url.indexOf(url_part) >= 0){
+          options.crossDomain = true;
+          options.xhrFields   = { withCredentials: true };
+
+          xhr.crossDomain = true;
+          xhr.withCredentials = true;
+
+          if (HC_JS.guest_customer){
+            var guestCustomer = JSON.stringify(HC_JS.guest_customer);
+            xhr.setRequestHeader('HC_GUEST_CUSTOMER', guestCustomer);
+          }
+
+          if (HC_JS.locale){
+            var locale = JSON.stringify(HC_JS.locale);
+            xhr.setRequestHeader('HC_LOCALE', locale);
+          }
+        }
+      });
+    },
+
+    init_hc_local_storage: function (){
+      if (!localStorage.hc)
+        localStorage.setItem('hc', JSON.stringify({
+          used_records: []
+        }));
+    },
+
+    hc_force_theme: function(theme){
+      jQuery('.hc-widget > div').addClass(theme);
+    },
+
+    hc_check_on_suppression: function(product_id, list){
+      return list.indexOf(product_id.toString()) < 0;
+    },
+
+    set_record_unavailability: function(object_type, object_id, scope){
+      var hc_storage = JSON.parse(localStorage.getItem('hc'));
+      hc_storage.used_records.push({object_type: object_type, object_id: object_id, scope: scope});
+      localStorage.setItem('hc', JSON.stringify(hc_storage));
+    },
+
+    get_record_availability: function(object_type, object_id, scope){
+      var hc_storage = JSON.parse(localStorage.getItem('hc'));
+
+      var filtered_used_records = jQuery.grep(hc_storage.used_records, function(v) {
+        return v.object_type == object_type && v.object_id == object_id && v.scope == scope;
+      });
+
+      return filtered_used_records.length <= 0;
+    }
+};

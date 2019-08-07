@@ -1,0 +1,75 @@
+.hc-widget-card {
+  @extend %background-color__lighter;
+  @extend %border-color__secondary;
+  @extend %border-radius__base;
+  @extend %border-style__solid;
+  @extend %border-width__1px;
+  @extend %display__inline-block;
+  @extend %padding-x__md;
+  @extend %width__100pct;
+  @extend %text-align__left;
+  &:not(:last-of-type) {
+    @extend %margin-bottom__md;
+  }
+  &.hc-just-reviewed {
+    @extend %border-color__success;
+    box-shadow: 0 0 10px 0 lighten($color-success, 10%); // TODO no extend?
+  }
+  &__header {
+    @extend %margin-top__md;
+    @extend %margin-bottom__xs;
+    @include flexbox();
+    .hc-widget-card__header-content {
+      @extend %flex-shrink__0p6;
+    }
+    .hc-widget-card__date {
+      @extend %flex__1;
+      @extend %flex-shrink__0;
+      @extend %flex-basis__160px;
+      @extend %text-align__right;
+      @extend %display__inline;
+      @extend %font-size__75pct;
+      @extend %margin-top__2xs;
+    }
+  }
+  &__incentivized {
+    @extend %margin-left__sm;
+    @extend %margin-top__-1px;
+  }
+  &__product {
+    @extend %margin-top__md;
+  }
+  &__item {
+    @extend %margin-bottom__sm;
+    @extend %margin-top__2xs;
+  }
+  &__comment {
+    @extend %margin-bottom__md;
+  }
+  &__dropdown {
+    @extend %flex__0;
+    @extend %margin-right__md;
+
+    .hc-dropdown {
+      @extend %right__-xs;
+    }
+  }
+  &__footer {
+    @extend %border-top__1px__solid;
+    @extend %margin-y__md;
+    @extend %font-size__80pct;
+    @extend %padding-top__sm;
+    @extend %color__link;
+  }
+  .hc-author {
+    @extend %font-size__80pct;
+    @extend %display__inline;
+  }
+}
+
+
+
+
+
+
+

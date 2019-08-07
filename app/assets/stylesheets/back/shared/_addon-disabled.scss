@@ -1,0 +1,39 @@
+.addon-disabled {
+  @extend %position__absolute;
+  @extend %top__0;
+  @extend %left__0;
+  @extend %width__100pct;
+  @extend %z-index__1;
+  @extend %text-align__center;
+  @extend %padding-top__3xl;
+  @extend %height__800px;
+  height: calc(100vh - 150px); // TODO this is not wetsyable, and also is a hacky workaround
+
+  &:after {
+    @extend %content__-empty-;
+    @extend %display__block;
+    @extend %background-color__white;
+    @extend %opacity__0pt625;
+    @extend %height__100pct;
+    @extend %top__0;
+    @extend %left__0;
+    @extend %width__100pct;
+    @extend %position__absolute;
+  }
+}
+
+.addon-disabled__content {
+  @extend %position__relative;
+  @extend %z-index__11;
+  @extend %padding__lg;
+  @extend %margin-x__auto;
+  @extend %background-color__white;
+  @extend %width__600px;
+  @extend %max-width__80pct;
+  box-shadow: 0 0 10px 0 lighten($color-dark, 10%); // TODO wetsyთ ამას
+  @extend %border-radius__base;
+}
+
+.addon-disabled__c2a {
+  @extend .hc-primary-button;
+}

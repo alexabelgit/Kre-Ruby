@@ -1,0 +1,21 @@
+.admin-form
+  = form_for [ :admin, package_discount], as: :package_discount do |f|
+    = render 'shared/form/errors', resource: package_discount
+
+    .admin-form__control-group
+      = f.label :addons_count, class: 'admin-form__label'
+      = f.text_field :addons_count, class: 'admin-form__input'
+
+    .admin-form__control-group
+      = f.label :discounts_percent, class: 'admin-form__label'
+      = f.text_field :discount_percents, class: 'admin-form__input'
+
+    .admin-form__control-group
+      = f.label :ecommerce_platform, class: 'admin-form__label'
+      = f.select :ecommerce_platform, platforms
+
+    .admin-form__control-group
+      = f.label 'Chargebee ID', class: 'admin-form__label'
+      = f.text_field :chargebee_id, class: 'admin-form__input'
+
+    = f.submit 'Save', class: 'admin-form__submit'

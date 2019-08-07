@@ -1,0 +1,77 @@
+/ = render 'plugins/previewable_sample_data',
+/   data:  { start_date: DateTime.current,
+/            end_date:   DateTime.current + 1.month }
+
+= render 'plugins/previewable_sample_data',
+  data:  @promotion.placeholders_hash_with_empty_values
+
+
+.hc-card
+  = form_for [:back, @promotion] do |f|
+    = render 'shared/form/errors', resource: @promotion
+
+    .promotion__coupon-control
+      => link_to new_back_discount_coupon_path, class: 'hc-primary-button' do
+        | #{hc_icon 'plus'} New coupon
+      = link_to 'Manage Coupons', back_discount_coupons_path, class: 'hc-secondary-button'
+    .clearfix
+
+    .promotion-form__main
+      .promotion-form__fields
+        .hc-form__control
+          = f.label      :name, class: 'hc-form__label'
+          = f.text_field :name, class: 'hc-form__input', autofocus: true
+          span.hc-form__hint Unique name to use in HelpfulCrowd email templates
+
+        .hc-form__control
+          label.hc-form__label for="discount_coupon[id]"
+            | Coupon
+          = collection_select :discount_coupon, :id, current_store.discount_coupons.visible.a24z.all, :hashid, :name, @promotion.discount_coupons.visible.any? ? {selected: @promotion.discount_coupon.hashid, include_blank: true} : {include_blank: true}, {:'data-hc' => "coupon-select"}
+
+        .hc-form__control.hc-form__date-select
+          = f.label       :starts_at, class: 'hc-form__label'
+          = f.date_select :starts_at, class: '', start_year: Date.current.year, order: DateFormat.select_format(@store.settings(:global).date_format)
+
+        .hc-form__control.hc-form__date-select
+          = f.label       :ends_at, class: 'hc-form__label'
+          = f.date_select :ends_at, class: '', start_year: Date.current.year, include_blank: true, order: DateFormat.select_format(@store.settings(:global).date_format)
+          span.hc-form__hint Leave blank for no end date
+
+    .hc-form__control.template
+      .template__source-and-preview
+        .template__source
+          .template__control
+            = f.label     :template, class: 'hc-form__label'
+
+            => f.text_area :template, required: true, class: 'tinymce', data: { previewable: 'input', role: 'promotion' }
+
+          .template__control
+            = render 'back/shared/available_promotion_placeholders', placeholders: @promotion.available_placeholders
+
+        .template__preview-button
+          button type="button" data-previewable="button" data-role="promotion"
+            = hc_icon 'chevron-right'
+
+        .template__preview
+          .previewer.previewer--promotion
+            .previewer__preview
+              .hc-card.hc-card--with-min-height.previewer__text data-previewable="output" data-role="promotion"
+
+    - if @store.settings(:promotions).mark_reviews_with_incentive.to_b
+      .hc-form__control
+        | Mandatory Incentive Notice Enabled
+        =< link_to 'Disable', promotions_back_settings_path, class: 'hc-secondary-button'
+    - else
+      .hc-form__control
+        = render 'helpful_components/checkbox_toggle/checkbox_toggle',
+          f:     f,
+          field: :incentive,
+          hint:  'From now on any review which will be writen from a review request containing this promotion will be marked as incentivised',
+          txt:   'Mark reviews as incentivised'
+
+    .hc-form__actions
+      => button_tag 'Save',
+         data:      { disable_with: "#{spinner_icon} Saving" },
+         class:     'settings-form__submit'
+
+      =  link_to  'Cancel', back_promotions_path, class: 'hc-secondary-button'

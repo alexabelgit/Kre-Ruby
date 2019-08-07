@@ -1,0 +1,13 @@
+/ store
+
+- store          ||= @store
+- container_uuid   = SecureRandom.uuid
+- disable_product_links = store.review_journal_disable_product_links
+
+section.hc-reviews data-role="review-journal" data-hc="review-journal-list-container" data-id=container_uuid
+  = render                 'front/reviews/list',
+    reviews:               reviews,
+    container_uuid:        container_uuid,
+    pagination:            'ajax',
+    open_links_in_new_tab: store.review_journal_open_links_in_new_tab,
+    disable_product_links: disable_product_links

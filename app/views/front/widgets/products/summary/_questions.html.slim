@@ -1,0 +1,41 @@
+/ product*
+/ store*
+/ links*
+/ link_role
+
+- link_role ||= 'scroll_to'
+- qa          = product.questions.published # TODO qa and qa links are still set even if qa is disabled for current store
+- show_detailed_text ||= 'false'
+
+- if link_role == 'scroll_to'
+  - hc_scroll_to     = true
+  - target           = nil
+  - turbolinks       = false
+  - new_question_url = '#hc-questions-tab'
+  - questions_url    = '#hc-questions-tab'
+  - hc_scroll_target = '#hc-product-tabs'
+- elsif link_role == 'go_to'
+  - hc_scroll_to     = nil
+  - target           = '_blank'
+  - turbolinks       = nil
+  - new_question_url = new_front_product_question_path(store, product)
+  - questions_url    = front_product_url(store, product)
+
+- link_to_new_question = link_to(new_question_url, data: { hc_scroll_to: hc_scroll_to, hc_scroll_target: hc_scroll_target, turbolinks: turbolinks }, target: target) { t 'qa.new', scope: 'front.widgets.products.summary', default: 'Ask question' }
+- questions_count      = t 'qa.html', count: qa.count, scope: 'front.widgets.products.summary'
+
+- if links
+  - if qa.any?
+    = link_to questions_url,
+      data:   { hc_scroll_to: hc_scroll_to,
+                turbolinks:   turbolinks,
+                hc_scroll_target: hc_scroll_target },
+      target: target do
+
+      = questions_count
+
+  - else
+    = link_to_new_question
+
+- else
+  = qa.any? ? questions_count : t('no_records', scope: 'front.widgets.products.summary.qa')

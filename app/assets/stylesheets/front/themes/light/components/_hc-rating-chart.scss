@@ -1,0 +1,12 @@
+.hc-rating-chart__bar-wrapper {
+  @extend %background-color__lighter;
+  @extend %border-color__secondary;
+}
+
+a.hc-rating-chart__row {
+}
+
+.hc-rating-chart__bar {
+  @extend %background-color__brand-2;
+}
+

@@ -1,0 +1,33 @@
+.billing {
+  .hidden {
+    @extend %display__none;
+  }
+
+  table td {
+    @extend %min-width__100pct;
+  }
+}
+
+.billing__card-number {
+  @extend %font-size__12px;
+  @extend %padding-left__xs;
+}
+
+.billing__card-icon {
+  @extend %padding-right__xs;
+}
+
+.billing__plans,
+.billing__addons,
+.billing__change-plan {
+  @extend %margin-bottom__xl;
+
+  h2 {
+    @extend %heading-with-line;
+  }
+}
+
+.billing__footer {
+  @extend %text-align__center;
+  @extend %margin-y__xl;
+}

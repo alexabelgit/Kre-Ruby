@@ -1,0 +1,22 @@
+= content_for :head
+
+  = display_meta_tags site: 'HelpfulCrowd', reverse: true
+  = render 'layouts/google_analytics'
+
+= content_for :body
+
+  = render 'layouts/back/header'
+
+  main.main class="#{yield :main_class}"
+
+    .auth-form
+
+      h1.auth-form__title = yield :title
+
+      = render 'shared/system_messages/flash'
+
+      = yield
+
+  = render 'layouts/back/footer'
+
+= render template: 'layouts/base', locals: { stylesheet: 'back', javascript: 'back', custom_fonts: true }

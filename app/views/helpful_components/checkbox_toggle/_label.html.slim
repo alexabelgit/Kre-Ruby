@@ -1,0 +1,24 @@
+/ label_for* - content for 'for' attribute
+/ txt        - provide '' (empty string) to skip main label text
+/ txt_off
+/ txt_on
+
+- txt_off ||= 'Disabled'
+- txt_on  ||= 'Enabled'
+- txt     ||= label_for.to_s.humanize
+
+= label_tag label_for, class: 'hc-checkbox-toggle__label' do
+
+  / - unless txt.empty?
+  /   span.hc-checkbox-toggle__label-title = txt
+
+  .hc-checkbox-toggle__icon.hc-checkbox-toggle__icon--off>
+    = hc_icon 'toggle-off xl', class: ''
+  .hc-checkbox-toggle__icon.hc-checkbox-toggle__icon--on>
+    = hc_icon 'toggle-on xl',  class: ''
+  - if txt.present?
+    span.hc-checkbox-toggle__label-enabled  = txt
+    span.hc-checkbox-toggle__label-disabled = txt
+  - else
+    span.hc-checkbox-toggle__label-enabled  = txt_on
+    span.hc-checkbox-toggle__label-disabled = txt_off

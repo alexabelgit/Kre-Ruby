@@ -1,0 +1,37 @@
+- content_for :main_class, 'boxed'
+= render 'layouts/back/sub_navs/tools'
+
+section
+  - if current_store.has_pending_imported_reviews?
+    header.header-with-action
+      h1 = title 'Previewing imported reviews'
+
+      div
+        => link_to 'Discard all',
+           proceed_back_imported_reviews_path(clear_all: true),
+           remote:  true,
+           method:  :post,
+           class:   'hc-secondary-button',
+           data:    { confirm: 'All uploaded reviews will be discarded and nothing will be imported. Proceed?' }
+
+        = link_to 'Import selected',
+          proceed_back_imported_reviews_path,
+          method: :post,
+          class:  'header-with-action__action'
+
+    = card do
+      = tip("These are the reviews we generated based on your upload. Take a look and decide \
+             which ones should be imported and which ones should be discarded. Then click \
+             <strong>Import selected</strong> button to proceed. \
+             By default all items are preselected for import.", margin: false)
+
+    - @imported_reviews.each do |imported_review|
+      = render 'back/imported_reviews/show', imported_review: imported_review
+
+    = will_paginate @imported_reviews, class: 'hc-paging hc-paging--modern'
+
+  - else
+    = render   'shared/system_messages/custom',
+      body:    "You don't have any uploaded reviews pending for import at the moment.",
+      action:  { name: 'Import reviews', url: seed_back_tools_path(anchor: 'import-reviews') },
+      persist: true

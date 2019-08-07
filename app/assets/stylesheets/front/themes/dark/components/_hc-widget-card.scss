@@ -1,0 +1,21 @@
+.hc-widget-card {
+  @extend %background-color__darker;
+  @extend %border-color__darker;
+
+  &.hc-just-reviewed {
+    @extend %border-color__success;
+    box-shadow: 0 0 10px 0 lighten($color-success, 10%); // TODO wetsyთ ამას
+  }
+  &__footer {
+    @extend %border-color__dark;
+    .hc-icon {
+      @extend %color__pale--darkened;
+    }
+    .hc-share .hc-dropdown__content .hc-icon {
+      @extend %color__light;
+    }
+  }
+  &__date {
+    @extend %color__pale;
+  }
+}

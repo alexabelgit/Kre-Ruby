@@ -1,0 +1,70 @@
+:dynamic: true
+
+:queues:
+  - critical
+  - high
+  - default
+  - mailers
+  - low
+  - searchkick
+development:
+  :concurrency: 15
+staging:
+  :concurrency: <%= ENV['SIDEKIQ_CONCURRENCY'] %>
+production:
+  :concurrency: <%= ENV['SIDEKIQ_CONCURRENCY'] %>
+:schedule:
+  Billing::StoresStatusWorker:
+    every: 1h
+    queue: default
+    description: 'Check all stores trials and subscriptions and expires them'
+
+  Billing::StoresEmailsWorker:
+    cron: '0 15 0 * * *'   # every day 15 minutes after midnight
+    queue: default
+    description: 'Prepares and sends all store related emails'
+
+  Billing::ArchiveExpiredSubscriptionsWorker:
+    cron: '0 45 0 * * *'   # every day 45 minutes after midnight
+    queue: default
+    description: 'Check all subscriptions and archive expired'
+
+  Billing::StoresExtraChargesWorker:
+    every: 1h
+    queue: default
+    description: 'Bills stores upgrade charges and overages before subscription renew'
+
+  Shopify::SyncUnsyncedMetafieldsWorker:
+    every: 6h
+    queue: default
+    description: 'Ensure that updated Shopify stores and products has their metafields synced'
+
+  Intercom::SyncStoresWithIntercomWorker:
+    every: 12h
+    queue: low
+    description: 'Sync stores data with Intercom'
+
+  Intercom::SyncUsersWithIntercomWorker:
+    every: 12h
+    queue: low
+    description: 'Sync users data with Intercom'
+
+  System::ExpiredDownloadsCleanupWorker:
+    every: 24h
+    queue: low
+    description: 'Clean up expired downloads'
+
+  System::ReindexWorker:
+    every: 5s
+    queue: default
+    description: 'Reindex queued changes as batches'
+
+  HerokuDynoRestartWorker:
+    every: 8h
+    queue: default
+    description: 'Restarts heroku live app dynos every 8 hour'
+
+  SyncCurrencyExchangeRateWorker:
+    every: 6h
+    queue: low
+    description: 'Sync currency exchange rates and update to Money Bank'

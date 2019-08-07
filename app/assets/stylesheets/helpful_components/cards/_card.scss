@@ -1,0 +1,19 @@
+.hc-card {
+  @extend %background-color__white;
+  @extend %simple-card;
+
+  &.margin-bottom__md {
+    @extend %margin-bottom__md;
+  }
+
+
+  &.hc-card--with-min-height {
+    @extend %min-height__xl;
+  }
+}
+
+.hc-card--boxed {
+  @extend %background-color__white;
+  @extend %simple-card;
+  @extend %boxed-layout;
+}

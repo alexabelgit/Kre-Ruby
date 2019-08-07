@@ -1,0 +1,19 @@
+/ comment*
+/ hide_date
+
+- show_date ||= false
+- show_answer_icon ||= false
+
+article.hc-comment
+  - if show_date
+    .hc-comment__header
+      .hc-comment__date
+        = humane_datetime comment.created_at, hide_time: true
+  - if show_answer_icon
+    = hc_icon 'hc-answer lg'
+  p.hc-comment__body
+    = commentable.get_highlights(:comment, comment.body)
+
+  section.hc-comment__author-and-date
+    = author_of_(comment)
+

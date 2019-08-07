@@ -1,0 +1,6 @@
+.hc-rating-chart__bar-wrapper {
+  @extend %border-radius__#{$rounded-corders_md};
+}
+.hc-rating-chart__bar{
+  @extend %border-radius__#{$rounded-corders_md};
+}

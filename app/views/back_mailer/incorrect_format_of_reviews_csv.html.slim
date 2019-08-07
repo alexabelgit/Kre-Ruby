@@ -1,0 +1,9 @@
+= content_for :recipient
+  = @user.first_name
+
+p
+  ' You recently uploaded a CSV file to HelpfulCrowd to import your reviews. We could not import the file, because some field names were unrecognizable.
+p
+  ' You can correct the field names and upload this file once again from
+  =< link_to 'data import page', seed_back_tools_url
+  | . On the same page you can check out our guideline on importing CSV files to make sure your data satisfies all requirements.

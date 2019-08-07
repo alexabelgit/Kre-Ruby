@@ -1,0 +1,30 @@
+// Settings
+$input__background-color: 'white' !default;
+$input__border-color:     'secondary' !default;
+$input__border-radius:    $border-radius__base !default;
+$input__border-style:     'solid' !default;
+$input__border-width:     '1px' !default;
+$input__padding:          '2xs' !default;
+
+$textarea__resize:        'vertical' !default;
+
+input[type="date"],
+input[type="email"],
+input[type="number"],
+input[type="password"],
+input[type="search"],
+input[type="text"],
+input[type="url"],
+textarea,
+select {
+  @extend %background-color__#{$input__background-color};
+  @extend %border-color__#{$input__border-color};
+  @extend %border-radius__#{$input__border-radius};
+  @extend %border-style__#{$input__border-style};
+  @extend %border-width__#{$input__border-width};
+  @extend %padding__#{$input__padding};
+}
+
+textarea {
+  @extend %resize__#{$textarea__resize};
+}

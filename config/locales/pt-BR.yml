@@ -1,0 +1,450 @@
+---
+"pt-BR":
+  "activerecord":
+    "errors":
+      "models":
+        "abuse_report":
+          "attributes":
+            "additional_info":
+              "blank": >-
+                deve ser fornecido quando "outro" é selecionado como o motivo
+            "reason":
+              "blank": >-
+                ^Você deve selecionar um motivo
+        "product":
+          "attributes":
+            "id_from_provider":
+              "taken": >-
+                ^O ID deve ser único. O que você entrou já foi usado por outro produto.
+        "review":
+          "attributes":
+            "customer":
+              "must_be_authenticated": >-
+                ^Você deve estar logado para escrever uma avaliação
+            "product_ids":
+              "cannot_be_repeated": >-
+                ^Você já avaliou este produto
+              "taken": >-
+                ^Você já avaliou esta compra
+            "review_request_id":
+              "request_must_be_sent": >-
+                ^Você não pode avaliar esta compra no momento
+            "source":
+              "cannot_be_voluntary": >-
+                ^Você não pode avaliar esta compra no momento
+        "review_request":
+          "attributes":
+            "order_id":
+              "blank": >-
+                não pode ser criada sem um cliente correspondente. Por favor, forneça
+                um e-mail válido.
+    "models":
+      "comment":
+        "one": >-
+          comentário
+        "other": >-
+          comentários
+      "customer":
+        "one": >-
+          cliente
+        "other": >-
+          clientes
+      "product":
+        "one": >-
+          produto
+        "other": >-
+          produtos
+      "product_group":
+        "one": >-
+          grupo de produtos
+        "other": >-
+          grupos de produtos
+      "question":
+        "one": >-
+          pergunta
+        "other": >-
+          perguntas
+      "review":
+        "one": >-
+          avaliação
+        "other": >-
+          avaliações
+      "review_request":
+        "one": >-
+          solicitação de avaliação
+        "other": >-
+          solicitações de avaliação
+  "answer":
+    "one": >-
+      resposta
+    "other": >-
+      respostas
+  "cancel": >-
+    Cancelar
+  "counterify":
+    "characters":
+      "exceeded": >-
+        Limite de caracteres excedido
+      "remaining":
+        "one": >-
+          1 caractere faltando
+        "other": >-
+          %{count} caracteres faltando
+  "default_templates":
+    "email":
+      "critical_review_followup_mail_body": "<p>Olá, [customer_name],</p>\r\n<p>Obrigado
+        pela sua avaliação.</p>\r\n<p>Equipe [store_name].</p>"
+      "critical_review_followup_mail_subject": >-
+        Obrigado pela sua avaliação.
+      "positive_review_followup_mail_body": "<p>Olá, [customer_name],</p>\r\n<p>Obrigado
+        pela sua avaliação.</p>\r\n<p>Equipe [store_name].</p>"
+      "positive_review_followup_mail_subject": >-
+        Obrigado pela sua avaliação.
+      "question_answer_mail_body": "<p>Olá, [customer_name],</p>\r\n<p>Suas pergunta
+        sobre [product_name] foi respondida por um de nossos representantes:</p>\r\n<p>[answer]</p>\r\n<p>Sua
+        pergunta:</p>\r\n<p>[question]</p>\r\n<p>[product_link]</p>\r\n<p>Equipe [store_name].</p>"
+      "question_answer_mail_subject": >-
+        Sua pergunta em [store_name] foi respondida.
+      "repeat_review_request_mail_body": "<p>Olá, [customer_name],</p>\r\n<p>Ainda
+        dá tempo de você dizer-nos o que achou de sua compra recente.</p>\r\n<p>Clique
+        na estrela para classificar sua experiência até agora:</p>\r\n<p>[products]</p>\r\n<p>Insatisfeito?
+        Por favor, contate-nos para que possamos ajudá-lo.</p>\r\n<p>Equipe [store_name].</p>"
+      "repeat_review_request_mail_subject": >-
+        Lembrete para avaliar sua compra recente em [store_name]
+      "review_answer_mail_body": "<p>Olá, [customer_name],</p>\r\n<p>Sua avaliação
+        de [product_name] foi respondida por um de nossos representantes:</p>\r\n<p>[reply]</p>\r\n<p>Sua
+        avaliação:</p>\r\n<p>[review]</p>\r\n<p>[product_link]</p>\r\n<p>Equipe [store_name].</p>"
+      "review_answer_mail_subject": >-
+        Sua avaliação em [store_name] foi respondida
+      "review_request_mail_body": "<p>Olá, [customer_name],</p>\r\n<p>Clique na estrela
+        para classificar sua experiência até agora:</p>\r\n<p>[products]</p>\r\n<p>Insatisfeito?
+        Por favor, contate-nos para que possamos ajudá-lo.</p>\r\n<p>Equipe [store_name].</p>"
+      "review_request_mail_subject": >-
+        Avalie sua compra recente em [store_name]
+  "embed": >-
+    Embutido.
+  "errors":
+    "messages":
+      "already_confirmed": >-
+        já foi confirmado, por favor, tente fazer o login
+      "confirmation_period_expired": >-
+        precisa ser confirmado dentro de %{period}, por favor, solicite outra senha
+      "expired": >-
+        expirou, por favor, solicite outra senha
+      "not_found": >-
+        não encontrado
+      "not_locked": >-
+        não foi bloqueado
+      "not_saved":
+        "one": >-
+          1 erro impediu este %{resource} de ser salvo:
+        "other": >-
+          %{count} erros impediram este %{resource} de ser salvo:
+  "flash":
+    "submitted_successfully":
+      "question": >-
+        Obrigado! Recebemos sua pergunta e o informaremos por e-mail assim que que
+        for respondida
+      "review": >-
+        Obrigado! Recebemos sua avaliação
+      "subscribed": >-
+        Você se inscreveu com sucesso em %{store}.
+      "unsubscribed": >-
+        Você se desinscreveu com sucesso de %{store}.
+  "front":
+    "based_on_reviews_count":
+      "one": >-
+        1 avaliação
+      "other": >-
+        %{count} avaliações
+    "components":
+      "customer_form":
+        "email":
+          "hint": >-
+            Seu e-mail não será compartilhado publicamente
+          "label": >-
+            Seu e-mail
+        "name":
+          "hint": >-
+            Somente iniciais do seu nome aparecerão
+          "hint_update_html": >-
+            Seu nome apareça como <strong>%{initials}</strong>
+          "label": >-
+            Seu nome
+      "privacy_notice":
+        "link_content": >-
+          políticas de privacidade
+        "with_name":
+          "html": "Ao enviar este formulário, você concorda que seu conteúdo e seu
+            nome\r\n<strong>%{name}</strong> poderão ser mostrados on-line de acordo
+            com o nosso \r\n%{link}."
+        "without_name":
+          "html": "Ao enviar este formulário, você concorda que seu conteúdo e seu
+            nome\r\npoderão ser mostrados on-line de acordo com o nosso  %{link}."
+    "continue_shopping": >-
+      Continue comprando
+    "flags":
+      "new":
+        "already_flagged": >-
+          Você já marcou este %{item}
+        "flag_as_inappropriate": >-
+          Marque este %{item} como inapropriado
+      "show":
+        "flag_submitted": >-
+          Obrigado
+    "mailer":
+      "excuses":
+        "question_answered_html": >-
+          Você recebeu este e-mail de %{helpfulcrowd} para atualizá-lo sobre uma pergunta
+          feita em %{store}.
+        "review_answered_html": >-
+          Você recebeu este e-mail de %{helpfulcrowd} para atualizá-lo sobre uma avaliação
+          feita em %{store}.
+        "review_follow_up_html": >-
+          Você recebeu este e-mail de %{helpfulcrowd} em resposta a uma avaliação
+          recente em %{store}.
+        "review_request_html": >-
+          Você recebeu este e-mail de %{helpfulcrowd} em resposta a uma compra recente
+          feita em %{store}.
+      "helpers":
+        "call_to_action":
+          "view_product": >-
+            Visite a página do produto
+    "products":
+      "questions":
+        "form":
+          "question_html": >-
+            O que você gostaria de saber sobre %{product}?
+        "new":
+          "title": >-
+            Faça uma pergunta
+      "view_product": >-
+        Ir à página do produto
+    "review_requests":
+      "reviews":
+        "form":
+          "rating_html": >-
+            Classifique suas experiência com %{reviewable}
+        "new":
+          "already_reviewed_html": >-
+            Você já avaliou %{reviewable}
+          "review_other_purchases":
+            "one": >-
+              Avalie sua outra compra
+            "other": >-
+              Avalie suas outras compras
+          "title": >-
+            Avaliar sua compra
+    "search":
+      "label": >-
+        Procurar:
+      "placeholder": >-
+        Inserir palavra-chave
+    "share":
+      "button": >-
+        Compartilhar
+    "sort_by": >-
+      Organizar por:
+    "sort_options":
+      "most_helpful": >-
+        Mais útil
+      "most_recent": >-
+        Mais recente
+      "rating_asc": >-
+        Classificação: mais baixa
+      "rating_desc": >-
+        Classificação: mais alta
+    "suppressions":
+      "manage_subscriptions":
+        "subscribe_question_html": >-
+          Você gostaria que a HelpfulCrowd lhe envie e-mails em nome de %{store}?
+        "unsubscribe_question_html": >-
+          Você gostaria que HelpfulCrowd pare de enviar-lhe e-mails em nome de %{store}?
+    "votes":
+      "upvote": >-
+        Útil
+      "upvotes_count":
+        "one": >-
+          %{count} pessoa achou este %{item} útil
+        "other": >-
+          %{count} pessoas acharam este %{item} útil
+    "widgets":
+      "products":
+        "rating":
+          "qa":
+            "html":
+              "one": >-
+                uma pergunta
+              "other": >-
+                %{count} perguntas
+          "reviews":
+            "html":
+              "one": >-
+                1 avaliação
+              "other": >-
+                %{count} avaliações
+        "summary":
+          "qa":
+            "html":
+              "one": >-
+                1 pergunta
+              "other": >-
+                %{count} perguntas
+            "new": >-
+              Faça uma pergunta
+          "reviews":
+            "html":
+              "one": >-
+                1 avaliação
+              "other": >-
+                %{count} avaliações
+            "new": >-
+              Escreva uma avaliação
+        "tabs":
+          "questions":
+            "new": >-
+              Faça uma pergunta
+            "search":
+              "label": >-
+                Pesquisar
+              "placeholder": >-
+                Pesquisar em Perguntas Frequentes
+            "title": >-
+              Perguntas Frequentes
+            "write_first": >-
+              Faça a primeira pergunta sobre este produto
+          "reviews":
+            "based_on_reviews":
+              "html": >-
+                Com base em %{reviews_count}
+            "media_gallery":
+              "images":
+                "one": >-
+                  1 foto
+                "other": >-
+                  %{count} fotos
+              "search":
+                "label": >-
+                  Pesquisar
+                "placeholder": >-
+                  Pesquisar em avaliações
+              "title": >-
+                Mídia do Cliente
+              "videos":
+                "one": >-
+                  1 vídeo
+                "other": >-
+                  %{count} vídeo
+            "new": >-
+              Escreva uma avaliação
+            "rating": >-
+              %{rating} de 5 estrelas
+            "title": >-
+              Avaliações de clientes
+            "write_first": >-
+              Seja o primeiro a avaliar este produto
+          "titles":
+            "questions": >-
+              Perguntas Frequentes
+            "questions_responsive": >-
+              Perguntas e Respostas
+            "reviews": >-
+              Avaliações e Classificações
+            "reviews_responsive": >-
+              Avaliações
+      "sidebar":
+        "default_title": >-
+          Avaliações | Perguntas Frequentes
+    "with_incentive":
+      "reviews":
+        "text": >-
+          O avaliador pode ter recebido um incentivo para escrever esta avaliação
+    "write_review": >-
+      Escreva uma avaliação
+  "helpers":
+    "friendly_rating": >-
+      Nenhuma avaliação por enquanto
+    "label":
+      "customer":
+        "email": >-
+          E-mail do cliente
+        "name": >-
+          Nome do cliente
+      "product_group":
+        "name": >-
+          Nome
+    "placeholder":
+      "promotion":
+        "template": >-
+          Frete gratuito em todos os perdidos durante a semana da Black Friday!
+    "submit":
+      "product_group":
+        "create": >-
+          Criar grupo
+        "update": >-
+          Atualizar grupo
+      "question":
+        "create": >-
+          Fazer um pergunta
+      "review":
+        "create": >-
+          Enviar avaliação
+  "layouts":
+    "mailer":
+      "front":
+        "manage_subscriptions": >-
+          Gerenciar inscrições
+        "unsubscribe": >-
+          Desinscrever-se
+  "load_more": >-
+    Carregar mais
+  "privacy_policy": >-
+    Políticas de privacidade
+  "question_facebook_post_template": "[customer_name]\r\nPergunta: [question]\r\nResposta:
+    [answer]"
+  "question_tweet_template": "[customer_name]\r\nPergunta: [question]\r\nResposta:
+    [answer]"
+  "rating_1": >-
+    Péssimo
+  "rating_2": >-
+    Ruim
+  "rating_3": >-
+    Razoável
+  "rating_4": >-
+    Bom
+  "rating_5": >-
+    Ótimo
+  "read_less": >-
+    ler menos
+  "read_more": >-
+    avaliação completa
+  "recaptcha":
+    "errors":
+      "verification_failed": >-
+        A verificação reCAPTCHA falhou.
+    "label": >-
+      Ajude-nos a evitar spam
+  "report": >-
+    Reportar
+  "review_facebook_post_template": "Confira o que [customer_name] disse sobre [product_name]:\r\n\r\n[rating]\r\n\"[feedback]\""
+  "review_tweet_template": "[customer_name]:\r\n[product_name] - [rating], \"[feedback]\""
+  "settings":
+    "default":
+      "review_slider_c2a_text": >-
+        Mostrar tudo
+  "stars":
+    "one": >-
+      1 estrela
+    "other": >-
+      %{count} estrelas
+  "verified":
+    "agent":
+      "description": >-
+        %{author} trabalha em %{store}
+      "label": >-
+        %{store}
+    "customer":
+      "description": >-
+        %{author} comprou este produto
+      "label": >-
+        Comprador verificado

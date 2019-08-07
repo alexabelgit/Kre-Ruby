@@ -1,0 +1,19 @@
+- content_for :main_class, 'boxed'
+
+section.auth-form
+  header
+    h1.auth-form__title = title 'Connect with Ecwid'
+
+
+  .auth-option.auth-option--ecwid
+    / TODO: maybe this whole link needs to become a partial because it's pretty
+    / complex and we use it elsewhere already: shared/oauth_authentication.html.slim
+    = link_to new_oauth_ecwid_session_path,
+      class:  'auth-option__button',
+      data:   { turbolinks:   false,
+                disable_with: "#{spinner_icon} Connecting with Ecwid" } do
+
+      => image_tag 'ecwid-icon.svg', class: 'auth-option__icon'
+      =  "Connect with Ecwid"
+
+  = render "back/stores/back_to_connect_options"

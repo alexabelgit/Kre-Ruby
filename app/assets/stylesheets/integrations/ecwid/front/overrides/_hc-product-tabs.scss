@@ -1,0 +1,11 @@
+.hc-product-tabs {
+  @extend %margin-y__md;
+
+  &.hc-product-tabs--boxed {
+    max-width: 1200px; // TODO to guarantee that overrides will work we need to put extra selector to act as a hook. For example, hc-widget.hc-widget--ecwid or something similar
+  }
+}
+
+.hc-product-tabs__content a {
+  @extend %font-size__inherit; // TODO this causes cancel button on voluntary review form to appear smaller than submit button.. Maybe we remove this and add __inherit to the element that needs this?
+}

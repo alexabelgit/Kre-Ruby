@@ -1,0 +1,121 @@
+# Logfile created on 2019-08-06 13:46:46 +0200 by logger.rb/66358
+[08/06/19 13:46:46 +0200 admins-iMac-9.local (6839)] INFO : No configuration file loaded, and no configuration found in ENV. For assistance configuring Scout, visit http://help.apm.scoutapp.com/#configuration-options
+[08/06/19 13:46:46 +0200 admins-iMac-9.local (6839)] INFO : Scout Agent [2.4.21] Initialized
+[08/06/19 13:46:46 +0200 admins-iMac-9.local (6839)] INFO : Not Loading Instruments
+[08/06/19 13:46:46 +0200 admins-iMac-9.local (6839)] INFO : Scout Agent [2.4.21] Installed
+[08/06/19 13:46:46 +0200 admins-iMac-9.local (6839)] INFO : Monitoring isn't enabled for the [development] environment.
+[08/06/19 14:45:03 +0200 admins-iMac-9.local (7096)] INFO : No configuration file loaded, and no configuration found in ENV. For assistance configuring Scout, visit http://help.apm.scoutapp.com/#configuration-options
+[08/06/19 14:45:03 +0200 admins-iMac-9.local (7096)] INFO : Scout Agent [2.4.21] Initialized
+[08/06/19 14:45:03 +0200 admins-iMac-9.local (7096)] INFO : Not Loading Instruments
+[08/06/19 14:45:03 +0200 admins-iMac-9.local (7096)] INFO : Scout Agent [2.4.21] Installed
+[08/06/19 14:45:03 +0200 admins-iMac-9.local (7096)] INFO : Monitoring isn't enabled for the [development] environment.
+[08/06/19 14:46:21 +0200 admins-iMac-9.local (7116)] INFO : No configuration file loaded, and no configuration found in ENV. For assistance configuring Scout, visit http://help.apm.scoutapp.com/#configuration-options
+[08/06/19 14:46:21 +0200 admins-iMac-9.local (7116)] INFO : Scout Agent [2.4.21] Initialized
+[08/06/19 14:46:21 +0200 admins-iMac-9.local (7116)] INFO : Not Loading Instruments
+[08/06/19 14:46:21 +0200 admins-iMac-9.local (7116)] INFO : Scout Agent [2.4.21] Installed
+[08/06/19 14:46:21 +0200 admins-iMac-9.local (7116)] INFO : Monitoring isn't enabled for the [development] environment.
+[08/06/19 14:48:43 +0200 admins-iMac-9.local (7136)] INFO : No configuration file loaded, and no configuration found in ENV. For assistance configuring Scout, visit http://help.apm.scoutapp.com/#configuration-options
+[08/06/19 14:48:43 +0200 admins-iMac-9.local (7136)] INFO : Scout Agent [2.4.21] Initialized
+[08/06/19 14:48:43 +0200 admins-iMac-9.local (7136)] INFO : Not Loading Instruments
+[08/06/19 14:48:43 +0200 admins-iMac-9.local (7136)] INFO : Scout Agent [2.4.21] Installed
+[08/06/19 14:48:43 +0200 admins-iMac-9.local (7136)] INFO : Monitoring isn't enabled for the [development] environment.
+[08/06/19 14:48:52 +0200 admins-iMac-9.local (7141)] INFO : No configuration file loaded, and no configuration found in ENV. For assistance configuring Scout, visit http://help.apm.scoutapp.com/#configuration-options
+[08/06/19 14:48:52 +0200 admins-iMac-9.local (7141)] INFO : Scout Agent [2.4.21] Initialized
+[08/06/19 14:48:52 +0200 admins-iMac-9.local (7141)] INFO : Not Loading Instruments
+[08/06/19 14:48:52 +0200 admins-iMac-9.local (7141)] INFO : Scout Agent [2.4.21] Installed
+[08/06/19 14:48:52 +0200 admins-iMac-9.local (7141)] INFO : Monitoring isn't enabled for the [development] environment.
+[08/06/19 14:50:24 +0200 admins-iMac-9.local (7154)] INFO : No configuration file loaded, and no configuration found in ENV. For assistance configuring Scout, visit http://help.apm.scoutapp.com/#configuration-options
+[08/06/19 14:50:24 +0200 admins-iMac-9.local (7154)] INFO : Scout Agent [2.4.21] Initialized
+[08/06/19 14:50:24 +0200 admins-iMac-9.local (7154)] INFO : Not Loading Instruments
+[08/06/19 14:50:24 +0200 admins-iMac-9.local (7154)] INFO : Scout Agent [2.4.21] Installed
+[08/06/19 14:50:25 +0200 admins-iMac-9.local (7154)] INFO : Monitoring isn't enabled for the [development] environment.
+[08/06/19 14:51:16 +0200 admins-iMac-9.local (7263)] INFO : No configuration file loaded, and no configuration found in ENV. For assistance configuring Scout, visit http://help.apm.scoutapp.com/#configuration-options
+[08/06/19 14:51:16 +0200 admins-iMac-9.local (7263)] INFO : Scout Agent [2.4.21] Initialized
+[08/06/19 14:51:16 +0200 admins-iMac-9.local (7263)] INFO : Not Loading Instruments
+[08/06/19 14:51:16 +0200 admins-iMac-9.local (7263)] INFO : Scout Agent [2.4.21] Installed
+[08/06/19 14:51:16 +0200 admins-iMac-9.local (7263)] INFO : Monitoring isn't enabled for the [development] environment.
+[08/06/19 20:56:02 +0200 admins-iMac-9.local (17169)] INFO : No configuration file loaded, and no configuration found in ENV. For assistance configuring Scout, visit http://help.apm.scoutapp.com/#configuration-options
+[08/06/19 20:56:02 +0200 admins-iMac-9.local (17169)] INFO : Scout Agent [2.4.21] Initialized
+[08/06/19 20:56:02 +0200 admins-iMac-9.local (17169)] INFO : Not Loading Instruments
+[08/06/19 20:56:02 +0200 admins-iMac-9.local (17169)] INFO : Scout Agent [2.4.21] Installed
+[08/06/19 20:56:02 +0200 admins-iMac-9.local (17169)] INFO : Monitoring isn't enabled for the [development] environment.
+[08/06/19 20:59:06 +0200 admins-iMac-9.local (17936)] INFO : No configuration file loaded, and no configuration found in ENV. For assistance configuring Scout, visit http://help.apm.scoutapp.com/#configuration-options
+[08/06/19 20:59:06 +0200 admins-iMac-9.local (17936)] INFO : Scout Agent [2.4.21] Initialized
+[08/06/19 20:59:06 +0200 admins-iMac-9.local (17936)] INFO : Not Loading Instruments
+[08/06/19 20:59:06 +0200 admins-iMac-9.local (17936)] INFO : Scout Agent [2.4.21] Installed
+[08/06/19 20:59:06 +0200 admins-iMac-9.local (17936)] INFO : Monitoring isn't enabled for the [development] environment.
+[08/06/19 20:59:31 +0200 admins-iMac-9.local (17951)] INFO : No configuration file loaded, and no configuration found in ENV. For assistance configuring Scout, visit http://help.apm.scoutapp.com/#configuration-options
+[08/06/19 20:59:31 +0200 admins-iMac-9.local (17951)] INFO : Scout Agent [2.4.21] Initialized
+[08/06/19 20:59:31 +0200 admins-iMac-9.local (17951)] INFO : Not Loading Instruments
+[08/06/19 20:59:31 +0200 admins-iMac-9.local (17951)] INFO : Scout Agent [2.4.21] Installed
+[08/06/19 20:59:31 +0200 admins-iMac-9.local (17951)] INFO : Monitoring isn't enabled for the [development] environment.
+[08/06/19 20:59:53 +0200 admins-iMac-9.local (17967)] INFO : No configuration file loaded, and no configuration found in ENV. For assistance configuring Scout, visit http://help.apm.scoutapp.com/#configuration-options
+[08/06/19 20:59:53 +0200 admins-iMac-9.local (17967)] INFO : Scout Agent [2.4.21] Initialized
+[08/06/19 20:59:53 +0200 admins-iMac-9.local (17967)] INFO : Not Loading Instruments
+[08/06/19 20:59:53 +0200 admins-iMac-9.local (17967)] INFO : Scout Agent [2.4.21] Installed
+[08/06/19 20:59:53 +0200 admins-iMac-9.local (17967)] INFO : Monitoring isn't enabled for the [development] environment.
+[08/06/19 21:02:35 +0200 admins-iMac-9.local (18058)] INFO : No configuration file loaded, and no configuration found in ENV. For assistance configuring Scout, visit http://help.apm.scoutapp.com/#configuration-options
+[08/06/19 21:02:35 +0200 admins-iMac-9.local (18058)] INFO : Scout Agent [2.4.21] Initialized
+[08/06/19 21:02:35 +0200 admins-iMac-9.local (18058)] INFO : Not Loading Instruments
+[08/06/19 21:02:35 +0200 admins-iMac-9.local (18058)] INFO : Scout Agent [2.4.21] Installed
+[08/06/19 21:02:35 +0200 admins-iMac-9.local (18058)] INFO : Monitoring isn't enabled for the [development] environment.
+[08/06/19 21:03:15 +0200 admins-iMac-9.local (18091)] INFO : No configuration file loaded, and no configuration found in ENV. For assistance configuring Scout, visit http://help.apm.scoutapp.com/#configuration-options
+[08/06/19 21:03:15 +0200 admins-iMac-9.local (18091)] INFO : Scout Agent [2.4.21] Initialized
+[08/06/19 21:03:15 +0200 admins-iMac-9.local (18091)] INFO : Not Loading Instruments
+[08/06/19 21:03:15 +0200 admins-iMac-9.local (18091)] INFO : Scout Agent [2.4.21] Installed
+[08/06/19 21:03:15 +0200 admins-iMac-9.local (18091)] INFO : Monitoring isn't enabled for the [development] environment.
+[08/06/19 21:03:35 +0200 admins-iMac-9.local (18104)] INFO : No configuration file loaded, and no configuration found in ENV. For assistance configuring Scout, visit http://help.apm.scoutapp.com/#configuration-options
+[08/06/19 21:03:35 +0200 admins-iMac-9.local (18104)] INFO : Scout Agent [2.4.21] Initialized
+[08/06/19 21:03:35 +0200 admins-iMac-9.local (18104)] INFO : Not Loading Instruments
+[08/06/19 21:03:35 +0200 admins-iMac-9.local (18104)] INFO : Scout Agent [2.4.21] Installed
+[08/06/19 21:03:35 +0200 admins-iMac-9.local (18104)] INFO : Monitoring isn't enabled for the [development] environment.
+[08/06/19 21:15:06 +0200 admins-iMac-9.local (19851)] INFO : No configuration file loaded, and no configuration found in ENV. For assistance configuring Scout, visit http://help.apm.scoutapp.com/#configuration-options
+[08/06/19 21:15:06 +0200 admins-iMac-9.local (19851)] INFO : Scout Agent [2.4.21] Initialized
+[08/06/19 21:15:06 +0200 admins-iMac-9.local (19851)] INFO : Not Loading Instruments
+[08/06/19 21:15:06 +0200 admins-iMac-9.local (19851)] INFO : Scout Agent [2.4.21] Installed
+[08/06/19 21:15:06 +0200 admins-iMac-9.local (19851)] INFO : Monitoring isn't enabled for the [development] environment.
+[08/06/19 21:16:09 +0200 admins-iMac-9.local (19888)] INFO : No configuration file loaded, and no configuration found in ENV. For assistance configuring Scout, visit http://help.apm.scoutapp.com/#configuration-options
+[08/06/19 21:16:09 +0200 admins-iMac-9.local (19888)] INFO : Scout Agent [2.4.21] Initialized
+[08/06/19 21:16:09 +0200 admins-iMac-9.local (19888)] INFO : Not Loading Instruments
+[08/06/19 21:16:09 +0200 admins-iMac-9.local (19888)] INFO : Scout Agent [2.4.21] Installed
+[08/06/19 21:16:09 +0200 admins-iMac-9.local (19888)] INFO : Monitoring isn't enabled for the [development] environment.
+[08/06/19 21:17:48 +0200 admins-iMac-9.local (19962)] INFO : No configuration file loaded, and no configuration found in ENV. For assistance configuring Scout, visit http://help.apm.scoutapp.com/#configuration-options
+[08/06/19 21:17:48 +0200 admins-iMac-9.local (19962)] INFO : Scout Agent [2.4.21] Initialized
+[08/06/19 21:17:48 +0200 admins-iMac-9.local (19962)] INFO : Not Loading Instruments
+[08/06/19 21:17:48 +0200 admins-iMac-9.local (19962)] INFO : Scout Agent [2.4.21] Installed
+[08/06/19 21:17:48 +0200 admins-iMac-9.local (19962)] INFO : Monitoring isn't enabled for the [development] environment.
+[08/06/19 21:18:36 +0200 admins-iMac-9.local (20021)] INFO : No configuration file loaded, and no configuration found in ENV. For assistance configuring Scout, visit http://help.apm.scoutapp.com/#configuration-options
+[08/06/19 21:18:36 +0200 admins-iMac-9.local (20021)] INFO : Scout Agent [2.4.21] Initialized
+[08/06/19 21:18:36 +0200 admins-iMac-9.local (20021)] INFO : Not Loading Instruments
+[08/06/19 21:18:36 +0200 admins-iMac-9.local (20021)] INFO : Scout Agent [2.4.21] Installed
+[08/06/19 21:18:36 +0200 admins-iMac-9.local (20021)] INFO : Monitoring isn't enabled for the [development] environment.
+[08/06/19 21:19:30 +0200 admins-iMac-9.local (20220)] INFO : No configuration file loaded, and no configuration found in ENV. For assistance configuring Scout, visit http://help.apm.scoutapp.com/#configuration-options
+[08/06/19 21:19:30 +0200 admins-iMac-9.local (20220)] INFO : Scout Agent [2.4.21] Initialized
+[08/06/19 21:19:30 +0200 admins-iMac-9.local (20220)] INFO : Not Loading Instruments
+[08/06/19 21:19:30 +0200 admins-iMac-9.local (20220)] INFO : Scout Agent [2.4.21] Installed
+[08/06/19 21:19:30 +0200 admins-iMac-9.local (20220)] INFO : Monitoring isn't enabled for the [development] environment.
+[08/06/19 21:27:29 +0200 admins-iMac-9.local (22220)] INFO : No configuration file loaded, and no configuration found in ENV. For assistance configuring Scout, visit http://help.apm.scoutapp.com/#configuration-options
+[08/06/19 21:27:29 +0200 admins-iMac-9.local (22220)] INFO : Scout Agent [2.4.21] Initialized
+[08/06/19 21:27:29 +0200 admins-iMac-9.local (22220)] INFO : Not Loading Instruments
+[08/06/19 21:27:29 +0200 admins-iMac-9.local (22220)] INFO : Scout Agent [2.4.21] Installed
+[08/06/19 21:27:29 +0200 admins-iMac-9.local (22220)] INFO : Monitoring isn't enabled for the [development] environment.
+[08/06/19 21:28:20 +0200 admins-iMac-9.local (22392)] INFO : No configuration file loaded, and no configuration found in ENV. For assistance configuring Scout, visit http://help.apm.scoutapp.com/#configuration-options
+[08/06/19 21:28:20 +0200 admins-iMac-9.local (22392)] INFO : Scout Agent [2.4.21] Initialized
+[08/06/19 21:28:20 +0200 admins-iMac-9.local (22392)] INFO : Not Loading Instruments
+[08/06/19 21:28:20 +0200 admins-iMac-9.local (22392)] INFO : Scout Agent [2.4.21] Installed
+[08/06/19 21:28:20 +0200 admins-iMac-9.local (22392)] INFO : Monitoring isn't enabled for the [development] environment.
+[08/07/19 03:58:40 +0200 admins-iMac-9.local (31168)] INFO : No configuration file loaded, and no configuration found in ENV. For assistance configuring Scout, visit http://help.apm.scoutapp.com/#configuration-options
+[08/07/19 03:58:40 +0200 admins-iMac-9.local (31168)] INFO : Scout Agent [2.4.21] Initialized
+[08/07/19 03:58:40 +0200 admins-iMac-9.local (31168)] INFO : Not Loading Instruments
+[08/07/19 03:58:40 +0200 admins-iMac-9.local (31168)] INFO : Scout Agent [2.4.21] Installed
+[08/07/19 03:58:40 +0200 admins-iMac-9.local (31168)] INFO : Monitoring isn't enabled for the [development] environment.
+[08/07/19 03:58:45 +0200 admins-iMac-9.local (31173)] INFO : No configuration file loaded, and no configuration found in ENV. For assistance configuring Scout, visit http://help.apm.scoutapp.com/#configuration-options
+[08/07/19 03:58:45 +0200 admins-iMac-9.local (31173)] INFO : Scout Agent [2.4.21] Initialized
+[08/07/19 03:58:45 +0200 admins-iMac-9.local (31173)] INFO : Not Loading Instruments
+[08/07/19 03:58:45 +0200 admins-iMac-9.local (31173)] INFO : Scout Agent [2.4.21] Installed
+[08/07/19 03:58:45 +0200 admins-iMac-9.local (31173)] INFO : Monitoring isn't enabled for the [development] environment.
+[08/07/19 03:59:47 +0200 admins-iMac-9.local (31279)] INFO : No configuration file loaded, and no configuration found in ENV. For assistance configuring Scout, visit http://help.apm.scoutapp.com/#configuration-options
+[08/07/19 03:59:47 +0200 admins-iMac-9.local (31279)] INFO : Scout Agent [2.4.21] Initialized
+[08/07/19 03:59:47 +0200 admins-iMac-9.local (31279)] INFO : Not Loading Instruments
+[08/07/19 03:59:47 +0200 admins-iMac-9.local (31279)] INFO : Scout Agent [2.4.21] Installed
+[08/07/19 03:59:47 +0200 admins-iMac-9.local (31279)] INFO : Monitoring isn't enabled for the [development] environment.

@@ -1,0 +1,540 @@
+---
+"ru":
+  "activerecord":
+    "errors":
+      "models":
+        "abuse_report":
+          "attributes":
+            "additional_info":
+              "blank": >-
+                необходимо указать, когда в качестве причины выбрано «что-то еще»
+            "reason":
+              "blank": >-
+                ^Вы должны выбрать причину
+        "product":
+          "attributes":
+            "id_from_provider":
+              "taken": >-
+                ^ID должен быть уникальным. Введенный вами уже используется с другим
+                продуктом.
+        "review":
+          "attributes":
+            "customer":
+              "must_be_authenticated": >-
+                ^Вы должны войти в систему, чтобы написать отзыв
+            "product_ids":
+              "cannot_be_repeated": >-
+                ^Вы уже оценили этот продукт
+              "taken": >-
+                ^Вы уже оценили эту покупку
+            "review_request_id":
+              "request_must_be_sent": >-
+                ^Вы не можете оценить эту покупку в данный момент
+            "source":
+              "cannot_be_voluntary": >-
+                ^Вы не можете оценить эту покупку в данный момент
+        "review_request":
+          "attributes":
+            "order_id":
+              "blank": >-
+                невозможно создать без соответствующего клиента. Пожалуйста, предоставьте
+                действительный адрес электронной почты.
+    "models":
+      "comment":
+        "one": >-
+          комментарий
+        "few": >-
+          комментария
+        "many": >-
+          комментариев
+        "other": >-
+          комментариев
+      "customer":
+        "one": >-
+          клиент
+        "few": >-
+          клиента
+        "many": >-
+          клиентов
+        "other": >-
+          клиентов
+      "product":
+        "one": >-
+          продукт
+        "few": >-
+          продукта
+        "many": >-
+          продуктов
+        "other": >-
+          продуктов
+      "product_group":
+        "one": >-
+          группа продуктов
+        "few": >-
+          группы продуктов
+        "many": >-
+          групп продуктов
+        "other": >-
+          групп продуктов
+      "question":
+        "one": >-
+          вопрос
+        "few": >-
+          вопроса
+        "many": >-
+          вопросов
+        "other": >-
+          вопросов
+      "review":
+        "one": >-
+          отзыв
+        "few": >-
+          отзыва
+        "many": >-
+          отзывов
+        "other": >-
+          отзывов
+      "review_request":
+        "one": >-
+          запрос отзыва
+        "few": >-
+          запроса отзыва
+        "many": >-
+          запросов отзывов
+        "other": >-
+          запросов отзывов
+  "answer":
+    "one": >-
+      ответ
+    "few": >-
+      ответа
+    "many": >-
+      ответов
+    "other": >-
+      ответов
+  "cancel": >-
+    Отменить
+  "counterify":
+    "characters":
+      "exceeded": >-
+        Превышен лимит символов
+      "remaining":
+        "one": >-
+          остался 1 символ
+        "few": >-
+          осталось %{count} символа
+        "many": >-
+          осталось  %{count} символов
+        "other": >-
+          осталось  %{count} символов
+  "default_templates":
+    "email":
+      "critical_review_followup_mail_body": "<p>Здравствуйте, [customer_name].</p>\r\n<p>Спасибо
+        за ваш отзыв.</p>\r\n<p>Команда [store_name].</p>"
+      "critical_review_followup_mail_subject": >-
+        Спасибо за ваш отзыв
+      "positive_review_followup_mail_body": "<p>Здравствуйте, [customer_name].</p>\r\n<p>Спасибо
+        за ваш отзыв.</p>\r\n<p>Команда [store_name].</p>"
+      "positive_review_followup_mail_subject": >-
+        Спасибо за ваш отзыв
+      "question_answer_mail_body": "<p>Здравствуйте, [customer_name].</p>\r\n<p>Наш
+        представитель ответил на ваш вопрос о [product_name]:</p>\r\n<p>[answer]</p>\r\n<p>Ваш
+        вопрос:</p>\r\n<p>[question]</p>\r\n<p>[product_link]</p>\r\n<p>Команда [store_name].</p>"
+      "question_answer_mail_subject": >-
+        На ваш вопрос в [store_name] ответили
+      "repeat_review_request_mail_body": "<p>Здравствуйте, [customer_name].</p>\r\n<p>Еще
+        не поздно сообщить нам, что вы думаете о своем недавнем заказе.</p>\r\n<p>Нажмите
+        на звездочку, чтобы оценить свой опыт с:</p>\r\n<p>[products]</p>\r\n<p>Не
+        удовлетворены? Пожалуйста, свяжитесь с нами, чтобы мы могли помочь.</p>\r\n<p>Команда
+        в [store_name].</p>"
+      "repeat_review_request_mail_subject": >-
+        Напоминание об отзыве о вашем недавнем заказе в [store_name]
+      "review_answer_mail_body": "<p>Здравствуйте, [customer_name].</p>\r\n<p>Ваш
+        отзыв о [product_name] получил ответ от нашего представителя:</p>\r\n<p>[reply]</p>\r\n<p>Ваш
+        отзыв:</p>\r\n<p>[review]</p>\r\n<p>[product_link]</p>\r\n<p>Команда [store_name].</p>"
+      "review_answer_mail_subject": >-
+        Ваш отзыв в [store_name] получил ответ
+      "review_request_mail_body": "<p>Здравствуйте, [customer_name].</p>\r\n<p>Нажмите
+        на звездочку, чтобы оценить:</p>\r\n<p>[products]</p>\r\n<p>Остались недовольны?
+        Пожалуйста, свяжитесь с нами, чтобы мы могли помочь.</p>\r\n<p>Команда [store_name].</p>"
+      "review_request_mail_subject": >-
+        Оцените ваш последний заказ в [store_name]
+  "embed": >-
+    Встроить
+  "errors":
+    "messages":
+      "already_confirmed": >-
+        уже подтверждена. Пожалуйста, попробуйте войти в систему
+      "confirmation_period_expired": >-
+        необходимо подтвердить в течении %{period}, пожалуйста, запросите подтверждение
+        ещё раз
+      "expired": >-
+        устарела. Пожалуйста, запросите новую
+      "not_found": >-
+        не найдена
+      "not_locked": >-
+        не заблокирована
+      "not_saved":
+        "one": >-
+          1 ошибка помешала сохранению %{resource} :
+        "few": >-
+          %{count} ошибки помешали сохранению %{resource} :
+        "many": >-
+          %{count} ошибок помешали сохранению %{resource} :
+        "other": >-
+          %{count} ошибок помешали сохранению %{resource} :
+  "flash":
+    "submitted_successfully":
+      "question": >-
+        Спасибо! Мы получили ваш вопрос и оповестим вас по электронной почте о получении
+        ответа.
+      "review": >-
+        Спасибо! Мы получили ваш отзыв
+      "subscribed": >-
+        Вы успешно подписались на %{store}.
+      "unsubscribed": >-
+        Вы успешно отписались от %{store}.
+  "front":
+    "based_on_reviews_count":
+      "one": >-
+        1 отзыв
+      "few": >-
+        %{count} отзыва
+      "many": >-
+        %{count} отзывов
+      "other": >-
+        %{count} отзывов
+    "components":
+      "customer_form":
+        "email":
+          "hint": >-
+            Ваша электронная почта не будет опубликована.
+          "label": >-
+            Ваша электронная почта
+        "name":
+          "hint": >-
+            Ваше имя будет отображаться как инициалы
+          "hint_update_html": >-
+            Ваше имя будет отображаться как <strong>%{initials}</strong>.
+          "label": >-
+            Ваше имя
+      "privacy_notice":
+        "link_content": >-
+          политика конфиденциальности
+        "with_name":
+          "html": >-
+            Отправляя эту форму, вы соглашаетесь с тем, что ваш контент и ваше имя
+            <strong>%{name}</strong>могут быть опубликованы в Интернете в соответствии
+            с %{link}.
+        "without_name":
+          "html": >-
+            Отправляя эту форму, вы соглашаетесь с тем, что ваш контент и ваше имя
+            могут быть опубликованным онлайн согласно %{link}.
+    "continue_shopping": >-
+      Продолжить покупки
+    "flags":
+      "new":
+        "already_flagged": >-
+          Вы уже отметили %{item}
+        "flag_as_inappropriate": >-
+          Отметить %{item} как недопустимый
+      "show":
+        "flag_submitted": >-
+          Спасибо
+    "mailer":
+      "excuses":
+        "question_answered_html": >-
+          Вы получили это письмо от %{helpfulcrowd} с уточнениями по вопросу, который
+          вы задали %{store}.
+        "review_answered_html": >-
+          Вы получили это письмо от %{helpfulcrowd} с уточнениями по отзыву, который
+          вы оставили %{store}.
+        "review_follow_up_html": >-
+          Вы получили это письмо от %{helpfulcrowd} в ответ на ваш недавний отзыв
+          в %{store}.
+        "review_request_html": >-
+          Вы получили это письмо от %{helpfulcrowd} в ответ на ваш последний заказ
+          в %{store}.
+      "helpers":
+        "call_to_action":
+          "view_product": >-
+            Посетить страницу продукта
+    "products":
+      "questions":
+        "form":
+          "question_html": >-
+            Что вы хотите узнать о %{product}?
+        "new":
+          "title": >-
+            Задать вопрос
+      "view_product": >-
+        Перейти на страницу продукта
+    "review_requests":
+      "reviews":
+        "form":
+          "rating_html": >-
+            Оцените свой опыт с %{reviewable}
+        "new":
+          "already_reviewed_html": >-
+            Вы уже оценили %{reviewable}
+          "review_other_purchases":
+            "one": >-
+              Оценить другую покупку
+            "few": >-
+              Оценить другую покупку
+            "many": >-
+              Оценить другую покупку
+            "other": >-
+              Оценить другие покупки
+          "title": >-
+            Оценить покупку
+    "search":
+      "label": >-
+        Поиск:
+      "placeholder": >-
+        Введите слово
+    "share":
+      "button": >-
+        Поделиться
+    "sort_by": >-
+      Сортировать по:
+    "sort_options":
+      "most_helpful": >-
+        Самые полезные
+      "most_recent": >-
+        Самые новые
+      "rating_asc": >-
+        Рейтинг: низкий
+      "rating_desc": >-
+        Рейтинг: высокий
+    "suppressions":
+      "manage_subscriptions":
+        "subscribe_question_html": >-
+          Вы хотите, чтобы HelpfulCrowd отправлял вам электронные письма от имени
+          %{store}?
+        "unsubscribe_question_html": >-
+          Вы хотите, чтобы HelpfulCrowd больше не отправлял вам электронные письма
+          от имени %{store}?
+    "votes":
+      "upvote": >-
+        Полезно
+      "upvotes_count":
+        "one": >-
+          %{count} человек считает %{item} полезным
+        "few": >-
+          %{count} человека считают %{item} полезным
+        "many": >-
+          %{count} человек считают %{item} полезным
+        "other": >-
+          %{count} человек считают %{item} полезным
+    "widgets":
+      "products":
+        "rating":
+          "qa":
+            "html":
+              "one": >-
+                1 вопрос
+              "few": >-
+                %{count} вопроса
+              "many": >-
+                %{count} вопросов
+              "other": >-
+                %{count} вопросов
+          "reviews":
+            "html":
+              "one": >-
+                1 отзыв
+              "few": >-
+                %{count} отзыва
+              "many": >-
+                %{count} отзывов
+              "other": >-
+                %{count} отзывов
+        "summary":
+          "qa":
+            "html":
+              "one": >-
+                1 вопрос
+              "few": >-
+                %{count} вопроса
+              "many": >-
+                %{count} вопросов
+              "other": >-
+                %{count} вопросов
+            "new": >-
+              Задать вопрос
+          "reviews":
+            "html":
+              "one": >-
+                1 отзыв
+              "few": >-
+                %{count} отзыва
+              "many": >-
+                %{count} отзывов
+              "other": >-
+                %{count} отзывов
+            "new": >-
+              Написать отзыв
+        "tabs":
+          "questions":
+            "new": >-
+              Задать вопрос
+            "search":
+              "label": >-
+                Поиск:
+              "placeholder": >-
+                Поиск по вопросам и ответам
+            "title": >-
+              ВиО
+            "write_first": >-
+              Задайте первый вопрос об этом продукте
+          "reviews":
+            "based_on_reviews":
+              "html": >-
+                На основе %{reviews_count}
+            "media_gallery":
+              "images":
+                "one": >-
+                  1 фотография
+                "few": >-
+                  %{count} фотографий
+                "many": >-
+                  %{count} фотографий
+                "other": >-
+                  %{count} фотографий
+            "search":
+              "label": >-
+                Поиск:
+              "placeholder": >-
+                Поиск по отзывам
+              "title": Снимки от покупателей
+              "videos":
+                "one": >-
+                  1 видео
+                "few": >-
+                  %{count} видео
+                "many": >-
+                  %{count} видео
+                "other": >-
+                  %{count} видео
+            "new": >-
+              Написать отзыв
+            "rating": >-
+              %{rating} из 5 звезд
+            "title": >-
+              Отзывы покупателей
+            "write_first": >-
+              Будьте первым, кто оценит этот продукт
+          "titles":
+            "questions": >-
+              Вопросы и ответы
+            "questions_responsive": >-
+              Вопросы и ответы
+            "reviews": >-
+              Отзывы и рейтинги
+            "reviews_responsive": >-
+              Отзывы
+      "sidebar":
+        "default_title": >-
+          Отзывы | Вопросы и Ответы
+    "with_incentive":
+      "reviews":
+        "text": >-
+          Возможно, автор этого отзыва получил за него вознаграждение
+    "write_review": >-
+      Написать отзыв
+  "helpers":
+    "friendly_rating": >-
+      Нет отзывов
+    "label":
+      "customer":
+        "email": >-
+          Email клиента
+        "name": >-
+          Имя клиента
+      "product_group":
+        "name": >-
+          Имя
+    "placeholder":
+      "promotion":
+        "template": >-
+          Бесплатная доставка на все заказы в Черную Пятницу!
+    "submit":
+      "product_group":
+        "create": >-
+          Создать группу
+        "update": >-
+          Обновить группу
+      "question":
+        "create": >-
+          Задать вопрос
+      "review":
+        "create": >-
+          Отправить отзыв
+  "layouts":
+    "mailer":
+      "front":
+        "manage_subscriptions": >-
+          Управление подписками
+        "unsubscribe": >-
+          Отказаться от подписки
+        "get_help": >-
+          Помощь
+        "help_subject": >-
+          Мне нужна помощь...
+        "help_subject_with_order": >-
+          Мне нужна помощь с заказом номер
+  "load_more": >-
+    Загрузить еще
+  "privacy_policy": >-
+    Политика конфиденциальности
+  "question_facebook_post_template": "[customer_name]\r\nВ: [question]\r\nО: [answer]"
+  "question_tweet_template": "[customer_name]\r\nВ: [question]\r\nО: [answer]"
+  "rating_1": >-
+    Ужасно
+  "rating_2": >-
+    Плохо
+  "rating_3": >-
+    Нормально
+  "rating_4": >-
+    Хорошо
+  "rating_5": >-
+    Отлично
+  "read_less": >-
+    меньше
+  "read_more": >-
+    отзыв полностью
+  "recaptcha":
+    "errors":
+      "verification_failed": >-
+        Не удалось подтвердить reCAPTCHA.
+    "label": >-
+      Помогите побороть спам
+  "report": >-
+    Сообщить
+  "review_facebook_post_template": "Посмотрите, что [customer_name] думает о [product_name]:\r\n\r\n[rating]\r\n\"[feedback]\""
+  "review_tweet_template": "[customer_name]:\r\n[product_name] - [rating], \"[feedback]\""
+  "settings":
+    "default":
+      "review_slider_c2a_text": >-
+        Показать все
+  "stars":
+    "one": >-
+      1 звезда
+    "few": >-
+      %{count} звезды
+    "many": >-
+      %{count} звезд
+    "other": >-
+      %{count} звезд
+  "verified":
+    "agent":
+      "description": >-
+        %{author} работает в %{store}
+      "label": >-
+        %{store}
+    "customer":
+      "description": >-
+        %{author} заказал этот продукт
+      "label": >-
+        Проверенный покупатель

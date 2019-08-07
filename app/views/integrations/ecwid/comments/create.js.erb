@@ -1,0 +1,8 @@
+<% model_name = @comment.commentable_type.parameterize %>
+<% if @comment.valid? %>
+  jQuery('[data-model="<%= model_name %>"][data-id="<%= @comment.commentable.hashid %>"]')
+        .replaceWith('<%= escape_javascript(render "integrations/ecwid/shared/flash") %>');
+<% else %>
+  jQuery('[data-model="<%= model_name %>"][data-id="<%= @comment.commentable.hashid %>"] [data-model="comment"]')
+        .replaceWith('<%= escape_javascript(render 'integrations/ecwid/comments/form', comment: @comment) %>');
+<% end %>

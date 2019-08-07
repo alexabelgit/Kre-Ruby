@@ -1,0 +1,23 @@
+article.comment data-model="comment"
+
+  .comment__actions
+    = link_to edit_back_comment_path(comment),
+      remote: true,
+      class:  'comment__action' do
+
+      => hc_icon 'pencil'
+      |  Update
+
+    = link_to back_comment_path(comment),
+      method: :delete,
+      data:   { confirm: 'Are you sure?' },
+      remote: true,
+      class:  'comment__action' do
+
+      => hc_icon 'trash'
+      |  Delete
+
+  .comment__author
+    = author_of_(comment)
+
+  p.comment__body = commentable.get_highlights(:comment, comment.body)

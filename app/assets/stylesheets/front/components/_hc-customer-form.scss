@@ -1,0 +1,20 @@
+.hc-customer-form {
+  @extend %flex-grid;
+  @extend %margin-bottom__md;
+}
+
+.hc-customer-form__email,
+.hc-customer-form__name {
+  @extend %flex-grid__column;
+}
+
+.hc-customer-form__email-label,
+.hc-customer-form__name-label  {
+  @extend %display__block;
+}
+
+.hc-customer-form__email-input,
+.hc-customer-form__name-input {
+  @extend %display__block;
+  @extend %width__100pct;
+}

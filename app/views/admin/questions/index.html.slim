@@ -1,0 +1,44 @@
+= render 'layouts/admin/sub_navs/questions'
+
+h1 Q&A
+
+.responsive-table
+  table.table
+    thead
+      tr
+        th ID
+        th Q&A
+        th Product
+        th Store
+        th Customer
+        th Date
+        th Status
+        th Verification
+
+    tbody
+      - @questions.each do |question|
+        tr
+          td
+            => link_to question.hashid, admin_question_path(question)
+            = link_to_blank hc_icon('external-link'), front_product_question_path(question.store, question.product, question)
+          td
+            ' Q:
+            = question.body
+
+            - if question.comment.present?
+              br
+              ' A:
+              = question.comment.body
+
+          td = link_to_blank "#{ question.product.name } #{ hc_icon 'external-link' }".html_safe, question.product.url
+          td = link_to question.store.name, admin_store_path(question.store)
+          td
+            = question.customer.name
+            br
+            => email_icon question.customer
+            = question.customer.email
+          td = question.submitted_at
+          td = question.status
+          td = question.verification
+
+= will_paginate @questions, class: 'hc-paging hc-paging--modern'

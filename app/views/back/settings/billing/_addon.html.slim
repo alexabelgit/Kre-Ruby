@@ -1,0 +1,16 @@
+section.addon
+  header.addon__header
+    h3.addon__name = addon.name
+    .addon__price = number_to_currency(addon.current_price)
+  p.addon__description = addon.description
+
+  footer.addon__footer
+    .addon__toggle
+      .hc-checkbox-toggle
+        = check_box_tag addon.checkbox_name, true, addon.enabled?,
+          data:        { behavior: 'addon-toggle', addon_id: addon.price_id },
+          class:       'hc-checkbox-toggle__input'
+
+        = render     'helpful_components/checkbox_toggle/label',
+          label_for: addon.checkbox_name,
+          txt:       ''

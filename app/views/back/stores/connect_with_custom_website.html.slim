@@ -1,0 +1,22 @@
+- content_for :main_class, 'boxed'
+
+section.auth-form
+  header
+    h1.auth-form__title = title 'Connect with custom website'
+
+  = form_for [:back, @store], url: back_stores_path, method: :post do |f|
+    = render 'shared/form/errors', resource: @store
+
+    .auth-form__control
+      = f.label     :url, 'URL', class: 'auth-form__label'
+      = f.url_field :url,        class: 'auth-form__input', required: true, placeholder: "https://example.com", autofocus: true
+
+    .auth-form__control
+      = f.label      :name, 'Store name', class: 'auth-form__label'
+      = f.text_field :name,               class: 'auth-form__input', placeholder: 'Your Awesome Store', required: true
+
+    = button_tag class: 'hc-brand-1-button--block',
+                 data:  { disable_with: "#{spinner_icon} Connecting" } do
+      = 'Connect'
+
+  = render "back/stores/back_to_connect_options"

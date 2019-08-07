@@ -1,0 +1,9 @@
+= content_for :recipient
+  = @user.first_name
+
+p = "You have exceeded your allowance of free in-plan orders. You need to upgrade \
+     to a paid plan to continue using HelpfulCrowd."
+
+= call_to_action 'Upgrade plan', billing_back_settings_url
+
+= render 'back_mailer/shared/contact_us_and_thank_you', hide_thank_you: true, contact_who: 'billing'

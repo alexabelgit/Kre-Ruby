@@ -1,0 +1,8 @@
+.hc-media {
+	.hc-media__medium, .hc-media__thumb{
+		@extend %border-radius__#{$rounded-borders_sm};
+	}
+	.hc-media__medium:after {
+		@extend %border-radius__#{$rounded-borders_sm};
+	}
+}

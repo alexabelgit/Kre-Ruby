@@ -1,0 +1,12 @@
+= tag.section class: 'billing__plans',
+        data:  { purpose:   'bundle-info',
+                bundle_id: presenter.draft_bundle_presenter.bundle_id } do
+
+  header
+    h2 style="margin-bottom: .5rem;"
+      span Choose a plan
+
+  section.plans.product-plans
+    = render partial:    'back/settings/billing/products_plan',
+            collection: presenter.available_plans,
+            as:         :plan

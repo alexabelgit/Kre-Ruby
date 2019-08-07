@@ -1,0 +1,48 @@
+@import "_settings/colors";
+@import "_settings/shared/**/*";
+
+@import "wetsy/base";
+@import "wetsy/components";
+@import "wetsy/rules";
+
+@import "wetsy_lacks_that";
+
+@import "lightgallery";
+
+.hc-widget {
+  line-height: 1.5;
+  font-size:   16px;
+  box-sizing:  border-box;
+
+  *,
+  *:before,
+  *:after {
+    box-sizing: inherit;
+  }
+
+  header,
+  footer,
+  article,
+  section,
+  span,
+  div,
+  a {
+    padding: 0;
+    margin:  0;
+  }
+
+  @import "front/hc-widgets/**/*";
+
+  @import "helpful_components/**/*";
+
+  @import "front/components/*";
+  @import "front/hc-widgets/*";
+  @import "front/themes/dark/components";
+  @import "front/themes/light/components";
+  @import "front/reviews/*"; // TODO what we need from reviews should be moved to components
+  @import "front/questions/question-form";
+
+  @import "front/border_styles/rounded/components";
+
+  @import "front/shadow_styles/shadow/components";
+}

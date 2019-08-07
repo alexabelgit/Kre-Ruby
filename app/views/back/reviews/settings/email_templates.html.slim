@@ -1,0 +1,374 @@
+- title 'Review email templates'
+- content_for :main_class, 'email-templates'
+= render 'back/reviews/sub_nav'
+
+- @presenter = TemplatePresenter.new(current_store, self)
+
+- content_for :sample_purchased_products do
+  - @presenter.sample_products_quantity.times do |i|
+    .previewer__purchased-products
+      .previewer__purchased-product
+        a.previewer__purchased-product-image href="javascript:void(0)"
+          = image_tag @presenter.send("sample_product_#{i+1}_image".to_sym)
+        .previewer__purchased-product-name
+          = link_to @presenter.send("sample_product_#{i+1}_name".to_sym), 'javascript:void(0)'
+        .previewer__purchased-product-stars
+          - 1.upto(5) do |i|
+            a.previewer__purchased-product-star href="javascript:void(0)"
+              div ☆
+              div = t "rating_#{i}", locale: current_store.settings(:global).locale
+
+- content_for :sample_reply do
+  .previewer__quote
+    = @presenter.sample_review_comment
+
+- content_for :sample_review do
+  .previewer__quote
+    = @presenter.sample_feedback
+
+- content_for :sample_product_link do
+  .previewer__c2a
+    span = t 'view_product', scope: 'front.mailer.helpers.call_to_action', locale: current_store.settings(:global).locale
+
+= render 'plugins/previewable_sample_data',
+  data:  @presenter.sample_data_hash
+
+h1 Email templates
+
+/ p id='frx-text'
+  | We use FRX&trade; to collect your reviews&nbsp; #{link_to "See how it works", "#", class: "hc-primary-outlined-button--small"}
+
+section.hc-margin-bottom__xl
+  h3 Review request
+
+  = render layout: 'helpful_components/collapsible/item', locals: { name: 'review_request', title: 'First email' } do
+
+    = form_for  [:back, @store.settings(:reviews)],
+                as:     :settings,
+                url:    emails_back_reviews_path,
+                method: :patch,
+                html:   { class: 'template template--email' },
+                remote: true do |f|
+
+      = render 'shared/form/errors', resource: @store.settings(:reviews)
+
+      .template__source-and-preview
+        .template__source
+
+          / .template__control
+            = render 'helpful_components/checkbox_toggle/checkbox_toggle',
+              f:     f,
+              field: :enable_automated_review_request,
+              txt:   'Send request automatically'
+
+          .template__control
+            => f.label :days_to_send_review_request do
+              => "Send after"
+              | &nbsp;&nbsp;
+              => f.number_field :days_to_send_review_request,
+                 min: 0, max: 90, step: 1,
+                 class: ''
+              | &nbsp;&nbsp;
+              =  "days"
+            span.hc-no-break
+              => f.label  :trigger, 'from when'
+              | &nbsp;&nbsp;
+              =  f.select :trigger, Order::STATUSES.collect { |s| [s.last, s.first] }
+
+          .template__control
+            => f.label      :review_request_mail_subject, 'Subject', class: 'hc-form__label'
+            => f.text_field :review_request_mail_subject, required: true,  class: 'hc-form__input', data: { previewable: 'input', role: 'request_email_subject' }
+
+          .template__control
+            => f.label     :review_request_mail_body, 'Message',   class: 'hc-form__label'
+            => f.text_area :review_request_mail_body, required: true, class: 'tinymce', data: { previewable: 'input', role: 'request_email_body' }
+
+          = render 'back/shared/available_placeholders',
+            placeholders: [Placeholders::FRONT_MAILER_SUBJECT.keys, Placeholders::REVIEW_REQUEST_MAIL_BODY.keys]
+
+          = render 'back/shared/available_promotion_placeholders',
+            placeholders: current_store.promotions.active.available_placeholders
+
+        .template__preview-button
+          button type="button" data-previewable="button" data-role="request_email_subject,request_email_body"
+            = hc_icon 'chevron-right'
+            = hc_icon 'hc-spinner spin'
+            = hc_icon 'save'
+
+        .template__preview
+
+          .template__preview-controls
+            / .template__layout-switch
+              = link_to "javascript:void(0)", class: "current" do
+                = hc_icon 'desktop'
+              = link_to "javascript:void(0)" do
+                = hc_icon 'mobile'
+              = link_to "javascript:void(0)" do
+                = hc_icon 'file-text-o'
+
+            = render "back/shared/send_test_email", store: @store, email_type: "review_request"
+
+          .template__preview-inner
+            = render        'back/shared/email_previewer',
+              excuse:       'front.mailer.excuses.review_request_html',
+              store:        current_store,
+              subject_role: 'request_email_subject',
+              body_role:    'request_email_body'
+
+
+  = render layout: 'helpful_components/collapsible/item', locals: { name: 'review_request_follow-up', title: 'Reminder email' } do
+
+    = form_for [:back, @store.settings(:reviews)],
+      as:      :settings,
+      url:     emails_back_reviews_path,
+      method:  :patch,
+      html:    { class: 'template template--email' },
+      remote: true do |f|
+
+      = render 'shared/form/errors', resource: @store.settings(:reviews)
+
+      .template__source-and-preview
+        .template__source
+
+          .hc-margin-bottom__md
+            = form_hint 'Reminder email will be sent in case customer does not review all of the purchased products upon first email.'
+
+          .template__control
+            = render 'helpful_components/checkbox_toggle/checkbox_toggle',
+              f:     f,
+              field: :enable_repeat_review_request,
+              txt:   'Send reminder automatically'
+
+          .template__control
+            => f.label :days_to_repeat_review_request do
+              | Send after
+              | &nbsp;&nbsp;&nbsp;
+              => f.number_field :days_to_repeat_review_request,
+                 min: 0, max: 90, step: 1,
+                 class: ''
+              | &nbsp;&nbsp;
+              | days
+            | from first email
+
+          .template__control
+            => f.label      :repeat_review_request_mail_subject, 'Subject', class: 'hc-form__label'
+            => f.text_field :repeat_review_request_mail_subject, required: true,  class: 'hc-form__input', data: { previewable: 'input', role: 'repeat_request_email_subject' }
+
+          .template__control
+            => f.label     :repeat_review_request_mail_body, 'Message',   class: 'hc-form__label'
+            => f.text_area :repeat_review_request_mail_body, required: true, class: 'hc-form__textarea hc-form__textarea--tall', data: { previewable: 'input', role: 'repeat_request_email_body' }
+
+          = render 'back/shared/available_placeholders',
+            placeholders: [Placeholders::FRONT_MAILER_SUBJECT.keys, Placeholders::REVIEW_REQUEST_MAIL_BODY.keys]
+
+          = render 'back/shared/available_promotion_placeholders',
+            placeholders: current_store.promotions.active.available_placeholders
+
+        .template__preview-button
+          button type="button" data-previewable="button" data-role="repeat_request_email_subject,repeat_request_email_body"
+            = hc_icon 'chevron-right'
+            = hc_icon 'hc-spinner spin'
+            = hc_icon 'save'
+
+        .template__preview
+
+          .template__preview-controls
+            / .template__layout-switch
+              = link_to "javascript:void(0)", class: "current" do
+                = hc_icon 'desktop'
+              = link_to "javascript:void(0)" do
+                = hc_icon 'mobile'
+              = link_to "javascript:void(0)" do
+                = hc_icon 'file-text-o'
+
+            = render "back/shared/send_test_email", store: @store, email_type: "repeat_review_request"
+
+          .template__preview-inner
+            = render        'back/shared/email_previewer',
+              excuse:       'front.mailer.excuses.review_request_html',
+              store:        current_store,
+              subject_role: 'repeat_request_email_subject',
+              body_role:    'repeat_request_email_body'
+
+
+section.hc-margin-bottom__xl
+  h3 Thank you emails
+
+  = render layout: 'helpful_components/collapsible/item', locals: { name: 'positive_review' } do
+
+    = form_for [ :back, @store.settings(:reviews) ],
+      as:      :settings,
+      url:     emails_back_reviews_path,
+      method:  :patch,
+      html:    { class: 'template template--email' },
+      remote: true do |f|
+
+      = render 'shared/form/errors', resource: @store.settings(:reviews)
+
+      .template__source-and-preview
+        .template__source
+
+          .template__control
+            = render 'helpful_components/checkbox_toggle/checkbox_toggle',
+              f:     f,
+              field: :send_positive_review_followup_mail,
+              txt:   'Send thank-you email for positive reviews'
+
+          .template__control
+            => f.label      :positive_review_followup_mail_subject, 'Email subject', class: 'hc-form__label'
+            => f.text_field :positive_review_followup_mail_subject, required: true,  class: 'hc-form__input', data: { previewable: 'input', role: 'positive_review_followup_mail_subject' }
+
+          .template__control
+            => f.label     :positive_review_followup_mail_body, 'Email body',   class: 'hc-form__label'
+            => f.text_area :positive_review_followup_mail_body, required: true, class: 'hc-form__textarea hc-form__textarea--tall', data: { previewable: 'input', role: 'positive_review_followup_mail_body' }
+
+          = render 'back/shared/available_placeholders',
+            placeholders: [Placeholders::FRONT_MAILER_SUBJECT.keys, Placeholders::REVIEW_FOLLOWUP_MAIL_BODY.keys]
+
+          = render 'back/shared/available_promotion_placeholders',
+            placeholders: current_store.promotions.active.available_placeholders
+
+        .template__preview-button
+          button type="button" data-previewable="button" data-role="positive_review_followup_mail_subject,positive_review_followup_mail_body"
+            = hc_icon 'chevron-right'
+            = hc_icon 'hc-spinner spin'
+            = hc_icon 'save'
+
+        .template__preview
+
+          .template__preview-controls
+            / .template__layout-switch
+              = link_to "javascript:void(0)", class: "current" do
+                = hc_icon 'desktop'
+              = link_to "javascript:void(0)" do
+                = hc_icon 'mobile'
+              = link_to "javascript:void(0)" do
+                = hc_icon 'file-text-o'
+
+            = render "back/shared/send_test_email", store: @store, email_type: "positive_review_follow_up"
+
+          .template__preview-inner
+            = render        'back/shared/email_previewer',
+              excuse:       'front.mailer.excuses.review_follow_up_html',
+              store:        current_store,
+              subject_role: 'positive_review_followup_mail_subject',
+              body_role:    'positive_review_followup_mail_body'
+
+
+  = render layout: 'helpful_components/collapsible/item', locals: { name: 'critical_review' } do
+
+    = form_for [ :back, @store.settings(:reviews) ],
+      as:      :settings,
+      url:     emails_back_reviews_path,
+      method:  :patch,
+      html:    { class: 'template template--email' },
+      remote: true do |f|
+
+      = render 'shared/form/errors', resource: @store.settings(:reviews)
+
+      .template__source-and-preview
+        .template__source
+
+          .template__control
+            = render 'helpful_components/checkbox_toggle/checkbox_toggle',
+              f:     f,
+              field: :send_critical_review_followup_mail,
+              txt:   'Send thank-you email for critical reviews'
+
+          .template__control
+            => f.label      :critical_review_followup_mail_subject, 'Email subject', class: 'hc-form__label'
+            => f.text_field :critical_review_followup_mail_subject, required: true,  class: 'hc-form__input', data: { previewable: 'input', role: 'critical_review_followup_mail_subject' }
+
+          .template__control
+            => f.label     :critical_review_followup_mail_body, 'Email body',   class: 'hc-form__label'
+            => f.text_area :critical_review_followup_mail_body, required: true, class: 'hc-form__textarea hc-form__textarea--tall', data: { previewable: 'input', role: 'critical_review_followup_mail_body' }
+
+          = render 'back/shared/available_placeholders',
+            placeholders: [Placeholders::FRONT_MAILER_SUBJECT.keys, Placeholders::REVIEW_FOLLOWUP_MAIL_BODY.keys]
+
+          = render 'back/shared/available_promotion_placeholders',
+            placeholders: current_store.promotions.active.available_placeholders
+
+        .template__preview-button
+          button type="button" data-previewable="button" data-role="critical_review_followup_mail_subject,critical_review_followup_mail_body"
+            = hc_icon 'chevron-right'
+            = hc_icon 'hc-spinner spin'
+            = hc_icon 'save'
+
+        .template__preview
+
+          .template__preview-controls
+            / .template__layout-switch
+              = link_to "javascript:void(0)", class: "current" do
+                = hc_icon 'desktop'
+              = link_to "javascript:void(0)" do
+                = hc_icon 'mobile'
+              = link_to "javascript:void(0)" do
+                = hc_icon 'file-text-o'
+
+            = render "back/shared/send_test_email", store: @store, email_type: "critical_review_follow_up"
+
+          .template__preview-inner
+            = render        'back/shared/email_previewer',
+              excuse:       'front.mailer.excuses.review_follow_up_html',
+              store:        current_store,
+              subject_role: 'critical_review_followup_mail_subject',
+              body_role:    'critical_review_followup_mail_body'
+
+
+section.hc-margin-bottom__xl
+  h3 Other
+
+  = render layout: 'helpful_components/collapsible/item', locals: { name: 'review_reply_notification' } do
+
+    = form_for [ :back, @store.settings(:reviews) ],
+      as:      :settings,
+      url:     emails_back_reviews_path,
+      method:  :patch,
+      html:    { class: 'template template--email' },
+      remote: true do |f|
+
+      = render 'shared/form/errors', resource: @store.settings(:reviews)
+
+      .template__source-and-preview
+        .template__source
+
+          .template__control
+            => f.label      :comment_mail_subject, 'Email subject', class: 'hc-form__label'
+            => f.text_field :comment_mail_subject, required: true,  class: 'hc-form__input', data: { previewable: 'input', role: 'comment_mail_subject' }
+
+          .template__control
+            => f.label     :comment_mail_body, 'Email body',   class: 'hc-form__label'
+            => f.text_area :comment_mail_body, required: true, class: 'hc-form__textarea hc-form__textarea--tall', data: { previewable: 'input', role: 'comment_mail_body' }
+
+          = render 'back/shared/available_placeholders',
+            placeholders: [Placeholders::FRONT_MAILER_SUBJECT.keys, Placeholders::REVIEW_COMMENT_MAIL_BODY.keys]
+
+          = render 'back/shared/available_promotion_placeholders',
+            placeholders: current_store.promotions.active.available_placeholders
+
+        .template__preview-button
+          button type="button" data-previewable="button" data-role="comment_mail_subject,comment_mail_body"
+            = hc_icon 'chevron-right'
+            = hc_icon 'hc-spinner spin'
+            = hc_icon 'save'
+
+        .template__preview
+
+          .template__preview-controls
+            / .template__layout-switch
+              = link_to "javascript:void(0)", class: "current" do
+                = hc_icon 'desktop'
+              = link_to "javascript:void(0)" do
+                = hc_icon 'mobile'
+              = link_to "javascript:void(0)" do
+                = hc_icon 'file-text-o'
+
+            = render "back/shared/send_test_email", store: @store, email_type: "comment_on_review"
+
+          .template__preview-inner
+            = render        'back/shared/email_previewer',
+              excuse:       'front.mailer.excuses.review_answered_html',
+              store:        current_store,
+              subject_role: 'comment_mail_subject',
+              body_role:    'comment_mail_body'

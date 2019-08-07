@@ -1,0 +1,440 @@
+---
+"ko":
+  "activerecord":
+    "errors":
+      "models":
+        "abuse_report":
+          "attributes":
+            "additional_info":
+              "blank": >-
+                '다른 이유'를 이유로 선택하면 제공되어야 합니다
+            "reason":
+              "blank": >-
+                ^이유를 선택해야 합니다
+        "product":
+          "attributes":
+            "id_from_provider":
+              "taken": >-
+                ^ID는 고유해야 합니다. 입력한 ID는 이미 다른 제품에 사용되고 있습니다.
+        "review":
+          "attributes":
+            "customer":
+              "must_be_authenticated": >-
+                ^리뷰를 작성하려면 로그인해야 합니다
+            "product_ids":
+              "cannot_be_repeated": >-
+                ^이 제품은 이미 리뷰를 작성 하셨습니다
+              "taken": >-
+                ^이 구매에 이미 리뷰를 작성 하셨습니다
+            "review_request_id":
+              "request_must_be_sent": >-
+                ^이 구매에 대한 리뷰는 지금 작성할 수 없습니다
+            "source":
+              "cannot_be_voluntary": >-
+                ^이 구매에 대한 리뷰는 지금 작성할 수 없습니다
+        "review_request":
+          "attributes":
+            "order_id":
+              "blank": >-
+                해당 고객 없이는 만들 수 없습니다. 올바른 이메일 주소를 입력하십시오.
+    "models":
+      "comment":
+        "one": >-
+          댓글
+        "other": >-
+          댓글
+      "customer":
+        "one": >-
+          고객
+        "other": >-
+          고객
+      "product":
+        "one": >-
+          제품
+        "other": >-
+          제품
+      "product_group":
+        "one": >-
+          제품군
+        "other": >-
+          제품군
+      "question":
+        "one": >-
+          질문
+        "other": >-
+          질문
+      "review":
+        "one": >-
+          리뷰
+        "other": >-
+          리뷰
+      "review_request":
+        "one": >-
+          리뷰 요청
+        "other": >-
+          리뷰 요청
+  "answer":
+    "one": >-
+      대답
+    "other": >-
+      대답
+  "cancel": >-
+    취소
+  "counterify":
+    "characters":
+      "exceeded": >-
+        제한 문자 수를 초과 했습니다.
+      "remaining":
+        "one": >-
+          1 자 남았습니다
+        "other": >-
+          %{count} 자 남았습니다
+  "default_templates":
+    "email":
+      "critical_review_followup_mail_body": "<p>안녕하세요 [customer_name]님,</p>\r\n<p>리뷰를
+        작성해 주셔서 감사합니다.</p>\r\n<p>[store_name] 팀.</p>"
+      "critical_review_followup_mail_subject": >-
+        리뷰를 작성해 주셔서 감사합니다.
+      "positive_review_followup_mail_body": "<p>안녕하세요 [customer_name]님,</p>\r\n<p>리뷰를
+        작성해 주셔서 감사합니다.</p>\r\n<p>[store_name] 팀.</p>"
+      "positive_review_followup_mail_subject": >-
+        리뷰를 작성해 주셔서 감사합니다.
+      "question_answer_mail_body": "<p>안녕하세요 [customer_name]님,</p>\r\n<p>[product_name]에
+        관한 귀하의 질문이 저희 상담원에 의해 답변되었습니다:</p>\r\n<p>[answer]</p>\r\n<p>질문:</p>\r\n<p>[question]</p>\r\n<p>[product_link]</p>\r\n<p>[store_name]
+        팀.</p>"
+      "question_answer_mail_subject": >-
+        [store_name]에 주신 질문이 답변 되었습니다.
+      "repeat_review_request_mail_body": "<p>안녕하세요 [customer_name]님,</p>\r\n<p>아직
+        늦지 않았으니 최근 주문에 대해 말씀해 주세요.</p>\r\n<p>아래의 제품 사용 후기에 대한 별점을 주세요:</p>\r\n<p>[products]</p>\r\n<p>만족하지
+        못하셨나요? 저희에게 연락을 주시면 도와드리겠습니다.</p>\r\n<p>[store_name] 팀.</p>"
+      "repeat_review_request_mail_subject": >-
+        [store_name]에서의 최근 주문에 대한 리뷰를 작성해 주세요.
+      "review_answer_mail_body": "<p>안녕하세요 [customer_name]님,</p>\r\n<p>[product_name]에
+        대한 귀하의 질문이 저희 상담원에 의해 답변되었습니다:</p>\r\n<p>[reply]</p>\r\n<p>귀하의 리뷰:</p>\r\n<p>[review]</p>\r\n<p>[product_link]</p>\r\n<p>[store_name]
+        팀.</p>"
+      "review_answer_mail_subject": >-
+        [store_name]에 대한 귀하의 리뷰가 답변되었습니다.
+      "review_request_mail_body": "<p>안녕하세요 [customer_name]님,</p>\r\n<p>현재까지의 경험을
+        바탕으로 별점을 주세요:</p>\r\n<p>[products]</p>\r\n<p>만족하지 못하셨나요? 저희에게 연락을 주시면 도와드리겠습니다.</p>\r\n<p>[store_name]
+        팀.</p>"
+      "review_request_mail_subject": >-
+        [store_name]에서의 최근 주문에 대한 리뷰를 작성해 주세요.
+  "embed": >-
+    임베드
+  "errors":
+    "messages":
+      "already_confirmed": >-
+        이미 확인되었습니다, 다시 로그인을 시도 하세요
+      "confirmation_period_expired": >-
+        %{period} 이내로 확인 되어야 합니다, 새로 요청해 주세요
+      "expired": >-
+        가(이) 만료되었습니다. 새로 요청해 주세요
+      "not_found": >-
+        를(을) 찾을 수 없습니다
+      "not_locked": >-
+        가(이) 잠기지 않았습니다
+      "not_saved":
+        "one": >-
+          1개의 에러가 발생해서 %{resource}를(을) 저장할 수 없습니다:
+        "other": >-
+          %{count}개의 에러가 발생해서 %{resource}를(을) 저장할 수 없습니다:
+  "flash":
+    "submitted_successfully":
+      "question": >-
+        감사합니다! 질문이 접수 되었습니다. 답변이 되면 이메일을 통해 알려 드리겠습니다.
+      "review": >-
+        감사합니다! 귀하의 리뷰가 접수 되었습니다.
+      "subscribed": >-
+        %{store}에 성공적으로 구독하였습니다
+      "unsubscribed": >-
+        %{store}에 성공적으로 구독 취소 되었습니다.
+  "front":
+    "based_on_reviews_count":
+      "one": >-
+        리뷰 1개
+      "other": >-
+        리뷰 %{count}개
+    "components":
+      "customer_form":
+        "email":
+          "hint": >-
+            귀하의 이메일은 공개적으로 공유되지 않습니다.
+          "label": >-
+            귀하의 이메일
+        "name":
+          "hint": >-
+            귀하의 이름은 이니셜로 보여집니다
+          "hint_update_html": >-
+            귀하의 이름은 <strong>%{initials}</strong>로 보여집니다
+          "label": >-
+            귀하의 이름
+      "privacy_notice":
+        "link_content": >-
+          개인 정보 정책
+        "with_name":
+          "html": >-
+            이 양식을 제출함으로써 귀하의 콘텐츠와 이름<strong>%{name}</strong>이 저희 %{link}에 따라 온라인으로
+            게시 될 수 있음에 동의하게 됩니다.
+        "without_name":
+          "html": >-
+            이 양식을 제출함으로써 귀하의 콘텐츠와 이름이 저희 %{link}에 따라 온라인으로 게시 될 수 있음에 동의하게됩니다.
+    "continue_shopping": >-
+      계속 쇼핑하기
+    "flags":
+      "new":
+        "already_flagged": >-
+          이 %{item}을(를) 이미 플래그 처리 하였습니다
+        "flag_as_inappropriate": >-
+          이 %{item}을(를) 부적합으로 플래그 처리
+      "show":
+        "flag_submitted": >-
+          감사합니다
+    "mailer":
+      "excuses":
+        "question_answered_html": >-
+          이 이메일은 귀하가 %{store}에 질문 한 것에 대한 업데이트를 위해 %{helpfulcrowd}에서 전송하였습니다.
+        "review_answered_html": >-
+          이 이메일은 귀하가 %{store}에 리뷰를 작성 한 것에 대한 업데이트를 위해 %{helpfulcrowd}에서 전송하였습니다.
+        "review_follow_up_html": >-
+          이 이메일은 귀하의 %{store}에 최근에 작성한 리뷰에 대한 답변으로 %{helpfulcrowd}에서 전송하였습니다.
+        "review_request_html": >-
+          이 이메일은 귀하의 %{store}에서의 최근 주문에 대해서 %{helpfulcrowd}에서 전송하였습니다.
+      "helpers":
+        "call_to_action":
+          "view_product": >-
+            제품 페이지 방문
+    "products":
+      "questions":
+        "form":
+          "question_html": >-
+            %{product}에 대해 궁금하신 점이 무엇입니까?
+        "new":
+          "title": >-
+            질문하기
+      "view_product": >-
+        제품 페이지로 가기
+    "review_requests":
+      "reviews":
+        "form":
+          "rating_html": >-
+            %{reviewable}와의 경험을 평가해 주세요
+        "new":
+          "already_reviewed_html": >-
+            %{reviewable}에 대한 리뷰를 이미 작성하였습니다.
+          "review_other_purchases":
+            "one": >-
+              다른 구매에 대한 리뷰 작성
+            "other": >-
+              다른 구매에 대한 리뷰 작성
+          "title": >-
+            구매에 대한 리뷰 작성
+    "search":
+      "label": >-
+        검색:
+      "placeholder": >-
+        키워드 입력
+    "share":
+      "button": >-
+        공유
+    "sort_by": >-
+      정렬:
+    "sort_options":
+      "most_helpful": >-
+        가장 도움이 됬어요
+      "most_recent": >-
+        가장 최근
+      "rating_asc": >-
+        평가: 최저
+      "rating_desc": >-
+        평가: 최고
+    "suppressions":
+      "manage_subscriptions":
+        "subscribe_question_html": >-
+          %{store}를 대신해 HelpfulCrowd가 이메일을 전송하기를 원합니까?
+        "unsubscribe_question_html": >-
+          %{store}를 대신해 HelpfulCrowd가 이메일을 그만 전송하기를 원합니까?
+    "votes":
+      "upvote": >-
+        도움이 됬어요
+      "upvotes_count":
+        "one": >-
+          %{count}명이 이 %{item}에 도움이 됬어요
+        "other": >-
+          %{count}명이 이 %{item}에 도움이 됬어요
+    "widgets":
+      "products":
+        "rating":
+          "qa":
+            "html":
+              "one": >-
+                질문 1개
+              "other": >-
+                질문 %{count}개
+          "reviews":
+            "html":
+              "one": >-
+                리뷰 1개
+              "other": >-
+                리뷰 %{count}개
+        "summary":
+          "qa":
+            "html":
+              "one": >-
+                질문 1개
+              "other": >-
+                질문 %{count}개
+            "new": >-
+              질문 하세요
+          "reviews":
+            "html":
+              "one": >-
+                리뷰 1개
+              "other": >-
+                리뷰  %{count}개
+            "new": >-
+              리뷰를 작성하세요
+        "tabs":
+          "questions":
+            "new": >-
+              질문하기
+            "search":
+              "label": >-
+                검색:
+              "placeholder": >-
+                질의응답 검색
+            "title": >-
+              질의응답
+            "write_first": >-
+              이 제품에 대한 첫번째 질문을 하세요
+          "reviews":
+            "based_on_reviews":
+              "html": >-
+                %{reviews_count}개 기반
+            "media_gallery":
+              "images":
+                "one": >-
+                  사진 1개
+                "other": >-
+                  사진 %{count}개
+              "search":
+                "label": >-
+                  검색:
+                "placeholder": >-
+                  후기 검색
+              "title": "고객\r\n미디어"
+              "videos":
+                "one": >-
+                  비디오 1개
+                "other": >-
+                  비디오 %{count}개
+            "new": >-
+              리뷰 작성
+            "rating": >-
+              별 5개 중 %{rating}개
+            "title": >-
+              고객 리뷰
+            "write_first": >-
+              첫번째로 이 제품에 대한 리뷰를 작성하세요
+          "titles":
+            "questions": >-
+              질의응답
+            "questions_responsive": >-
+              질의응담
+            "reviews": >-
+              리뷰 및 평점
+            "reviews_responsive": >-
+              후기
+      "sidebar":
+        "default_title": >-
+          리뷰 | 질의응답
+    "with_incentive":
+      "reviews":
+        "text": >-
+          리뷰 작성자는 리뷰를 작성함으로써 혜택을 제고 받았을 수 있습니다.
+    "write_review": >-
+      리뷰 작성
+  "helpers":
+    "friendly_rating": >-
+      아직 리뷰가 없습니다
+    "label":
+      "customer":
+        "email": >-
+          고객 이메일
+        "name": >-
+          고객 이름
+      "product_group":
+        "name": >-
+          이름
+    "placeholder":
+      "promotion":
+        "template": >-
+          블랙 프라이데이 주 동안 모든 주문 무료 배송!
+    "submit":
+      "product_group":
+        "create": >-
+          그룹 만들기
+        "update": >-
+          그룹 업데이트하기
+      "question":
+        "create": >-
+          질문하기
+      "review":
+        "create": >-
+          리뷰 제출
+  "layouts":
+    "mailer":
+      "front":
+        "manage_subscriptions": >-
+          구독 관리
+        "unsubscribe": >-
+          구독 취소
+  "load_more": >-
+    추가 로드
+  "privacy_policy": >-
+    개인 보호 정책
+  "question_facebook_post_template": "[customer_name]\r\n질문: [question]\r\n대답: [answer]"
+  "question_tweet_template": "[customer_name]\r\n질문: [question]\r\n대답: [answer]"
+  "rating_1": >-
+    최악이다
+  "rating_2": >-
+    별로다
+  "rating_3": >-
+    괜찮다
+  "rating_4": >-
+    좋다
+  "rating_5": >-
+    굉장히 좋다
+  "read_less": >-
+    접기
+  "read_more": >-
+    전체 리뷰
+  "recaptcha":
+    "errors":
+      "verification_failed": >-
+        reCAPTCHA 검증 실패했습니다.
+    "label": >-
+      스팸 방지를 도와주세요
+  "report": >-
+    보고
+  "review_facebook_post_template": "[customer_name]님이 [product_name]에 대해 뭐라고 했는지 보세요:\r\n\r\n[rating]\r\n\"[feedback]\""
+  "review_tweet_template": "[customer_name]:\r\n[product_name] - [rating], \"[feedback]\""
+  "settings":
+    "default":
+      "review_slider_c2a_text": >-
+        모두 보기
+  "stars":
+    "one": >-
+      별 1개
+    "other": >-
+      별 %{count}개
+  "verified":
+    "agent":
+      "description": >-
+        %{author}는 %{store}에서 일합니다
+      "label": >-
+        %{store}
+    "customer":
+      "description": >-
+        %{author}는 이 제품을 구매 했습니다
+      "label": >-
+        검증된 구매자

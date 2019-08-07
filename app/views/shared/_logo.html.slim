@@ -1,0 +1,19 @@
+/ path
+/ hide_text
+/ new_tab
+/ size
+/ display_text
+
+- path     			||= root_url
+- minimize 			||= false
+- new_tab  			||= false
+- size     			||= 'normal'
+// The default value cannot be set with the above method if the values are false or nil. Hence using local_assigns.fetch method.
+- display_text  = local_assigns.fetch :display_text, true
+
+= link_to path, class: 'hc-logo', target: new_tab ? '_blank' : nil do
+  img alt="HelpfulCrowd" class="hc-logo__image hc-#{size}" src=image_url('hc-icon__xs.png')
+  - if display_text
+	  span.hc-logo__text class=('hide--below__sm' if minimize)
+	    span.hc-logo__h Helpful
+	    span.hc-logo__c Crowd

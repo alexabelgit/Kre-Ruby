@@ -1,0 +1,16 @@
+.no-records {
+  @extend %max-width__30rem;
+  @extend %margin-y__2xl;
+  @extend %margin-x__auto;
+  @extend .hc-card;
+
+  h2, p, div {
+    @extend %text-align__center;
+  }
+}
+
+.no-records__content {
+  @extend %white-space__pre-line;
+  @extend %word-break__break-word;
+  @extend %word-wrap__break-word;
+}

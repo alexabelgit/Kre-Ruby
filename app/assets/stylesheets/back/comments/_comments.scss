@@ -1,0 +1,32 @@
+.comment {
+  @extend %background-color__light;
+  @extend %padding__xs;
+}
+
+.comment__body {
+  @extend %margin-y__0;
+  @extend %padding-top__sm;
+  @extend %white-space__pre-line;
+  @extend %word-break__break-word;
+  @extend %word-wrap__break-word;
+}
+
+.comment__author {
+	@extend %margin-top__md;
+	&-avatar {
+		@extend %display__inline-flex;
+	}
+	&-text {
+		@extend %display__inline-block;
+		@extend %font-size__87pt5pct;
+		@extend %line-height__1pt125;
+	}
+}
+
+.comment__actions {
+  @extend %float__right;
+}
+
+.comment__action {
+  @extend %margin-left__xs;
+}

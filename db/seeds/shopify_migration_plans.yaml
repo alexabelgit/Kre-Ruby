@@ -1,0 +1,37 @@
+products:
+  handful_shopify_products_migration:
+    name: Handful
+    price_in_cents: 995
+    min_products_limit: 0
+    max_products_limit: 100
+    chargebee_id:
+    is_secret: true
+  boxful_shopify_products_migration:
+    name: Boxful
+    price_in_cents: 1495
+    min_products_limit: 101
+    max_products_limit: 500
+    chargebee_id:
+    is_secret: true
+  bucketful_shopify_products_migration:
+    name: Bucketful
+    price_in_cents: 2995
+    min_products_limit: 501
+    max_products_limit: 1500
+    chargebee_id:
+    is_secret: true
+  plentiful_shopify_products_migration:
+    name: Plentiful
+    price_in_cents: 4995
+    min_products_limit: 1501
+    max_products_limit: 10000
+    chargebee_id:
+    is_secret: true
+  boastful_shopify_products_migration:
+    name: Boastful
+    price_in_cents: 9995
+    min_products_limit: 10001
+    max_products_limit:
+    chargebee_id:
+    is_secret: true
+

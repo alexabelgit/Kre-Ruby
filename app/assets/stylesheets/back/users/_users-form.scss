@@ -1,0 +1,33 @@
+.users-form {
+}
+
+%users-form__control {
+  @extend %margin-bottom__md;
+}
+
+.users-form__control {
+  @extend %users-form__control;
+}
+
+%users-form__label,
+%users-form__input {
+  @extend %display__block;
+  @extend %width__100pct;
+  @extend %max-width__480px;
+}
+
+.users-form__label {
+  @extend %users-form__label;
+}
+
+.users-form__input {
+  @extend %users-form__input;
+}
+
+.users-form__submit {
+  @extend .hc-primary-button;
+}
+
+.users-form__deactivate {
+  @extend .hc-danger-button;
+}

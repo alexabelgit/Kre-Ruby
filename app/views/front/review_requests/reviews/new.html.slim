@@ -1,0 +1,27 @@
+- customer                = @review_request.customer
+- other_transaction_items = customer.transaction_items_except(@transaction_item)
+- remaining_reviews_count = other_transaction_items.count
+
+- if @transaction_item.review.present?
+  = render   'shared/system_messages/custom',
+    body:    t('.already_reviewed_html', reviewable: link_to(@transaction_item.reviewable.name, @transaction_item.reviewable.url, target: '_blank')),
+    align:   'center',
+    persist: true
+
+- else
+  - review        = Review.new(transaction_item: @transaction_item, customer: @transaction_item.customer)
+  - review.rating = @rating if @rating.present?
+
+  section.add-review__to-main-product
+    h1
+      span = title t('.title', default: 'Review your order')
+
+    = render 'front/review_requests/reviews/form', review: review, header: true
+
+- if remaining_reviews_count > 0
+  section.add-review__to-other-products
+    h2
+      span = t('.review_other_purchases', count: remaining_reviews_count)
+
+  - other_transaction_items.each do |transaction_item|
+    = render 'front/review_requests/reviews/form', review: Review.new(transaction_item: transaction_item, customer: transaction_item.customer), header: true

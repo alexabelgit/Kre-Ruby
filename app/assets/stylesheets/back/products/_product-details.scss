@@ -1,0 +1,37 @@
+.product-details {
+  @extend %background-color__white;
+  @extend %simple-card;
+}
+
+.product-details__header {
+  @extend %margin-bottom__md;
+}
+
+.product-details__image {
+  @extend %border__1px__solid__secondary;
+}
+
+.product-details__heading {
+  @extend %margin-bottom__0;
+}
+
+.product-details__rating {
+  @extend %margin-bottom__md;
+}
+
+.product-details__individual-rating {
+  @extend %margin-bottom__md;
+}
+
+
+.product-details__groups {
+  @extend %margin-bottom__md;
+}
+
+.product-details__rating-chart {
+  @extend %margin-bottom__md;
+  @extend %max-width__20rem;
+}
+
+.product-details__reviews {
+}

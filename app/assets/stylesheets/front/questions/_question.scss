@@ -1,0 +1,21 @@
+.question {
+  @extend %margin-bottom__md;
+}
+
+.question__header {
+  @include flexbox(
+    $flex-wrap:       wrap,
+    $justify-content: space-between
+  );
+}
+
+.question__author {}
+
+.question__body {
+  @extend %white-space__pre-line;
+  @extend %word-break__break-word;
+  @extend %word-wrap__break-word;
+
+  @extend %margin-bottom__0;
+  @extend %margin-top__xs;
+}

@@ -1,0 +1,727 @@
+en:
+  activerecord:
+    attributes:
+      abuse_report:
+        additional_info: Additional details
+        reasons:
+          misinformation:        'Irrelevant, misleading or contradictory content'
+          mention_of_competitor: 'Unfair promotion of a competitor offering'
+          explicit_content:      'Sexually explicit content'
+          hate_speech:           'Hate speech or threat of violence against a group or an individual'
+          profanity:             'Profanity or bad language'
+          privacy_breach:        'Personally identifiable information'
+          something_else:        'Something else'
+        sources:
+          by_merchant:    Merchant
+          by_helpful_bot: Helpful Bot
+          by_customer:    Customer
+      promotion:
+        starts_at: Start date
+        ends_at:   End date
+      user:
+        authentication_key:    "Email"
+        password_confirmation: "Repeat password"
+      store:
+        url: URL
+    models:
+      customer:
+        one:   customer
+        other: customers
+      comment:
+        one:   comment
+        other: comments
+      product:
+        one:   product
+        other: products
+      product_group:
+        one:   product group
+        other: product groups
+      question:
+        one:   question
+        other: questions
+      review:
+        one:   review
+        other: reviews
+      review_request:
+        one:   review request
+        other: review requests
+    errors:
+      models:
+        abuse_report:
+          attributes:
+            reason:
+              blank: "^You must select a reason"
+            additional_info:
+              blank: must be provided when 'something else' is selected as the reason
+        product:
+          attributes:
+            id_from_provider:
+              taken: ^ID must be unique. The one you entered is already used on another product.
+        review:
+          attributes:
+            customer:
+              must_be_authenticated: "^You must be signed in to write a review"
+            product_ids:
+              cannot_be_repeated: "^You have already reviewed this product"
+              taken:              "^You have already reviewed this purchase"
+            review_request_id:
+              request_must_be_sent: "^You cannot review this purchase at the moment"
+            source:
+              cannot_be_voluntary: "^You cannot review this purchase at the moment"
+        review_request:
+          attributes:
+            order_id:
+              blank: "cannot be created without corresponding customer. Please provide a valid email address."
+  answer:
+    one: answer
+    other: answers
+  back:
+    shopify_payments:
+      confirm:
+        declined:
+          html: |-
+            <p>
+              Subscription update was declined. If this was a mistake,
+              please try again by clicking 'Apply changes' at the bottom
+              of this page.
+            </p>
+            <p>
+              If you no longer wish to use our app, visit our knowledge base to learn
+              <a href="%{link}" target='_blank'>how to uninstall HelpfulCrowd</a>
+              from your store.
+            </p>
+    stores:
+      maintain_back:
+        side_effects_warning: |-
+          Are you sure you want take HelpfulCrowd app down for maintenance?
+
+          This will put all review requests on hold.
+        tip:
+          active:   HelpfulCrowd app is active
+          inactive: HelpfulCrowd app is down for maintenance. Review requests are not sent to your customers.
+      maintain_front:
+        tip:
+          active:   Storefront integration is active
+          inactive: Storefront integration is down for maintenance. HelpfulCrowd content is not being displayed on your website.
+    suppressions:
+      index:
+        by_customer: Customer
+        by_merchant: Merchant
+  cancel: Cancel
+  counterify:
+    characters:
+      remaining:
+        one: "1 character remaining"
+        other: "%{count} characters remaining"
+      exceeded: "Character limit exceeded"
+  default_templates:
+    email:
+      critical_review_followup_mail_body: "<p>Hello [customer_name],</p><p>Thank you for your review.</p><p>Team at [store_name].</p>"
+      critical_review_followup_mail_subject: "Thank you for your review"
+      positive_review_followup_mail_body: "<p>Hello [customer_name],</p><p>Thank you for your review.</p><p>Team at [store_name].</p>"
+      positive_review_followup_mail_subject: "Thank you for your review"
+      question_answer_mail_body: "<p>Hello [customer_name],</p>Your question about [product_name] has been answered by our representative:</p><p>[answer]</p><p>Your question:</p><p>[question]</p><p>[product_link]</p><p>Team at [store_name].</p>"
+      question_answer_mail_subject: "Your question at [store_name] has been answered"
+      repeat_review_request_mail_body: "<p>Hello [customer_name],</p><p>It's still not too late to tell us what you think about your recent order.</p><p>Click on a star to rate your experience so far with:</p><p>[products]</p><p>Not happy? Please contact us first so we can help.</p><p>Team at [store_name].</p>"
+      repeat_review_request_mail_subject: "Reminder to review your recent order at [store_name]"
+      review_answer_mail_body: "<p>Hello [customer_name],</p><p>Your review for [product_name] has been answered by our representative:</p><p>[reply]</p><p>Your review: [review]</p><p>[product_link]</p><p>Team at [store_name].</p>"
+      review_answer_mail_subject: "Your review at [store_name] has been answered"
+      review_request_mail_body: "<p>Hello [customer_name],</p><p>Click on a star to rate your experience so far with:</p><p>[products]</p><p>Not happy? Please contact us first so we can help.</p><p>Team at [store_name].</p>"
+      review_request_mail_subject: "Review your recent order at [store_name]"
+  devise:
+    confirmations:
+      confirmed: "Your email address has been successfully confirmed."
+      send_instructions: "You will receive an email with instructions for how to confirm your email address in a few minutes."
+      send_paranoid_instructions: "If your email address exists in our database, you will receive an email with instructions for how to confirm your email address in a few minutes."
+    failure:
+      already_authenticated: "You are already signed in."
+      inactive: "Your account is not activated yet."
+      invalid: "%{authentication_keys} and password do not match."
+      locked: "Your account is locked."
+      last_attempt: "You have one more attempt before your account is locked."
+      not_found_in_database: "%{authentication_keys} and password do not match."
+      timeout: "Your session expired. Please sign in again to continue."
+      unauthenticated: "You need to sign in or sign up before continuing."
+      unconfirmed: "You have to confirm your email address before continuing."
+      deleted_account: "Your account is deactivated. If you wish to reactivate please contact us at support@helpfulcrowd.com"
+    mailer:
+      confirmation_instructions:
+        subject: "Confirmation instructions"
+      reset_password_instructions:
+        subject: "Reset password instructions"
+      unlock_instructions:
+        subject: "Unlock instructions"
+      password_change:
+        subject: "Password Changed"
+    omniauth_callbacks:
+      failure: "Could not authenticate you from %{kind} because \"%{reason}\"."
+      success: "Successfully authenticated from %{kind} account."
+    passwords:
+      no_token: "You can't access this page without coming from a password reset email. If you do come from a password reset email, please make sure you used the full URL provided."
+      send_instructions: "You will receive an email with instructions on how to reset your password in a few minutes."
+      send_paranoid_instructions: "If your email address exists in our database, you will receive a password recovery link at your email address in a few minutes."
+      updated: "Your password has been changed successfully. You are now signed in."
+      updated_not_active: "Your password has been changed successfully."
+    registrations:
+      destroyed: "Your account has been successfully deactivated. We hope to see you again soon."
+      signed_up: "Welcome! You have signed up successfully."
+      signed_up_but_inactive: "You have signed up successfully. However, we could not sign you in because your account is not yet activated."
+      signed_up_but_locked: "You have signed up successfully. However, we could not sign you in because your account is locked."
+      signed_up_but_unconfirmed: "A message with a confirmation link has been sent to your email address. Please follow the link to activate your account."
+      update_needs_confirmation: "You updated your account successfully, but we need to verify your new email address. Please check your email and follow the confirm link to confirm your new email address."
+      updated: "Your account has been updated successfully."
+      reactivated: "You have reactivated your account."
+      deactivated: "You have deactivated your account. To reactivate, sign in back any time."
+    sessions:
+      signed_in: "Hello, you are now signed in."
+      signed_out: "Signed out successfully."
+      already_signed_out: "Signed out successfully."
+    unlocks:
+      send_instructions: "You will receive an email with instructions for how to unlock your account in a few minutes."
+      send_paranoid_instructions: "If your account exists, you will receive an email with instructions for how to unlock it in a few minutes."
+      unlocked: "Your account has been unlocked successfully. Please sign in to continue."
+  embed: Embed
+  errors:
+    messages:
+      already_confirmed: "was already confirmed, please try signing in"
+      confirmation_period_expired: "needs to be confirmed within %{period}, please request a new one"
+      expired: "has expired, please request a new one"
+      not_found: "not found"
+      not_locked: "was not locked"
+      not_saved:
+        one: "1 error prohibited this %{resource} from being saved:"
+        other: "%{count} errors prohibited this %{resource} from being saved:"
+  flash:
+    submitted_successfully:
+      question: Thank you! We have received your question and we will let you know via email once it has been answered
+      review: Thank you! We have received your review
+      unsubscribed: You have successfully unsubscribed from %{store}.
+      subscribed: You have successfully subscribed to %{store}.
+  front:
+    based_on_reviews_count:
+      one:   1 review
+      other: "%{count} reviews"
+      # context: 1.3 stars based on '23 reviews'
+    components:
+      customer_form:
+        email:
+          hint:  Your email will not be shared publicly
+          label: Your email
+        name:
+          hint:             Your name will appear as initials
+          hint_update_html: Your name will appear as <strong>%{initials}</strong>
+          label:            Your name
+      privacy_notice:
+        with_name:
+          html: |-
+            By submitting this form you agree that your content and your name
+            <strong>%{name}</strong> may be published online according to our
+            %{link}.
+        without_name:
+          html: |-
+            By submitting this form you agree that your content and your name may
+            be published online according to our %{link}.
+        link_content: privacy policy
+    continue_shopping: Continue shopping
+    flags:
+      new:
+        flag_as_inappropriate: "Flag this %{item} as inappropriate"
+        already_flagged:       "You have already flagged this %{item}"
+      show:
+        flag_submitted: Thank you
+    mailer:
+      helpers:
+        call_to_action:
+          view_product: Visit product page
+      excuses:
+        question_answered_html: "You have received this email from %{helpfulcrowd} to give you an update about a question you asked to %{store}."
+        review_answered_html:   "You have received this email from %{helpfulcrowd} to give you an update about a review you left at %{store}."
+        review_request_html:    "You have received this email from %{helpfulcrowd} in response to your recent order at %{store}."
+        review_follow_up_html:  "You have received this email from %{helpfulcrowd} in response to your recent review at %{store}."
+    products:
+      questions:
+        form:
+          question_html:  What would you like to know about %{product}?
+        new:
+          title: Ask a question
+      view_product: Go to product page
+    review_requests:
+      reviews:
+        form:
+          feedback:    "Your feedback"
+          rating_html: "Rate your experience with %{reviewable}"
+        new:
+          already_reviewed_html: "You have already reviewed %{reviewable}"
+          review_other_purchases:
+            one:   "Review your other purchase"
+            other: "Review your other purchases"
+          title: Review your purchase
+    search:
+      label: 'Search:'
+      placeholder: Enter keyword
+    share:
+      button: Share
+    sort_by: 'Sort by:'
+    sort_options:
+      most_recent: Most recent
+      most_helpful: Most helpful
+      rating_desc: "Rating: highest"
+      rating_asc:  "Rating: lowest"
+    suppressions:
+      manage_subscriptions:
+        subscribe_question_html: Would you like to enable HelpfulCrowd to send you email on behalf of %{store}?
+        unsubscribe_question_html: Would you like HelpfulCrowd to stop sending you email on behalf of %{store}?
+    votes:
+      upvote: Helpful
+      upvotes_count:
+        one:   "%{count} person found this %{item} helpful"
+        other: "%{count} people found this %{item} helpful"
+    widgets:
+      products:
+        summary:
+          qa:
+            html:
+              one:   "1 question"
+              other: "%{count} questions"
+            new: "Ask question"
+            no_records: No questions yet
+          reviews:
+            html:
+              one:   "based on 1 review"
+              other: "based on %{count} reviews"
+            new: "Write review"
+            rating: "%{rating} out of 5 stars"
+            show_all: "See all reviews"
+            no_records: No reviews yet
+        rating:
+          qa:
+            html:
+              one:   "1 question"
+              other: "%{count} questions"
+            no_records: No questions yet
+          reviews:
+            html:
+              one:   "1 review"
+              other: "%{count} reviews"
+            no_records: No reviews yet
+        tabs:
+          titles:
+            questions: Questions & Answers
+            reviews:   Customer Reviews
+            questions_responsive: Q&A
+            reviews_responsive:   Reviews
+          questions:
+            new: Ask question
+            no_records: No questions yet.
+            title: Q&A
+            write_first: Ask first question about this product
+            search:
+              label: 'Search:'
+              placeholder: Search Q&A
+          reviews:
+            based_on_reviews:
+              html: "%{reviews_count}"
+            new: Write review
+            no_records: No reviews yet.
+            rating: "%{rating} out of 5 stars"
+            title: Customer reviews
+            write_first: Be the first to review this product
+            media_gallery:
+              title: |+
+                Customer
+                media
+              videos:
+                one: 1 video
+                other: "%{count} videos"
+              images:
+                one: 1 photo
+                other: "%{count} photos"
+            search:
+              label: 'Search:'
+              placeholder: Search reviews
+      sidebar:
+        default_title: 'Reviews | Q&A'
+    with_incentive:
+      reviews:
+        text: The reviewer may have been offered an incentive for writing this review
+    write_review: Write review
+  helpers:
+    friendly_rating: No reviews yet
+    label:
+      customer:
+        name: Customer name
+        email: Customer email
+      product_group:
+        name: Name
+    placeholder:
+      promotion:
+        template: "Free shipping on all orders during Black Friday week!"
+    submit:
+      product_group:
+        create: "Create group"
+        update: "Update group"
+      question:
+        create: Ask question
+      review:
+        create: Submit review
+  kb_articles:
+    abuse_reports:      guides-content-guard
+    add_on:             what-is-an-add-on
+    email_suppressions: email_suppressions
+    import_reviews:     learn-more-import-reviews
+    import_questions:   learn-more-import-QA
+    media_reviews:      learn-more-media-reviews
+    product_groups:     learn-more-product-groups
+    review_requests:    learn-more-unlimited-review-requests
+    social_push:        learn-more-social-push
+    unlimited_requests: learn-more-unlimited-review-requests
+    setup_shopify:      setup-shopify
+    uninstall_shopify:  uninstall-shopify
+  layouts:
+    mailer:
+      front:
+        unsubscribe:              Unsubscribe
+        manage_subscriptions:     Manage subscriptions
+        get_help:                 Get help
+        help_subject:             I need help...
+        help_subject_with_order:  I need help with order number
+  load_more: Load more
+  no_records:
+    abuse_reports:
+      heading: No open reports
+      content: >-
+        This is where you will see reports about inappropriate content.
+
+        Make sure to read our guidelines on when to report content yourself,
+        or how to deal with reports coming from others.
+    promotions:
+      heading: No promotions running
+      content: >-
+        This is where your promotions will show up.
+
+
+        Promotions can temporarily alter email and social templates to include
+        discount codes or other limited time offers.
+    discount_coupons:
+      heading: No coupons
+      content: >-
+        This is where your coupons will show up.
+
+
+        You can add discount coupons from here and use them in promotions.
+    reviews:
+      heading: No reviews
+      content: |-
+        This is where your reviews will show up. It will feel less lonely once your customers start reviewing your products.
+
+        Have existing reviews collected on another platform? You can import them into HelpfulCrowd.
+      action_name: Import reviews now
+    review_requests:
+      heading: No review requests
+      content: |-
+        This is where your review requests will show up. We will generate requests based on online orders your customers place at your store.
+
+        It is also possible to generate review requests from your past sales via importing online and/or offline orders into HelpfulCrowd.
+    questions:
+      heading: No questions
+      content: |-
+        This is where your Q&A will show up. It will feel less lonely once your customers start asking questions about your products.
+
+        Have existing Q&A data collected on another platform? You can import it into HelpfulCrowd.
+      action_name: Import Q&A now
+    products:
+      heading: No products
+      content: |-
+        This is where your products will show up.
+
+        Products should be imported automatically. If this does not happen in next few minutes please contact us.
+      # TODO make 'let us know' a link that opens intercom window
+    product_groups:
+      heading: No product groups
+      content: |-
+        This is where your product groups will show up.
+
+        You can use product groups to share reviews and Q&A among different versions of the same product.
+      action_name: Create your first product group
+    suppressions:
+      heading: No suppressions yet
+      content: |-
+        This is where suppressed email addresses will show up.
+
+        We will not send any email on your behalf to addresses included in this list.
+    transactions:
+      heading: No transactions yet
+      content: |-
+        This is where billing transactions will show up.
+  onboarding:
+    store_connected:
+      title: Connect store
+      description:
+        html: >-
+          Connect HelpfulCrowd with your website in order to start using our awesome app.
+      description_complete:
+        html: >-
+          Store connected.
+    stylesheet_embedded:
+      title: 1. HelpfulCrowd Stylesheet
+      description:
+        html: >-
+          HelpfulCrowd stylesheet must present on all pages where
+          HelpfulCrowd widgets appear. To do that, include following code
+          snippet between &lt;head&gt;…&lt;/head&gt; tags in
+          your <strong>theme.liquid</strong> file:
+      snippet:
+        code: |-
+          {% comment %} HelpfulCrowd injected code. Please do not change or remove this and the next comment {% endcomment %}
+          {% include 'hc-styles' %}
+          {% comment %} HelpfulCrowd injected code. Please do not change or remove this and the previous comment {% endcomment %}
+        language: liquid
+    widgets_embedded:
+      title: Embed widgets on webpages
+      description:
+        html: >-
+          Embed our widgets on your website to display your HelpfulCrowd content.
+      description_complete:
+        html: >-
+          You are all set! Your reviews will now show on your site.
+    optional_widgets_embedded:
+      title: Embed optional widgets on webpages
+      description:
+        html: >-
+          Embed our optional widgets on your website to display your HelpfulCrowd content.
+    global_settings_customized:
+      title: Check business settings
+      description:
+        html: >-
+          Customize settings such as language, time zone, logo, URL, date format and email notification.
+      description_complete:
+        html: >-
+          Business settings confirmed.
+    design_customized:
+      title: Customize widget appearance
+      description:
+        html: >-
+          Choose light or dark theme, round corners, drop shadows, custom CSS (advance user) etc.
+      description_complete:
+        html: >-
+          Widget appearance updated.
+    features_customized:
+      title: Customize feature controls
+      description:
+        html: >-
+          Enable and disable specific feature controls like auto-publish, storefront reviews, Q&A, dates, repeated reviews etc.
+      description_complete:
+        html: >-
+          Feature controls updated.
+    review_request_email_templates_personalized:
+      title: Personalize review request templates
+      description:
+        html: >-
+          Modify review request and thank you email templates and configure event triggers when emails are sent.
+      description_complete:
+        html: >-
+          Review email templates updated.
+    shopify_installation_processing:
+      title: Installing widgets...
+      description:
+        html: >-
+          Let us do some heavy lifting for you and auto-inject your widgets for you.<br>
+          <b>Please stay here till we finish :-)</b>
+    shopify_installation_successful:
+      title: Widgets installation successful
+      description:
+        html: >-
+          You are all set! Your reviews will now show on your site.
+    shopify_installation_failed:
+      title: We couldn't detect our widgets
+      description:
+        html: >-
+          Click here to finish installing our review display widgets on your site.
+    shopify_installation_checking:
+      title: Checking widgets installation...
+      description:
+        html: >-
+          Please stay on this page until we finish checking.
+    orders_imported:
+      title: Import orders
+      description:
+        html: >-
+          Have recent orders with customers ready to provide your first reviews?
+          We have got you covered - import orders and we will send review
+          requests to corresponding customers.
+    products_created:
+      title: Create products
+      description:
+        html: >-
+          Add your products to HelpfulCrowd so that we can then request reviews
+          for those products on your behalf.
+      description_complete:
+        html: >-
+          Products created.
+    reviews_imported:
+      title: Import reviews
+      description:
+        html: >-
+          Not your first time gathering customer feedback? Great, we have
+          created a tool to help you import your existing reviews.
+    products_grouped:
+      title: Create product groups
+      description:
+        html: >-
+          Have different versions of same products? You can group such products
+          so that reviews and Q&A are shared between all versions.
+    social_accounts_connected:
+      title: Connect social accounts
+      description:
+        html: >-
+          Leverage the power of social media to grow your sales. Our social
+          integrations enable you to bring your HelpfulCrowd content to your
+          social media channels with ease.
+  privacy_policy: Privacy policy
+  question_facebook_post_template: |-
+    [customer_name]
+    Q: [question]
+    A: [answer]
+  question_tweet_template: |-
+    [customer_name]
+    Q: [question]
+    A: [answer]
+  rating_1: "Terrible"
+  rating_2: "Bad"
+  rating_3: "Okay"
+  rating_4: "Good"
+  rating_5: "Great"
+  read_less: read less
+  read_more: full review
+  recaptcha:
+    errors:
+      verification_failed: reCAPTCHA verification failed.
+    label: Help us fight spam
+  report: Report
+  review_facebook_post_template: |-
+    Check out what [customer_name] said about [product_name]:
+
+    [rating]
+    "[feedback]"
+  review_tweet_template: |-
+    [customer_name]:
+    [product_name] - [rating], "[feedback]"
+  settings:
+    default:
+      review_slider_c2a_text: 'Show all'
+  stars:
+    one:   "1 star"
+    other: "%{count} stars"
+  verified:
+    customer:
+      label:       "Verified buyer"
+      description: "%{author} has purchased this product"
+    agent:
+      label:       "%{store}"
+      description: "%{author} works at %{store}"
+  oauth:
+    installed_successfully: "" # TODO
+    reinstalled_successfully: "" # TODO
+    errors:
+      access_denied: "Could not obtain permissions to access your account. Please make sure to grant permissions to HelpfulCrowd app"
+      account_exists: |-
+        <p>Oops, seems like you already have an account on HelpfulCrowd with email %{email}.</p>
+        <p>
+          If you wish to create a new account you need to first sign in with existing
+          account and change its email to something else.
+        </p>
+      cannot_create_store: "Connected successfully via OAuth but failed to create store"
+      cannot_reconnect_store: "Could not reconnect store"
+      invalid_site: "Invalid store address"
+      landing_account_exists: >-
+        Oops, seems like you already have an existing HelpfulCrowd account under email %{email}.
+
+        If you wish to create a new account please sign in to HelpfulCrowd with %{email} and change email to something else.
+      store_already_connected: |-
+        Someone already created an account for %{store_name} using %{email}. If
+        you have access to that account, please sign out, then sign in again with
+        %{email}.
+      unknown_provider: >-
+        Unknown OAuth provider. Probably you connected new OAuth but haven't
+        updated callback processing
+      tab_account_exists: >-
+        Oops, seems like you already have an existing HelpfulCrowd account under email %{email}.
+
+        If you wish to create a new account please sign in to HelpfulCrowd with %{email} and change email to something else.
+    ecwid:
+      landing:
+        connected:
+          html: |-
+            <p>
+              Nice! HelpfulCrowd is now synced with your
+              online store - <strong>%{store_name}</strong>.
+            </p>
+            <p>
+              You are now all set up and the next customer at your
+              store will receive a review request.
+            </p>
+            <p>
+              To customize email templates and other settings, have
+              a look to the setup guide below.
+            </p>
+      iframe:
+        connected:
+          html: |-
+            <p>
+              Nice! HelpfulCrowd is now synced with your
+              online store - <strong>%{store_name}</strong>.
+            </p>
+            <p>
+              You are now all set up and the next customer at your
+              store will receive a review request.
+            </p>
+            <p>
+              Visit our <a href='%{url}' target='_blank'>setup guide</a>
+              to customize email templates and other settings.
+            </p>
+    shopify:
+      landing:
+        connected:
+          html: |-
+            <p>
+              Nice! HelpfulCrowd is now synced with your
+              online store - <strong>%{store_name}</strong>
+              and your next customer will receive a review request.
+            </p>
+            <p>
+              To embed HelpfulCrowd stylesheet and widgets, customize email templates and
+              tune other settings, have a look at the guide below.
+            </p>
+    lemonstand:
+      landing:
+        connected:
+          html: |-
+            <p>
+              Nice! HelpfulCrowd is now synced with your
+              online store - <strong>%{store_name}</strong>
+              and your next customer will receive a review request.
+            </p>
+            <p>
+              To embed HelpfulCrowd widgets, customize email templates and
+              tune other settings, have a look at the guide below.
+            </p>
+        reconnected: "%{store_name} is successfully reconnected"
+    custom:
+      connected:
+        html: |-
+          <p>
+            Nice! HelpfulCrowd is now synced with your
+            online store - <strong>%{store_name}</strong>.
+          </p>
+          <p>
+            To embed HelpfulCrowd widgets, customize email templates and
+            tune other settings, have a look at the guide below.
+          </p>
+    flash:
+      facebook:
+        select_page: >-
+          HelpfulCrowd successfully connected with your Facebook account.
+          Select your store page to complete setup
+      twitter:
+        success: >-
+          HelpfulCrowd successfully connected with your Twitter account

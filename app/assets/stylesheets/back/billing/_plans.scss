@@ -1,0 +1,206 @@
+.plans {
+  @include flexbox(
+    $flex-wrap: nowrap
+  );
+  @extend %overflow-x__auto;
+  @extend %margin-x__-xs;
+  @extend %padding-y__xs;
+}
+
+.plan {
+  @extend %align-self__stretch;
+  @extend %padding-x__lg;
+  @extend %padding-y__md;
+  @extend %background-color__white;
+  @extend %border-width__base;
+  @extend %border-style__base;
+  @extend %border-color__base;
+  @extend %border-radius__base;
+  @extend %flex-basis__10rem;
+  @extend %flex-grow__1;
+  @extend %flex-shrink__0;
+  @extend %margin-x__xs;
+  @extend %position__relative;
+  @extend %text-align__center;
+  @extend %transition-property__border-color__box-shadow;
+  @extend %transition-duration__base;
+
+  &.plan--active,
+  &.plan--switching-to {
+    @extend %border-color__success;
+  }
+
+  &.plan--renewable {
+    @extend %border-color__warning;
+  }
+
+  &.plan--cancelling {
+    @extend %border-color__secondary;
+  }
+
+  &:not(.plan--coming-soon):not(.plan--negotiable) {
+    &:hover {
+      @extend %border-color__success;
+      box-shadow: 0 0 10px 0 lighten($color-success, 10%);
+    }
+  }
+}
+
+.plan__ribbon {
+  @extend %background-color__white;
+  @extend %color__white;
+  @extend %position__absolute;
+  @extend %right__0;
+  @extend %top__0;
+  @extend %border-style__solid;
+  @extend %border-width__md;
+  @extend %width__0;
+  @extend %height__0;
+  @extend %transition-property__opacity;
+  @extend %transition-duration__base;
+
+  &.plan__ribbon--success {
+    border-color: $color-success $color-success transparent transparent; // TODO @mizurnix make this into a mixin
+                                                                         // This shorthand is not accidental. If border colors are
+                                                                         // declared individually, the triangle shape gets messy on safari
+  }
+
+  &.plan__ribbon--warning {
+    border-color: $color-warning $color-warning transparent transparent; // TODO @mizurnix make this into a mixin
+                                                                         // This shorthand is not accidental. If border colors are
+                                                                         // declared individually, the triangle shape gets messy on safari
+  }
+
+  > .hc-icon {
+    @extend %bottom__md;
+    @extend %right__0;
+    @extend %position__relative;
+  }
+}
+
+.plan--renewable:hover {
+  .plan__ribbon {
+    @extend %opacity__0;
+  }
+}
+
+.plan__popularity-box {
+  @extend %background-color__brand-3;
+  @extend %color__white;
+  @extend %line-height__2;
+  @extend %padding-x__md;
+  @extend %position__absolute;
+  @extend %right__-0pt5rem;
+  @extend %top__md;
+  @extend %font-size__87pt5pct;
+
+  &:after {
+    @extend %position__absolute;
+    @extend %top__100pct;
+    @extend %right__0;
+    @extend %display__block;
+    @extend %content__-empty-;
+    border-width: 0.5em 0.5em 0 0;
+    border-color: $color-brand-3 transparent transparent transparent;
+    @extend %opacity_0pt5;
+    @extend %border-style__solid;
+  }
+
+  &:before {
+    @extend %position__absolute;
+    @extend %top__0;
+    @extend %right__100pct;
+    @extend %height__1pt5em;
+    @extend %display__block;
+    @extend %content__-empty-;
+    border-width: 1em 0 1em 0.5em;
+    border-color: $color-brand-3 $color-brand-3 $color-brand-3 transparent;
+    @extend %border-style__solid;
+  }
+}
+
+.plan__name {
+  @extend %margin-top__xl;
+  @extend %margin-bottom__lg;
+  @extend %text-transform__uppercase;
+  @extend %font-size__1rem;
+}
+
+.plan__price {
+  @extend %margin-y__lg;
+
+  &.plan__price--coming-soon {
+    @extend %color__pale;
+  }
+}
+
+.plan__price-in-dollars {
+  @extend %font-size__lg;
+  @extend %font-weight__lighter;
+}
+
+.plan__price-negotiable {
+}
+
+.plan__features {
+  @extend %unstyled-list;
+  @extend %text-align__center;
+}
+
+%justify-content__center {
+  justify-content: center;
+}
+
+.plan__feature {
+  @include flexbox(
+    $justify-content: center
+  );
+
+  > span:first-child {
+    @extend %margin-right__xs;
+  }
+}
+
+.plan__gifted-message {
+  font-size: 12px;
+  padding-top: 15px;
+}
+
+.plan__c2a-wrapper {
+  @extend %margin-top__lg;
+  @extend %margin-bottom__md;
+}
+
+.plan__c2a {
+  &.plan__c2a--lets-talk {
+    @extend %padding-top__2xs;
+  }
+
+  &.plan__c2a--upgradable,
+  &.plan__c2a--subscribable,
+  &.plan__c2a--switchable,
+  &.plan__c2a--renewable {
+    @extend .hc-success-button;
+  }
+
+  &.plan__c2a--downgradable {
+    @extend .hc-secondary-button;
+  }
+
+  &.plan__c2a--active,
+  &.plan__c2a--switching-to {
+    @extend %cursor__default;
+    @include button(
+      $background-color: 'transparent',
+      $border-color:     'transparent',
+      $border-radius:    '0',
+      $border-style:     'none',
+      $border-width:     '0',
+      $color:            'success',
+      $text-decoration:  'none',
+
+      $hover-background-color: 'transparent',
+      $hover-text-decoration:  'none'
+    );
+  }
+}

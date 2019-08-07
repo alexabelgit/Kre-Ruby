@@ -1,0 +1,7 @@
+var form = jQuery('[data-role="seed-orders"]');
+<% if @date_valid %>
+  form.replaceWith('<div class="system-message info">Got it, we will now import your orders and generate corresponding <%= link_to "review requests", back_review_requests_path %>.</div>');
+<% else %>
+  form.find('.system-message').remove();
+  form.prepend('<div class="system-message info"><%= @message %></div>')
+<% end %>

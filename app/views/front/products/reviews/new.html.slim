@@ -1,0 +1,10 @@
+- cache [@product, 'reviews/new', I18n.locale] do
+  section.add-review__to-main-product
+    h1
+      span = title t('title', scope: 'front.review_requests.reviews.new', default: 'Review your order')
+
+    = render           'front/products/reviews/form',
+      initial_display: 'block',
+      product:         @product,
+      review:          Review.new,
+      show_header:     true

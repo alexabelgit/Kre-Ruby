@@ -1,0 +1,155 @@
+.widget-console {
+  @extend %wide-layout;
+
+  a + a {
+    margin-left: 10px;
+  }
+
+  .hc-primary-button, .hc-primary-outlined-button, .hc-form__submit {
+    white-space: normal;
+  }
+}
+
+.widget-console__section {
+  .hc-well {
+    @extend %margin-top__lg;
+    p {
+      @extend %margin-top__0;
+      @extend %margin-bottom__0;
+    }
+    ul {
+      @extend %margin-top__sm;
+      @extend %margin-bottom__0;
+    }
+  }
+}
+
+.widget-console__status {
+  @extend .hc-card;
+  @extend .widget-console__section;
+  @extend %margin-bottom__md;
+  @extend %margin-top__lg;
+  padding: 1.5em 1em 1.25em;
+
+  .system-message {
+    @extend %margin-bottom__1.5em;
+    @extend %padding__sm;
+  }
+  ul {
+    @extend %margin-top__-0.5em;
+    @extend %margin-bottom__md;
+  }
+}
+
+.widget-console__status-checking {
+  border-color: $color-secondary;
+
+  h2 {
+    @extend %margin-bottom__0;
+    color: $color-success;
+  }
+  span.small {
+    display: block;
+    font-size: 0.8em;
+    color: #515B68;
+    margin-top: 0.6em;
+  }
+}
+
+.widget-console__status-success {
+  h3 {
+    @extend %margin-bottom__0;
+  }
+}
+
+#widget-console__unable-to-check {
+  @extend %margin-top__md;
+  @extend %margin-bottom__1.5em;
+  .important-message {
+    font-size: 1.03em;
+    line-height: 1.55;
+  }
+}
+
+.widget-console__sub-step {
+  @extend .hc-well;
+  &.warning {
+    background-color: #f9efd9;
+    border-top: 2px solid $color-warning;
+  }
+  &.success {
+    background-color: #EAF5DD;
+    border-top: 2px solid $color-success;
+  }
+  &.danger {
+    background-color: #FEDADB;
+    border-top: 2px solid $color-danger;
+  }
+
+  .code-snippet {
+    @extend %margin-top__md;
+    @extend %margin-bottom__0;
+  }
+
+}
+
+.widget-console__widget-about {
+  @extend %margin-v__-md;
+  @include flexbox(
+    $flex-wrap: wrap
+  );
+}
+
+#widget-console__checker {
+  @extend %margin-top__sm;
+  @extend %margin-left__md;
+  span {
+    @extend %display__block;
+    font-size: 0.9em;
+  }
+}
+
+#add-stylesheet-and-recommended-widgets-manually, #add-optional-widgets {
+  @extend %position__relative;
+  .hc-primary-button {
+    @extend %margin-top__lg;
+    @extend %margin-bottom__lg;
+  }
+}
+
+#add-optional-widgets {
+  .widget-console__sub-step {
+    background-color: #fff;
+    border: 1px solid $color-secondary;
+    @extend %margin-bottom__0;
+
+    &:not(:first-of-type) {
+      @extend %margin-top__md;
+    }
+    p:last-of-type {
+      @extend %margin-bottom__0;
+    }
+
+    .hc-tip {
+      margin-top: 0.4em;
+      color: #888888;
+    }
+  }
+}
+
+.intercom-custom {
+  @extend %position__absolute;
+  @extend %top__md;
+  @extend %right__xl;
+}
+
+#widget-console__cleanup {
+  @extend %margin-bottom__xl;
+
+  p:first-of-type {
+    @extend %margin-top__0;
+  }
+  p:last-of-type {
+    @extend %margin-bottom__0;
+  }
+}

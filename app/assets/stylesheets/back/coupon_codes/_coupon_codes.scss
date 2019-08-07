@@ -1,0 +1,15 @@
+.coupon-code__status {
+
+  > span {
+    @extend %hide-unless-screen-reader;
+  }
+
+  &.coupon-code__status--pending {
+    @extend %color__primary;
+  }
+
+  &.coupon-code__status--used {
+    @extend %color__success;
+  }
+
+}

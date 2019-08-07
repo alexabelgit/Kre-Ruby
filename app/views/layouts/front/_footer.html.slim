@@ -1,0 +1,6 @@
+footer.footer
+  - if content_for(:footer)
+    = content_for :footer
+  
+  - else
+    = render 'layouts/front/back_to_store'

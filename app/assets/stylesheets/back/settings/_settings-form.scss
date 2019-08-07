@@ -1,0 +1,152 @@
+.settings-form {
+}
+
+.settings-form__actions {
+  @extend %margin-top__md;
+}
+
+.settings-form__section {
+  @extend %background-color__white;
+  @extend %simple-card;
+  @extend %margin-bottom__md;
+
+  @extend .hc-targetable;
+}
+
+.settings-form__sub-section {
+
+  &:not(:last-of-type) {
+    @extend %margin-bottom__lg;
+  }
+}
+
+.settings-form__sub-heading {
+  @extend %margin-bottom__xs;
+}
+
+%settings-form__control {
+  @extend %margin-bottom__lg;
+}
+
+.settings-form__control {
+  @extend %settings-form__control;
+
+  &.settings-form__control--margin-bottom__xl {
+    @extend %margin-bottom__xl;
+  }
+}
+
+.settings-form__control--email {
+  @extend %settings-form__control;
+  @extend %max-width__30rem;
+
+  &:last-of-type {
+    @extend %margin-bottom__0;
+  }
+
+  %settings-form__label,
+  %settings-form__input {
+    @extend %display__block;
+    @extend %max-width__100pct;
+  }
+
+  %settings-form__label {
+    @extend %margin-bottom__sm;
+  }
+}
+
+.settings-form__email-body {
+  @extend %settings-form__input;
+  @extend %height__15rem;
+}
+
+.settings-form__social-post {
+  @extend %settings-form__input;
+  @extend %height__6rem;
+}
+
+%settings-form__label,
+%settings-form__input {
+  @extend %display__block;
+  @extend %width__100pct;
+  @extend %max-width__480px;
+}
+
+.settings-form__label {
+  @extend %settings-form__label;
+}
+
+.settings-form__input {
+  @extend %settings-form__input;
+}
+
+.settings-form__select {
+  @extend %display__block;
+}
+
+.settings-form__label--inline,
+.settings-form__input--inline {
+  @extend %display__inline;
+}
+
+.settings-form__days-input {
+  @extend %settings-form__control;
+  @extend %width__4rem;
+}
+
+.settings-form__logo {
+  @extend %settings-form__control;
+  @extend %margin-bottom__md;
+
+  img {
+    @extend %display__block;
+    @extend %margin-bottom__xs;
+  }
+}
+
+.settings-form__submit {
+  @extend .hc-primary-button;
+}
+
+.settings-form__language-settings {
+  @include flexbox(
+    $justify-content: space-between,
+    $flex-wrap:       wrap,
+    $align-items:     flex-end
+  );
+
+  div:nth-child(1) {
+    @extend %flex__1;
+    @extend %margin-right__md;
+  }
+
+  div:nth-child(2) {
+    @extend %flex__3;
+    @extend %position__relative;
+    @extend %bottom__5px;
+  }
+}
+
+.settings-form__color-picker {
+  @extend %display__block;
+  @extend %width__5rem;
+}
+
+.settings__about {
+  @extend %margin-bottom__lg;
+  @include flexbox(
+    $flex-wrap: wrap
+  );
+}
+
+.settings__description,
+.settings__mockup {
+  @extend %flex-grow__1;
+  @extend %flex-shrink__1;
+  @extend %flex-basis__20rem;
+}
+
+.settings__mockup {
+  @extend %margin-top__sm;
+  @extend %margin-left__lg;
+}

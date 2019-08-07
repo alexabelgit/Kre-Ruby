@@ -1,0 +1,481 @@
+---
+"sk":
+  "activerecord":
+    "errors":
+      "models":
+        "abuse_report":
+          "attributes":
+            "additional_info":
+              "blank": >-
+                Musí byť vyplnené pokiaľ je ako príčina vybrané "niečo iné"
+            "reason":
+              "blank": >-
+                ^Musíte vybrať príčinu
+        "product":
+          "attributes":
+            "id_from_provider":
+              "taken": >-
+                ^ID musí byť unikátne. Vami zadané ID je z použité pri inom produkte.
+        "review":
+          "attributes":
+            "customer":
+              "must_be_authenticated": >-
+                ^Aby ste mohli napísať hodnotenie, musíte sa prihlásiť.
+            "product_ids":
+              "cannot_be_repeated": >-
+                ^Na tento produkt ste už hodnotenie napísali.
+              "taken": >-
+                ^Tento produkt ste už hodnotili.
+            "review_request_id":
+              "request_must_be_sent": >-
+                ^Tento nákup momentálne nie je možné hodnotiť.
+            "source":
+              "cannot_be_voluntary": >-
+                ^Tento nákup momentálne nie je možné hodnotiť.
+        "review_request":
+          "attributes":
+            "order_id":
+              "blank": >-
+                nemožno vytvoriť bez príslušného zákazníka. Prosím uveďte platnú eailovú
+                adresu.
+    "models":
+      "comment":
+        "one": >-
+          komentár
+        "few": >-
+          komentáre
+        "other": >-
+          komentárov
+      "customer":
+        "one": >-
+          zákazník
+        "few": >-
+          zákazníci
+        "other": >-
+          zákazníkov
+      "product":
+        "one": >-
+          produkt
+        "few": >-
+          produkty
+        "other": >-
+          produktov
+      "product_group":
+        "one": >-
+          skupina produktov
+        "few": >-
+          skupiny produktov
+        "other": >-
+          skupín produktov
+      "question":
+        "one": >-
+          otázka
+        "few": >-
+          otázky
+        "other": >-
+          otázok
+      "review":
+        "one": >-
+          recenzia
+        "few": >-
+          recenzie
+        "other": >-
+          recenzií
+      "review_request":
+        "one": >-
+          žiadosť o hodnotenie
+        "other": >-
+          žiadosti o hodnotenie
+  "answer":
+    "one": >-
+      odpoveď
+    "few": >-
+      odpovede
+    "other": >-
+      odpovedí
+  "cancel": >-
+    Zrušiť
+  "counterify":
+    "characters":
+      "exceeded": >-
+        Prekročený povolený počet znakov
+      "remaining":
+        "one": >-
+          Zostáva 1 znak
+        "few": >-
+          Zostávajú %{count} znaky
+        "other": >-
+          Zostáva %{count} znakov
+  "default_templates":
+    "email":
+      "critical_review_followup_mail_body": "<p>Dobrý deň [customer_name],</p>\r\n<p>Ďakujeme
+        za Vaše hodnotenie.</p>\r\n<p>Team [store_name].</p>"
+      "critical_review_followup_mail_subject": >-
+        Ďakujeme za Vaše hodnotenie
+      "positive_review_followup_mail_body": "<p>Dobrý deň [customer_name],</p>\r\n<p>Ďakujeme
+        za Vaše hodnotenie.</p>\r\n<p>Team [store_name].</p>"
+      "positive_review_followup_mail_subject": >-
+        Ďakujeme za Vaše hodnotenie
+      "question_answer_mail_body": "<p>Dobrý deň [customer_name],</p>\r\n<p>Vaša otázka
+        ohľadom [product_name] bola zodpovedaná našim zástupcom:</p>\r\n<p>[answer]</p>\r\n<p>Vaša
+        otázka:</p>\r\n<p>[question]</p>\r\n<p>[product_link]</p>\r\n<p>Team [store_name].</p>"
+      "question_answer_mail_subject": >-
+        Vaša otázka na [store_name] bola zodpovedaná
+      "repeat_review_request_mail_body": "<p>Dobrý deň [customer_name],</p>\r\n<p>Ešte
+        stále nie je neskoro podeliť sa s nami o názor na Vašu nedávnu objednávku.</p>\r\n<p>Kliknite
+        na hviezdičku pre hodnotenie Vašej doterajšej skúsenosti s:</p>\r\n<p>[products]</p>\r\n<p>Nie
+        ste spokojní? Aby sme Vám mohli pomôcť, najprv nás prosím kontaktujte.</p>\r\n<p>Team
+        [store_name].</p>"
+      "repeat_review_request_mail_subject": >-
+        Pripomienka na ohodnotenie Vašej nedávnej objednávky v [store_name]
+      "review_answer_mail_body": "<p>Dobrý deň [customer_name],</p>\r\n<p>K Vášmu
+        hodnoteniu produktu [product_name] pridal odpoveď náš zástupca:</p>\r\n<p>[reply]</p>\r\n<p>Vaša
+        recenzia:</p>\r\n<p>[review]</p>\r\n<p>[product_link]</p>\r\n<p>Team [store_name].</p>"
+      "review_answer_mail_subject": >-
+        K Vášmu hodnoteniu [store_name] pribudla odpoveď
+      "review_request_mail_body": "<p>Dobrý deň [customer_name],</p>\r\n<p>Kliknite
+        na hviezdičku pre ohodnotenie Vašej doterajšej spokojnosti s:</p>\r\n<p>[products]</p>\r\n<p>Nie
+        ste spokojní? Aby sme Vám mohli pomôcť, najprv nás prosím kontaktujte.</p>\r\n<p>Team
+        at [store_name].</p>"
+      "review_request_mail_subject": >-
+        Ohodnoďte svoju nedávnu objednávku v [store_name]
+  "embed": >-
+    Vložiť
+  "errors":
+    "messages":
+      "already_confirmed": >-
+        bolo už potvrdené, skúste sa prihlásiť
+      "confirmation_period_expired": >-
+        je potrebné overiť do %{period}, prosím vyžiadajte si nové overenie
+      "expired": >-
+        vypršalo, prosím vyžiadajte si nové
+      "not_found": >-
+        nenájdené
+      "not_locked": >-
+        nebolo zamknuté
+      "not_saved":
+        "few": >-
+          %{resource} nebol uložený kvôli %{count} chybám:
+        "one": >-
+          %{resource} nebol uložený kvôli chybe:
+        "other": >-
+          %{resource} nebol uložený kvôli %{count} chybám:
+  "flash":
+    "submitted_successfully":
+      "question": >-
+        Ďakujeme! Vašu otázku sme obdržali a o jej zodpovedaní Vam dáme vedieť emailom
+      "review": >-
+        Ďakujeme! Obdržali sme Vaše hodnotenie
+      "subscribed": >-
+        Úspešne ste sa prihlásili k odberu z %{store}.
+      "unsubscribed": >-
+        Úspešne ste sa odhlásili k odberu z %{store}.
+  "front":
+    "based_on_reviews_count":
+      "one": >-
+        1 recenzia
+      "few": >-
+        %{count} recenzie
+      "other": >-
+        %{count} recenzií
+    "components":
+      "customer_form":
+        "email":
+          "hint": >-
+            Vaša emailová adresa nebude zverejnená
+          "label": >-
+            Váš email
+        "name":
+          "hint": >-
+            Vaše meno sa zobrazí ako iniciály
+          "hint_update_html": >-
+            Vaše meno sa zobrazí ako <strong>%{initials}</strong>
+          "label": >-
+            Vaše meno
+      "privacy_notice":
+        "link_content": >-
+          ochrana súkromia
+        "with_name":
+          "html": "Odoslaním tohto formuláru súhlasíte s tým, že Váš obsah a meno
+            \r\n<strong>%{name}</strong> môžu byť publikované v súlade s našim\r\n%{link}."
+        "without_name":
+          "html": "Odoslaním tohto formuláru súhlasíte s tým, že Váš obsah a meno
+            \r\nmôžu byť publikované v súlade s našim %{link}."
+    "continue_shopping": >-
+      Pokračovať v nákupe
+    "flags":
+      "new":
+        "already_flagged": >-
+          Tento %{item} ste už označili
+        "flag_as_inappropriate": >-
+          Označiť tento %{item} ako nevhodný
+      "show":
+        "flag_submitted": >-
+          Ďakujeme
+    "mailer":
+      "excuses":
+        "question_answered_html": >-
+          Obdržali ste email od %{helpfulcrowd} s novou informáciou k Vašej otázke
+          pre %{store}.
+        "review_answered_html": >-
+          Obdržali ste email od %{helpfulcrowd} s novou informáciou ohľadom Vášho
+          hodnotenia pre %{store}.
+        "review_follow_up_html": >-
+          Obdržali ste email od %{helpfulcrowd} s odpoveďou na Vaše hodnotenie pre
+          %{store}.
+        "review_request_html": >-
+          Obdržali ste email od %{helpfulcrowd} s odpoveďou k Vašej nedávnej objednávke
+          v %{store}.
+      "helpers":
+        "call_to_action":
+          "view_product": >-
+            Navštíviť stránku produktu
+    "products":
+      "questions":
+        "form":
+          "question_html": >-
+            Čo by ste chceli vedieť o %{product}?
+        "new":
+          "title": >-
+            Opýtajte sa otázku
+      "view_product": >-
+        Ísť na stránku produktu
+    "review_requests":
+      "reviews":
+        "form":
+          "rating_html": >-
+            Ohodnoďte Vašu skúsenosť s %{reviewable}
+        "new":
+          "already_reviewed_html": >-
+            %{reviewable} ste už hodnotili
+          "review_other_purchases":
+            "one": >-
+              Ohodnoďte ďalší Váš nákup
+            "other": >-
+              Ohodnoďte ďalšie Vaše nákupy
+          "title": >-
+            Ohodnoďte Váš nákup
+    "search":
+      "label": >-
+        Hľadať
+      "placeholder": >-
+        Vložte kľúčové slovo
+    "share":
+      "button": >-
+        Zdieľať
+    "sort_by": >-
+      Zoradiť podľa:
+    "sort_options":
+      "most_helpful": >-
+        Najviac nápomocné
+      "most_recent": >-
+        Posledne pridané
+      "rating_asc": >-
+        Hodnotenie: najnižšie
+      "rating_desc": >-
+        Hodnotenie: najvyššie
+    "suppressions":
+      "manage_subscriptions":
+        "subscribe_question_html": >-
+          Želáte si, aby Vám HelpfulCrowd zasielal emaily v mene %{store}?
+        "unsubscribe_question_html": >-
+          Želáte si, aby Vám HelpfulCrowd prestal zasielať emaily v mene %{store}?
+    "votes":
+      "upvote": >-
+        Nápomocný
+      "upvotes_count":
+        "one": >-
+          %{count} osoba označila tento %{item} za užitočný
+        "other": >-
+          %{count} osôb označilo tento %{item} za užitočný
+    "widgets":
+      "products":
+        "rating":
+          "qa":
+            "html":
+              "one": >-
+                1 otázka
+              "few": >-
+                %{count} otázky
+              "other": >-
+                %{count} otázok
+          "reviews":
+            "html":
+              "one": >-
+                1 hodnotenie
+              "few": >-
+                %{count} hodnotenia
+              "other": >-
+                %{count} hodnotení
+        "summary":
+          "qa":
+            "html":
+              "one": >-
+                1 otázka
+              "few": >-
+                %{count} otázky
+              "other": >-
+                %{count} otázok
+            "new": >-
+              Položte otázku
+          "reviews":
+            "html":
+              "one": >-
+                1 hodnotenie
+              "few": >-
+                %{count} hodnotenia
+              "other": >-
+                %{count} hodnotení
+            "new": >-
+              Napíšte hodnotenie
+        "tabs":
+          "questions":
+            "new": >-
+              Položte otázku
+            "search":
+              "label": >-
+                Hľadať:
+              "placeholder": >-
+                Hľadať v Q&A
+            "title": >-
+              Otázky a odpovede
+            "write_first": >-
+              Položte prvú otázku k tomuto produktu
+          "reviews":
+            "based_on_reviews":
+              "html": >-
+                Na základe %{reviews_count}
+            "media_gallery":
+              "images":
+                "one": >-
+                  1 fotka
+                "few": >-
+                  %{count} fotky
+                "other": >-
+                  %{count} fotiek
+              "search":
+                "label": >-
+                  Hľadať:
+                "placeholder": >-
+                  Hľadať hodnotenia
+              "title": "Zákazník\r\nmédia"
+              "videos":
+                "one": >-
+                  1 video
+                "few": >-
+                  %{count} videá
+                "other": >-
+                  %{count} videí
+            "new": >-
+              Napísať hodnotenie
+            "rating": >-
+              %{rating} z 5 hviezdičiek
+            "title": >-
+              Hodnotenia zákazníkov
+            "write_first": >-
+              Buďte prvým, kto ohodnotí tento produkt
+          "titles":
+            "questions": >-
+              Otázky & odpovede
+            "questions_responsive": >-
+              Q&A
+            "reviews": >-
+              Recenzia & Hodnotenia
+            "reviews_responsive": >-
+              Hodnotenia
+      "sidebar":
+        "default_title": >-
+          Hodnotenia | Otázky a odpovede
+    "with_incentive":
+      "reviews":
+        "text": >-
+          Hodnotiaci mohol dostať za recenziu kompenzáciu
+    "write_review": >-
+      Napísať hodnotenie
+  "helpers":
+    "friendly_rating": >-
+      Zatiaľ žiadne hodnotenia
+    "label":
+      "customer":
+        "email": >-
+          Email zákazníka
+        "name": >-
+          Meno zákazníka
+      "product_group":
+        "name": >-
+          Meno
+    "placeholder":
+      "promotion":
+        "template": >-
+          Poštovné zdarma pre všetky objednávky počas týždňa Black Friday!
+    "submit":
+      "product_group":
+        "create": >-
+          Vytvoriť skupinu
+        "update": >-
+          Aktualizovať skupinu
+      "question":
+        "create": >-
+          Položiť otázku
+      "review":
+        "create": >-
+          Pridať hodnotenie
+  "layouts":
+    "mailer":
+      "front":
+        "manage_subscriptions": >-
+          Spravovať prihlásenie k odberom
+        "unsubscribe": >-
+          Odhlásiť z odberu
+  "load_more": >-
+    Načítať viac
+  "privacy_policy": >-
+    Ochrana osobných údajov
+  "question_facebook_post_template": "[customer_name]\r\nQ: [question]\r\nA: [answer]"
+  "question_tweet_template": "[customer_name]\r\nQ: [question]\r\nA: [answer]"
+  "rating_1": >-
+    Hrozné
+  "rating_2": >-
+    Zlé
+  "rating_3": >-
+    V poriadku
+  "rating_4": >-
+    Dobré
+  "rating_5": >-
+    Skvelé
+  "read_less": >-
+    zobraziť menej
+  "read_more": >-
+    Celé hodnotenie
+  "recaptcha":
+    "errors":
+      "verification_failed": >-
+        Overenie reCAPTCHA zlyhalo.
+    "label": >-
+      Pomôžte nám bojovať so spamom
+  "report": >-
+    Nahlásiť
+  "review_facebook_post_template": "Pozrite si čo [customer_name] povedal(a) o [product_name]:\r\n\r\n[rating]\r\n\"[feedback]\""
+  "review_tweet_template": "[customer_name]:\r\n[product_name] - [rating], \"[feedback]\""
+  "settings":
+    "default":
+      "review_slider_c2a_text": >-
+        Zobraziť všetko
+  "stars":
+    "one": >-
+      1 hviezdička
+    "few": >-
+      %{count} hviezdičky
+    "other": >-
+      %{count} hviezdičiek
+  "verified":
+    "agent":
+      "description": >-
+        %{author} pracuje v %{store}
+      "label": >-
+        %{store}
+    "customer":
+      "description": >-
+        %{author} zakúpil(a) tento produkt
+      "label": >-
+        Overený kupujúci

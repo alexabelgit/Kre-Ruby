@@ -1,0 +1,5 @@
+jQuery('[data-model="<%= @votable.class.name.downcase %>"][data-id="<%= @vote.votable.hashid %>"] [data-model="vote"]')
+        .replaceWith('<%= escape_javascript(render 'front/votes/show', vote: @vote) %>');
+
+if (HC_JS.helpers)
+  HC_JS.helpers.set_record_unavailability('<%= @votable.class.name.downcase %>', '<%= @vote.votable.hashid %>', 'vote');

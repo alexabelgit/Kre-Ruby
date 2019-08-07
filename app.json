@@ -1,0 +1,255 @@
+{
+  "name": "Kredo",
+  "scripts": {
+    "postdeploy": "bin/review_app_bootstrap.sh"
+  },
+  "env": {
+    "ACTION_MAILER_DOMAIN": {
+      "required": true
+    },
+    "APP_ENV": {
+      "required": true
+    },
+    "AWS_ACCESS_KEY_ID": {
+       "required": true
+    },
+    "AWS_REGION": {
+      "required": true
+    },
+    "AWS_SECRET_ACCESS_KEY": {
+      "required": true
+    },
+    "AWS_S3_DOWNLOADS_BUCKET": {
+      "required": true
+    },
+    "BULK_REQUEST_EXAMPLE": {
+      "required": true
+    },
+    "CHARGEBEE_API_KEY": {
+      "required": true
+    },
+    "CHARGEBEE_SITE": {
+      "required": true
+    },
+    "CLOUDFRONT_KEY_PAIR_ID": {
+      "required": true
+    },
+    "CLOUDFRONT_PRIVATE_KEY": {
+      "required": true
+    },
+    "CLOUDFRONT_DOMAIN": {
+      "required": true
+    },
+    "DEFAULT_PUBLIC_ID_FOR_FEATURED_IMAGE": {
+      "required": true
+    },
+    "ECWID_CLIENT_ID": {
+      "required": true
+    },
+    "ECWID_CLIENT_SECRET": {
+      "required": true
+    },
+    "ECWID_REDIRECT_URI": {
+      "required": true
+    },
+    "ECWID_SCOPE": {
+      "required": true
+    },
+    "ELASTICSEARCH_URL": {
+      "required": true
+    },
+    "FACEBOOK_APP_ID": {
+      "required": true
+    },
+    "FACEBOOK_APP_SECRET": {
+      "required": true
+    },
+    "FRONT_MAILER_DEFAULT_FROM": {
+      "required": true
+    },
+    "GA_TRACKING_ID": {
+      "required": true
+    },
+    "INTERCOM_ACCESS_TOKEN": {
+      "required": true
+    },
+    "INTERCOM_API_SECRET": {
+      "required": true
+    },
+    "INTERCOM_APP_ID": {
+      "required": true
+    },
+    "KNOWLEDGE_BASE_URL": {
+      "required": true
+    },
+    "LANG": {
+      "required": true
+    },
+    "MAILER_DEFAULT_FROM": {
+      "required": true
+    },
+    "QUESTIONS_IMPORT_EXAMPLE": {
+      "required": true
+    },
+    "RACK_ENV": {
+      "required": true
+    },
+    "RAILS_ENV": {
+      "required": true
+    },
+    "RAILS_LOG_TO_STDOUT": {
+      "required": true
+    },
+    "RAILS_SERVE_STATIC_FILES": {
+      "required": true
+    },
+    "RECAPTCHA_SECRET_KEY": {
+      "required": true
+    },
+    "RECAPTCHA_SITE_KEY": {
+      "required": true
+    },
+    "RELEASE_RUN_MIGRATIONS": {
+      "value": "true"
+    },
+    "RELEASE_CLEAR_CACHE": {
+      "value": "true"
+    },
+    "RELEASE_SYNC_SHOPIFY_ASSETS": {
+      "value": "false"
+    },
+    "REVIEWS_IMPORT_EXAMPLE": {
+      "required": true
+    },
+    "SECRET_KEY_BASE": {
+      "required": true
+    },
+    "SENDGRID_EVENTS_PASSWORD": {
+      "required": true
+    },
+    "SENDGRID_EVENTS_USER": {
+      "required": true
+    },
+    "SENTRY_DSN": {
+      "required": true
+    },
+    "SHOPIFY_API_KEY": {
+      "required": true
+    },
+    "SIDEKIQ_CONCURRENCY": {
+      "required": true
+    },
+    "SHOPIFY_SHARED_SECRET": {
+      "required": true
+    },
+    "SHOPIFY_SCOPE": {
+      "required": true
+    },
+    "TWITTER_API_KEY": {
+      "required": true
+    },
+    "TWITTER_API_SECRET": {
+      "required": true
+    },
+    "HEROKU_APP_NAME": {
+      "required": true
+    },
+    "HEROKU_PARENT_APP_NAME": {
+      "required": true
+    },
+    "WEB_APP_PORT": {
+      "required": true
+    },
+    "WEB_APP_PROTOCOL": {
+      "required": true
+    },
+    "WEB_APP_HOST": {
+      "required": true
+    }
+  },
+  "environments": {
+    "test": {
+      "addons": [
+        "heroku-postgresql:in-dyno",
+        "heroku-redis:in-dyno",
+        {
+          "plan": "bonsai",
+          "options": {
+            "version": "6.5.4"
+          }
+        },
+        "cloudinary"
+      ],
+      "env": {
+        "APP_ENV": "test",
+        "LANG": "en_US.UTF-8",
+        "ACTION_MAILER_DOMAIN": "helpfulcrowd-ci.herokuapp.com",
+        "AWS_ACCESS_KEY_ID": "test_id",
+        "AWS_REGION": "us-east-1",
+        "AWS_SECRET_ACCESS_KEY": "test_key",
+        "BULK_REQUEST_EXAMPLE": "test",
+        "CLOUDINARY_URL": "cloudinary://test:test@test",
+        "CLOUDINARY_SECURE": "test",
+        "DEFAULT_PUBLIC_ID_FOR_FEATURED_IMAGE": "test",
+        "ECWID_CLINT_ID": "test",
+        "ECWID_CLIENT_SECRET":"test",
+        "ECWID_REDIRECT_URI": "test",
+        "ECWID_SCOPE": "test",
+        "FACEBOOK_APP_ID": "test",
+        "FACEBOOK_APP_SECRET": "test",
+        "FRONT_MAILER_DEFAULT_FROM": "test@helpfulcrowd.com",
+        "GA_TRACKING_ID": "test",
+        "INTERCOM_ACCESS_TOKEN": "test",
+        "INTERCOM_API_SECRET": "test",
+        "INTERCOM_APP_ID": "test",
+        "KNOWLEDGE_BASE_URL": "test",
+        "LOAD_TOLK_TRANSLATIONS": false,
+        "MAILER_DEFAULT_FROM": "test@helpfulcrowd.com",
+        "QUESTIONS_IMPORT_EXAMPLE": "test",
+        "RACK_ENV": "test",
+        "RAILS_ENV": "test",
+        "RAILS_LOG_TO_STDOUT": "test",
+        "RAILS_SERVE_STATIC_FILES": "test",
+        "RECAPTCHA_SECRET_KEY": "test",
+        "RECAPTCHA_SITE_KEY": "test",
+        "REVIEWS_IMPORT_EXAMPLE": "test",
+        "SECRET_KEY_BASE": "test",
+        "SENDGRID_API_KEY": "test",
+        "SENDGRID_EVENTS_PASSWORD": "test",
+        "SENDGRID_EVENTS_USER": "test",
+        "SENDGRID_PASSWORD": "test",
+        "SENDGRID_USERNAME": "test",
+        "SHOPIFY_API_KEY": "test",
+        "SHOPIFY_SHARED_SECRET": "test",
+        "SHOPIFY_SCOPE": "test",
+        "TWITTER_API_KEY": "test",
+        "TWITTER_API_SECRET": "test",
+        "WEB_APP_HOST": "localhost",
+        "WEB_APP_PORT": "test",
+        "WEB_APP_PROTOCOL": "http"
+      }
+    }
+  },
+  "formation": {
+    "web": {
+      "quantity": 1,
+      "size": "hobby"
+    },
+    "worker": {
+      "quantity": 1,
+      "size": "hobby"
+    }
+  },
+  "addons": [
+    "bonsai",
+    "cloudinary",
+    "heroku-postgresql",
+    "rediscloud",
+    "heroku-redis",
+    "sendgrid"
+  ],
+  "buildpacks": [
+    { "url": "heroku/ruby" },
+    { "url": "https://github.com/heroku/heroku-buildpack-google-chrome" }
+  ]
+}

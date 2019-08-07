@@ -1,0 +1,11 @@
+= content_for :title
+  | Why can't you sign in?
+
+ul.sign-in-problems
+  li = link_to 'I forgot my password',                new_user_password_path,     class: 'sign-in-problem'
+  li = link_to 'My account is locked',                new_user_unlock_path,       class: 'sign-in-problem'
+  li = link_to "I didn't receive confirmation email", new_user_confirmation_path, class: 'sign-in-problem'
+
+= link_to new_session_path(resource_name), class: 'hc-margin-top__xl hc-text-align__center hc-display__block' do
+  = hc_icon 'angle-left'
+  = "Back to sign in options"

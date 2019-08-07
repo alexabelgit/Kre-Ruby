@@ -1,0 +1,24 @@
+.hc-reviews-media {
+  @extend %display__flex;
+  @extend %margin-bottom__lg;
+}
+.hc-reviews-media__column {
+  @extend %flex__1;
+}
+.hc-reviews-media__column-1 {
+  @extend %flex__0p1__1__100px;
+}
+.hc-reviews-media__column-2 {
+  @extend %flex__1p5;
+  @extend %overflow-x__auto;
+}
+.hc-reviews-media__title {
+  @extend %font-size__133pct;
+  @extend %line-height__1;
+  @extend %margin-bottom__2xs;
+}
+.hc-reviews-media__image-count, .hc-reviews-media__video-count {
+  @extend %line-height__1;
+  @extend %margin-bottom__2xs;
+  @extend %font-size__0pt875rem;
+}

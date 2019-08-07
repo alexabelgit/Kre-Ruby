@@ -1,0 +1,33 @@
+- content_for :main_class, 'boxed'
+- render 'layouts/back/sub_navs/settings'
+
+h1 = title 'Promotions settings'
+
+section.settings-section
+  = form_for [ :back, @store.settings(:promotions) ],
+    as:      :settings,
+    url:     { action: :update,
+               anchor: 'promotions-settings' },
+    method:  :put,
+    html:    { id:     'promotions-settings',
+               class:  'settings-form' } do |f|
+
+    = render 'shared/form/errors', resource: @store.settings(:promotions)
+
+    input type="hidden" name="type"        value="promotions"
+    input type="hidden" name="redirect_to" value= promotions_back_settings_path
+    input type="hidden" name="view"        value="promotions"
+
+    .settings-form__control
+      = render 'helpful_components/checkbox_toggle/checkbox_toggle',
+        f:     f,
+        field: :mark_reviews_with_incentive,
+        hint:  'From now on any review which will be writen from a review request containing promotion will be marked as incentivised',
+        txt:   'Mandatory Incentive Notice for all Incentive Reviews'
+        
+    .settings-form__control
+      = f.label     :with_incentive_text, 'Text on incentivised reviews', class: 'settings-form__label'
+      = f.text_area :with_incentive_text, required: true, class: 'settings-form__input'
+      = form_hint "This is the text that will show up on hover of the top-right corner of review if it was incentivised"
+
+    = render 'back/settings/submit'

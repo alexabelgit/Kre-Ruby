@@ -1,0 +1,24 @@
+- content_for :main_class, 'onboarding'
+= render 'layouts/back/sub_navs/tools'
+
+- title 'Setup guide'
+
+/ Keep the data attrubute to auto-reload the page once injection/check is completed
+div*{ 'data-role' => 'auto-inject-reload' }
+div*{ 'data-role' => 'check-embed-reload' }
+div*{ 'data-role' => 'auto-remove-reload' }
+
+header.onboarding__overview
+  = render      'back/shared/onboarding_progress',
+    onboarding: current_store.onboarding,
+    heading:    'h1'
+
+section.onboarding__recommended-steps
+  h3 Recommended
+  - current_store.onboarding_steps.each do |onboarding_step|
+    = render 'back/tools/onboarding_step', onboarding_step: onboarding_step unless onboarding_step[:optional]
+
+section.onboarding__optional-steps
+  h3 Optional
+  - current_store.onboarding_steps.each do |onboarding_step|
+    = render 'back/tools/onboarding_step', onboarding_step: onboarding_step if onboarding_step[:optional]

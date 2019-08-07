@@ -1,0 +1,88 @@
+- title 'Review social templates'
+- content_for :main_class, 'email-templates'
+= render 'back/reviews/sub_nav'
+
+- @presenter = TemplatePresenter.new(current_store, self)
+
+= render 'plugins/previewable_sample_data',
+  data:  @presenter.sample_data_hash
+
+h1
+  | Social templates
+
+= render  layout: 'helpful_components/collapsible/item',
+  locals: { name: 'facebook', title: (hc_icon('facebook-official justified', class: 'hc-color__facebook') + ' Facebook').html_safe } do
+
+  = form_for [:back, @store.settings(:reviews)],
+    as:      :settings,
+    url:     social_templates_back_reviews_path,
+    method:  :patch,
+    html:    { class: 'template template--facebook' } do |f|
+
+    = render 'shared/form/errors', resource: @store.settings(:reviews)
+
+
+    = tip "Tell us how you would like HelpfulCrowd to post your reviews on Facebook. \
+           We will add a thumbnail of reviewed product to the template you enter below."
+
+    .template__source-and-preview
+      .template__source
+        = f.label     :facebook_post_template, 'Post template', class: 'hc-form__label'
+        = f.text_area :facebook_post_template, required: true,  class: 'hc-form__textarea', data: { previewable: 'input', role: 'facebook' }
+
+        = render 'back/shared/available_placeholders', placeholders: Placeholders::REVIEW_FACEBOOK_POST.keys
+        = render 'back/shared/available_promotion_placeholders', placeholders: current_store.promotions.active.available_placeholders
+
+      .template__preview-button
+        button type="button" data-previewable="button" data-role="facebook"
+          = hc_icon 'chevron-right'
+
+      .template__preview
+        .template__preview-inner
+          = render         'back/shared/facebook_previewer',
+            avatar:        @presenter.sample_store_logo,
+            store:         current_store,
+            thumb_image:   @presenter.sample_product_1_image,
+            thumb_heading: "#{ @presenter.sample_rating } #{ @presenter.sample_product_1_name }",
+            thumb_text:    "#{ @presenter.sample_customer_name } - #{ @presenter.sample_feedback }"
+
+    .hc-form__actions
+      = f.submit 'Save', class: 'settings-form__submit'
+
+= render  layout: 'helpful_components/collapsible/item',
+  locals: { name: 'twitter', title: (hc_icon('twitter justified', class: 'hc-color__twitter') + ' Twitter').html_safe } do
+
+  = form_for [:back, @store.settings(:reviews)],
+    as:      :settings,
+    url:     social_templates_back_reviews_path,
+    method:  :patch,
+    html:    { class: 'template template--twitter' } do |f|
+
+    = render 'shared/form/errors', resource: @store.settings(:reviews)
+
+    = tip "Tell us how you would like HelpfulCrowd to tweet your reviews. \
+           We will add a thumbnail of reviewed product to the template you enter below."
+
+    .template__source-and-preview
+      .template__source
+        = f.label     :tweet_template,                 class: 'hc-form__label'
+        = f.text_area :tweet_template, required: true, class: 'hc-form__textarea', data: { previewable: 'input', role: 'twitter' }
+
+        = render 'back/shared/available_placeholders', placeholders: Placeholders::REVIEW_TWEET.keys
+        = render 'back/shared/available_promotion_placeholders', placeholders: current_store.promotions.active.available_placeholders
+
+      .template__preview-button
+        button type="button" data-previewable="button" data-role="twitter"
+          = hc_icon 'chevron-right'
+
+      .template__preview
+        .template__preview-inner
+          = render         'back/shared/twitter_previewer',
+            avatar:        @presenter.sample_store_logo,
+            store:         current_store,
+            thumb_image:   @presenter.sample_product_1_image,
+            thumb_heading: "#{ @presenter.sample_rating } #{ @presenter.sample_product_1_name }",
+            thumb_text:    "#{ @presenter.sample_customer_name } - #{ @presenter.sample_feedback }"
+
+    .hc-form__actions
+      = f.submit 'Save', class: 'settings-form__submit'

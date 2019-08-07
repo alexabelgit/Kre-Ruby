@@ -1,0 +1,12 @@
+.heading-and-action {
+  @include flexbox(
+    $align-items:     center,
+    $flex-wrap:       wrap,
+    $justify-content: space-between
+  );
+  @extend %margin-bottom__md;
+
+  h1, h2, h3, h4, h5, h6 {
+    @extend %margin-bottom__0;
+  }
+}

@@ -1,0 +1,85 @@
+- title  'Q&A social templates'
+- content_for :main_class, 'email-templates'
+= render 'back/questions/sub_nav'
+
+- @presenter = TemplatePresenter.new(current_store, self)
+
+= render 'plugins/previewable_sample_data',
+  data:  @presenter.sample_data_hash
+
+h1
+  | Social templates
+
+= render  layout: 'helpful_components/collapsible/item',
+  locals: { name: 'facebook', title: (hc_icon('facebook-official justified', class: 'hc-color__facebook') + ' Facebook').html_safe } do
+
+  = form_for [:back, @store.settings(:questions)],
+    as:      :settings,
+    url:     social_templates_back_questions_path,
+    method:  :patch,
+    html:    { class: 'template template--facebook' } do |f|
+
+    = render 'shared/form/errors', resource: @store.settings(:questions)
+
+    = tip "Tell us how you would like HelpfulCrowd to post your Q&A on Facebook. \
+           We will add a thumbnail of the product to the template you enter below."
+
+    .template__source-and-preview
+      .template__source
+        = f.label     :facebook_post_template, 'Post template', class: 'hc-form__label'
+        = f.text_area :facebook_post_template, required: true,  class: 'hc-form__textarea', data: { previewable: 'input', role: 'facebook' }
+
+        = render 'back/shared/available_placeholders', placeholders: Placeholders::QUESTION_FACEBOOK_POST.keys
+
+      .template__preview-button
+        button type="button" data-previewable="button" data-role="facebook"
+          = hc_icon 'chevron-right'
+
+      .template__preview
+        .template__preview-inner
+          = render         'back/shared/facebook_previewer',
+            avatar:        @presenter.sample_store_logo,
+            store:         current_store,
+            thumb_image:   @presenter.sample_product_1_image,
+            thumb_heading: "Q&A - #{ @presenter.sample_product_1_name }",
+            thumb_text:    "Q: #{ @presenter.sample_question_body } #{ '• A: ' + @presenter.sample_question_comment }"
+
+    .hc-form__actions
+      = f.submit 'Save', class: 'settings-form__submit'
+
+= render  layout: 'helpful_components/collapsible/item',
+  locals: { name: 'twitter', title: (hc_icon('twitter justified', class: 'hc-color__twitter') + ' Twitter').html_safe } do
+
+  = form_for [:back, @store.settings(:questions)],
+    as:      :settings,
+    url:     social_templates_back_questions_path,
+    method:  :patch,
+    html:    { class: 'template template--twitter' } do |f|
+
+    = render 'shared/form/errors', resource: @store.settings(:questions)
+
+    = tip "Tell us how you would like HelpfulCrowd to tweet your Q&A. \
+           We will add a thumbnail of the product to the template you enter below."
+
+    .template__source-and-preview
+      .template__source
+        = f.label     :tweet_template,                  class: 'hc-form__label'
+        = f.text_area :tweet_template, required: true,  class: 'hc-form__textarea', data: { previewable: 'input', role: 'twitter' }
+
+        = render 'back/shared/available_placeholders', placeholders: Placeholders::QUESTION_TWEET.keys
+
+      .template__preview-button
+        button type="button" data-previewable="button" data-role="twitter"
+          = hc_icon 'chevron-right'
+
+      .template__preview
+        .template__preview-inner
+          = render         'back/shared/twitter_previewer',
+            avatar:        @presenter.sample_store_logo,
+            store:         current_store,
+            thumb_image:   @presenter.sample_product_1_image,
+            thumb_heading: "Q&A - #{ @presenter.sample_product_1_name }",
+            thumb_text:    "Q: #{ @presenter.sample_question_body } #{ '• A: ' + @presenter.sample_question_comment }"
+
+    .hc-form__actions
+      = f.submit 'Save', class: 'settings-form__submit'

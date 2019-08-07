@@ -1,0 +1,36 @@
+.toggle {
+
+
+  &.on {
+    .toggle__button {
+      @extend %color__success;
+    }
+  }
+
+  &.on--warning {
+    .toggle__button {
+      @extend %color__warning;
+    }
+  }
+
+  &.off {
+    .toggle__button {
+      @extend %color__pale;
+    }
+  }
+
+  &.off--warning {
+    .toggle__button {
+      @extend %color__warning;
+    }
+  }
+}
+
+.toggle__button {
+  @extend %stripped-button;
+
+  .hc-icon {
+    @extend %position__static;
+    @extend %vertical-align__middle;
+  }
+}

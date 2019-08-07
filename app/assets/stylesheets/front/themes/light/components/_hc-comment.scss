@@ -1,0 +1,11 @@
+.hc-comment {
+  @extend %background-color__secondary;
+}
+
+.hc-comment__body {
+  @extend %color__dark;
+}
+
+.hc-comment__date {
+  @extend %color__pale;
+}

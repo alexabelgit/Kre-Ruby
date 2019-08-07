@@ -1,0 +1,13 @@
+.product-group-details__overview-wrapper {
+  @extend %background-color__white;
+  @extend %simple-card;
+  @extend %margin-bottom__md;
+}
+
+.product-group-details__overview {
+  @extend %flex-grid;
+}
+
+.product-group-details__overview-item {
+  @extend %flex-grid__column;
+}

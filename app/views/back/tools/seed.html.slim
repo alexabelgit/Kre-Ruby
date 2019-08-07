@@ -1,0 +1,121 @@
+- content_for :main_class, 'boxed'
+= render 'layouts/back/sub_navs/tools'
+
+h1 = title 'Data import'
+
+- unless @store.custom?
+  section#import-orders.seed__section
+    h2 Import past online orders
+
+    - if @store.settings(:background_workers).order_seed_running
+      = render   'shared/system_messages/custom',
+        type:    'warning',
+        body:    'We are importing your orders. Please check again later.',
+        persist: true
+
+    - else
+      p Select first and last order dates below to send review requests
+        to customers who have previously purchased online with you.
+
+      p If you are migrating from another review app, carefully select the dates to ensure that
+        customers do not receive repeated review requests.
+
+      p To import existing reviews use <a href="#import-reviews" data-turbolinks="false">review importer</a>.
+
+      = form_tag(seed_orders_back_tools_path, method: :post, remote: true, data: { role: 'seed-orders' }) do |f|
+        .hc-form__control
+          = label_tag :seed_date_from_1i, 'From', class: 'hc-form__label'
+          = date_select('seed', 'date_from', { start_year: DateTime.current.year - 1, end_year: DateTime.current.year, default: (DateTime.current - 6.months) }, html_options = {})
+
+        .hc-form__control
+          = label_tag :seed_date_to_1i, 'To', class: 'hc-form__label'
+          = date_select('seed', 'date_to', { start_year: DateTime.current.year - 1, end_year: DateTime.current.year, default: DateTime.current }, html_options = {})
+
+        div
+          = submit_tag 'Import orders', class: 'seed__orders'
+
+section#import-reviews.seed__section
+  h2 Import reviews
+
+  - if current_store.settings(:background_workers).reviews_seed_running
+    = render   'shared/system_messages/custom',
+      type:    'info',
+      body:    "#{ spinner_icon } Processing uploaded file",
+      role:    'imported-reviews',
+      persist: true
+  - else
+    = render 'back/imported_reviews/ready'
+
+  p
+    ' Import existing reviews into HelpfulCrowd.
+    = kb_article 'import_reviews', icon: false
+
+  = form_tag(seed_reviews_csv_back_tools_path, method: :post, multipart: true) do
+
+    .hc-form__control
+      | Which platform are you importing from?
+
+      div
+        input> type="radio" name="settings[provider]" value="yotpo" checked="checked" id="settings_csv_provider_yotpo"
+        label for="settings_csv_provider_yotpo"
+          ' Yotpo
+
+      div
+        input> type="radio" name="settings[provider]" value="shopify" checked="checked" id="settings_csv_provider_shopify"
+        label for="settings_csv_provider_shopify"
+          ' Shopify Reviews
+
+      div
+        input> type="radio" name="settings[provider]" value="default" id="settings_csv_provider_default"
+        label for="settings_csv_provider_default"
+          ' Other
+        span
+          | (#{ link_to('download CSV template', ENV['REVIEWS_IMPORT_EXAMPLE']) })
+
+    .hc-form__control
+      - content_for :reviews_input do
+        input {
+          type     = "file"
+          name     = "settings[file]"
+          accept   = ".csv"
+          required = "true"
+          class    = "hc-upload-button__hidden-input"
+          data-hc-upload-button-input
+        }
+      = render 'helpful_components/upload_button', custom_input: yield(:reviews_input)
+
+    = render 'shared/form/submit', value: 'Upload'
+
+section#import-questions.seed__section
+  h2 Import Q&A
+
+  - if current_store.settings(:background_workers).questions_seed_running
+    = render   'shared/system_messages/custom',
+      type:    'info',
+      body:    "#{ spinner_icon } Processing uploaded file",
+      role:    'imported-questions',
+      persist: true
+  - else
+    = render 'back/imported_questions/ready'
+
+  p
+    '  Use our
+    => link_to 'CSV template', ENV['QUESTIONS_IMPORT_EXAMPLE']
+    '  to import existing Q&A into HelpfulCrowd.
+    =  kb_article 'import_questions', icon: false
+
+  = form_tag(seed_questions_csv_back_tools_path, method: :post, multipart: true) do
+    .hc-form__control
+      - content_for :questions_input do
+        input {
+          type     = "file"
+          name     = "settings[file]"
+          accept   = ".csv"
+          required = "true"
+          class    = "hc-upload-button__hidden-input"
+          data-hc-upload-button-input
+        }
+      = render 'helpful_components/upload_button', custom_input: yield(:questions_input)
+      / = f.file_field(:csv)
+
+    = render 'shared/form/submit', value: 'Upload'

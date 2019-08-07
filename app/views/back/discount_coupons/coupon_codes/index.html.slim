@@ -1,0 +1,36 @@
+- content_for :main_class, 'boxed'
+= render 'layouts/back/sub_navs/tools'
+
+header.heading-and-action
+  div
+    h1 = title "Codes of coupon #{@discount_coupon.name}"
+    h4 = "#{@discount_coupon.coupon_codes.used.count} out of #{@discount_coupon.coupon_codes.count.to_s} used"
+
+  div
+    => link_to edit_back_discount_coupon_path(@discount_coupon), class: 'hc-primary-button' do
+      | #{hc_icon 'plus'} Codes
+    = link_to 'Manage Coupons', back_discount_coupons_path,    class: 'hc-secondary-button'
+
+- if @coupon_codes.any?
+  .responsive-table
+    table.table
+      thead
+        tr
+          th
+          th Codes
+          th Sent to
+          th Date
+          th
+      tbody
+        - @coupon_codes.each do |coupon_code|
+          tr
+            td
+              i.coupon-code__status class="coupon-code__status--#{coupon_code.status}" title=coupon_code.status.humanize
+                = coupon_code_status_icon coupon_code.status
+            td = coupon_code.code
+            td = coupon_code.customer.present? ? coupon_code.customer.email : ''
+            td = coupon_code.review_request_coupon_codes.any? ? coupon_code.review_request_coupon_codes.first.created_at : ''
+            td.table__actions
+              => delete_button back_discount_coupon_coupon_code_path(@discount_coupon, coupon_code), size: 'small'
+
+    = will_paginate @coupon_codes, class: "hc-paging hc-paging--modern"

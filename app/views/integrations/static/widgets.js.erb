@@ -1,0 +1,43 @@
+document.addEventListener("DOMContentLoaded", function(event) {
+  var jquery_url = 'https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js';
+
+  var hc_fetch_widget_resources = function (){
+    var host ='<%= Rails.configuration.urls_config.app_url %>';
+
+    jQuery.get(host + '/res/widgets/<%= @store.hashid %>.json',
+            function (data){
+              if (data){
+                jQuery.getScript(data.js.url, function() {
+                  hc_process_static_page('<%= @store.hashid %>', data.css.theme, '<%= @widget %>');
+                });
+                if (jQuery('head link[type="text/css"][rel="stylesheet"][href="' + data.css.url + '"]').length <= 0)
+                  jQuery('head').append(jQuery('<link rel="stylesheet" type="text/css" />').attr('href', data.css.url));
+                if (data.custom_css.enabled)
+                  jQuery('head').append(jQuery('<style>' + window.atob(data.custom_css.code) + '</style>'));
+              }
+            });
+  };
+
+  var hc_load_jquery = function (url, success){
+    var script = document.createElement('script');
+    script.src = url;
+    var head = document.getElementsByTagName('head')[0],
+            done = false;
+    head.appendChild(script);
+    script.onload = script.onreadystatechange = function()
+    {
+      if (!done && (!this.readyState || this.readyState == 'loaded' || this.readyState == 'complete'))
+      {
+        done = true;
+        success();
+        script.onload = script.onreadystatechange = null;
+        head.removeChild(script);
+      }
+    };
+  };
+
+  if (typeof jQuery == 'undefined' || parseFloat(jQuery.fn.jquery) < 1.6)
+    hc_load_jquery(jquery_url, function() { hc_fetch_widget_resources(); });
+  else
+    hc_fetch_widget_resources();
+});

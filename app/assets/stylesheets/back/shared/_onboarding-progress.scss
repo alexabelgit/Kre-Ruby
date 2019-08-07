@@ -1,0 +1,35 @@
+.onboarding-progress {
+  @extend %background-color__white;
+  @extend %simple-card;
+  @extend %position__relative;
+
+  h2 {
+    margin-right: 140px;
+  }
+  #setup-guide-link {
+    @extend %position__absolute;
+    font-size: 1em;
+    right: 1em;
+    top: 1.35em;
+  }
+  p#steps-completed {
+    @extend %position__absolute;
+    left: 50%;
+    bottom: 17px;
+    margin: 0;
+    z-index: 5;
+    font-size: 0.9rem;
+    transform: translate(-50%, 0px);
+    color: white;
+    white-space: nowrap;
+  }
+  .hc-progress-bar {
+    height: 1.4em;
+  }
+  .hc-progress-bar__current-progress {
+    height: 1.4em;
+  }
+  .hc-icon--check-circle {
+    margin-right: 7px;
+  }
+}

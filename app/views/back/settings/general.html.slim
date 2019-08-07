@@ -1,0 +1,139 @@
+- content_for :main_class, 'boxed'
+- render 'layouts/back/sub_navs/settings'
+
+h1 = title 'General'
+
+= render layout: 'helpful_components/collapsible/item',
+         locals: { name:    'store-branding',
+                   title:   'Business Details',
+                   heading: :h3 } do
+
+  = render 'back/stores/form'
+
+
+= render layout: 'helpful_components/collapsible/item',
+       locals: { name:    'language-time-settings',
+                 title:   'Language, time and date settings',
+                 heading: :h3 } do
+
+  = form_for( [:back, @store.settings(:global)],
+    as:     :settings,
+    url:    { action: :update,
+              controller: :settings,
+              anchor: 'global-settings' },
+    method: :put,
+    html:   { id:    'global-settings',
+              class: 'settings-form' } ) do |f|
+
+    = render 'shared/form/errors', resource: @store.settings(:global)
+
+    input type="hidden" name="type" value="global"
+    input type="hidden" name="redirect_to" value=general_back_settings_path
+    input type="hidden" name="view" value="general"
+
+    .settings-form__control
+      .settings-form__language-settings
+        div
+          = f.label  :locale, 'Language', class: 'settings-form__label'
+          = f.select :locale,
+            options_for_select(FrontLanguage.list, @store.settings(:global).locale),
+            class:   'settings-form__select'
+
+        div
+          input#change_templates type="checkbox" name="change_templates" value="true"
+          label< for="change_templates"
+            ' Overwrite email and other templates
+            = hc_icon 'info-circle',
+              title:  "This will delete your current templates and replace them with our default templates for the new language\nThis applies to the incentivised text as well"
+
+      = form_hint "Language for HelpfulCrowd widgets and email templates."
+
+    .settings-form__control
+      = f.label  :time_zone, class: 'settings-form__label'
+      = f.select :time_zone,
+        options_for_time_zone_select(@store.settings(:global).time_zone),
+        {},
+        class: 'settings-form__select'
+
+      = form_hint 'We use this setting to save and display time sensitive information in your preferred time zone.'
+
+    .settings-form__control
+      = f.label       :notify_customers_at, 'Preferred notification time', class: 'settings-form__label'
+      = f.time_select :notify_customers_at, minute_step: 5
+      = form_hint 'We consider this setting when scheduling emails on your behalf.'
+
+    .settings-form__control
+      = f.label  :date_format, 'Date format', class: 'settings-form__label'
+      = f.select :date_format,
+        options_for_select(DateFormat.list, @store.settings(:global).date_format),
+        class:   'settings-form__select'
+      = form_hint 'We will look at this setting when displaying dates in promotions.'
+
+    = render 'back/settings/submit'
+
+
+= render layout: 'helpful_components/collapsible/item',
+         locals: { name:    'agent-support',
+                   title:   'Agent & Support',
+                   heading: :h3 } do
+
+  = form_for( [:back, @store.settings(:agents)],
+    as:       :settings,
+    url:      { action: :update,
+                controller: :settings,
+                anchor: 'agent-settings' },
+    method:   :put,
+    html:     { id:    'agent-settings',
+                class: 'settings-form' } ) do |f|
+
+    = render 'shared/form/errors', resource: @store.settings(:agents)
+
+    input type="hidden" name="type" value="agents"
+    input type="hidden" name="redirect_to" value=general_back_settings_path
+    input type="hidden" name="view" value="general"
+
+    .settings-form__control
+      = f.label      :default_name, 'Agent name', class: 'settings-form__label'
+      = f.text_field :default_name, required: true, class: 'settings-form__input'
+      = form_hint "Default name displayed publicly next to your answers. \
+                   It can be overriden for individual items when posting the answer."
+
+    .settings-form__control
+      = f.label      :support_email, 'Support email', class: 'settings-form__label'
+      = f.text_field :support_email, class: 'settings-form__input'
+      = form_hint "Email address that will be used to recieve support emails from your customers. If blank, the account email will be used."
+
+    = render 'back/settings/submit'
+
+
+= render layout: 'helpful_components/collapsible/item',
+         locals: { name:    'app-status',
+                   title:   'App status',
+                   heading: :h3 } do
+
+  section.settings-form__sub-section
+
+    h4.settings-form__sub-heading Storefront
+    = render 'back/stores/maintain_front'
+
+  - restrict_outgoing_emails = @store.settings(:global).restrict_outgoing_emails.to_b
+  section.settings-form__sub-section
+    h4.settings-form__sub-heading Outgoing emails restriction
+    .toggle class=(restrict_outgoing_emails ? 'on--warning' : 'off')
+
+      = form_for [:back, @store.settings(:global)],as: :settings, url: {action: :update,controller: :settings,anchor: 'global-settings'}, method: :put, remote: true,html:{id:'global-settings',class:'settings-form'} do |f|
+
+        = f.hidden_field :restrict_outgoing_emails, value: restrict_outgoing_emails ? :false : :true
+        input type="hidden" name="type" value="global"
+
+        = button_tag(type: 'submit', class: 'toggle__button') do
+          => hc_icon "#{ restrict_outgoing_emails ? 'toggle-on' : 'toggle-off' } xl"
+          - if restrict_outgoing_emails
+            = " Enabled"
+          - else
+            = " Disabled"
+
+        - if restrict_outgoing_emails
+          = tip("All outgoing emails are suspended", type: 'warning')
+        - else
+          = tip("Suspend all outgoing emails")

@@ -1,0 +1,51 @@
+/ store*
+/ excuse*
+/ subject_role*
+/ body_role*
+
+.previewer.previewer--email
+  .previewer__meta
+    .previewer__subject
+      span.bold Subject:
+      span data-previewable="output" data-role=subject_role
+    .previewer__from
+      span.bold From:
+      span      #{ store.name } via HelpfulCrowd <span class="hc-color__pale">#{ '<' + ENV["FRONT_MAILER_DEFAULT_FROM"] + '>' }</span>
+      / TODO truncate from name to 64 chars to comply with standards. Here and in actual mailer as well..
+      / https://stackoverflow.com/questions/386294/what-is-the-maximum-length-of-a-valid-email-address
+
+  .previewer__preview
+    .previewer__help
+      = mail_to (store.settings(:agents).support_email.present? ? store.settings(:agents).support_email : store.user.email),
+                subject: "#{t('help_subject_with_order', scope: 'layouts.mailer.front', locale: store.settings(:global).locale)} #{@presenter.sample_order_number}",
+                target: "_blank" do
+        / = image_tag 'life-ring.png'
+        = t('get_help',
+          scope: 'layouts.mailer.front',
+          locale: store.settings(:global).locale)
+    .previewer__header
+      .previewer__logo
+        = render 'layouts/front/store_logo', store: store, url: 'javascript:void(0)'
+
+    .previewer__text data-previewable="output" data-role=body_role
+
+    .previewer__footer
+      .previewer__excuse
+        = t             excuse,
+          helpfulcrowd: link_to('HelpfulCrowd', 'javascript:void(0)'),
+          store:        "<b>#{ store.name }</b>".html_safe,
+          locale:       store.settings(:global).locale
+
+      br
+
+      .previer__manage-subscriptions
+        => link_to t( 'unsubscribe',
+                      scope:   'layouts.mailer.front',
+                      locale:  store.settings(:global).locale ),
+           'javascript:void(0)'
+        |  ·
+        =< link_to t( 'manage_subscriptions',
+                      scope:   'layouts.mailer.front',
+                      locale:  store.settings(:global).locale,
+                      default: t('manage_subscriptions', scope: 'layouts.mailer.front', locale: :en) ),
+           'javascript:void(0)'

@@ -1,0 +1,182 @@
+<%
+  review_link_content       = I18n.translate('front.widgets.products.summary.reviews.html', locale: lang)
+  review_link_content_one   = review_link_content[:one].gsub('%{count}', '{{hc_reviews_count}}')
+  review_link_content_other = review_link_content[:other].gsub('%{count}', '{{hc_reviews_count}}')
+  qa_link_content           = I18n.translate('front.widgets.products.summary.qa.html',      locale: lang)
+  qa_link_content_one       = qa_link_content[:one].gsub('%{count}', '{{hc_qa_count}}')
+  qa_link_content_other     = qa_link_content[:other].gsub('%{count}', '{{hc_qa_count}}')
+  rating_content            = I18n.translate('front.widgets.products.summary.reviews.rating', locale: lang)
+  rating_content_count      = rating_content.gsub('%{rating}', '{{hc_rating}}')
+%>
+
+
+{% assign hc_storefront_status  = shop.metafields.helpfulcrowd.global.storefront_status %}
+{% if product and hc_storefront_status == "active" %}
+  {% assign hc_show_qa		      = shop.metafields.helpfulcrowd.global.show_qa  | plus: 0 %}
+  {% assign hc_easy_reviews     = shop.metafields.helpfulcrowd.global.easy_reviews %}
+  {% assign hc_reviews_count    = product.metafields.helpfulcrowd.product.reviews_count | plus: 0 %}
+  {% assign hc_qa_count         = product.metafields.helpfulcrowd.product.qa_count | plus: 0 %}
+  {% assign hc_rating 		      = product.metafields.helpfulcrowd.product.rating | plus: 0 %}
+  {% assign hc_suppressed	      = product.metafields.helpfulcrowd.product.suppressed | plus: 0 %}
+  {% assign hc_summary_position = shop.metafields.helpfulcrowd.global.summary_position %}
+  {% assign hc_id 			        = shop.metafields.helpfulcrowd.global.store_id %}
+  {% assign hc_theme 			      = shop.metafields.helpfulcrowd.global.theme %}
+  {% assign hc_locale           = shop.metafields.helpfulcrowd.global.locale %}
+  {% assign hc_show_rating_chart = shop.metafields.helpfulcrowd.global.product_summary_show_rating_chart | plus: 0 %}
+  {% assign hc_links            = shop.metafields.helpfulcrowd.global.product_summary_enable_links | plus: 0 %}
+  {% assign hc_rating_data      = product.metafields.helpfulcrowd.product.rating_data %}
+  {% assign hc_store_hashid     = product.metafields.helpfulcrowd.product.store_hashid %}
+  {% assign hc_product_hashid   = product.metafields.helpfulcrowd.product.product_hashid %}
+
+  {% if hc_suppressed < 1 %}
+    <div class="hc-widget">
+      <div data-hc="product-summary" data-hc-id="{{ product.id }}" data-hc-store-id="{{ hc_id }}" class="{{ hc_theme }}">
+        <div class="hc-product-summary hc-product-summary--{{ hc_summary_position }}">
+          <!-- ########################## -->
+          <!-- Reviews summary -->
+          <!-- ########################## -->
+          <div class="hc-product-summary__reviews">
+            <span class="hc-product-summary__rating">
+              <div class="hc-tooltip">
+                {% include 'hc-stars' %}
+                <!-- Show ratings chart on hover -->
+                {% if hc_show_rating_chart > 0 %}
+                  {% if hc_reviews_count > 0 %}
+                    <%= ApplicationController.helpers.hc_icon('chevron-down justified', resize: 0.8, style: "margin-left: 5px;") %>
+                    <div class="hc-tooltip__content hc-tooltip__bottom">
+                      <i></i>
+                      <div class="hc-tooltip__header">
+                        <%= rating_content_count %>
+                      </div>
+                      <div class="hc-rating-chart hc-rating-chart__floating">
+                        {% for rating_data in hc_rating_data %}
+                          {% if hc_links > 0 %}
+                            <!-- If links are enabled  -->
+                            <a data-hc-scroll-to="true" data-hc-scroll-target="#hc-product-tabs" data-href="#hc-reviews-tab" class="hc-rating-chart__row" data-remote="true" href="{{ 'https://app.helpfulcrowd.com' | append: '/f/' | append: hc_store_hashid | append: '/products/' | append: hc_product_hashid | append: '/reviews.js' | append: '?rating=' | append: rating_data.table.rating }}" data-remotify="true">
+                              <div class="hc-rating-chart__rating">
+                                {{ rating_data.table.rating }}
+                                <%= ApplicationController.helpers.hc_icon('star', resize: 0.8) %>
+                              </div>
+                              <div class="hc-rating-chart__bar-wrapper">
+                                <div class="hc-rating-chart__bar" style="width: {{ rating_data.table.percentage }}%;"></div>
+                              </div>
+                              <span class="hc-rating-chart__percentage-value">
+                                {{ rating_data.table.percentage }}
+                              </span>
+                              <div class="hc-rating-chart__count">
+                                {{ rating_data.table.percentage_rounded }}
+                              </div>
+                            </a>
+                          {% else %}
+                            <!-- If links are disabled  -->
+                            <div class="hc-rating-chart__row">
+                              <div class="hc-rating-chart__rating">
+                                {{ rating_data.table.rating }}
+                                <%= ApplicationController.helpers.hc_icon('star', resize: 0.8) %>
+                              </div>
+                              <div class="hc-rating-chart__bar-wrapper">
+                                <div class="hc-rating-chart__bar" style="width: {{ rating_data.table.percentage }}%;"></div>
+                              </div>
+                              <span class="hc-rating-chart__percentage-value">
+                                {{ rating_data.table.percentage }}
+                              </span>
+                              <div class="hc-rating-chart__count">
+                                {{ rating_data.table.percentage_rounded }}
+                              </div>
+                            </div>
+                          {% endif %}
+                        {% endfor %}
+                      </div>
+                      {% if hc_links > 0 %}
+                        <a data-hc-scroll-to="true" data-turbolinks="false" data-hc-scroll-target="#hc-product-tabs" class="hc-tooltip__footer" href="javascript:void(0);" data-href="#hc-reviews-tab"><%= I18n.translate('front.widgets.products.summary.reviews.show_all', default: 'See all reviews', locale: lang) %></a>
+                      {% endif %}
+                    </div>
+                  {% endif %}
+                {% endif %}
+              </div>
+              {% if hc_reviews_count > 0 %}
+                {{ hc_rating }}
+              {% endif %}
+            </span>
+
+            <div class="hc-product-summary__text">
+
+              <!-- Reviews links/text  -->
+              {% if hc_reviews_count > 0 %}
+                <!-- Review count greater than 0 -->
+                {% if hc_links > 0 %}
+                  <!-- If links are enabled  -->
+                  {% if hc_reviews_count == 1 %}
+                    <a data-hc-scroll-to="true" data-hc-scroll-target="#hc-product-tabs" class="hc-product-summary__review-count" href="#hc-reviews-tab">
+                      <%= review_link_content_one %>
+                    </a>
+                  {% else %}
+                    <a data-hc-scroll-to="true" data-hc-scroll-target="#hc-product-tabs" class="hc-product-summary__review-count" href="#hc-reviews-tab">
+                      <%= review_link_content_other %>
+                    </a>
+                  {% endif %}
+                {% else %}
+                  <!-- If links are disabled  -->
+                  {% if hc_reviews_count == 1 %}
+                    <%= review_link_content_one %>
+                  {% else %}
+                    <%= review_link_content_other %>
+                  {% endif %}
+                {% endif %}
+              {% elsif hc_easy_reviews > 0 and hc_links > 0 %}
+                <!-- If reviews are not found, user can write a review and links are enabled -->
+                <a data-hc-scroll-to="true" data-hc-scroll-target="#hc-product-tabs" href="#hc-reviews-tab">
+                  <%= I18n.translate('front.widgets.products.summary.reviews.new', default: 'Write review', locale: lang) %>
+                </a>
+              {% else %}
+                <!-- If reviews are not found or user cannot write new reviews or links are disabled  -->
+                <%= I18n.translate('helpers.friendly_rating', locale: lang) %>
+              {% endif %}
+              <!-- END Reviews summary -->
+
+              <!-- ########################## -->
+              <!-- Questions summary -->
+              <!-- ########################## -->
+              {% if hc_show_qa > 0 %}
+                 |
+                <div class="hc-product-summary__qa">
+                  <!-- Questions links/text -->
+                  {% if hc_qa_count > 0 %}
+                    {% if hc_links > 0 %}
+                      <!-- If links are enabled  -->
+                      {% if hc_reviews_count == 1 %}
+                        <a data-hc-scroll-to="true" data-hc-scroll-target="#hc-product-tabs" class="hc-product-summary__review-count" href="#hc-questions-tab">
+                          <%= qa_link_content_one %>
+                        </a>
+                      {% else %}
+                        <a data-hc-scroll-to="true" data-hc-scroll-target="#hc-product-tabs" class="hc-product-summary__review-count" href="#hc-questions-tab">
+                          <%= qa_link_content_other %>
+                        </a>
+                      {% endif %}
+                    {% else %}
+                      <!-- If links are disabled  -->
+                      {% if hc_reviews_count == 1 %}
+                        <%= qa_link_content_one %>
+                      {% else %}
+                        <%= qa_link_content_other %>
+                      {% endif %}
+                    {% endif %}
+                  {% elsif hc_links > 0 %}
+                    <!-- Q&A not found but links are enabled -->
+                    <a data-hc-scroll-to="true" data-hc-scroll-target="#hc-product-tabs" href="#hc-questions-tab">
+                      <%= I18n.translate('front.widgets.products.summary.qa.new', locale: lang) %>
+                    </a>
+                  {% else %}
+                    <!-- Q&A not found and links are disabled -->
+                    <%= I18n.translate('front.widgets.products.summary.qa.no_records', locale: lang) %>
+                  {% endif %}
+                </div>
+              {% endif %}
+              <!-- END Questions summary -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  {% endif %}
+{% endif %}

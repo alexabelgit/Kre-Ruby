@@ -1,0 +1,15 @@
+.template__send-test-email.hc-button-tooltip
+  - if store.settings(:global).restrict_outgoing_emails.to_b || store.settings(:admin_only).restrict_outgoing_emails.to_b
+    .hc-disabled-button
+      | Send Test
+    .hc-button-tooltip-text.position-left.warning
+      | Emails currently restricted – #{link_to "Settings", general_back_settings_path(anchor: "app-status"), target: "_blank"}
+  - elsif store.products.active.any?
+    = link_to "Send Test", send_test_email_back_reviews_path(email_type: email_type), class: "hc-primary-button", remote: true, method: :post
+    .hc-button-tooltip-text.position-left
+      | The email will be sent to #{store.user.email}
+  - else
+    .hc-disabled-button
+      | Send Test
+    .hc-button-tooltip-text.position-left.warning
+      | Make sure you have at least one product active

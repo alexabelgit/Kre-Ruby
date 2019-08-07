@@ -1,0 +1,34 @@
+/ action     - { url: your_helpful_path, name: "Let's do this!", type: 'warning', anchor: true }
+/ align      - 'left', 'right', 'center'
+/ body*
+/ fade       - true/false
+/ html_class
+/ persist    - true/false
+/ role       - 'imported-reviews'
+/ type       - 'info', 'success' etc.
+
+- action        ||= false
+- align         ||= 'false'
+- fade          ||= nil
+- html_class    ||= false
+- persist       ||= false
+- role          ||= 'default'
+- type          ||= 'info'
+
+- if action
+  - action[:type]   ||= type
+  - action[:anchor] ||= false
+
+= content_tag :div,
+  class:      "system-message #{ 'with-action' if action } #{ type } #{ 'text-align__' + align if align } #{ html_class if html_class } #{ 'persistent' if persist }",
+  data:       { role:                   role,
+                system_message:         '',
+                system_message_fadable: fade } do
+
+  == body
+  - if action
+    =< link_to action[:name].html_safe,
+       action[:url],
+       class: "system-message__action hc-#{action[:type]}-button",
+
+       data:  { turbolinks: action[:anchor] ? false : nil }

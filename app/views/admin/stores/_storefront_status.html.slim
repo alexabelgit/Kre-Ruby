@@ -1,0 +1,16 @@
+div data-maintenance="storefront"
+  .toggle class=(@store.storefront_inactive? ? 'off--warning' : 'on')
+
+    = form_for [:admin, @store], url: admin_store_path, method: :patch, remote: true do |f|
+
+      = f.hidden_field :storefront_status, value: @store.storefront_active? ? :inactive : :active
+
+      = button_tag(type: 'submit', class: 'toggle__button') do
+        => hc_icon "#{ @store.storefront_active? ? 'toggle-on' : 'toggle-off' } xl"
+        = @store.storefront_status.humanize
+
+      - if @store.storefront_active?
+        = tip t('back.stores.maintain_front.tip.active'), type: 'succcess'
+
+      - else
+        = tip t('back.stores.maintain_front.tip.inactive'), type: 'warning'

@@ -1,0 +1,19 @@
+section.review-details
+  header.review-details__header
+
+    = link_to @review.product.url, target: '_blank' do
+      = image_tag @review.product.featured_image.small.url.to_s,
+        alt:      @review.product.name,
+        class:    'review-details__product-image'
+
+    h1 = @review.product.name
+
+  = render         'front/products/reviews/card',
+    review:        @review,
+    show_actions:  true,
+    show_comments: true,
+    show_dropdown: true,
+    show_media:    true
+
+- content_for :footer
+  = render 'front/shared/go_to_product', url: @review.product.url

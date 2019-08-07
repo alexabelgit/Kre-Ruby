@@ -1,0 +1,131 @@
+.hc-media {
+  @include flexbox();
+  @extend %overflow-x__auto;
+  .hc-media__medium {
+    @extend %max-width__100px;
+    @extend %cursor__pointer;
+    @extend %position__relative;
+    @extend %display__none;
+    .hc-media__thumb {
+      @extend %display__block;
+      @extend %height__80px;
+      @extend %min-width__60px;
+      @extend %object-fit__cover;
+      @extend %overflow__hidden;
+      @extend %text-align__center;
+      @extend %text-overflow__ellipsis;
+      @extend %max-width__100px;
+      @extend %width__100pct;
+      @extend %border-radius__base;
+    }
+    .hc-media__thumb-icon {
+      // text-shadow: 0 0 4px $color-dark; TODO @babdus - this does not work any longer since we switched to svg, please provide some nice SVG shadows
+      @extend %color__white;
+      @extend %position__absolute;
+      @extend %top__45pct;
+      @extend %left__45pct;
+      @extend %font-size__80pct;
+      top: calc( 100% - 23px);
+      left: 3px;
+      @extend %transition__color;
+    }
+    &:hover, &:active, &:focus {
+      .hc-media__thumb-icon {
+        @extend %color__brand-2;
+      }
+    }
+    &.hc-media__medium--visible {
+      @extend %flex__1;
+      @extend %width__100pct;
+      @extend %display__block;
+    }
+    &:not(:last-of-type):not(.hc-media__medium--last-visible) {
+      @extend %margin-right__2xs;
+    }
+    &.hc-media__medium--last-visible{
+      @extend %background-color__black;
+      @extend %border-radius__base;
+      .hc-media__thumb{
+        @extend %opacity__0pt3;
+      }
+      .hc-media__thumb-icon{
+        @extend %font-size__150pct;
+        top: calc( 50% - 16px );
+        left: calc( 50% - 19px );
+      }
+    }
+  }
+}
+
+
+.hc-media {
+  .hc-media__medium.hc-media__medium--single {
+    @extend %margin-bottom__sm;
+    @extend %max-width__100pct;
+    &:after {
+      @extend %border-radius__base;
+      @extend %content__-empty-;
+      @extend %position__absolute;
+      @extend %left__0;
+      @extend %top__0;
+      @extend %width__100pct;
+      @extend %height__100pct;
+      @extend %display__inline-block;
+      background: -moz-linear-gradient(180deg, transparent 75%, rgba(0, 0, 0, 0.09) 85%, rgba(0, 0, 0, 0.4) 100%);/* FF3.6+ */
+      background: -webkit-linear-gradient(180deg, transparent 75%, rgba(0, 0, 0, 0.09) 85%, rgba(0, 0, 0, 0.4) 100%); /* Chrome10+,Safari5.1+ */
+      background: -o-linear-gradient(180deg, transparent 75%, rgba(0, 0, 0, 0.09) 85%, rgba(0, 0, 0, 0.4) 100%); /* Opera 11.10+ */
+      background: -ms-linear-gradient(180deg, transparent 75%, rgba(0, 0, 0, 0.09) 85%, rgba(0, 0, 0, 0.4) 100%); /* IE10+ */
+      background: linear-gradient(180deg, transparent 75%, rgba(0, 0, 0, 0.09) 85%, rgba(0, 0, 0, 0.4) 100%); /* W3C */
+      filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a6000000', endColorstr='#00000000',GradientType=0 ); /* IE6-9 */
+    }
+    .hc-media__thumb {
+      @extend %height__180px;
+      @extend %max-width__100pct;
+      &-text {
+        @extend %position__absolute;
+        @extend %font-size__sm;
+        @extend %color__light;
+        @extend %bottom__0;
+        right: 7px;
+        @extend %z-index__1;
+        .hc-media__image-count {
+          @extend %display__inline-block;
+        }
+        .hc-media__video-count {
+          @extend %display__inline-block;
+          @extend %margin-left__md;
+        }
+      }
+    }
+  }
+  &.hc-media__hero {
+    @extend %margin-x__-md;
+    .hc-media__medium.hc-media__medium--single {
+      @extend %margin-bottom__0;
+      @extend %border-bottom-left-radius__0;
+      @extend %border-bottom-right-radius__0;
+      .hc-media__thumb{
+        @extend %height__100pct;
+        @extend %border-bottom-left-radius__0;
+        @extend %border-bottom-right-radius__0;
+      }
+      &:after {
+        @extend %border-bottom-left-radius__0;
+        @extend %border-bottom-right-radius__0;
+      }
+    }
+  }
+}
+.hc-media__medium--last-visible{
+  @extend %background-color__black;
+  @extend %border-radius__base;
+}
+.hc-media__medium--last-visible .hc-media__thumb{
+  @extend %opacity__0pt3;
+}
+
+.hc-media__medium--last-visible .hc-media__thumb-icon{
+  @extend %font-size__150pct;
+  top: calc( 50% - 16px );
+  left: calc( 50% - 19px );
+}

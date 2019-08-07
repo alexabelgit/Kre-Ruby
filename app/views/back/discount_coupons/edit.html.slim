@@ -1,0 +1,6 @@
+- content_for :main_class, 'boxed'
+= render 'layouts/back/sub_navs/tools'
+
+h1 = title "Editing discount coupon"
+
+= render 'form', url: back_discount_coupon_path(@discount_coupon), method: :put

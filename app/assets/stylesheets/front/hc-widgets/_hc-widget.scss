@@ -1,0 +1,11 @@
+// .hc-widget class is root of all our embedded content.
+// We use this selector as hook for resets. For example
+// to define font-size (so that we can use stuff like
+// 1em safely).
+//
+// This should not be used for 'real' styles as our aim
+// is to make our UI consistent on all possible platforms
+
+.hc-widget {
+  @extend %text-align__start;
+}

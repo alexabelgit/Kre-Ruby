@@ -1,0 +1,66 @@
+.auth-options__section {
+  @extend %margin-y__lg;
+}
+
+.auth-options__heading {
+  @extend %heading-with-line;
+  @extend %font-family__body-font-family;
+  @extend %font-size__1rem;
+  @extend %margin-bottom__lg--rem;
+
+  &.auth-options__heading--hidden {
+    @extend %hide-unless-screen-reader;
+  }
+}
+
+.auth-option {
+  &:not(:last-of-type) {
+    @extend %margin-bottom__xs;
+  }
+}
+
+.auth-option__button {
+  @extend %margin__0;
+}
+
+.auth-option--ecwid {
+  .auth-option__button {
+    @extend .hc-ecwid-button--block;
+  }
+}
+
+.auth-option--email {
+  .auth-option__button {
+    @extend %secondary-block-button;
+  }
+}
+
+.auth-option--shopify {
+  .auth-option__button {
+    @extend .hc-shopify-button--block;
+  }
+}
+
+.auth-option--lemonstand {
+  .auth-option__button {
+    @extend .hc-lemonstand-button--block;
+  }
+}
+
+.auth-option--custom {
+  .auth-option__button {
+    @extend .hc-brand-1-button--block;
+  }
+}
+
+.auth-form__shopify-input {
+  @extend .hc-form__input-n-addon;
+}
+
+.auth-form__lemonstand-input {
+  @extend .hc-form__input-n-addon;
+}
+
+.auth-option__icon {
+
+}

@@ -1,0 +1,56 @@
+- content_for :main_class, 'email-templates'
+= render 'layouts/back/sub_navs/tools'
+
+header.header-with-action
+  h1 = title @promotion.name
+
+  = link_to edit_back_promotion_path(@promotion),
+    class: 'hc-secondary-button' do
+
+    => hc_icon 'pencil'
+    |  Edit
+
+section.promotion-details__overview-wrapper
+  .promotion-details__overview
+
+    .promotion-details__overview-item
+      | Template: #{ @promotion.template }
+
+    .promotion-details__overview-item
+      | Starts at: #{ @promotion.starts_at }
+
+    .promotion-details__overview-item
+      | Ends at: #{ @promotion.ends_at }
+
+section
+  header.header-with-action
+    h2 Coupon
+
+    .responsive-table
+      table.table
+        thead
+          tr
+            th Name
+            th Code
+            th Discount
+            th Code type
+            th Send per
+            th In use
+            th Issued
+            th Limit
+            th Start | End
+        tbody
+          - @promotion.discount_coupons.visible.each do |discount_coupon|
+            tr
+              td = link_to discount_coupon.name, edit_back_discount_coupon_path(discount_coupon)
+              td = discount_coupon.code
+              td = discount_coupon.discount_text
+              td = discount_coupon.code_type
+              td = discount_coupon.send_per
+              td = discount_coupon.in_use?
+              td = discount_coupon.issue_count
+              td = discount_coupon.limit.present? ? discount_coupon.limit : '∞'
+              td
+                span.white-space__nowrap> = humane_date(discount_coupon.valid_from)
+                | -
+                span.white-space__nowrap< = (discount_coupon.valid_until.present? ? humane_date(discount_coupon.valid_until) : '∞')

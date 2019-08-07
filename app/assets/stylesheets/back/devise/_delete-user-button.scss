@@ -1,0 +1,4 @@
+.delete-user-button {
+  @extend .hc-danger-button;
+  @extend %full-width;
+}

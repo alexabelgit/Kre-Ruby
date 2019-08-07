@@ -1,0 +1,14 @@
+= content_for :recipient
+  = @review.user.first_name
+
+.pending
+  p
+    | You have received a new
+    =<> link_to 'review', back_review_url(@review)
+    | for
+    strong =< @review.product.name
+    | :
+
+  = render 'review', review: @review
+
+= call_to_action('Go to review', back_review_url(@review))

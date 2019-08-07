@@ -1,0 +1,14 @@
+/ action*
+/ searchable*
+
+form data-role="filter" action=action
+  label> for="search" Search
+
+  input {
+    id          = "search"
+    name        = "term"
+    type        = "search"
+    data-role   = "filter"
+    placeholder = "Enter keyword"
+    value       = term
+  }

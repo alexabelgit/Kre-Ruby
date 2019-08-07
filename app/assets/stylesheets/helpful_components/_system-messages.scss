@@ -1,0 +1,73 @@
+.system-message {
+  @extend %background-color__white;
+  @extend %border-style__solid;
+  @extend %border-width__1px;
+  @extend %border-radius__base;
+  @extend %margin-bottom__md;
+  @extend %padding__md;
+
+  &.primary {
+    @extend %color__primary;
+    @extend %border-color__primary--lightened;
+  }
+
+  &.info, &.notice {
+    @extend %color__info;
+    @extend %border-color__info--lightened;
+  }
+
+  &.warning, &.alert {
+    @extend %color__warning;
+    @extend %border-color__warning--lightened;
+  }
+
+  &.success {
+    @extend %color__success;
+    @extend %border-color__success--lightened;
+  }
+
+  &.danger, &.error {
+    @extend %color__danger;
+    @extend %border-color__danger--lightened;
+  }
+  // align message text
+  &.text-align__center {
+    @extend %text-align__center;
+  }
+
+  &.text-align__left {
+    @extend %text-align__left; // default, as defined in view partial
+  }
+
+  &.text-align__right {
+    @extend %text-align__right;
+  }
+
+  &.with-action {
+    @include flexbox(
+      $justify-content: space-between,
+      $align-items:     baseline
+    );
+  }
+
+  .system-message__action {
+    @extend %margin-left__md;
+  }
+
+  p {
+    &:first-child {
+      @extend %margin-top__0;
+    }
+
+    &:last-child {
+      @extend %margin-bottom__0;
+    }
+  }
+
+  // TODO do this without :not for better browser support
+  a:not(.system-message__action) {
+    @extend %color__inherit;
+    @extend %font-weight__bold;
+  }
+
+}

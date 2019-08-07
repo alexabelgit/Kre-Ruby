@@ -1,0 +1,25 @@
+- content_for :main_class, 'boxed'
+- render 'layouts/back/sub_navs/settings'
+
+= tag.div class: 'billing',
+          data:  { behavior:       'back-billing-container',
+                   chargebee_site: @presenter.chargebee_site } do
+
+  h1.billing__heading
+    = title 'Billing'
+  = render 'back/settings/billing/chargebee_modal'
+
+  section.billing__subscription
+    - if @presenter.trial?
+      = render 'back/settings/billing/trial', presenter: @presenter.trial_presenter
+    - else
+      = render 'back/settings/billing/current_subscription', presenter: @presenter.current_subscription_presenter
+
+  - if @presenter.products_based_billing?
+    = render partial: 'back/settings/billing/products_based_plans', locals: { presenter: @presenter }
+  - else
+    = render partial: 'back/settings/billing/orders_based_plans', locals: { presenter: @presenter }
+
+  .billing__footer
+    p Have any questions?
+    = chat_trigger('Contact us', html_class: 'hc-primary-button')

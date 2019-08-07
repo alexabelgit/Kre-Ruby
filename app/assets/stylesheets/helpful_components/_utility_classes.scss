@@ -1,0 +1,167 @@
+.hc-display__table {
+  @extend %display__table;
+}
+
+.hc-display__inline-block {
+  @extend %display__inline-block;
+}
+
+.hc-margin__0 {
+  @extend %margin__0;
+}
+
+.hc-margin-y__md {
+  @extend %margin-y__md;
+}
+
+.hc-margin-y__lg {
+  @extend %margin-y__lg;
+}
+
+.hc-margin-y__xl {
+  @extend %margin-y__xl;
+}
+
+.hc-margin-right__xs {
+  @extend %margin-right__xs;
+}
+
+.hc-margin-right__md {
+  @extend %margin-right__md;
+}
+
+.hc-margin-bottom__lg {
+  @extend %margin-bottom__lg;
+}
+
+.hc-margin-bottom__xs {
+  @extend %margin-bottom__xs;
+}
+
+.hc-margin-bottom__0 {
+  margin-bottom: 0;
+}
+
+.hc-margin-top__0 {
+  margin-top: 0;
+}
+
+.hc-heading-with-line {
+  @extend %heading-with-line;
+}
+
+.hc-height__md {
+  @extend %height__md;
+}
+
+.hc-font-size__1rem {
+  @extend %font-size__1rem;
+}
+
+.bold {
+  @extend %font-weight__bold;
+}
+
+.width__0 {
+  @extend %width__0;
+}
+
+.white-space__nowrap {
+  @extend %white-space__nowrap;
+}
+
+.float__right {
+  @extend %float__right;
+}
+
+.hide {
+  @extend %display__none;
+}
+
+.hide--above__md {
+  @extend %display__none--above__md;
+}
+
+.hide--above__sm {
+  @extend %display__none--above__sm;
+}
+
+.hide--below__sm {
+  @extend %display__none--below__sm;
+}
+
+.hide--below__md {
+  @extend %display__none--below__md;
+}
+
+.hide-unless-screen-reader {
+  // TODO use --s like in other hide classes. Update wetsy as well.
+  @extend %hide-unless-screen-reader;
+}
+
+.hc-text-align__center {
+  @extend %text-align__center;
+}
+
+.hc-margin-bottom__md {
+  @extend %margin-bottom__md;
+}
+
+.hc-margin-bottom__xl {
+  @extend %margin-bottom__xl;
+}
+
+.hc-margin-bottom__2xs {
+  @extend %margin-bottom__2xs;
+}
+
+.hc-display__none {
+  @extend %display__none;
+}
+
+.hc-display__block {
+  @extend %display__block;
+}
+
+.hc-margin-top__md {
+  @extend %margin-top__md;
+}
+
+.hc-margin-top__lg {
+  @extend %margin-top__lg;
+}
+
+.hc-margin-top__xl {
+  @extend %margin-top__xl;
+}
+
+.hc-text-align__right {
+  @extend %text-align__right;
+}
+
+.hc-link {
+  @extend %color__primary;
+  @extend %underline-on-hover;
+}
+
+.hc-max-width__100pct {
+  @extend %max-width__100pct;
+}
+
+.hc-line-height__1pt5 {
+  @extend %line-height__1pt5;
+}
+
+.transparent--below__sm {
+  @extend %opacity__0pt6--below__sm;
+}
+
+.hc-no-break {
+  white-space: nowrap;
+}
+
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}

@@ -1,0 +1,63 @@
+.dashboard-products,
+.dashboard-reviews,
+.dashboard-section {
+  @extend %margin-bottom__md;
+}
+
+.dashboard-products__select {
+  @extend %max-width__15rem;
+}
+
+.dashboard-widget {
+  @extend %background-color__white;
+  @extend %margin-bottom__md;
+  @extend %simple-card;
+}
+
+.dashboard-products__overview,
+.dashboard-products__widgets,
+.dashboard-reviews__overview,
+.dashboard-q_a__overview {
+  @extend %flex-grid;
+}
+
+.dashboard-products__overview-item,
+.dashboard-products__chart,
+.dashboard-products__top-rated,
+.dashboard-products__poorly-rated,
+.dashboard-reviews__ignored-requests,
+.dashboard-reviews__received,
+.dashboard-reviews__sent,
+.dashboard-q_a__total,
+.dashboard-q_a__answered,
+.dashboard-q_a__unanswered {
+  @extend %flex-grid__column;
+}
+
+.dashboard-products__overview {
+}
+
+.dashboard-products__chart,
+.dashboard-products__top-rated,
+.dashboard-products__poorly-rated {
+  @extend %background-color__white;
+  @extend %simple-card;
+}
+
+.dashboard-products__top-rated,
+.dashboard-products__poorly-rated {
+  ul {
+    @extend %unstyled-list;
+  }
+}
+
+.dashboard__reviews-received,
+.dashboard__review-requests-sent,
+.dashboard__reviews-requests-ignored,
+.dashboard__products-overview {
+  @extend %display__inline-block;
+  @extend %width__100pct;
+  @extend %border__1px__solid__secondary;
+  @extend %padding__md;
+  @extend %margin-bottom__md;
+}

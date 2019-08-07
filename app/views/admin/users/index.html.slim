@@ -1,0 +1,40 @@
+header.header-with-action
+  h1 = title 'Users'
+
+  .header-with-action__search
+    = render 'admin/shared/search', action: admin_users_path, term: @search_term
+
+table.table
+  thead
+    tr
+      th Name
+      th Email
+      th Store
+      th Role
+      th Status
+      th
+      th
+
+  tbody
+    - @users.each do |user|
+      tr
+        td = user.full_name
+        td = mail_to user.email, user.email, target: '_blank'
+        td = link_to user.store.name, admin_store_path(user.store) if user.store.present?
+        td = user.role
+        td = user.deleted? ? 'Deactivated' : 'Active'
+        td
+          - if user.deleted?
+            = link_to reactivate_admin_user_path(user), method: :post, class: 'hc-primary-button--small' do
+              = hc_icon 'check'
+              | Reactivate
+          - else
+            = link_to deactivate_admin_user_path(user), method: :post, class: 'hc-danger-button--small' do
+              = hc_icon 'ban'
+              | Deactivate
+        td
+          = link_to impersonate_admin_user_path(user), method: :post, class: 'hc-secondary-button--small' do
+            = hc_icon 'user-secret'
+            | Impersonate
+
+= will_paginate @users, class: 'hc-paging hc-paging--modern'

@@ -1,0 +1,13 @@
+%hc-separator-after:after {
+  @extend %content__-empty-;
+  @extend %display__block;
+
+  @extend %background-color__secondary;
+  @extend %border-radius__base;
+
+  @extend %height__2xs;
+  @extend %width__xl;
+
+  @extend %margin-x__auto;
+  @extend %margin-y__lg;
+}

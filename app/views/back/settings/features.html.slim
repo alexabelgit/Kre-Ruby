@@ -1,0 +1,206 @@
+- content_for :main_class, 'boxed'
+- render 'layouts/back/sub_navs/settings'
+
+h1 = title 'Reviews'
+
+= render layout: 'helpful_components/collapsible/item',
+         locals: { name:    'general-reviews',
+                   title:   'General',
+                   heading: :h3 } do
+
+  = form_for [:back, @store.settings(:reviews)],
+    as:      :settings,
+    url:     { action: :update,
+               anchor: 'reviews-settings' },
+    method:  :put,
+    html:    { id:     'reviews-settings',
+               class:  'settings-form' } do |f|
+
+    = render 'shared/form/errors', resource: @store.settings(:reviews)
+
+    input type="hidden" name="type"        value="reviews"
+    input type="hidden" name="redirect_to" value=features_back_settings_path
+    input type="hidden" name="view"        value="reviews"
+
+    .settings-form__control
+      = render 'helpful_components/checkbox_toggle/checkbox_toggle',
+        f:     f,
+        field: :auto_publish,
+        hint:  'Reviews will be published immediately',
+        txt:   'Auto publish'
+
+    .settings-form__control.hc-form__minimum-ratings class=('hide' unless f.object.auto_publish.to_b)
+      - [*1..5].reverse.each do |rating|
+        .hc-form__radio-group.hc-form__radio-group--inline
+          => f.radio_button :minimum_ratings_to_publish, rating
+          => f.label        :minimum_ratings_to_publish, pluralize(rating, 'Star'), value:    rating
+      = form_hint "Autopublish reviews with selected rating or higher"
+
+    .settings-form__control
+      = render 'helpful_components/checkbox_toggle/checkbox_toggle',
+        f:     f,
+        field: :easy_reviews,
+        hint:  "Allow anyone to write reviews. <em>Verfiied buyer</em> badge will be displayed \
+                if customer's email matches an order for the same product",
+        txt:   'Storefront reviews'
+
+    .settings-form__control
+      = render 'helpful_components/checkbox_toggle/checkbox_toggle',
+        f:     f,
+        field: :repeated_reviews,
+        hint:  "Allow customers to write repeated reviews when they purchase \
+                products they have already reviewed",
+        txt:   'Repeated reviews'
+
+    .settings-form__control
+      = render 'helpful_components/checkbox_toggle/checkbox_toggle',
+        f:     f,
+        field: :show_titles,
+        hint:  "Choose whether to show title for reviews based on their ratings.",
+        txt:   'Show review titles'
+
+    .settings-form__control
+      div Grid layout
+      - ['masonry', 'single_column'].each do |grid_layout|
+        .hc-form__radio-group.hc-form__radio-group--inline
+          => f.radio_button :grid_layout, grid_layout,          required: true
+          => f.label        :grid_layout, grid_layout.humanize, value:    grid_layout
+      = form_hint "Choose how multiple reviews appear together in widgets like \
+                   Product Tabs and Review Journal"
+
+    .settings-form__control
+      div Media layout
+      - ['hero', 'featured', 'grid'].each do |media_layout|
+        .hc-form__radio-group.hc-form__radio-group--inline
+          => f.radio_button :media_layout, media_layout,          required: true
+          => f.label        :media_layout, media_layout.humanize, value:    media_layout
+      = form_hint "Choose how the media of reviews appear on card.<br>Note: The <b>Hero</b> and <b>Featured</b> layouts \
+                   will be only applicable on <b>Masonry</b> grid layout. "
+
+    .settings-form__control
+      = render 'helpful_components/checkbox_toggle/checkbox_toggle',
+        f:     f,
+        field: :show_media_gallery,
+        hint:  "Display media gallery to display all the customer uploaded media together.",
+        txt:   'Display media reviews'
+
+    .settings-form__control
+      = render 'helpful_components/checkbox_toggle/checkbox_toggle',
+        f:     f,
+        field: :show_date,
+        txt:   'Display date on review cards'
+
+    = render 'back/settings/submit'
+
+= render layout: 'helpful_components/collapsible/item',
+         locals: { name:    'media-reviews',
+                   title:   'Media reviews',
+                   heading: :h3 } do
+
+  = form_for [:back, @store.settings(:reviews)],
+    as:      :settings,
+    url:     { action: :update,
+               anchor: 'media-reviews-settings' },
+    method:  :put,
+    html:    { id:     'media-reviews-settings',
+               class:  'settings-form' } do |f|
+
+    = render 'shared/form/errors', resource: @store.settings(:reviews)
+
+    input type="hidden" name="type"        value="reviews"
+    input type="hidden" name="redirect_to" value=features_back_settings_path
+    input type="hidden" name="view"        value="reviews"
+
+    .settings-form__control
+      = render 'helpful_components/checkbox_toggle/checkbox_toggle',
+        f:     f,
+        field: :media_reviews,
+        hint:  "Allow customers to add image and video content to their reviews. \
+                If disabled, media upload will become unavailable and existing \
+                uploads (if any) will be hidden",
+        txt:   'Media reviews'
+
+    .settings-form__control
+      = render 'helpful_components/checkbox_toggle/checkbox_toggle',
+        f:     f,
+        field: :auto_publish_media,
+        hint:  "Keep enabled to publish media content by default. \
+                You will still be able to un-publish individual items later",
+        txt:   'Auto publish'
+
+    = render 'back/settings/submit'
+
+= render layout: 'helpful_components/collapsible/item',
+         locals: { name:    'social-sharing',
+                   title:   'Social sharing',
+                   heading: :h3 } do
+
+  = form_for [:back, @store.settings(:reviews)],
+    as:      :settings,
+    url:     { action: :update,
+               anchor: 'social-sharing-settings' },
+    method:  :put,
+    html:    { id:     'social-sharing-settings',
+               class:  'settings-form' } do |f|
+
+    = render 'shared/form/errors', resource: @store.settings(:reviews)
+
+    input type="hidden" name="type"        value="reviews"
+    input type="hidden" name="redirect_to" value=features_back_settings_path
+    input type="hidden" name="view"        value="reviews"
+
+    .settings-form__control
+      = render 'helpful_components/checkbox_toggle/checkbox_toggle',
+        f:     f,
+        field: :media_collage_in_social_posts,
+        hint:  "When sharing a media review, review link thumbnail will display \
+                customer uploaded images instead of default product image",
+        txt:   'Share customer uploaded media'
+
+    = render 'back/settings/submit'
+
+
+h1 = title 'Q&A'
+
+= render layout: 'helpful_components/collapsible/item',
+         locals: { name:    'general-qa',
+                   title:   'General',
+                   heading: :h3 } do
+
+  = form_for [ :back, @store.settings(:questions) ],
+    as:      :settings,
+    url:     { action: :update,
+               anchor: 'questions-settings' },
+    method:  :put,
+    html:    { id:     'questions-settings',
+               class:  'settings-form' } do |f|
+
+    = render 'shared/form/errors', resource: @store.settings(:reviews)
+
+    input type="hidden" name="type"        value="questions"
+    input type="hidden" name="redirect_to" value= features_back_settings_path
+    input type="hidden" name="view"        value="questions"
+
+    .settings-form__control
+      = render 'helpful_components/checkbox_toggle/checkbox_toggle',
+        f:     f,
+        field: :enabled,
+        hint:  'Enable or disable Q&A feature on your website',
+        txt:   'Q&A feature'
+
+    .settings-form__control
+      div Grid layout
+      - ['masonry', 'single_column'].each do |grid_layout|
+        .hc-form__radio-group.hc-form__radio-group--inline
+          => f.radio_button :grid_layout, grid_layout,          required: true
+          => f.label        :grid_layout, grid_layout.humanize, value:    grid_layout
+      = form_hint "Choose how multiple Q&A appear together in widgets like \
+                   Product Tabs and Review Journal"
+
+    .settings-form__control
+      = render 'helpful_components/checkbox_toggle/checkbox_toggle',
+        f: f,
+        field: :show_date,
+        txt: 'Display date on questions'
+
+    = render 'back/settings/submit'

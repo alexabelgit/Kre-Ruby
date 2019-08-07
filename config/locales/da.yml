@@ -1,0 +1,450 @@
+---
+"da":
+  "activerecord":
+    "errors":
+      "models":
+        "abuse_report":
+          "attributes":
+            "additional_info":
+              "blank": >-
+                skal angives når 'noget andet' er valgt som grund
+            "reason":
+              "blank": >-
+                ^Du skal vælge en grund
+        "product":
+          "attributes":
+            "id_from_provider":
+              "taken": >-
+                ^ID skal være unik. Den du indtastede er allerede brugt på et andet
+                produkt.
+        "review":
+          "attributes":
+            "customer":
+              "must_be_authenticated": >-
+                ^Du skal være logget ind for at kunne skrive en anmeldelse.
+            "product_ids":
+              "cannot_be_repeated": >-
+                ^Du har allerede anmeldt dette produkt.
+              "taken": >-
+                ^Du har allerede anmeldt dette køb
+            "review_request_id":
+              "request_must_be_sent": >-
+                ^Du kan ikke anmelde dette køb lige nu
+            "source":
+              "cannot_be_voluntary": >-
+                ^Du kan ikke anmelde dette køb lige nu
+        "review_request":
+          "attributes":
+            "order_id":
+              "blank": >-
+                Kan ikke blive lavet uden korresponderende kunde. Venligst angiv en
+                valideret email adresse.
+    "models":
+      "comment":
+        "one": >-
+          kommentar
+        "other": >-
+          kommentarer
+      "customer":
+        "one": >-
+          kunde
+        "other": >-
+          kunder
+      "product":
+        "one": >-
+          produkt
+        "other": >-
+          produkter
+      "product_group":
+        "one": >-
+          produkt gruppe
+        "other": >-
+          produkt grupper
+      "question":
+        "one": >-
+          spørgsmål
+        "other": >-
+          spørgsmål
+      "review":
+        "one": >-
+          anmeldelse
+        "other": >-
+          anmeldelser
+      "review_request":
+        "one": >-
+          anmeldelse anmodning
+        "other": >-
+          anmeldelse anmodninger
+  "answer":
+    "one": >-
+      svar
+    "other": >-
+      svar
+  "cancel": >-
+    Annuller
+  "counterify":
+    "characters":
+      "exceeded": >-
+        Tegn begrænsningen er overskredet
+      "remaining":
+        "one": >-
+          1 tegn resterende
+        "other": >-
+          %{count} tegn resterende
+  "default_templates":
+    "email":
+      "critical_review_followup_mail_body": "<p>Hej [customer_name],</p>\r\n<p>Tak
+        for din anmeldelse.</p>\r\n<p>Team ved [store_name].</p>"
+      "critical_review_followup_mail_subject": >-
+        Tak for din anmeldelse
+      "positive_review_followup_mail_body": "<p>Hej [customer_name],</p>\r\n<p>Tak
+        for din anmeldelse.</p>\r\n<p>Team ved [store_name].</p>"
+      "positive_review_followup_mail_subject": >-
+        Tak for din anmeldelse
+      "question_answer_mail_body": "<p>Hej [customer_name],</p>\r\n<p>Dit spørgsmål
+        om [product_name] er blevet besvaret af vores repræsentant:</p>\r\n<p>[answer]</p>\r\n<p>Dit
+        spørgsmål:</p>\r\n<p>[question]</p>\r\n<p>[product_link]</p>\r\n<p>Team ved
+        [store_name].</p>"
+      "question_answer_mail_subject": >-
+        Dit spørgsmål ved [store_name] er blevet besvaret
+      "repeat_review_request_mail_body": "<p>Hej [customer_name],</p>\r\n<p>Det er
+        stadigvæk ikke for sent at fortælle os, hvad du synes om din seneste ordre.</p>\r\n<p>Klik
+        på en stjerne for at bedømme din erfaring indtil videre med</p>\r\n<p>[products]</p>\r\n<p>Ikke
+        tilfreds? Venligst kontakt os først, så vi kan hjælpe</p>\r\n<p>Team ved [store_name].</p>"
+      "repeat_review_request_mail_subject": >-
+        Påmindelse om at gennemgå din seneste ordre ved [store_name]
+      "review_answer_mail_body": "<p>Hej [customer_name],</p>\r\n<p>Din anmeldelse
+        for [product_name] er blevet besvaret af vores repræsentant</p>\r\n<p>[reply]</p>\r\n<p>Din
+        anmeldelse:</p>\r\n<p>[review]</p>\r\n<p>[product_link]</p>\r\n<p>Team ved
+        [store_name].</p>"
+      "review_answer_mail_subject": >-
+        Din anmeldelse hos [store_name] er blevet besvaret
+      "review_request_mail_body": "<p>Hej [customer_name],</p>\r\n<p>Klik på en stjerne
+        for at bedømme din oplevelse indtil videre</p>\r\n<p>[products]</p>\r\n<p>Ikke
+        tilfreds? Venligst kontakt os først, så vi kan hjælpe</p>\r\n<p>Team ved [store_name].</p>"
+      "review_request_mail_subject": >-
+        Anmeld din seneste ordre hos [store_name]
+  "embed": >-
+    Indlejre
+  "errors":
+    "messages":
+      "already_confirmed": >-
+        var allerede bekræftet, venligst prøv at logge ind
+      "confirmation_period_expired": >-
+        skal blive bekræftet indenfor %{period}, venligst anmod om en ny
+      "expired": >-
+        er udløbet, venligst anmod om en ny
+      "not_found": >-
+        ikke fundet
+      "not_locked": >-
+        var ikke låst
+      "not_saved":
+        "one": >-
+          1 fejl forbød denne %{resource} fra at blive gemt:
+        "other": >-
+          %{count} fejl forbød denne %{resource} fra at blive gemt:
+  "flash":
+    "submitted_successfully":
+      "question": >-
+        Tak! Vi har modtaget dit spørgsmål, og vi vil lade dig vide besked via email,
+        så snart det er blevet besvaret
+      "review": >-
+        Tak! Vi har modtaget din anmeldelse
+      "subscribed": >-
+        Du har med succes abonneret til %{store}.
+      "unsubscribed": >-
+        Du har med succes afmeldt fra %{store}.
+  "front":
+    "based_on_reviews_count":
+      "one": >-
+        1 anmeldelse
+      "other": >-
+        %{count} anmeldelser
+    "components":
+      "customer_form":
+        "email":
+          "hint": >-
+            Din email vil ikke blive delt offentligt
+          "label": >-
+            Din email
+        "name":
+          "hint": >-
+            Dit navn vil vises som initialer
+          "hint_update_html": >-
+            Dit navn vil vises som <strong>%{initials}</strong>
+          "label": >-
+            Dit navn
+      "privacy_notice":
+        "link_content": >-
+          fortrolighedspolitik
+        "with_name":
+          "html": "Ved at indsende denne formular accepterer du, at dit indhold og
+            dit navn <strong>%{name}</strong> må udgives online i henhold til vores\r\n%{link}."
+        "without_name":
+          "html": >-
+            Ved at indsende denne formular accepterer du, at dit indhold og dit navn
+            må udgives online i henhold til vores %{link}.
+    "continue_shopping": >-
+      Fortsæt shopping
+    "flags":
+      "new":
+        "already_flagged": >-
+          Du har allerede markeret dette %{item}
+        "flag_as_inappropriate": >-
+          Marker dette %{item} som upassende
+      "show":
+        "flag_submitted": >-
+          Tak
+    "mailer":
+      "excuses":
+        "question_answered_html": >-
+          Du har modtaget denne email fra %{helpfulcrowd} for at give dig en opdatering
+          omkring et spørgsmål, du spurgte om hos %{store}.
+        "review_answered_html": >-
+          Du har modtaget denne email fra %{helpfulcrowd} for at give dig en opdatering
+          omkring din anmeldelse %{store}.
+        "review_follow_up_html": >-
+          Du har modtaget en email fra %{helpfulcrowd} i respons til din seneste anmeldelse
+          hos %{store}.
+        "review_request_html": >-
+          Du har modtaget en email fra %{helpfulcrowd} i respons til din seneste ordre
+          %{store}.
+      "helpers":
+        "call_to_action":
+          "view_product": >-
+            Besøg produkt siden
+    "products":
+      "questions":
+        "form":
+          "question_html": >-
+            Hvad vil du gerne vide om %{product}?
+        "new":
+          "title": >-
+            Stil et spørgsmål
+      "view_product": >-
+        Gå til produkt siden
+    "review_requests":
+      "reviews":
+        "form":
+          "rating_html": >-
+            Bedøm din oplevelse med %{reviewable}
+        "new":
+          "already_reviewed_html": >-
+            Du har allerede anmeldt %{reviewable}
+          "review_other_purchases":
+            "one": >-
+              Anmeld dit andet køb
+            "other": >-
+              Anmeld dine andre køb
+          "title": >-
+            Anmeld dit køb
+    "search":
+      "label": >-
+        Søg:
+      "placeholder": >-
+        Indtast nøgleord
+    "share":
+      "button": >-
+        Del
+    "sort_by": >-
+      Sorter efter
+    "sort_options":
+      "most_helpful": >-
+        Mest hjælpsom
+      "most_recent": >-
+        Seneste
+      "rating_asc": >-
+        Bedøm: Lavest
+      "rating_desc": >-
+        Bedøm: Højest
+    "suppressions":
+      "manage_subscriptions":
+        "subscribe_question_html": "Vil du gerne aktivere HelpfulCrowd til at sende
+          dig emails på vegne af\r\n%{store}?"
+        "unsubscribe_question_html": "Vil du gerne have, at HelpfulCrowd stopper med
+          at sende dig emails på vegne af\r\n%{store}?"
+    "votes":
+      "upvote": >-
+        Hjælpsom
+      "upvotes_count":
+        "one": >-
+          %{count} person fandt dette %{item} hjælpsomt
+        "other": >-
+          %{count} pesoner fandt dette %{item} hjælpsomt
+    "widgets":
+      "products":
+        "rating":
+          "qa":
+            "html":
+              "one": >-
+                1 spørgsmål
+              "other": >-
+                %{count} spørgsmål
+          "reviews":
+            "html":
+              "one": >-
+                1 anmeldelse
+              "other": >-
+                %{count} anmeldelser
+        "summary":
+          "qa":
+            "html":
+              "one": >-
+                1 spørgsmål
+              "other": >-
+                %{count} spørgsmål
+            "new": >-
+              Stil spørgsmål
+          "reviews":
+            "html":
+              "one": >-
+                1 anmeldelse
+              "other": >-
+                %{count} anmeldelser
+            "new": >-
+              Skriv anmeldelse
+        "tabs":
+          "questions":
+            "new": >-
+              Stil spørgsmål
+            "search":
+              "label": >-
+                Søg:
+              "placeholder": >-
+                Søg efter Q&A
+            "title": >-
+              Q&A
+            "write_first": >-
+              Stil første spørgsmål om dette produkt
+          "reviews":
+            "based_on_reviews":
+              "html": >-
+                Baseret på %{reviews_count}
+            "media_gallery":
+              "images":
+                "one": >-
+                  1 foto
+                "other": >-
+                  %{count} fotos
+              "search":
+                "label": >-
+                  Søg:
+                "placeholder": >-
+                  Søg efter anmeldelser
+              "title": "Kunde\r\nmedie"
+              "videos":
+                "one": >-
+                  1 video
+                "other": >-
+                  %{count} videoer
+            "new": >-
+              Skriv anmeldelse
+            "rating": >-
+              %{rating} ud af 5 stjerner
+            "title": >-
+              Kunde anmeldelser
+            "write_first": >-
+              Vær den første til at anmelde
+          "titles":
+            "questions": >-
+              Spørgsmål & svar
+            "questions_responsive": >-
+              Q&A
+            "reviews": >-
+              Anmeldelser & bedømmelser
+            "reviews_responsive": >-
+              Anmeldelser
+      "sidebar":
+        "default_title": >-
+          Anmeldelser | Q&A
+    "with_incentive":
+      "reviews":
+        "text": >-
+          Anmelderen kan være tilbudt en belønning til at skrive denne anmeldelse
+    "write_review": >-
+      Skriv anmeldelse
+  "helpers":
+    "friendly_rating": >-
+      Ingen anmeldelser endnu
+    "label":
+      "customer":
+        "email": >-
+          Kunde email
+        "name": >-
+          Kunde navn
+      "product_group":
+        "name": >-
+          Navn
+    "placeholder":
+      "promotion":
+        "template": >-
+          Gratis forsendelse på alle ordre i Black Friday weekenden!
+    "submit":
+      "product_group":
+        "create": >-
+          Skab gruppe
+        "update": >-
+          Opdater gruppe
+      "question":
+        "create": >-
+          Stil spørgsmål
+      "review":
+        "create": >-
+          Indsend anmeldelse
+  "layouts":
+    "mailer":
+      "front":
+        "manage_subscriptions": >-
+          Organiser abonnementer.
+        "unsubscribe": >-
+          Afmeld
+  "load_more": >-
+    Indlæs mere
+  "privacy_policy": >-
+    Fortrolighedspolitik
+  "question_facebook_post_template": "[customer_name]\r\nQ: [question]\r\nA: [answer]"
+  "question_tweet_template": "[customer_name]\r\nQ: [question]\r\nA: [answer]"
+  "rating_1": >-
+    Forfærdelig
+  "rating_2": >-
+    Dårlig
+  "rating_3": >-
+    Okay
+  "rating_4": >-
+    God
+  "rating_5": >-
+    Fantastisk
+  "read_less": >-
+    Læs mindre
+  "read_more": >-
+    Fulde anmeldelse
+  "recaptcha":
+    "errors":
+      "verification_failed": >-
+        reCAPTCHA bekræftelse fejlet.
+    "label": >-
+      Hjælp os bekæmpe spam
+  "report": >-
+    Rapport
+  "review_facebook_post_template": "Tjek ud, hvad [customer_name] sagde om [product_name]:\r\n\r\n[rating]\r\n\"[feedback]\""
+  "review_tweet_template": "[customer_name]:\r\n[product_name] - [rating], \"[feedback]\""
+  "settings":
+    "default":
+      "review_slider_c2a_text": >-
+        Vis alt
+  "stars":
+    "one": >-
+      1 stjerne
+    "other": >-
+      %{count} stjerner
+  "verified":
+    "agent":
+      "description": >-
+        %{author} virker hos %{store}
+      "label": >-
+        %{store}
+    "customer":
+      "description": >-
+        %{author} har modtaget dette produkt
+      "label": >-
+        Bekræftet køber

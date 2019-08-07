@@ -1,0 +1,4 @@
+<%= render 'shared/system_messages/replace_flash' %>
+
+jQuery('[data-maintenance="front"]')
+        .replaceWith('<%= escape_javascript(render 'back/stores/maintain_front') %>');

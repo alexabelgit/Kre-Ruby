@@ -1,0 +1,43 @@
+// TODO why is this a partial? Should be just 'new' view
+
+h1 = title 'Bulk request'
+
+p
+  ' You can upload multiple offline orders with a CSV file to generate
+  ' multiple review requests with a single action. Use following
+  => link_to 'template', ENV['BULK_REQUEST_EXAMPLE']
+  ' to provide your orders. A few things to keep in mind:
+
+ul
+  li Make sure your file is in valid CSV format with UTF-8 encoding.
+
+  li
+    ' Provide products with same IDs as you see
+    => link_to 'here', back_products_path
+    | under 'Product ID' column. Separate multiple products by space.
+
+  li Leave 'scheduled_for' empty for orders you wish to request reviews for immediately
+
+  li
+    ' You can instruct HelpfulCrowd to send out reviews requests on a specific date by
+    ' filling out 'scheduled_for' column with a date information in one of following formats:
+    ul
+      li 2011/05/19
+      li 2011-05-19
+      li 2011-05-19 10:30:14 EST
+    | Other formats will not be recognized and current date will be imported instead.
+
+= form_tag(back_bulk_request_index_path, method: :post, multipart: true) do |f|
+  .hc-form__control
+    - content_for :input do
+      input {
+        type     = "file"
+        name     = "bulk_request[file]"
+        accept   = ".csv"
+        required = "true"
+        class    = "hc-upload-button__hidden-input"
+        data-hc-upload-button-input
+      }
+    = render 'helpful_components/upload_button', custom_input: yield(:input)
+
+  = render 'shared/form/submit', value: 'Upload'

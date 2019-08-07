@@ -1,0 +1,5 @@
+section.ask-question
+  h1
+    span = title t('.title', default: 'Ask a question')
+
+  = render 'front/products/questions/form', question: Question.new(product: @product), product: @product

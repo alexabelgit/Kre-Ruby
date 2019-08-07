@@ -1,0 +1,30 @@
+/ check_conditions
+/ widget*
+
+- check_conditions ||= false
+
+h3
+  = hc_icon(manual_step_icon(widget))
+  |&nbsp;
+  = raw t("back.widgets.#{widget.to_s}.subtitle")
+
+.widget-console__widget-about
+  .widget__description
+    = t("back.widgets.#{widget.to_s}.description.html")
+
+  .widget__mockup
+    = widget_mockup_image(widget)
+
+- snippets = t("back.widgets.#{widget.to_s}.embed_guide.shopify.snippet")
+
+- snippets.each do |snippet|
+  .hc-margin-bottom__md
+    p = snippet[:label].html_safe
+    = hc_code(snippet[:code], snippet[:language])
+    = snippet[:hint]
+
+  - if snippet[:example].present?
+    = render layout: 'helpful_components/collapsible/item', locals: { name: 'Example', heading: :h3 } do
+      - snippet[:example].each do |example|
+        p = example[:label].html_safe
+        = hc_code example[:code], snippet[:language]

@@ -1,0 +1,38 @@
+.user-actions
+  = link_to ENV['KNOWLEDGE_BASE_URL'] + "/help", class: 'user-action', target: '_blank' do
+    => hc_icon 'question-circle'
+    span.hide--below__md Help
+
+  - if user_signed_in?
+
+    - if current_store.present?
+      - progress = current_store.onboarding[:progress]
+
+      = link_to onboarding_back_tools_path,
+        class:  'header__onboard-progress hc-color__dark',
+        title:  "Account #{progress}% complete. Click to visit setup guide." do
+
+        => hc_icon 'sliders lg'
+        =  progress_bar progress, display_percents: true
+
+    = link_to edit_back_user_path(current_user),
+      class: 'user-action--dark' do
+
+      => hc_icon 'user-circle'
+      span.hide--below__md = current_user.first_name
+
+    = link_to destroy_user_session_path, method: 'delete', class: 'user-action--dark' do
+      => hc_icon 'sign-out'
+      span.hide--below__md Sign out
+
+    - if current_user != true_user
+      = link_to 'Back to admin', stop_impersonating_admin_users_path, method: :post
+
+  - else
+    = link_to 'Sign in',
+      new_user_session_path,
+      class: 'user-action'
+
+    = link_to 'Sign up',
+      new_user_registration_path,
+      class: 'user-action'

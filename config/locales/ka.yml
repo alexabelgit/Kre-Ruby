@@ -1,0 +1,454 @@
+---
+"ka":
+  "activerecord":
+    "errors":
+      "models":
+        "abuse_report":
+          "attributes":
+            "additional_info":
+              "blank": >-
+                უნდა იქნეს მოწოდებული, როცა მიზეზად „სხვა რამე“ არის არჩეული
+            "reason":
+              "blank": >-
+                ^უნდა აირჩიო მიზეზი
+        "product":
+          "attributes":
+            "id_from_provider":
+              "taken": >-
+                ^კოდი უნდა იყოს უნიკალური. მითითებული კოდი უკვე გამოყენებულია სხვა
+                პროდუქტისთვის.
+        "review":
+          "attributes":
+            "customer":
+              "must_be_authenticated": >-
+                ^შეფასების დასაწერად უნდა შეხვიდე სისტემაში
+            "product_ids":
+              "cannot_be_repeated": >-
+                ^ეს პროდუქტი უკვე შეფასებული გაქვს
+              "taken": >-
+                ^ეს შენაძენი უკვე შეფასებული გაქვს
+            "review_request_id":
+              "request_must_be_sent": >-
+                ^ამ წუთისთვის არ შეგიძლია ამ შენაძენის შეფასება
+            "source":
+              "cannot_be_voluntary": >-
+                ^ამ წუთისთვის არ შეგიძლია ამ შენაძენის შეფასება
+        "review_request":
+          "attributes":
+            "order_id":
+              "blank": >-
+                ვერ შეიქმნება მომხმარებლის გარეშე. გთხოვთ, შეიყვანოთ სწორი ელფოსტა.
+    "models":
+      "comment":
+        "one": >-
+          კომენტარი
+        "other": >-
+          კომენტარები
+      "customer":
+        "one": >-
+          მომხმარებელი
+        "other": >-
+          მომხმარებლები
+      "product":
+        "one": >-
+          პროდუქტი
+        "other": >-
+          პროდუქტები
+      "product_group":
+        "one": >-
+          პროდუქტის ჯგუფი
+        "other": >-
+          პროდუქტის ჯგუფები
+      "question":
+        "one": >-
+          კითხვა
+        "other": >-
+          კითხვები
+      "review":
+        "one": >-
+          შეფასება
+        "other": >-
+          შეფასებები
+      "review_request":
+        "one": >-
+          შეფასების მოთხოვნა
+        "other": >-
+          შეფასების მოთხოვნები
+  "answer":
+    "one": >-
+      პასუხი
+    "other": >-
+      პასუხები
+  "cancel": >-
+    გაუქმება
+  "counterify":
+    "characters":
+      "exceeded": >-
+        სიმბოლოების ლიმიტი ამოიწურა
+      "remaining":
+        "one": >-
+          დარჩენილია 1 სიმბოლო
+        "other": >-
+          დარჩენილია %{count} სიმბოლო
+  "default_templates":
+    "email":
+      "critical_review_followup_mail_body": "<p>გამარჯობა [customer_name],</p>\r\n<p>მადლობა
+        შეფასებისთვის.</p>\r\n<p>პატივისცემით,</p>\r\n<p>[store_name] გუნდი.</p>"
+      "critical_review_followup_mail_subject": >-
+        მადლობა შეფასებისთვის
+      "positive_review_followup_mail_body": "<p>გამარჯობა [customer_name],</p>\r\n<p>მადლობა
+        შეფასებისთვის.</p>\r\n<p>პატივისცემით,</p>\r\n<p>[store_name] გუნდი.</p>"
+      "positive_review_followup_mail_subject": >-
+        მადლობა შეფასებისთვის
+      "question_answer_mail_body": "<p>გამარჯობა [customer_name],</p>\r\n<p>შენს კითხვას
+        პროდუქტზე [product_name] უპასუხა ჩვენმა წარმომადგენელმა:</p>\r\n<p>[answer]</p>\r\n<p>შენი
+        კითხვა:</p>\r\n<p>[question]</p>\r\n<p>[product_link]</p>\r\n<p>პატივისცემით,</p>\r\n<p>[store_name]
+        გუნდი.</p>"
+      "question_answer_mail_subject": >-
+        [store_name]-ში შენს კითხვას უპასუხეს
+      "repeat_review_request_mail_body": "<p>გამარჯობა [customer_name],</p>\r\n<p>ჯერ
+        კიდევ არ არის გვიან, გვითხრა, რას ფიქრობ შენს შენაძენზე.</p>\r\n<p>დააჭირე
+        ვარსკვლავს და გაგვიზიარე გამოცდილება:</p>\r\n<p>[products]</p>\r\n<p>არ ხარ
+        კმაყოფილი? დაგვიკავშირდი, რომ დაგეხმაროთ.</p>\r\n<p>პატივისცემით,</p>\r\n<p>[store_name]
+        გუნდი.</p>"
+      "repeat_review_request_mail_subject": >-
+        შეხსენება: შეაფასე შენი შენაძენი მაღაზიაში [store_name]
+      "review_answer_mail_body": "<p>გამარჯობა [customer_name],</p>\r\n<p>შენს შეფასებას
+        პროდუქტისთვის [product_name] უპასუხა ჩვენმა წარმომადგენელმა:</p>\r\n<p>[reply]</p>\r\n<p>შენი
+        შეფასება:</p>\r\n<p>[review]</p>\r\n<p>[product_link]</p>\r\n<p>პატივისცემით,</p>\r\n<p>[store_name]
+        გუნდი.</p>"
+      "review_answer_mail_subject": >-
+        [store_name]-ში შენს შეფასებას უპასუხეს
+      "review_request_mail_body": "<p>გამარჯობა [customer_name],</p>\r\n<p>დააჭირე
+        ვარსკვლავს და გაგვიზიარე გამოცდილება შენაძენზე:</p>\r\n<p>[products]</p>\r\n<p>არ
+        ხარ კმაყოფილი? დაგვიკავშირდი, რომ შევძლოთ დახმარება.</p>\r\n<p>პატივისცემით,</p>\r\n<p>[store_name]
+        გუნდი.</p>"
+      "review_request_mail_subject": >-
+        შეაფასე შენი ახალი შენაძენი [store_name]-ში
+  "embed": >-
+    ჩასმა
+  "errors":
+    "messages":
+      "already_confirmed": >-
+        უკვე დადასტურებულია. გთხოვთ, გაიარო ავტორიზაცია
+      "confirmation_period_expired": >-
+        უნდა დადასტურდეს  %{period} განმავლობაში, გთხოვთ მოითხოვო ახალი
+      "expired": >-
+        ვადა გაუვიდა, გთხოვთ, მოითხოვო ახალი
+      "not_found": >-
+        პოვნა ვერ მოხერხდა
+      "not_locked": >-
+        არ დაიბლოკა
+      "not_saved":
+        "one": >-
+          ერთმა შეცდომამ შეაფერხა %{resource}-ის დამახსოვრება:
+        "other": >-
+          %{count} შეცდომამ შეაფერხა %{resource}-ის დამახსოვრება:
+  "flash":
+    "submitted_successfully":
+      "question": >-
+        მადლობა! ჩვენ მივიღეთ შენი კითხვა და ელფოსტით შეგატყობინებთ, როცა მას უპასუხებენ
+      "review": >-
+        მადლობა! ჩვენ მივიღეთ შენი შეფასება
+      "subscribed": >-
+        შენ წარმატებით გამოიწერე %{store}.
+      "unsubscribed": >-
+        შენ წარმატებით გააუქმე %{store}-ის გამოწერა.
+  "front":
+    "based_on_reviews_count":
+      "one": >-
+        1 შეფასება
+      "other": >-
+        %{count} შეფასება
+    "components":
+      "customer_form":
+        "email":
+          "hint": >-
+            შენი ელფოსტა არ გამოჩნდება საჯაროდ
+          "label": >-
+            შენი ელფოსტა
+        "name":
+          "hint": >-
+            შენი სახელი გამოჩნდება ინიციალებით
+          "hint_update_html": >-
+            შენი სახელი გამოჩნდება როგორც <strong>%{initials}</strong>
+          "label": >-
+            შენი სახელი
+      "privacy_notice":
+        "link_content": >-
+          კონფიდენციალურობის პოლიტიკა
+        "with_name":
+          "html": "ამ ფორმის გაგზავნით, შენ ეთანხმები, რომ შენი კონტენტი და სახელი\r\n<strong>%{name}</strong>
+            შეიძლება გამოქვეყნდეს ონლაინ ჩვენი %{link}-ის მიხედვით."
+        "without_name":
+          "html": >-
+            ამ ფორმის გაგზავნით, შენ ეთანხმები, რომ შენი კონტენტი და სახელი შეიძლება
+            გამოქვეყნდეს ონლაინ ჩვენი %{link}-ის მიხედვით.
+    "continue_shopping": >-
+      განაგრძე შოპინგი
+    "flags":
+      "new":
+        "already_flagged": >-
+          თქვენ უკვე დაასმინეთ ეს %{item}
+        "flag_as_inappropriate": >-
+          დაასმინე %{item}
+      "show":
+        "flag_submitted": >-
+          მადლობა
+    "mailer":
+      "excuses":
+        "question_answered_html": >-
+          შენ ეს შეტყობინება მიიღე %{helpfulcrowd}-ისგან, რომ მიიღო ინფორმაცია კითხვაზე,
+          რომელიც დაუსვი %{store}-ს.
+        "review_answered_html": >-
+          შენ ეს შეტყობინება მიიღე %{helpfulcrowd}-ისგან რომ მიიღო ინფორმაცია შეფასებაზე,
+          რომელიც დაუწერე %{store}-ს.
+        "review_follow_up_html": >-
+          შენ ეს შეტყობინება მიიღე %{helpfulcrowd}-ისგან შეფასებაზე, რომელიც დაუწერე
+          %{store}-ს.
+        "review_request_html": >-
+          შენ ეს შეტყობინება მიიღე %{helpfulcrowd}-ისგან შეკვეთაზე, რომელიც განახორციელე
+          %{store}-ში.
+      "helpers":
+        "call_to_action":
+          "view_product": >-
+            პროდუქტის გვერდის ნახვა
+    "products":
+      "questions":
+        "form":
+          "question_html": >-
+            რა გაინტერესებს %{product}-ის შესახებ?
+        "new":
+          "title": >-
+            კითხვის დასმა
+      "view_product": >-
+        პროდუქტის გვერდზე გადასვლა
+    "review_requests":
+      "reviews":
+        "form":
+          "rating_html": >-
+            შეაფასე %{reviewable}
+        "new":
+          "already_reviewed_html": >-
+            შენ უკვე შეაფასე %{reviewable}
+          "review_other_purchases":
+            "one": >-
+              შეაფასე შენი სხვა შენაძენი
+            "other": >-
+              შეაფასე შენი სხვა შენაძენები
+          "title": >-
+            შეაფასე შენი შენაძენი
+    "search":
+      "label": >-
+        ძებნა:
+      "placeholder": >-
+        ჩაწერე საძიებო სიტყვა
+    "share":
+      "button": >-
+        გაზიარება
+    "sort_by": >-
+      დალაგება:
+    "sort_options":
+      "most_helpful": >-
+        ყველაზე სასარგებლო
+      "most_recent": >-
+        ყველაზე ახალი
+      "rating_asc": >-
+        რეიტინგი: ყველაზე დაბალი
+      "rating_desc": >-
+        რეიტინგი: ყველაზე მაღალი
+    "suppressions":
+      "manage_subscriptions":
+        "subscribe_question_html": >-
+          გსურს, რომ HelpfulCrowd-მა ელფოსტაზე გამოგიგზავნოს შეტყობინებები %{store}-ის
+          სახელით?
+        "unsubscribe_question_html": >-
+          გსურს, რომ HelpfulCrowd-მა შეწყვიტოს ელფოსტაზე %{store}-ის სახელით შეტყობინებების
+          გამოგზავნა?
+    "votes":
+      "upvote": >-
+        სასარგებლოა
+      "upvotes_count":
+        "one": >-
+          %{count} ადამიანს მიაჩნია ეს %{item} სასარგებლოდ
+        "other": >-
+          %{count} ადამიანს მიაჩნია ეს %{item} სასარგებლოდ
+    "widgets":
+      "products":
+        "rating":
+          "qa":
+            "html":
+              "one": >-
+                1 კითხვა
+              "other": >-
+                %{count} კითხვა
+          "reviews":
+            "html":
+              "one": >-
+                1 შეფასება
+              "other": >-
+                %{count} შეფასება
+        "summary":
+          "qa":
+            "html":
+              "one": >-
+                1 კითხვა
+              "other": >-
+                %{count} კითხვა
+            "new": >-
+              დასვი კითხვა
+          "reviews":
+            "html":
+              "one": >-
+                1 შეფასება
+              "other": >-
+                %{count} შეფასება
+            "new": >-
+              დაწერე შეფასება
+        "tabs":
+          "questions":
+            "new": >-
+              კითხვის დასმა
+            "search":
+              "label": >-
+                ძებნა:
+              "placeholder": >-
+                კითხვა-პასუხის ძებნა
+            "title": >-
+              კითხვა-პასუხი
+            "write_first": >-
+              დასვი პირველი კითხვა ამ პროდუქტთან დაკავშირებით
+          "reviews":
+            "based_on_reviews":
+              "html": >-
+                %{reviews_count}-ის მიხედვით
+            "media_gallery":
+              "images":
+                "one": >-
+                  1 ფოტო
+                "other": >-
+                  %{count} ფოტო
+              "search":
+                "label": >-
+                  ძებნა:
+                "placeholder": >-
+                  შეფასებების ძებნა
+              "title": >-
+                მომხმარებლების ატვირთული
+              "videos":
+                "one": >-
+                  1 ვიდეო
+                "other": >-
+                  %{count} ვიდეო
+            "new": >-
+              შეფასების დაწერა
+            "rating": >-
+              5-დან %{rating} ვარსკვლავი
+            "title": >-
+              მომხმარებლების შეფასებები
+            "write_first": >-
+              შეაფასე ეს პროდუქტი პირველმა
+          "titles":
+            "questions": >-
+              კითხვა-პასუხი
+            "questions_responsive": >-
+              კითხვა-პასუხი
+            "reviews": >-
+              შეფასებები და რეიტინგები
+            "reviews_responsive": >-
+              შეფასებები
+      "sidebar":
+        "default_title": >-
+          შეფასებები | კითხვა-პასუხი
+    "with_incentive":
+      "reviews":
+        "text": >-
+          შესაძლოა, რომ ამ შეფასების დაწერისთვის მომხმარებელს შესთავაზეს რაიმე სარგებელი
+    "write_review": >-
+      შეფასების დაწერა
+  "helpers":
+    "friendly_rating": >-
+      ჯერ არ არის შეფასებები
+    "label":
+      "customer":
+        "email": >-
+          მომხმარებლის ელფოსტა
+        "name": >-
+          მომხმარებლის სახელი
+      "product_group":
+        "name": >-
+          სახელი
+    "placeholder":
+      "promotion":
+        "template": >-
+          შავი პარასკევის კვირის განმავლობაში, ადგილზე მიტანა უფასოა!
+    "submit":
+      "product_group":
+        "create": >-
+          ჯგუფის შექმნა
+        "update": >-
+          ჯგუფის განახლება
+      "question":
+        "create": >-
+          კითხვის დასმა
+      "review":
+        "create": >-
+          შეფასების გაგზავნა
+  "layouts":
+    "mailer":
+      "front":
+        "manage_subscriptions": >-
+          გამოწერების მართვა
+        "unsubscribe": >-
+          გამოწერის გაუქმება
+  "load_more": >-
+    მეტის ჩატვირთვა
+  "privacy_policy": >-
+    კონფიდენციალურობის პოლიტიკა
+  "question_facebook_post_template": "[customer_name]\r\nკ: [question]\r\nპ: [answer]"
+  "question_tweet_template": "[customer_name]\r\nკ: [question]\r\nპ: [answer]"
+  "rating_1": >-
+    საშინელი
+  "rating_2": >-
+    ცუდი
+  "rating_3": >-
+    ნორმალური
+  "rating_4": >-
+    კარგი
+  "rating_5": >-
+    საუკეთესო
+  "read_less": >-
+    ნაკლების ნახვა
+  "read_more": >-
+    სრული შეფასება
+  "recaptcha":
+    "errors":
+      "verification_failed": >-
+        reCAPTCHA-ს ვერიფიკაცია ვერ მოხერხდა.
+    "label": >-
+      დაგვეხმარეთ სპამთან ბრძოლაში
+  "report": >-
+    გასაჩივრება
+  "review_facebook_post_template": "იხილეთ რას ამბობს [customer_name] [product_name]-ის
+    შესახებ:\r\n\r\n[rating]\r\n\"[feedback]\""
+  "review_tweet_template": "[customer_name]:\r\n[product_name] - [rating], \"[feedback]\""
+  "settings":
+    "default":
+      "review_slider_c2a_text": >-
+        ყველას ნახვა
+  "stars":
+    "one": >-
+      1 ვარსკვლავი
+    "other": >-
+      %{count} ვარსკვლავი
+  "verified":
+    "agent":
+      "description": >-
+        %{author} მუშაობს %{store}-ში
+      "label": >-
+        %{store}
+    "customer":
+      "description": >-
+        %{author} ნამდვილად ფლობს ამ პროდუქტს
+      "label": >-
+        დადასტურებული მყიდველი

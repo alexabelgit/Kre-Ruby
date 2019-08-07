@@ -1,0 +1,38 @@
+.plan {
+  data-behavior = "plan"
+  data-plan-id  = plan.id
+  data-status   = plan.status
+  class         = "plan--#{plan.status}"
+}
+
+  - if plan.active?
+    .plan__ribbon.plan__ribbon--success = hc_icon 'check'
+
+  - if plan.renewable?
+    .plan__ribbon.plan__ribbon--warning = hc_icon 'exclamation'
+
+  - if plan.popular?
+    .plan__popularity-box Most popular
+
+  h3.plan__name = plan.name
+  .plan__price  = plan.price
+
+  ul.plan__features
+
+    - if plan.orders_quota
+      li.plan__feature
+        span = hc_icon 'check'
+        span = plan.orders_quota
+
+    - if plan.extension
+      li.plan__feature
+        span = hc_icon 'check'
+        span = plan.extension
+
+    - unless plan.negotiable?
+      li.plan__feature
+        span = hc_icon 'check'
+        span = 'All features'
+
+  .plan__c2a-wrapper data-behavior="#{plan.call_to_action_behavior}"
+    = plan.call_to_action

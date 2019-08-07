@@ -1,0 +1,7 @@
+.hc-form__control
+  .product-form__featured-image-preview
+    = form.label :featured_image, class: 'hc-form__label' do
+      | Featured image
+      span.hc-display__block = cl_image_tag product.featured_image_url(:small)
+  = render 'helpful_components/upload_button', f: form, field: :featured_image
+  = form.hidden_field :featured_image_cache

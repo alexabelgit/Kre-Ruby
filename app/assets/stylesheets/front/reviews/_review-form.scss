@@ -1,0 +1,58 @@
+.hc-review-form-wrapper {
+  @extend %background-color__white;
+  @extend %simple-card;
+  @extend %margin-bottom__md;
+}
+
+.hc-review-form__header {
+  @extend %margin-bottom__md;
+
+  .hc-review-form__product-image,
+  .hc-review-form__heading {
+    @extend %display__inline-block;
+    @extend %vertical-align__top;
+  }
+
+  .hc-review-form__heading {
+    @extend %margin-bottom__0;
+  }
+
+}
+
+.hc-review-form__product-image {
+  @extend %border__1px__solid__secondary;
+}
+
+.hc-review-form__feedback {
+  @extend %margin-bottom__md;
+}
+
+.hc-review-form__feedback-label {
+  @extend %display__block;
+}
+
+.hc-review-form__feedback-input {
+  @extend %display__block;
+  @extend %full-width;
+  @extend %min-height__5em;
+}
+
+.hc-review-form__feedback-hint {
+  @extend %color__pale;
+
+  &.warning {
+    @extend %color__warning;
+  }
+
+  &.error {
+    @extend %color__danger;
+  }
+
+}
+
+.hc-review-form__submit,
+// element+class is needed for overriding Ecwid styles
+input.hc-review-form__submit {
+  @extend .hc-primary-button;
+  @extend %white-space__nowrap;
+}

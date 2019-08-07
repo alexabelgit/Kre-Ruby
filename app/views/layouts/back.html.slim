@@ -1,0 +1,21 @@
+= content_for :head
+  = javascript_include_tag "modernizr"
+  = action_cable_meta_tag
+  = display_meta_tags site: 'HelpfulCrowd', reverse: true
+  = javascript_include_tag 'https://js.chargebee.com/v2/chargebee.js', 'data-turbolinks-track' => 'reload'
+  = render 'layouts/google_analytics'
+
+= content_for :body
+  = render partial: 'layouts/back/announcement', collection: @announcements if @announcements.present?
+
+  = render 'layouts/back/header'
+  = render 'layouts/back/nav'
+  = yield :sub_nav
+
+  main.main class=yield(:main_class)
+    = render 'shared/system_messages/flash'
+    = yield
+
+  = render 'layouts/back/footer'
+
+= render template: 'layouts/base', locals: { stylesheet: 'back', javascript: 'back', custom_fonts: true }

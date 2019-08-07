@@ -1,0 +1,22 @@
+.hc-product-tab-filters.hide--below__sm
+  .hc-product-tab-filters__item
+    = form_tag(front_product_questions_url(store_id: product.store.hashid, product_id: product.hashid, format: :js),
+               remote: true, method: :get, class: 'hc-product-tab-filters__search-form', data: { role: 'search-form' }) do
+
+      / label> for="hc-questions__search-input"
+      /   = t 'label', scope: 'front.search'
+
+      .hc-product-tab-filters__search.js-reset-search
+        i= hc_icon 'hc-search md'
+        input.hc-product-tab-filters__search-input id="hc-questions__search-input" type="text" name="term" value=questions.search_term placeholder=t('placeholder', scope: 'front.widgets.products.tabs.questions.search')
+        = link_to hc_icon('times-circle md justified'),
+          front_product_questions_url(store_id: product.store.hashid, product_id: product.hashid, format: :js),
+          remote: true, class: 'hc-product-tab-filters__search-reset js-reset-search-button'
+
+  - if questions.total_entries < product.questions_count
+    p.hc-product-tab-filters__results
+      ' Showing #{questions.total_entries} of #{product.questions_count}.
+
+      = link_to 'View all',
+                front_product_questions_url(store_id: product.store.hashid, product_id: product.hashid, format: :js),
+                remote: true

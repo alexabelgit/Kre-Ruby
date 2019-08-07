@@ -1,0 +1,44 @@
+input[type="date"],
+input[type="email"],
+input[type="number"],
+input[type="password"],
+input[type="search"],
+input[type="text"],
+input[type="url"],
+textarea,
+select {
+  @extend %background-color__#{$input__background-color};
+  @extend %border-color__#{$input__border-color};
+  @extend %border-radius__#{$input__border-radius};
+  @extend %border-style__#{$input__border-style};
+  @extend %border-width__#{$input__border-width};
+  @extend %padding__#{$input__padding};
+  @extend %line-height__inherit;
+  @extend %font-size__inherit;
+  @extend %font-family__inherit;
+}
+
+textarea {
+  @extend %resize__#{$textarea__resize};
+}
+
+select, input {
+  @extend %max-width__100pct;
+}
+
+select {
+  @extend %height__2em;
+}
+
+input[type="search"] {
+  @extend %width__100pct;
+  -webkit-appearance: textfield;
+}
+
+input[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+button {
+  @extend %font-family__inherit;
+}

@@ -1,0 +1,27 @@
+= content_for :recipient
+  = @presenter.user_name
+
+p == "Your HelpfulCrowd subscription has been updated. Starting <strong>#{@presenter.starting_at}</strong>,
+      you will be billed according to your new subscription:"
+
+table.subscription
+  tbody.subscription__plan
+    tr
+      td Plan:
+      td = @presenter.plan_name
+    tr
+      td Fee:
+      td = @presenter.plan_price
+  - if @presenter.products_based_billing?
+    tr
+      td Terms:
+      td = @presenter.in_plan_products
+  - else
+    tr
+      td In-plan orders:
+      td = @presenter.in_plan_orders
+    tr
+      td Out-of-plan orders:
+      td = @presenter.overage_terms
+
+= render 'back_mailer/shared/contact_us_and_thank_you', hide_thank_you: true, contact_who: 'billing'

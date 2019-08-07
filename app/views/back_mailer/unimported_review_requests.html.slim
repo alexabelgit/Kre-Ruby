@@ -1,0 +1,17 @@
+= content_for :recipient
+  = @user.first_name
+
+p
+  ' You recently uploaded a CSV file to HelpfulCrowd to import your review requests.
+  => @unimported_count
+  ' from
+  => @imported_count
+  | items could not be imported. You will find those on the #{link_to 'downloads page', downloads_back_tools_url}.
+p
+  ' You can correct the data and upload this file once again from
+  =< link_to 'bulk request page', back_bulk_request_index_url
+  |. On the same page you can check out our guidelines on importing CSV files to make sure your data satisfies all requirements.
+p
+  ' Other items from the original file that you don't see in this attachment are ready for you to
+  =<> link_to 'preview', back_imported_review_requests_url
+  | and import.

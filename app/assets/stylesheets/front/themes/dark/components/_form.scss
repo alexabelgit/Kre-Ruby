@@ -1,0 +1,17 @@
+input[type="date"],
+input[type="email"],
+input[type="number"],
+input[type="password"],
+input[type="search"],
+input[type="text"],
+input[type="url"],
+textarea,
+select {
+  @extend %background-color__darker;
+  @extend %color__light;
+  @extend %border-color__dark;
+}
+
+.hc-secondary-button {
+	@extend %color__dark;
+}

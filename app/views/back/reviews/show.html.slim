@@ -1,0 +1,4 @@
+- content_for :main_class, 'boxed'
+= render 'sub_nav'
+- social_connections = current_store.social_connections
+= render 'back/reviews/show', review: @review, social_connections: social_connections

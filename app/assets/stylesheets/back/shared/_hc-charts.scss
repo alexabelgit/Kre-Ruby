@@ -1,0 +1,26 @@
+.hc-chart {
+
+}
+
+.hc-donut.has-inside {
+  @extend %position__relative;
+}
+
+.hc-donut__inside {
+  @extend %position__absolute;
+  @extend %text-align__center;
+  @extend %width__100pct;
+  // Top position for .hc-donut__inside when donut has legend at the top
+  @extend %top__45pct;
+  top: calc(50% - 0.5rem);
+}
+
+// Top position for .hc-donut__inside when donut has no legend
+.hc-donut.has-inside.has-no-legend {
+
+  .hc-donut__inside {
+    @extend %top__42pt5pct;
+    top: calc(50% - 1.5rem);
+  }
+
+}

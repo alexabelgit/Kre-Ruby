@@ -1,0 +1,14 @@
+= content_for :head
+  = display_meta_tags site: @store.name, reverse: true
+  = javascript_include_tag '//connect.facebook.net/en_US/all.js'
+  = render 'layouts/google_analytics'
+
+= content_for :body
+
+  main.main
+    = yield
+
+  footer.footer
+    = render 'front/components/hc_powered_by'
+
+= render template: 'layouts/base', locals: { stylesheet: 'integrations/facebook', javascript: 'integrations/facebook' }

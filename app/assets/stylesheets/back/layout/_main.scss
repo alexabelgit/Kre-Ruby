@@ -1,0 +1,8 @@
+.main {
+  @extend %padding__md;
+  @extend %position__relative;
+
+  &.boxed {
+    @extend %boxed-layout;
+  }
+}

@@ -1,0 +1,11 @@
+- content_for :main_class, 'boxed'
+- render 'layouts/back/sub_navs/settings'
+
+h1 = title 'Billing'
+
+= render 'shared/system_messages/custom',
+  body:  "We are currently in the process of changing payment gateway providers. \
+          The great news is that all add-ons will be <strong>free</strong> until it is finalised. \
+          <br><br> \
+          We will be in touch before we launch the new billing system and let you \
+          know how much time is left on your current free trial."

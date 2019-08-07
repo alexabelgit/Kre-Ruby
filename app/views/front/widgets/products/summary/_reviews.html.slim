@@ -1,0 +1,48 @@
+/ product*
+/ store*
+/ links*
+/ link_role
+
+- link_role ||= 'scroll_to'
+- show_detailed_text ||= false
+
+- if link_role == 'scroll_to'
+  - hc_scroll_to   = true
+  - target         = nil
+  - turbolinks     = false
+  - new_review_url = '#hc-reviews-tab'
+  - reviews_url    = '#hc-reviews-tab'
+  - hc_scroll_target = '#hc-product-tabs'
+- elsif link_role == 'go_to'
+  - hc_scroll_to   = nil
+  - target         = '_blank'
+  - turbolinks     = nil
+  - new_review_url = new_front_product_review_path(store, product)
+  - reviews_url    = front_product_url(store, product)
+  - hc_scroll_target = nil
+
+- link_to_new_review = link_to(new_review_url, data: { hc_scroll_to: hc_scroll_to, hc_scroll_target: hc_scroll_target, turbolinks: turbolinks }, target: target) { t 'reviews.new', scope: 'front.widgets.products.summary', default: 'Write review' }
+- if show_detailed_text
+  - reviews_count_text = t 'reviews.html',count: product.reviews_count, scope: 'front.widgets.products.summary'
+- else
+  - reviews_count_text = t 'based_on_reviews_count',count: product.reviews_count, scope: 'front'
+
+- if links
+  - if product.has_reviews?
+    = link_to reviews_url,
+      data:   { hc_scroll_to: hc_scroll_to,
+                turbolinks:   turbolinks,
+                hc_scroll_target: hc_scroll_target },
+      target: target,
+      class:  'hc-product-summary__review-count' do
+
+      = reviews_count_text
+
+  - elsif storefront_reviews?
+    = link_to_new_review
+
+  - else
+    = friendly_rating product.rating
+
+- else
+  = product.has_reviews? ? reviews_count_text : friendly_rating(product.rating)

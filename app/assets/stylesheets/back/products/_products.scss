@@ -1,0 +1,77 @@
+.products{
+  @extend %flexbox;
+}
+
+.product__info {
+  @include flexbox(
+    $align-items: center,
+    $flex-wrap: nowrap
+  );
+  @extend %max-width__400px;
+  @extend %min-width__250px;
+}
+
+.product__image-wrapper {
+  @extend %margin-right__md;
+}
+
+.product__image {
+  @extend %object-fit__cover;
+  @extend %vertical-align__middle;
+  @extend %width__50px;
+  @extend %height__50px;
+  @extend %font-size__sm;
+  @extend %border__base;
+}
+
+.product__name-n-id {
+  flex-wrap: wrap;
+  @extend %display__inline-block;
+}
+
+.product__name {
+}
+
+.product__id {
+  @extend %color__pale;
+}
+
+.products__paging {
+  @extend %paging;
+}
+
+.products__filters{
+  @extend %flex__0__1__auto;
+  @extend %width__15rem;
+  .products__filter {
+    &:not(:last-of-type) {
+      @extend %margin-bottom__md;
+    }
+
+    label {
+      @extend %display__block;
+    }
+
+    select {
+      @extend %width__100pct;
+    }
+  }
+}
+
+.products__list {
+  @extend %padding-left__md;
+  @extend %flex__1__1__auto;
+  @extend %width__100pct;
+  .table__actions{
+    a:not(:last-child){
+      @extend %margin-right__2xs;
+    }
+  }
+}
+
+@media #{$below__md} {
+  .product__info {
+    flex-wrap: wrap;
+    max-width: 100%;
+  }
+}

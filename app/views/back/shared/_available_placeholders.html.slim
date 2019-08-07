@@ -1,0 +1,20 @@
+/ placeholders*
+
+- if placeholders.present?
+
+  - placeholders.flatten!
+  - placeholders.uniq!
+
+  .hc-well data-role="available-placeholders"
+    label.hc-form__label.margin-sm Available variables <span class="hc-hint">(click to copy)</span>
+    .template__placeholders-list
+      = placeholders.map{ |placeholder| "<span class='notranslate js-copy-to-clipboard' translate='no'>[#{ placeholder.to_s }]</span>" }.split(", ").join(", ").html_safe
+
+      .hc-tooltip.hc-tooltip__absolute-bottom-left
+        .hc-tooltip__content
+          span copied
+
+    / - options = placeholders.map do |placeholder|
+      - ["[#{placeholder}]", placeholder, {class: "js-copy-to-clipboard", data: {'copy-to-clipboard-content': "[#{placeholder}]", 'copy-to-clipboard-success': "#{ hc_icon 'check' } Copied [#{placeholder}]"} }]
+
+    / = select_tag "variables", options_for_select(options), class: "js-copy-to-clipboard hc-form__input"

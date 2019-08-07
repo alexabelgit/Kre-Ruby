@@ -1,0 +1,451 @@
+---
+"id":
+  "activerecord":
+    "errors":
+      "models":
+        "abuse_report":
+          "attributes":
+            "additional_info":
+              "blank": >-
+                harus diberikan apabila 'yang lain' dipilih sebagai alasan
+            "reason":
+              "blank": >-
+                ^Anda harus memilih suatu alasan
+        "product":
+          "attributes":
+            "id_from_provider":
+              "taken": >-
+                ^ID harus unik. Yang Anda masukkan telah dipakai untuk produk lain.
+        "review":
+          "attributes":
+            "customer":
+              "must_be_authenticated": >-
+                ^Anda harus masuk sebelum menulis ulasan
+            "product_ids":
+              "cannot_be_repeated": >-
+                ^Anda telah mengulas produk ini
+              "taken": >-
+                ^Anda telah mengulas pembelian ini
+            "review_request_id":
+              "request_must_be_sent": >-
+                ^Anda tidak dapat mengulas pembelian ini pada saat ini
+            "source":
+              "cannot_be_voluntary": >-
+                ^Anda tidak dapat mengulas pembelian ini pada saat ini
+        "review_request":
+          "attributes":
+            "order_id":
+              "blank": >-
+                tidak dapat dibuat jika bukan pelanggan yang sesuai. Mohon berikan
+                alamat email yang benar.
+    "models":
+      "comment":
+        "one": >-
+          komentar
+        "other": >-
+          komentar
+      "customer":
+        "one": >-
+          pelanggan
+        "other": >-
+          pelanggan
+      "product":
+        "one": >-
+          produk
+        "other": >-
+          produk
+      "product_group":
+        "one": >-
+          grup produk
+        "other": >-
+          grup produk
+      "question":
+        "one": >-
+          pertanyaan
+        "other": >-
+          pertanyaan
+      "review":
+        "one": >-
+          ulasan
+        "other": >-
+          ulasan
+      "review_request":
+        "one": >-
+          permohonan ulasan
+        "other": >-
+          permohonan ulasan
+  "answer":
+    "one": >-
+      jawaban
+    "other": >-
+      jawaban
+  "cancel": >-
+    Batal
+  "counterify":
+    "characters":
+      "exceeded": >-
+        Batas karakter terlampaui
+      "remaining":
+        "one": >-
+          1 karakter tersisa
+        "other": >-
+          %{count} karakter tersisa
+  "default_templates":
+    "email":
+      "critical_review_followup_mail_body": "<p>Halo [customer_name],</p>\r\n<p>Terima
+        kasih atas ulasan Anda. </p>\r\n<p>Tim di [store_name].</p>"
+      "critical_review_followup_mail_subject": >-
+        Terima kasih atas ulasan Anda
+      "positive_review_followup_mail_body": "<p>Halo [customer_name],</p>\r\n<p>Terima
+        kasih atas ulasan Anda</p>\r\n<p>Tim di [store_name].</p>"
+      "positive_review_followup_mail_subject": >-
+        Terima kasih atas ulasan Anda
+      "question_answer_mail_body": "<p>Halo [customer_name],</p>\r\n<p>Pertanyaan
+        Anda mengenai [product_name] telah dijawab oleh perwakilan kami:</p>\r\n<p>[answer]</p>\r\n<p>Pertanyaan
+        Anda:</p>\r\n<p>[question]</p>\r\n<p>[product_link]</p>\r\n<p>Tim di [store_name].</p>"
+      "question_answer_mail_subject": >-
+        Pertanyaan Anda di [store_name] telah dijawab
+      "repeat_review_request_mail_body": "<p>Halo [customer_name],</p>\r\n<p>Belum
+        terlambat untuk memberitahu kami pendapat Anda tentang order Anda barusan.</p>\r\n<p>Klik
+        di bintang untuk menilai pengalaman Anda sejauh ini:</p>\r\n<p>[products]</p>\r\n<p>Tidak
+        puas? Mohon hubungi kami agar kami dapat membantu.</p>\r\n<p>Tim di [store_name].</p>"
+      "repeat_review_request_mail_subject": >-
+        Mengingatkan Anda untuk mengulas order Anda baru-baru ini di [store_name]
+      "review_answer_mail_body": "<p>Halo [customer_name],</p>\r\n<p>Ulasan Anda untuk
+        [product_name] telah dijawab oleh perwakilan kami:</p>\r\n<p>[reply]</p>\r\n<p>Ulasan
+        Anda:</p>\r\n<p>[review]</p>\r\n<p>[product_link]</p>\r\n<p>Tim di [store_name].</p>"
+      "review_answer_mail_subject": >-
+        Ulasan Anda di [store_name] telah dijawab
+      "review_request_mail_body": "<p>Halo [customer_name],</p>\r\n<p>Klik di bintang
+        untuk menilai pengalaman Anda sejauh ini:</p>\r\n<p>[products]</p>\r\n<p>Tidak
+        puas? Mohon hubungi kami agar kami dapat membantu.</p>\r\n<p>Tim di [store_name].</p>"
+      "review_request_mail_subject": >-
+        Mohon mengulas order Anda baru-baru ini di [store_name]
+  "embed": >-
+    Menyimpan
+  "errors":
+    "messages":
+      "already_confirmed": >-
+        sudah dikonfirmasi, mohon coba masuk kembali
+      "confirmation_period_expired": >-
+        harus dikonfirmasi dalam %{period}, mohon minta verifikasi yang baru
+      "expired": >-
+        telah kedaluwarsa, mohon minta verifikasi yang baru
+      "not_found": >-
+        tidak ditemukan
+      "not_locked": >-
+        tidak dikunci
+      "not_saved":
+        "one": >-
+          1 kesalahan mencegah %{resource} ini untuk tersimpan:
+        "other": >-
+          %{count} kesalahan mencegah %{resource} ini untuk tersimpan:
+  "flash":
+    "submitted_successfully":
+      "question": >-
+        Terima kasih! Kami telah menerima pertanyaan Anda dan kami akan memberitahu
+        lewat email saat kami telah menjawab
+      "review": >-
+        Terima kasih! Kami telah menerima ulasan Anda
+      "subscribed": >-
+        Anda telah berhasil menjadi pelanggan di %{store}.
+      "unsubscribed": >-
+        Anda telah berhasil berhenti berlangganan di %{store}.
+  "front":
+    "based_on_reviews_count":
+      "one": >-
+        1 ulasan
+      "other": >-
+        %{count} ulasan
+    "components":
+      "customer_form":
+        "email":
+          "hint": >-
+            Email Anda tidak akan dibagikan ke publik
+          "label": >-
+            Email Anda
+        "name":
+          "hint": >-
+            Nama Anda akan muncul sebagai inisial
+          "hint_update_html": >-
+            Nama Anda akan muncul sebagai <strong>%{initials}</strong>
+          "label": >-
+            Nama Anda
+      "privacy_notice":
+        "link_content": >-
+          kebijakan privasi
+        "with_name":
+          "html": "Dengan meyerahkan formulir ini, Anda menyetujui bahwa konten dan
+            nama Anda\r\n<strong>%{name}</strong> dapat diterbitkan secara online
+            sesuai dengan\r\n%{link} kami."
+        "without_name":
+          "html": >-
+            Dengan menyerahkan formulir ini, Anda menyetujui bahwa konten dan nama
+            Anda dapat diterbitkan secara online sesuai dengan %{link} kami.
+    "continue_shopping": >-
+      Lanjut belanja
+    "flags":
+      "new":
+        "already_flagged": >-
+          Anda telah menandai %{item} ini
+        "flag_as_inappropriate": >-
+          Tandai %{item} ini sebagai tidak pantas
+      "show":
+        "flag_submitted": >-
+          Terima kasih
+    "mailer":
+      "excuses":
+        "question_answered_html": >-
+          Anda telah menerima email dari %{helpfulcrowd} untuk memberi Anda update
+          tentang pertanyaan Anda ke %{store}.
+        "review_answered_html": >-
+          Anda telah menerima email dari %{helpfulcrowd} untuk memberi Anda update
+          tentang ulasan Anda untuk %{store}.
+        "review_follow_up_html": >-
+          Anda telah menerima email dari %{helpfulcrowd} sebagai tanggapan atas ulasan
+          Anda baru-baru ini di %{store}.
+        "review_request_html": >-
+          Anda telah menerima email dari %{helpfulcrowd} sebagai tanggapan atas ulasan
+          Anda baru-baru ini di %{store}.
+      "helpers":
+        "call_to_action":
+          "view_product": >-
+            Kunjungi halaman produk
+    "products":
+      "questions":
+        "form":
+          "question_html": >-
+            Apa yang Anda ingin ketahui mengenai %{product}?
+        "new":
+          "title": >-
+            Bertanya
+      "view_product": >-
+        Ke halaman produk
+    "review_requests":
+      "reviews":
+        "form":
+          "rating_html": >-
+            Beri penilaian pengalaman Anda dengan %{reviewable}
+        "new":
+          "already_reviewed_html": >-
+            Anda telah menilai %{reviewable}
+          "review_other_purchases":
+            "one": >-
+              Beri ulasan pembelian Anda yang lain
+            "other": >-
+              Beri ulasan pembelian-pembelian Anda yang lain
+          "title": >-
+            Beri ulasan pembelian Anda
+    "search":
+      "label": >-
+        Cari:
+      "placeholder": >-
+        Masukkan kata kunci
+    "share":
+      "button": >-
+        Bagikan
+    "sort_by": >-
+      Sortir sesuai:
+    "sort_options":
+      "most_helpful": >-
+        Paling membantu
+      "most_recent": >-
+        Paling baru
+      "rating_asc": >-
+        Peringkat: paling rendah
+      "rating_desc": >-
+        Peringkat: paling tinggi
+    "suppressions":
+      "manage_subscriptions":
+        "subscribe_question_html": >-
+          Apakah Anda hendak mengizinkan HelpfulCrowd untuk mengirim Anda email atas
+          nama %{store}?
+        "unsubscribe_question_html": >-
+          Apakah Anda hendak menghentikan HelpfulCrowd mengirimkan Anda email atas
+          nama %{store}?
+    "votes":
+      "upvote": >-
+        Membantu
+      "upvotes_count":
+        "one": >-
+          %{count} orang mendapati %{item} ini membantu
+        "other": >-
+          %{count} orang mendapati %{item} ini membantu
+    "widgets":
+      "products":
+        "rating":
+          "qa":
+            "html":
+              "one": >-
+                1 pertanyaan
+              "other": >-
+                %{count} pertanyaan
+          "reviews":
+            "html":
+              "one": >-
+                1 ulasan
+              "other": >-
+                %{count} ulasan
+        "summary":
+          "qa":
+            "html":
+              "one": >-
+                1 petanyaan
+              "other": >-
+                %{count} pertanyaan
+            "new": >-
+              Silakan bertanya
+          "reviews":
+            "html":
+              "one": >-
+                1 ulasan
+              "other": >-
+                %{count} ulasan
+            "new": >-
+              Tulis ulasan
+        "tabs":
+          "questions":
+            "new": >-
+              Bertanya
+            "search":
+              "label": >-
+                Cari:
+              "placeholder": >-
+                Cari Q&A
+            "title": >-
+              Q&A
+            "write_first": >-
+              Pertanyaan pertama tentang produk ini
+          "reviews":
+            "based_on_reviews":
+              "html": >-
+                Berdasarkan %{reviews_count}
+            "media_gallery":
+              "images":
+                "one": >-
+                  1 foto
+                "other": >-
+                  %{count} foto
+              "search":
+                "label": >-
+                  Cari:
+                "placeholder": >-
+                  Cari ulasan
+              "title": "Pelanggan\r\nmedia"
+              "videos":
+                "one": >-
+                  1 video
+                "other": >-
+                  %{count} video
+            "new": >-
+              Tulis ulasan
+            "rating": >-
+              %{rating} dari 5 bintang
+            "title": >-
+              Ulasan pelanggan
+            "write_first": >-
+              Jadilah orang pertama yang mengulas produk ini
+          "titles":
+            "questions": >-
+              Tanya & Jawab
+            "questions_responsive": >-
+              Q&A
+            "reviews": >-
+              Ulasan & Penilaian
+            "reviews_responsive": >-
+              Ulasan
+      "sidebar":
+        "default_title": >-
+          Ulasan | Q&A
+    "with_incentive":
+      "reviews":
+        "text": >-
+          Pengulas mungkin telah ditawarkan insentif untuk menulis ulasan ini
+    "write_review": >-
+      Tulis ulasan
+  "helpers":
+    "friendly_rating": >-
+      Belum ada ulasan
+    "label":
+      "customer":
+        "email": >-
+          Email pelanggan
+        "name": >-
+          Nama pelanggan
+      "product_group":
+        "name": >-
+          Nama
+    "placeholder":
+      "promotion":
+        "template": >-
+          Pengiriman gratis untuk semua order selama pekan Black Friday!
+    "submit":
+      "product_group":
+        "create": >-
+          Membuat grup
+        "update": >-
+          Update grup
+      "question":
+        "create": >-
+          Bertanya
+      "review":
+        "create": >-
+          Masukkan ulasan
+  "layouts":
+    "mailer":
+      "front":
+        "manage_subscriptions": >-
+          Mengatur langganan
+        "unsubscribe": >-
+          Berhenti berlangganan
+  "load_more": >-
+    Muat berikutnya
+  "privacy_policy": >-
+    Kebijakan privasi
+  "question_facebook_post_template": "[customer_name]\r\nQ: [question]\r\nA: [answer]"
+  "question_tweet_template": "[customer_name]\r\nQ: [question]\r\nA: [answer]"
+  "rating_1": >-
+    Buruk sekali
+  "rating_2": >-
+    Buruk
+  "rating_3": >-
+    Oke
+  "rating_4": >-
+    Baik
+  "rating_5": >-
+    Sangat baik
+  "read_less": >-
+    Kurangi bacaan
+  "read_more": >-
+    Ulasan penuh
+  "recaptcha":
+    "errors":
+      "verification_failed": >-
+        Verifikasi reCAPTCHA gagal.
+    "label": >-
+      Bantu kami melawan spam
+  "report": >-
+    Lapor
+  "review_facebook_post_template": "Lihat apa yang [customer_name] katakan mengenai
+    [product_name]:\r\n\r\n[rating]\r\n\"[feedback]\""
+  "review_tweet_template": "[customer_name]:\r\n[product_name] - [rating], \"[feedback]\""
+  "settings":
+    "default":
+      "review_slider_c2a_text": >-
+        Tunjukkan semua
+  "stars":
+    "one": >-
+      1 bintang
+    "other": >-
+      %{count} bintang
+  "verified":
+    "agent":
+      "description": >-
+        %{author} bekerja di %{store}
+      "label": >-
+        %{store}
+    "customer":
+      "description": >-
+        %{author} telah membeli produk ini
+      "label": >-
+        Verifikasi  pembeli

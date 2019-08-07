@@ -1,0 +1,9 @@
+/ store*
+/ monthly_charge
+/
+/  monthly_charge ||= false
+/  plan             = store.plan
+/
+/ .plan class="#{ plan }"
+/    "$#{ store.monthly_charge } - " if monthly_charge
+/    plan.humanize

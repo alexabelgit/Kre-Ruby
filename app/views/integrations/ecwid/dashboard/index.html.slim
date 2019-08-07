@@ -1,0 +1,20 @@
+.ecwid-g-r
+  section.ecwid-u-1-2.hc-column
+    h2 Pending reviews
+
+    - if @reviews.any?
+      - @reviews.each do |review|
+        = render 'integrations/ecwid/reviews/show', review: review
+
+    - else
+      = render 'integrations/ecwid/shared/alert', type: 'info', message: 'No pending reviews.'
+
+  section.ecwid-u-1-2.hc-column
+    h2 Unanswered questions
+
+    - if @questions.any?
+      - @questions.each do |question|
+        = render 'integrations/ecwid/questions/show', question: question
+
+    - else
+      = render 'integrations/ecwid/shared/alert', type: 'info',  message: 'No unanswered questions.'

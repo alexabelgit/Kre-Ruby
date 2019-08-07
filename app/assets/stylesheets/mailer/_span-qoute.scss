@@ -1,0 +1,9 @@
+.span-qoute {
+  @extend %background-color__light;
+  @extend %color__dark--lightened;
+  @extend %display__block;
+  @extend %padding__xs--px;
+  @extend %white-space__pre-line;
+  @extend %word-break__break-word;
+  @extend %word-wrap__break-word;
+}

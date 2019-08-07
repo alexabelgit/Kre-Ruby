@@ -1,0 +1,47 @@
+/ onboarding_step*
+
+- onboarding_step_details = render               'back/tools/onboarding_step_details',
+                            title:               onboarding_step[:title],
+                            description:         onboarding_step[:description],
+                            description_complete: onboarding_step[:description_complete],
+                            status:              onboarding_step[:status],
+                            snippet:             onboarding_step[:snippet]
+
+article.onboarding-step
+  .onboarding-step__status
+    - case onboarding_step[:status]
+
+    - when :processing
+      = hc_icon 'hc-spinner spin xl success'
+
+    - when :warning
+      = hc_icon 'exclamation-circle xl warning'
+
+    - when :complete
+      = hc_icon 'check-circle xl success',
+        title:  'You have already completed this step'
+
+    - when :incomplete
+      - if onboarding_step[:completable]
+        = link_to back_tools_path(type: :onboarding, redirect_to: onboarding_back_tools_path, settings: { onboarding_step[:type] => true }),
+          remote: true,
+          method: :put,
+          title:  'Mark this step as completed',
+          class:  'onboarding-step__to-completed' do
+
+          .onboarding-step__to-completed-icon class="onboarding-step__to-completed-icon--incomplete"
+            = hc_icon 'circle-thin xl'
+          .onboarding-step__to-completed-icon class="onboarding-step__to-completed-icon--complete"
+            = hc_icon 'check-circle-o xl'
+          span.hide-unless-screen-reader Mark this step as completed
+
+      - else
+        = hc_icon 'circle-thin xl secondary',
+          title:  'Please open corresponding page to complete this step'
+
+  .onboarding-step__details
+    - if onboarding_step[:target]
+      = link_to onboarding_step[:target], class: 'onboarding-step__link' do
+        = onboarding_step_details
+    - else
+      = onboarding_step_details

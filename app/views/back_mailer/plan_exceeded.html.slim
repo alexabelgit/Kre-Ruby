@@ -1,0 +1,17 @@
+= content_for :recipient
+  = @presenter.user_name
+
+- if @presenter.products_based_billing?
+  p = "Your store now has more products than your plan covers. Reviews for out-of-plan products are temporarily disabled. \
+      Upgrade to a higher plan to activate reviews for all your products"
+- else
+  - if @presenter.plan_extensible?
+    p = "You have exceeded your allowance of in-plan orders and you are now being \
+         charged for out-of-plan orders. Consider upgrading to a higher value plan."
+  - else
+    p = "You have exceeded your allowance of in-plan orders. You need to upgrade \
+         to a higher value plan to continue using HelpfulCrowd."
+
+= call_to_action 'Upgrade plan', billing_back_settings_url
+
+= render 'back_mailer/shared/contact_us_and_thank_you', hide_thank_you: true, contact_who: 'billing'

@@ -1,0 +1,21 @@
+/ store*
+/ product*
+/ text*
+/ icon
+
+- icon ||= false
+
+- if store.product_tabs_open_forms_in_new_tab?
+  = link_to new_front_product_question_url(store, product),
+    data:   { turbolinks: nil },
+    target: '_blank' do
+    => hc_icon 'hc-bubble-question justified md' if icon
+    = text
+
+- else
+  = link_to 'javascript:void(0);',
+    data:   { role:   'question-form-toggle',
+              action: 'show',
+              "toggle-with-form": true } do
+    => hc_icon 'hc-bubble-question justified md' if icon
+    = text

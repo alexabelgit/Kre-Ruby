@@ -1,0 +1,8 @@
+/ postable*
+/ social_connections*
+
+.social-actions
+  ' Post on:
+  
+  - social_connections.each do |social_connection|
+    = render 'back/shared/social_action', postable: postable, social_connection: social_connection

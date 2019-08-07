@@ -1,0 +1,25 @@
+.admin-form
+  = form_for [ :admin, addon ], as: :addon do |f|
+    = render 'shared/form/errors', resource: addon
+
+    .admin-form__control-group
+      = f.label :name, class: 'admin-form__label'
+      = f.text_field :name, required: true, class: 'admin-form__input'
+
+    .admin-form__control-group
+      = f.label :description, class: 'admin-form__label'
+      = f.text_field :description, class: 'admin-form__input'
+
+    .admin-form__control-group
+      = f.label "Shopify price ($)", class: 'admin-form__label'
+      = text_field_tag "addon[prices[shopify]]", addon.shopify_price || 0, class: 'admin-form__input'
+
+    .admin-form__control-group
+      = f.label "Ecwid price ($)", class: 'admin-form__label'
+      = text_field_tag "addon[prices[ecwid]]", addon.ecwid_price || 0, class: 'admin-form__input'
+
+    .admin-form__control-group
+      = f.label "State", class: 'admin-form__label'
+      = f.select :state, Addon.aasm.states_for_select
+
+    = f.submit 'Save', class: 'admin-form__submit'

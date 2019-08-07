@@ -1,0 +1,5 @@
+a.btn-primary {
+  &:hover {
+    @extend %color__white;
+  }
+}

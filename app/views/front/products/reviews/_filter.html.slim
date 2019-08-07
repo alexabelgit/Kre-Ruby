@@ -1,0 +1,40 @@
+.hc-product-tab-filters.hide--below__sm
+  .hc-product-tab-filters__item
+    = form_tag(front_product_reviews_url(store_id: product.store.hashid, product_id: product.hashid, format: :js),
+               remote: true, method: :get, class: 'hc-product-tab-filters__search-form', data: { role: 'search-form' }) do
+
+      / label> for="hc-reviews__search-input"
+      /   = t 'label', scope: 'front.search'
+
+      .hc-product-tab-filters__search.js-reset-search
+        i= hc_icon 'hc-search md'
+        input.hc-product-tab-filters__search-input id="hc-reviews__search-input" type="text" name="term" value=reviews.search_term placeholder=t('front.widgets.products.tabs.reviews.search.placeholder')
+        = link_to hc_icon('times-circle md justified'),
+          front_product_reviews_url(store_id: product.store.hashid, product_id: product.hashid, format: :js),
+          remote: true, class: 'hc-product-tab-filters__search-reset js-reset-search-button'
+
+  .hc-product-tab-filters__item.hc-product-tab-filters__sort
+    label> for="reviews-list__sort"
+      = t('front.sort_by', default: 'Sort by')
+
+    select.hc-product-tab-filters__list-sort data-hc="sort" id="reviews-list__sort" data-product-id=product.hashid data-store-id=product.store.hashid
+      option[value="latest" selected=('selected' if reviews.sort_mode == :latest)]
+        = t 'most_recent', scope: 'front.sort_options'
+
+      option[value="most_helpful" selected=('selected' if reviews.sort_mode == :most_helpful)]
+        = t 'most_helpful', scope: 'front.sort_options'
+
+      option[value="best" disabled=('disabled' if reviews.filter_value[:rating].present?) selected=('selected' if reviews.sort_mode == :best)]
+        = t 'rating_desc', scope: 'front.sort_options'
+
+      option[value="worst" disabled=('disabled' if reviews.filter_value[:rating].present?) selected=('selected' if reviews.sort_mode == :worst)]
+        = t 'rating_asc', scope: 'front.sort_options'
+
+
+- if reviews.total_entries < product.reviews_count
+  p.hc-product-tab-filters__results
+    ' Showing #{reviews.total_entries} of #{product.reviews_count}.
+
+    = link_to 'View all',
+      front_product_reviews_url(store_id: product.store.hashid, product_id: product.hashid, format: :js),
+      remote: true

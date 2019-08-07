@@ -1,0 +1,8 @@
+/ store
+
+- store ||= current_store
+
+= render  'shared/system_messages/custom',
+  type:   'error',
+  body:   'We could not import any items, please check your email for more details',
+  role:   'imported-products'

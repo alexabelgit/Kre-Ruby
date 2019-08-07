@@ -1,0 +1,13 @@
+.trial {
+  @extend .hc-card;
+  @extend %margin-bottom__xl;
+}
+
+.trial__header {
+  @extend %margin-bottom__md;
+}
+
+.trial__title {
+  @extend %margin-bottom__xs;
+  @extend %margin-right__2xs;
+}

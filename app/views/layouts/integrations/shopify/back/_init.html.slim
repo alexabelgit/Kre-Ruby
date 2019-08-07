@@ -1,0 +1,47 @@
+/ title*
+/ init_options
+
+- init_options       ||= 'init_options: null'
+- show_setup_guide     = @store.shopify_storefront_is_set_up? ? false : true
+- setup_guide_button   = "{ label: 'Setup guide', href: '#{setup_guide_integrations_shopify_onboarding_path(shopify_store_domain: @shopify_store_domain)}', target: 'app' },".html_safe
+
+javascript:
+  ShopifyApp.ready(function(){
+    ShopifyApp.Bar.initialize({
+      icon:  '#{ ENV['APP_ICON'] }',
+      title: '#{ title }',
+      buttons: {
+        primary: {
+          label:  "Open main app",
+          href:   "#{ root_url }",
+          target: "new"
+        },
+        secondary: [
+          #{ setup_guide_button if show_setup_guide }
+          {
+            label: "More",
+            type:  "dropdown",
+            links: [
+              {
+                label:  "Settings",
+                href:   "#{integrations_shopify_settings_path(shopify_store_domain: @shopify_store_domain)}",
+                target: "app"
+              },
+              {
+                label:  "Review the app",
+                href:   "https://apps.shopify.com/helpfulcrowd?#modal-show=ReviewListingModal",
+                target: "new"
+              },
+              {
+                label:  "Need help?",
+                href:   "http://www.guides.helpfulcrowd.com",
+                target: "new"
+              }
+            ]
+          },
+        ]
+      },
+      #{ init_options }
+    });
+    ShopifyApp.Bar.loadingOff()
+  });

@@ -1,0 +1,7 @@
+@mixin linear-gradient($color, $direction: to bottom) {
+  background: linear-gradient(
+    $direction,
+    darken($color,  $color-darken-percentage),
+    lighten($color, $color-darken-percentage)
+  );
+}

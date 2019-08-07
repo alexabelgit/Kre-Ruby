@@ -1,0 +1,133 @@
+- content_for :main_class, 'boxed'
+= render 'sub_nav'
+
+h1 = title 'Feature usasge'
+
+
+section.dashboard__section
+  h2 Social Push
+
+  - data         = @social_posts.group(:provider).count
+  - slice_colors = { "facebook" => color(:facebook), "twitter" => color(:twitter) }
+  - colors       = []
+  - data.each do |slice, _|
+    - colors << slice_colors[slice]
+  .hc-row
+    section.dashboard__sub-section.hc-card.hc-col.hc-1-2
+      h3 Distribution
+
+      .hc-donut.has-inside
+        .hc-donut__inside
+          | Total<br>#{ @social_posts.count }
+
+        = pie_chart data,
+          donut:    true,
+          colors:   colors
+
+    section.dashboatd__sub-section.hc-card.hc-col.hc-1-2
+      h3 Number of stores
+      - data      = [ [ 'With social posts',    @stores.with_social_posts.count ],
+                      [ 'Without social posts', @stores.without_social_posts.count] ]
+
+      = pie_chart data
+
+  .hc-row
+    section.dashboard__sub-section.hc-card.hc-col
+      h3 Dynamics (last 8 weeks)
+
+      = line_chart [ { name: 'Facebook', data: @social_posts.facebook.group_by_week(:created_at, last: 8).count, color: color(:facebook) },
+                     { name: 'Twitter',  data: @social_posts.twitter.group_by_week(:created_at, last: 8).count,  color: color(:twitter) } ]
+
+section.dashboard__section
+  h2 Product groups
+
+  .hc-row.hc-margin-bottom__md
+    = info_with_label(@product_groups.count, 'Total number of groups', html_class: 'flex__1-vs-3')
+    = info_with_label('coming soon..',       'Products in groups',     html_class: 'flex__1-vs-3')
+
+
+  .hc-row
+    section.dashboard__sub-section.hc-card.hc-col.hc-1-2
+      h3 Number of stores
+      - data      = [ [ 'with groups',    @stores.with_product_groups.count ],
+                      [ 'without groups', @stores.without_product_groups.count ] ]
+
+      = pie_chart data
+
+section.dashboard__section
+  h2 Media reviews
+
+  .hc-row
+    section.dashboard__sub-section.hc-card.hc-col.hc-1-2
+      h3 Distribution
+
+      .hc-donut.has-inside
+        .hc-donut__inside
+          | Total<br>#{ @media.count }
+
+        - data = @media.group(:media_type).count
+
+        = pie_chart data,
+          donut:    true
+
+    section.dashboard__sub-section.hc-card.hc-col.hc-1-2
+      h3 Number of stores
+      - data      = [ [ 'with media reviews',    @stores.with_media_reviews.count ],
+                      [ 'without media reviews', @stores.count - @stores.with_media_reviews.count ] ]
+
+      = pie_chart data
+
+  .hc-row
+    section.dashboard__sub-section.hc-card.hc-col
+      h3 Dynamics (last 8 weeks)
+
+      = line_chart [ { name: 'Image', data: @media.image.group_by_week(:created_at, last: 8).count },
+                     { name: 'Video', data: @media.video.group_by_week(:created_at, last: 8).count } ]
+
+section.dashboard__section
+  h2 Votes and Flags
+
+  .hc-row
+    section.dashboard__sub-section.hc-card.hc-col.hc-1-2
+      h3 Votes distribution
+
+      .hc-donut.has-inside
+        .hc-donut__inside
+          | Total<br>#{ @votes.count }
+
+        - data = @votes.group(:votable_type).count
+
+        = pie_chart data,
+          donut:    true
+
+    section.dashboard__sub-section.hc-card.hc-col.hc-1-2
+      h3 Flags distribution
+
+      .hc-donut.has-inside
+        .hc-donut__inside
+          | Total<br>#{ @flags.count }
+
+        - data = @flags.group(:flaggable_type).count
+
+        = pie_chart data,
+          donut:    true
+
+section.dashboard__section
+  h2 ContentGuard
+
+  .hc-row
+    section.dashboard__sub-section.hc-card.hc-col.hc-1-2
+      h3 Distribution
+
+      .hc-donut.has-inside
+        .hc-donut__inside
+          | Total<br>#{ @abuse_reports.count }
+
+        - data = @abuse_reports.group(:abusable_type).count
+
+        = pie_chart data,
+          donut:    true
+
+    section.dashboard__sub-section.hc-card.hc-col.hc-1-2
+      h3 Sources
+      = pie_chart @abuse_reports.group(:source).count

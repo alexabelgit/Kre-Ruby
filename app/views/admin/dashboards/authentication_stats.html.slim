@@ -1,0 +1,48 @@
+- content_for :main_class, 'boxed'
+= render 'sub_nav'
+
+h1 = title 'Authentication Statistics'
+
+section.dashboard__section
+  h2 Authentications
+  
+  .hc-row
+    section.dashboard__sub-section.hc-card.hc-col.hc-1-2
+      h3 Sign ups
+      
+      .hc-donut.has-inside
+        .hc-donut__inside
+          | Total<br>#{ @sign_ups.count }
+          
+        - referrers = @sign_ups.map{|s| s.properties['referrer']}.uniq
+        - data      = referrers.map { |referrer| [referrer, @sign_ups.where_properties(referrer: referrer).count] }
+
+        = pie_chart data,
+          donut:    true
+              
+    section.dashboard__sub-section.hc-card.hc-col.hc-1-2
+      h3 Sign ins
+      
+      .hc-donut.has-inside
+        .hc-donut__inside
+          | Total<br>#{ @sign_ins.count }
+          
+        - referrers = @sign_ins.map{|s| s.properties['referrer']}.uniq
+        - data      = referrers.map { |referrer| [referrer, @sign_ins.where_properties(referrer: referrer).count] }
+
+        = pie_chart data,
+          donut:    true                
+    
+    section.dashboard__sub-section.hc-card.hc-col.hc-1-2
+      h3 Connects
+      
+      .hc-donut.has-inside
+        .hc-donut__inside
+          | Total<br>#{ @connects.count }
+      
+        - referrers = @connects.map{|s| s.properties['referrer']}.uniq
+        - data      = referrers.map { |referrer| [referrer, @connects.where_properties(referrer: referrer).count] }
+        
+        = pie_chart data,
+          donut:    true
+    

@@ -1,0 +1,132 @@
+.hc-dropdown {
+  @extend %position__relative;
+}
+
+.hc-dropdown__trigger {
+  @extend %cursor__pointer;
+
+  &:focus {
+    @extend %outline__none;
+  }
+}
+
+.hc-dropdown__content {
+  @extend %background-color__lighter;
+  @extend %border__base;
+  @extend %display__none;
+  @extend %position__absolute;
+  @extend %min-width__10em;
+  @extend %max-width__20em;
+  @extend %z-index__1;
+
+  @extend %bottom__auto;
+  @extend %left__0;
+  @extend %right__auto;
+  @extend %top__1pt5em;
+
+  @extend %box-shadow__base;
+}
+
+// TODO implement this for no-js cases
+// .hc-dropdown__trigger:active + .hc-dropdown__content,
+// .hc-dropdown__trigger:focus  + .hc-dropdown__content,
+// .hc-dropdown__content:hover {
+//   @extend %display__block;
+// }
+
+.hc-dropdown__item {
+  @extend %background-color__lighter;
+  @extend %color__inherit;
+
+  &:hover, &:focus {
+    @extend %background-color__light;
+  }
+
+  > a {
+    @extend %text-decoration__never;
+  }
+
+  > * {
+    @extend %background-color__inherit;
+    @extend %color__inherit;
+    @extend %display__block;
+    @extend %padding-x__md;
+    @extend %padding-y__xs;
+    @extend %overflow__hidden;
+    @extend %text-overflow__ellipsis;
+    @extend %transition__background;
+    @extend %white-space__nowrap;
+    @extend %width__100pct;
+  }
+}
+
+// Modifiers
+
+.hc-dropdown {
+  &.hc-dropdown--active {
+    .hc-dropdown__content {
+      @extend %display__block;
+    }
+  }
+}
+
+.hc-dropdown__trigger {
+  &.hc-dropdown__trigger--selectize {
+    @extend %background-color__#{$input__background-color};
+    @extend %border-color__#{$input__border-color};
+    @extend %border-radius__#{$input__border-radius};
+    @extend %border-style__#{$input__border-style};
+    @extend %border-width__#{$input__border-width};
+    @extend %padding__#{$input__padding};
+  }
+}
+
+.hc-dropdown__content {
+  &.hc-dropdown__content--north-east {
+    @extend %bottom__1pt5em;
+    @extend %left__auto;
+    @extend %right__0;
+    @extend %top__auto;
+  }
+
+  &.hc-dropdown__content--north-west {
+    @extend %bottom__1pt5em;
+    @extend %left__0;
+    @extend %right__auto;
+    @extend %top__auto;
+  }
+
+  &.hc-dropdown__content--south-east {
+    @extend %bottom__auto;
+    @extend %left__auto;
+    @extend %right__0;
+    @extend %top__1pt5em;
+  }
+
+  &.hc-dropdown__content--south-west {
+    @extend %bottom__auto;
+    @extend %left__0;
+    @extend %right__auto;
+    @extend %top__1pt5em;
+  }
+
+  &.hc-dropdown__content--selectize {
+    @extend %top__2em;
+
+    &.hc-dropdown__content--north-east {
+      @extend %bottom__2em;
+    }
+
+    &.hc-dropdown__content--north-west {
+      @extend %bottom__2em;
+    }
+
+    &.hc-dropdown__content--south-east {
+      @extend %top__2em;
+    }
+
+    &.hc-dropdown__content--south-west {
+      @extend %top__2em;
+    }
+  }
+}

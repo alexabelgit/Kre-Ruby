@@ -1,0 +1,14 @@
+= content_for :recipient
+  = @question.store.user.first_name
+
+.pending
+  p
+    | You have received a new 
+    =<> link_to 'question', back_question_url(@question)
+    | about
+    strong =< @question.product.name
+    | :
+
+  = render 'question', question: @question
+
+= call_to_action('Go to question', back_question_url(@question))

@@ -1,0 +1,347 @@
+.previewer {
+  @extend %margin-x__auto;
+
+  &.previewer--facebook {
+    border-color: #e5e6e9 #dfe0e4 #d0d1d5;
+    color:        #1d2129;
+    font-family:  sans-serif;
+
+    @extend %border__1px__solid;
+    @extend %border-radius__4px;
+    @extend %font-size__14px;
+    @extend %max-width__500px;
+    @extend %padding__12px;
+
+    .previewer__preview {
+    }
+
+    .previewer__header {
+      @extend %margin-bottom__12px;
+    }
+
+    .previewer__avatar {
+      @extend %float__left;
+      @extend %margin-right__8px;
+
+      img {
+        border: 1px solid rgba(0, 0, 0, .1);
+
+        @extend %height__40px;
+        @extend %object-fit__cover;
+        @extend %width__40px;
+      }
+    }
+
+    .previewer__page {
+      color: #365899;
+
+      @extend %font-weight__bold;
+      @extend %vertical-align__top;
+    }
+
+    .previewer__date {
+      color: #90949c;
+    }
+
+    .previewer__text {
+      @extend %line-height__1;
+      @extend %white-space__pre-line;
+      @extend %word-break__break-word;
+      @extend %word-wrap__break-word;
+    }
+
+    .previewer__thumb {
+      border-color: #e9ebee #e9ebee #d1d1d1;
+
+      @extend %border__1px__solid;
+      @extend %margin-top__10px;
+
+      img {
+        border-bottom: 1px solid rgba(0, 0, 0, .1);
+
+        @extend %display__block;
+        @extend %height__240px;
+        @extend %object-fit__cover;
+        @extend %width__100pct;
+      }
+    }
+
+    .previewer__thumb-content {
+      @include margin-x(12px);
+      @include margin-y(10px);
+    }
+
+    .previewer__thumb-heading {
+      @extend %font-size__18px;
+      @extend %font-weight__500;
+      @extend %margin-bottom__5px;
+    }
+
+    .previewer__thumb-text {
+      @extend %font-size__12px;
+    }
+
+    .previewer__thumb-url {
+      color: #90949c;
+
+      @extend %font-size__11px;
+      @extend %line-height__1;
+      @extend %margin-top__8px;
+      @extend %text-transform__uppercase;
+    }
+
+    .previewer__actions {
+      border-color: #e5e5e5;
+
+      @extend %border-top__1px__solid;
+      @extend %margin-bottom__-8px;
+      @extend %margin-top__12px;
+      @extend %padding-top__8px;
+    }
+  }
+
+  &.previewer--twitter {
+    border-color: #e1e8ed;
+    color:        #1c2022;
+    font-family:  sans-serif;
+
+    @extend %border__1px__solid;
+    @extend %border-radius__5px;
+    @extend %font-size__16px;
+    @extend %line-height__1pt4;
+    @extend %max-width__500px;
+    @extend %padding-x__20px;
+    @extend %padding-top__20px;
+    @extend %padding-bottom__5px;
+
+    .previewer__preview {
+    }
+
+    .previewer__header {
+      @extend %margin-bottom__12px;
+    }
+
+    .previewer__store-name {
+      color: #1c2022;
+
+      @extend %font-weight__700;
+    }
+
+    .previewer__twitter-handle,
+    .previewer__date {
+      color: #697882;
+
+      @extend %font-size__14px;
+    }
+
+    .previewer__avatar {
+      @extend %float__left;
+      @extend %margin-right__8px;
+
+      img {
+        border: 1px solid rgba(0, 0, 0, .1);
+
+        @extend %border-radius__50pct;
+        @extend %height__36px;
+        @extend %object-fit__cover;
+        @extend %width__36px;
+      }
+    }
+
+    .previewer__text {
+      @extend %line-height__1;
+      @extend %white-space__pre-line;
+      @extend %word-break__break-word;
+      @extend %word-wrap__break-word;
+    }
+
+    .previewer__thumb {
+      border-color: #e1e8ed;
+
+      @extend %display__flex;
+      @extend %border__1px__solid;
+      @extend %border-radius__6px;
+      @extend %min-height__126px;
+      @extend %margin-bottom__10px;
+      @extend %margin-top__10px;
+    }
+
+    .previewer__thumb-image {
+      border-right: 1px solid rgba(0, 0, 0, .1);
+
+      @extend %background-size__cover;
+      @extend %background-position__center__center;
+      @extend %border-bottom-left-radius__6px;
+      @extend %border-top-left-radius__6px;
+      @extend %width__124px;
+    }
+
+    .previewer__thumb-content {
+      @extend %flex__1;
+      @extend %padding__10px;
+      @extend %font-size__14px;
+    }
+
+    .previewer__thumb-heading {
+      @extend %font-weight__bold;
+      @extend %margin-bottom__5px;
+    }
+
+    .previewer__thumb-text {
+      @extend %margin-bottom__5px;
+    }
+
+    .previewer__thumb-url {
+      color: #8899a6;
+    }
+
+    .previewer__actions {
+      @extend %margin-top__8px;
+    }
+  }
+
+  &.previewer--email {
+    a {
+      @extend %text-decoration__never;
+    }
+
+    .previewer__meta {
+      @extend %display__table;
+      @extend %width__100pct;
+      @extend %margin-bottom__sm;
+    }
+
+    .previewer__subject,
+    .previewer__from {
+      @extend %display__table-row;
+
+      > span {
+        @extend %display__table-cell;
+        @extend %padding-right__xs;
+
+        &:nth-child(2) {
+          @extend %width__100pct;
+        }
+      }
+    }
+
+    .previewer__preview {
+      @extend %background-color__light;
+      @extend %padding__md;
+    }
+
+    .previewer__logo {
+      @extend %padding-bottom__lg;
+      @extend %padding-top__md;
+      @extend %text-align__center;
+
+      img {
+        @extend %color__dark;
+        @extend %font-size__1pt5rem;
+      }
+    }
+
+    .previewer__help {
+      @extend %padding-top__xs;
+      @extend %text-align__right;
+      a {
+        @extend %border-radius__100px;
+        @extend %background-color__transparent;
+        @extend %color__primary;
+        padding: 5px 12px;
+        border: 1px solid $color-primary;
+      }
+    }
+
+    .previewer__text {
+      @extend .hc-card;
+      @extend %max-width__600px;
+      @extend %margin-x__auto;
+      @extend %white-space__pre-line;
+      @extend %word-break__break-word;
+      @extend %word-wrap__break-word;
+    }
+
+    .previewer__purchased-products {
+      @extend %max-width__400px;
+      @extend %margin-x__auto;
+      @extend %margin-y__md; // NOTE this is only in previewer, not in real email styles. But Gmail adds some extra spacing to our emails so this maring is to emulate that
+      @extend %white-space__normal;
+    }
+
+    .previewer__purchased-product {
+      @extend .hc-card;
+      @extend %text-align__center;
+    }
+
+    .previewer__purchased-product-image {
+      @extend %margin-y__md;
+      @extend %display__block;
+
+      img {
+        @extend %border__base;
+      }
+    }
+
+    .previewer__purchased-product-name {
+      @extend %font-size__1pt5rem;
+    }
+
+    .previewer__purchased-product-stars {
+      @extend %margin-y__md;
+      @extend %display__flex;
+    }
+
+    .previewer__purchased-product-star {
+      @extend %flex__1;
+      @extend %color__dark;
+
+      div:first-child {
+        @extend %font-size__2pt5rem;
+        @extend %line-height__1;
+        @extend %color__brand-2;
+      }
+
+      div:last-child {
+        @extend %font-size__80pct;
+      }
+    }
+
+    .previewer__quote {
+      @extend %background-color__light;
+      @extend %padding__xs;
+    }
+
+    .previewer__c2a {
+      @extend %text-align__center;
+      @extend %margin-y__xl;
+      span {
+        @extend .hc-primary-button;
+      }
+    }
+
+    .previewer__footer {
+      @extend %max-width__480px;
+      @extend %margin-x__auto;
+      @extend %padding__md--rem;
+      @extend %text-align__center;
+      @extend %font-size__87pt5pct;
+    }
+
+    .previewer__excuse {
+      @extend %color__dark--lightened;
+    }
+
+  }
+
+  &.previewer--promotion {
+
+    .previewer__text {
+      @extend %line-height__1;
+      @extend %white-space__pre-line;
+      @extend %word-break__break-word;
+      @extend %word-wrap__break-word;
+    }
+  }
+
+}

@@ -1,0 +1,132 @@
+article.review data-model="review" data-id=review.hashid
+  header.review__header
+    div
+      => stars_based_on(review.rating)
+      - if review.product.present?
+        = link_to back_product_path(review.product),
+          class: 'review__product' do
+
+          =  review.get_highlights(:product_name, review.product.name)
+          =< stamp_product_if_archived_or_hidden(review.product)
+
+    div
+      span.review__author>
+        => author_of_(review)
+      ' |
+      = humane_date(review.review_date)
+
+  .review__body
+    p.review__feedback = review.get_highlights(:feedback)
+
+  .review__mail-to-author
+    = mail_to  review.customer.email,
+      subject: "Re: Review for #{ review.reviewable.name }",
+      body:    "Dear #{ review.customer.name }, thank you for reviewing our product #{ review.reviewable.name }.\n\nThis a copy of your review:\n\n#{ review.feedback }\n\nWe hope you will find the following information helpful:\n\n\n\nLink to product page: #{ review.reviewable.url }",
+      title:   'Email customer' do
+
+      => email_icon(review.customer)
+      =  review.get_highlights(:customer_email, review.customer.email)
+      
+    - if review.review_request.present? && review.review_request.review_request_coupon_codes.any?
+      - rrcc = review.review_request.review_request_coupon_codes
+      - title = "Coupon#{rrcc.count > 1 ? 's' : ''} sent to customer in one or more emails:\n"
+      - rrcc.each do | rr_cc |
+        - title += "#{rr_cc.coupon_code.discount_coupon.name} (code: #{rr_cc.coupon_code.code})\n"
+      =< hc_icon 'hc-coupon', title: title
+
+  - if review.media.any?
+    .review__media
+
+      .hc-media data-lightgallery="true"
+        - review.media.with_cloudinary_id.each do |medium|
+          = render 'back/reviews/media/show', review: review, medium: medium      
+
+  .review-comments
+    - if review.comment.present?
+      = render       'back/comments/show',
+        comment:     review.comment,
+        commentable: review
+
+    - else
+      = render 'back/comments/form', comment: Comment.new(commentable: review)
+
+  footer.review-footer
+    .review-actions
+
+      .rqa-statuses
+        .rqa-status class="rqa-status--#{review.status}"
+          => rqa_status_icon review.status
+          =  review.status.capitalize
+
+        - unless review.published?
+          => link_to back_review_path(review, review: { status: :published }),
+             method: :put,
+             remote: true,
+             data:   { disable_with: "#{ spinner_icon } Publishing" },
+             class:  'rqa-statuses__publish' do
+
+            => hc_icon 'globe'
+            |  Publish
+
+        - unless review.archived?
+          = link_to back_review_path(review, review: { status: :archived }),
+            method: :put,
+            remote: true,
+            data:   { confirm:      review.social_posts.any? ? 'This review has associated social posts. If you archive it, those posts will be deleted from corresponding social channels. Proceed?' : nil,
+                      disable_with: "#{ spinner_icon } Archiving" },
+            class:  'rqa-statuses__archive' do
+
+            => hc_icon 'archive'
+            =  'Archive'
+
+      - social_connections ||= review.store.social_connections
+      = render 'back/shared/social_actions', postable: review, social_connections: social_connections if review.published?
+      
+      .incentivized
+        => 'Mark as incentivized:'
+        - if review.with_incentive?
+          = link_to back_review_path(review, review: { with_incentive: false }),
+            method: :put,
+            remote: true,
+            data:   { confirm: 'Do you want to remove incentivized flag from this review?',
+                      disable_with: "#{ spinner_icon }" },
+            class:  '' do
+            = hc_icon 'hc-incentivised justified', title: 'Click to remove incentivized flag', class: 'incentivized-icon--true'
+        - else
+          = link_to back_review_path(review, review: { with_incentive: true }),
+            method: :put,
+            remote: true,
+            data:   { confirm: 'Do you want to mark this review as incentivized?',
+                      disable_with: "#{ spinner_icon }" },
+            class:  '' do
+            = hc_icon 'hc-incentivised justified', title: 'Click to flag review as incentivised', class: 'incentivized-icon--false'
+        
+    .review-thumbs-and-flags
+
+      - review.votes_count.positive?
+        .review-thumbs
+          => hc_icon 'thumbs-up'
+          =  review.votes_count
+
+      - review.flags.any?
+        .review-flags
+          => hc_icon 'flag'
+          =  review.flags.count
+
+      .hc-display__inline-block
+        = render 'helpful_components/dropdown', position: 'north-east' do
+          .hc-dropdown__item
+            - if review.product.present?
+              = link_to front_product_review_url(review.store, review.product, review, redirect: true),
+                target: '_blank',
+                class:  'js-copy-to-clipboard',
+                data:   { copy_to_clipboard_content: "href",
+                          copy_to_clipboard_success: "#{ hc_icon 'check' } Copied" } do
+
+                => hc_icon 'share'
+                =  'Copy shareable link'
+
+          .hc-dropdown__item
+            = link_to new_back_abuse_report_path(id: review.id, type: review.class.name) do
+              => hc_icon 'flag'
+              =  'Report as inappropriate'

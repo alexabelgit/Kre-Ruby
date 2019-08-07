@@ -1,0 +1,8 @@
+.hc-well {
+  @extend %padding__md;
+  @extend %background-color__light;
+}
+
+.hc-well + .hc-well {
+  margin-top: -15px;
+}

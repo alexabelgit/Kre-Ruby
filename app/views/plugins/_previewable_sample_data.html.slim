@@ -1,0 +1,18 @@
+/ data* - { key: value }
+- require 'json'
+
+- sample_data = ''
+- iterator    = 0
+
+- sample_data += '{'
+
+- data.each do |k, v|
+  / - sample_data += '{' if iterator == 0 
+  - sample_data += %Q( "#{ k.to_s }" : #{ JSON.generate v, quirks_mode: true })
+  - sample_data += (iterator == data.length - 1 ? '' : ',')
+  - iterator    += 1
+  
+- sample_data += '}'
+
+script data-previewable="sample_data" type="application/json"
+  == sample_data

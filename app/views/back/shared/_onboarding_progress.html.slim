@@ -1,0 +1,20 @@
+/ onboarding*
+/ heading
+/ clickable
+
+- heading   ||= 'h2'
+- clickable ||= false
+
+.onboarding-progress
+  = content_tag(heading, class: "#{ 'hc-color__success' if current_store.onboarded? }")
+    => hc_icon 'check-circle lg' if current_store.onboarded?
+    | Set up your HelpfulCrowd account
+
+  - if clickable
+    span id="setup-guide-link"
+      = link_to 'Go to setup guide', onboarding_back_tools_path
+
+  p id="steps-completed"
+    ' #{ onboarding[:steps_completed]} out of #{onboarding[:steps_total] } steps completed
+
+  = progress_bar onboarding[:progress]

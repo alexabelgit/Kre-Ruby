@@ -1,0 +1,41 @@
+// TODO we have more stuff than actions in this file. Maybe find a better class name?
+
+.user-actions {
+  @include flexbox(
+    $align-items: center
+  );
+}
+
+%user-action {
+  @extend %margin-left__xs;
+
+  &:not(:last-of-type) {
+    @extend %margin-right__xs;
+  }
+}
+
+.user-action {
+  @extend %user-action;
+}
+
+// TODO this naming...
+.header__onboard-progress {
+  @extend %user-action;
+
+  @extend %width__5rem;
+  @extend %display__flex;
+
+  &:hover {
+    @extend %text-decoration__none;
+  }
+
+  > .hc-icon {
+    @extend %margin-right__2xs--rem;
+  }
+}
+
+.user-action--dark {
+  @extend %user-action;
+
+  @extend %color__dark;
+}

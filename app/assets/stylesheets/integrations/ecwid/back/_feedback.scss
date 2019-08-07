@@ -1,0 +1,5 @@
+.feedback {
+  @extend %white-space__pre-line;
+  @extend %word-break__break-word;
+  @extend %word-wrap__break-word;
+}

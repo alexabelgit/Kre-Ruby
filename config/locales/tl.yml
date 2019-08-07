@@ -1,0 +1,153 @@
+---
+"tl":
+  "activerecord":
+    "errors":
+      "models":
+        "abuse_report":
+          "attributes":
+            "additional_info":
+              "blank": >-
+                kailangang ibigay kung 'ibang bagay' ay pinili bilang dahilan
+            "reason":
+              "blank": >-
+                ^Kailangan mong pumili ng dahilan
+        "product":
+          "attributes":
+            "id_from_provider":
+              "taken": >-
+                ^Ang ID ay kailangang natatangi.Ang iyong pinasok ay nagamit na sa
+                ibang produkto.
+        "review":
+          "attributes":
+            "customer":
+              "must_be_authenticated": >-
+                ^Kailangan mong mag sign in para sumulat ng pagrerepaso
+            "product_ids":
+              "cannot_be_repeated": >-
+                ^Narepaso mo na ang produktong ito
+              "taken": >-
+                ^Narepaso mo na ang repasong ito
+            "review_request_id":
+              "request_must_be_sent": >-
+                ^Hindi mo kailangang repasuhin ang pagbiling ito sa sandaling ito
+            "source":
+              "cannot_be_voluntary": >-
+                ^Hindi mo maaaring suriin ang pagbiling  ito sa sandaling ito
+        "review_request":
+          "attributes":
+            "order_id":
+              "blank": >-
+                hindi maaaring buuin nang hindi sumasagot sa parokyano. Pakibigay
+                ang isang tamang email address
+    "models":
+      "comment":
+        "one": >-
+          puna
+        "other": >-
+          mga puna
+      "customer":
+        "one": >-
+          parokyano
+        "other": >-
+          mga parokyano
+      "product":
+        "one": >-
+          produkto
+        "other": >-
+          mga produkto
+      "product_group":
+        "one": >-
+          grupo ng produkto
+        "other": >-
+          mga grupo ng produkto
+      "question":
+        "one": >-
+          tanong
+        "other": >-
+          mga tanong
+      "review":
+        "one": >-
+          pagsusuri
+        "other": >-
+          mga pagsusuri
+      "review_request":
+        "one": >-
+          hiling ng pagsusuri
+        "other": >-
+          mga hiling ng pagsusuri
+  "answer":
+    "one": >-
+      sagot
+    "other": >-
+      mga sagot
+  "cancel": >-
+    I-cancel
+  "counterify":
+    "characters":
+      "exceeded": >-
+        Lumabis sa itinakdang bilang ng titik
+      "remaining":
+        "one": >-
+          1 natitirang karakter
+        "other": >-
+          %{count} natitirang mga karakter
+  "default_templates":
+    "email":
+      "critical_review_followup_mail_body": "Kumusta [customer_name],\r\n\r\nSalamat
+        sa iyong pagsusuri.\r\n\r\nKopon sa [store_name]"
+      "critical_review_followup_mail_subject": >-
+        Salamat sa iyong pagsusuri
+      "positive_review_followup_mail_body": "Kumusta [customer_name],\r\n\r\nSalamat
+        sa iyong pagsusuri.\r\n\r\nKopon sa [store_name]"
+      "positive_review_followup_mail_subject": >-
+        Salamat sa iyong pagsusuri.
+      "question_answer_mail_body": "Kumusta [customer_name],\r\n\r\nAng iyong tanong
+        sa  [product_name] ay sinagot ng aming kinatawan:\r\n[answer]\r\n\r\nAng iyong
+        tanong:\r\n[question]\r\n[product_link]\r\n\r\nKopon sa[store_name]"
+      "question_answer_mail_subject": >-
+        Ang iyong tanong sa [store_name] ay sinagot
+      "repeat_review_request_mail_body": "Kumusta [customer_name],\r\n\r\nHindi pa
+        hui para sabihin sa amin kung ano ang tingin mo sa iyong huling order.\r\n\r\nMag-click
+        sa isang bituin para i-rate ang iyong karanasan sa :\r\n\r\n[products]\r\n\r\nHindi
+        masaya? Paki-contact kami muna para makatulong kami.\r\n\r\nKoponan sa  [store_name]"
+      "repeat_review_request_mail_subject": >-
+        Paalala para suriin ang iyong huling order sa  [store_name]
+      "review_answer_mail_body": "Kumusta [customer_name],\r\n\r\nAng iyong pagsusuri
+        sa  [product_name] ay sinagot ng aming kinatawan:\r\n[reply]\r\n\r\nAng iyong
+        pagsusuri:\r\n[review]\r\n[product_link]\r\n\r\nKoponan sa [store_name]"
+      "review_answer_mail_subject": >-
+        Ang iyong pagsusuri sa  [store_name] ay sinagot
+      "review_request_mail_body": "Kumusta [customer_name],\r\n\r\nHindi pa hui para
+        sabihin sa amin kung ano ang tingin mo sa iyong huling order.\r\n\r\nMag-click
+        sa isang bituin para i-rate ang iyong karanasan sa :\r\n\r\n[products]\r\n\r\nHindi
+        masaya? Paki-contact kami muna para makatulong kami.\r\n\r\nKoponan sa  [store_name]"
+      "review_request_mail_subject": >-
+        Suriin ang iyong huling order sa [store_name]
+  "embed": >-
+    I-embed
+  "errors":
+    "messages":
+      "already_confirmed": >-
+        ay natiyak na
+      "confirmation_period_expired": >-
+        kailangang makumpirma sa loob ng %{period}, pakihiling ang isang bago
+      "expired": >-
+        ay lumipas na, humingi nang panibago
+      "not_found": >-
+        hindi natagpuan
+      "not_locked": >-
+        ay hindi nakakandado
+      "not_saved":
+        "one": >-
+          1 ang error ay pinigilan itong %{resource} mula sa pagiging saved :
+        "other": >-
+          %{count} ang mga error ay pinigilan itong %{resource} mula sa pagiging saved:
+  "flash":
+    "submitted_successfully":
+      "question": >-
+        Salamat! Natanggap namin ang iyong tanong at ipapaalam namin sa iyo sa pamamagitan
+        ng email sa oras na ito ay sinagot
+      "review": >-
+        Salamat!Natanggap namin ang iyong pagsusuri
+      "subscribed": >-
+        Ikaw ay matagumpay na nagsubscribe sa %{store}.

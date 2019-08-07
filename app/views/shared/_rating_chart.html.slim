@@ -1,0 +1,23 @@
+/ locals:
+/ - reviews*
+/ - product
+/ - status
+
+/ TODO because of bar links this is not ready for using in front. Need to find a clean way or maybe create some helpers to do the job?
+
+- product ||= nil
+- status ||= :published
+
+.hc-rating-chart
+  - reviews.rating_data.each do |rating_data|
+    = link_to back_reviews_path(status: status, rating: rating_data.rating, product_group_ids: product.present? ? product.id : nil), class: 'hc-rating-chart__row' do
+      .hc-rating-chart__rating
+        = pluralize(rating_data.rating, 'star')
+
+      .hc-rating-chart__bar-wrapper
+        .hc-rating-chart__bar style="width: #{ rating_data.percentage }%;"
+          span.hc-rating-chart__percentage-value
+            | #{ rating_data.percentage }%
+
+      .hc-rating-chart__count
+        | #{ rating_data.percentage_rounded }%

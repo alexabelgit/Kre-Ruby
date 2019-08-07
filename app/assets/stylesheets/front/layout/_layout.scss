@@ -1,0 +1,8 @@
+.main {
+  @extend %boxed-layout;
+  @extend %padding__md;
+}
+
+.back-to-store {
+  @extend %text-align__center;
+}

@@ -1,0 +1,83 @@
+= render 'layouts/back/sub_navs/tools'
+
+header.heading-and-action
+  h1 = title 'Coupons'
+
+  div
+    => link_to new_back_discount_coupon_path, class: 'hc-primary-button' do
+      | #{hc_icon 'plus'} New coupon
+
+    = link_to 'Coupon history', history_back_discount_coupons_path, class: 'hc-secondary-button'
+
+- if @discount_coupons.any?
+  .responsive-table
+    table.table
+      thead
+        tr
+          th Name
+          th Code
+          th In promo
+          th Active
+          th Discount
+          th Code type
+          th Send per
+          th Issued
+          th Limit
+          th Start | End
+          th Source
+          th
+      tbody
+        - @discount_coupons.each do |discount_coupon|
+          tr
+            td = link_to edit_back_discount_coupon_path(discount_coupon) do
+              =< stamp_discount_coupon_if_archived(discount_coupon)
+              = discount_coupon.name
+            td = discount_coupon.reusable? ? discount_coupon.code : link_to('codes', back_discount_coupon_coupon_codes_path(discount_coupon))
+            td
+              - is_in_use = discount_coupon.in_use?.to_s
+              i.discount-coupon__in-use class="discount-coupon__in-use--#{is_in_use}" title=is_in_use.humanize
+                = discount_coupon_in_use_icon is_in_use
+            td
+              - is_active = discount_coupon.active?.to_s
+              i.discount-coupon__in-use class="discount-coupon__in-use--#{is_active}" title=is_active.humanize
+                = discount_coupon_in_use_icon is_active
+            td = discount_coupon.discount_text
+            td = discount_coupon.code_type
+            td = discount_coupon.send_per
+            td = discount_coupon.issue_count
+            td = discount_coupon.limit.present? ? discount_coupon.limit : '∞'
+            td
+              span.white-space__nowrap> = humane_date(discount_coupon.valid_from)
+              | -
+              span.white-space__nowrap< = (discount_coupon.valid_until.present? ? humane_date(discount_coupon.valid_until) : '∞')
+            td = discount_coupon.source
+            td.table__actions
+              => edit_button edit_back_discount_coupon_path(discount_coupon), size: 'small'
+              - unless discount_coupon.visible?
+                => link_to back_discount_coupon_path(discount_coupon, discount_coupon: { status: :visible }),
+                   method: :put,
+                   remote: true,
+                   data:   { disable_with: "#{ spinner_icon } Restoring" },
+                   class:  'discount-coupon__publish' do
+
+                  => hc_icon 'globe'
+                  |  Restore
+
+              - unless discount_coupon.archived?
+                = link_to back_discount_coupon_path(discount_coupon, discount_coupon: { status: :archived }),
+                  method: :put,
+                  remote: true,
+                  data:   { confirm:      discount_coupon.promotions.any? ? 'This coupon has associated promotions. If you archive it, those promotions will be left without any coupon information and their templates should be updated. Proceed?' : nil,
+                            disable_with: "#{ spinner_icon } Archiving" },
+                  class:  'discount-coupon__archive' do
+
+                  => hc_icon 'archive'
+                  =  'Archive'
+              / => delete_button back_discount_coupon_path(discount_coupon), size: 'small'
+
+    = will_paginate @discount_coupons, class: "hc-paging hc-paging--modern"
+
+- else
+  = render      'back/shared/no_records',
+    object:     'discount_coupons',
+    kb_article: 'discount_coupons'

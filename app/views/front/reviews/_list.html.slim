@@ -1,0 +1,63 @@
+/ container_uuid           - required when pagination == ajax
+/ load_more
+/ grid_layout              - 'masonry' or 'single_column'
+/ open_links_in_new_tab
+/ pagination
+/ reviews*
+/ disable_product_links
+
+- load_more             ||= false
+- grid_layout           ||= @store.settings(:reviews).grid_layout
+- open_links_in_new_tab ||= false
+- read_more_after         = (grid_layout == 'masonry') ? 100 : 300
+- disable_product_links ||= false
+- pagination_style      = @store.settings(:design).pagination_style
+
+- if load_more
+  - pagination   = 'ajax'
+- else
+  - pagination ||= 'default'
+
+- if reviews.any?
+  .hc-reviews__list class="hc-reviews__list--#{grid_layout}"
+
+    = render partial:    'front/products/reviews/card',
+             collection: reviews,
+             as:         :review,
+             locals:     { open_product_in_new_tab: open_links_in_new_tab,
+                           read_more_after:         read_more_after,
+                           show_actions:            true,
+                           show_comments:           true,
+                           show_dropdown:           true,
+                           show_media:              true,
+                           show_product:            true,
+                           disable_product_links:   disable_product_links }
+
+  - pagination_class = "hc-paging #{'hc-paging--load-more' if load_more} hc-paging--#{pagination_style}"
+  - if pagination == 'ajax'
+    - if load_more
+      = will_paginate   reviews,
+        class:          pagination_class,
+        page_links:     false,
+        previous_label: '',
+        next_label:     t('load_more', default: 'Load more'),
+        renderer:       HCAbsoluteLinkRenderer,
+        base_link_url:  front_reviews_url({ store_id:       @store.hashid,
+                                            load_more:      true,
+                                            container_uuid: container_uuid,
+                                            format:         :js })
+
+    - else
+      = will_paginate  reviews,
+        class:         pagination_class,
+        renderer:      HCAbsoluteLinkRenderer,
+        base_link_url: front_reviews_url({ store_id:       @store.hashid,
+                                           container_uuid: container_uuid,
+                                           format:         :js })
+
+  - elsif pagination == 'default'
+    = will_paginate reviews, class: pagination_class
+
+- else
+  .hc-reviews__no-records
+    = t 'no_records', scope: 'front.widgets.products.tabs.reviews'

@@ -1,0 +1,9 @@
+- items = [ { name: 'Home',                 path: admin_dashboards_path,                      active: [['admin/dashboards'], ['index']] },
+            { name: 'Feature usage',        path: feature_usage_admin_dashboards_path,        active: :inclusive },
+            { name: 'Authentication stats', path: authentication_stats_admin_dashboards_path, active: :inclusive },
+            { name: 'Billing',              path: billing_admin_dashboards_path,              active: :inclusive },
+            { name: 'Reporting', path: reporting_admin_dashboards_path, active: :inclusive },
+            { name: 'Problematic stores', path: problematic_stores_admin_dashboards_path, active: :inclusive }]
+
+= content_for :sub_nav
+  = render 'layouts/admin/sub_nav', items: items

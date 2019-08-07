@@ -1,0 +1,31 @@
+= content_for :sub_nav
+  = render 'layouts/admin/sub_nav', items: @presenter.navigation_items
+
+header.header-with-action
+  h2 = title 'Package discounts'
+  = link_to 'New package discount', new_admin_package_discount_path, class: 'hc-primary-button'
+
+table.table
+  thead
+    tr
+      th Ecommerce Platform
+      th Addons count
+      th Discount value ( % )
+      th Chargebee ID
+      th Status
+      th
+      th
+  tbody
+    - @presenter.package_discounts.each do |package_discount|
+      tr
+        td = package_discount.ecommerce_platform.name
+        td = package_discount.addons_count
+        td = package_discount.discount_percents
+        td = package_discount.chargebee_id
+        td = package_discount.status.to_s.capitalize
+        td = link_to edit_admin_package_discount_path(package_discount) do
+          = hc_icon 'pencil'
+        td = link_to admin_package_discount_path(package_discount), method: :delete
+          = hc_icon 'trash'
+
+= will_paginate @presenter.package_discounts, class: 'hc-paging hc-paging--modern'

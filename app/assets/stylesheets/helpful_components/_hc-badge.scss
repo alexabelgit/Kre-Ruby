@@ -1,0 +1,45 @@
+.hc-badge {
+  @extend %padding-x__sm;
+  @extend %padding-y__2px;
+  @extend %line-height__base;
+  @extend %background-color__secondary;
+  @extend %color__dark;
+  @extend %border-radius__lg;
+  @extend %display__inline-block;
+  @extend %font-size__80pct;
+
+  &.hc-badge--danger {
+    @extend %background-color__danger;
+    @extend %color__white;
+  }
+
+  &.hc-badge--primary {
+    @extend %background-color__primary--lightened;
+    @extend %color__white;
+  }
+
+  &.hc-badge--info {
+    @extend %background-color__info--lightened;
+    @extend %color__white;
+  }
+
+  &.hc-badge--secondary {
+    @extend %background-color__secondary;
+    @extend %color__dark;
+  }
+
+  &.hc-badge--success {
+    @extend %background-color__success--lightened;
+    @extend %color__white;
+  }
+
+  &.hc-badge--warning {
+    @extend %background-color__warning--lightened;
+    @extend %color__white;
+  }
+
+  &.hc-badge--brand-3 {
+    @extend %background-color__brand-3--lightened;
+    @extend %color__white;
+  }
+}

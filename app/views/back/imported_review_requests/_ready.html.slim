@@ -1,0 +1,11 @@
+/ store
+
+- store ||= current_store
+
+- if store.has_pending_imported_review_requests?
+  = render   'shared/system_messages/custom',
+    type:    'success',
+    body:    'Your requests are ready for import. You can now preview them and complete the import process.',
+    action:  { name: 'Preview', url: back_imported_review_requests_path },
+    role:    'imported-review-requests',
+    persist: true

@@ -1,0 +1,36 @@
+input.hc-read-more {
+  @extend %display__none;
+}
+
+label.hc-read-more {
+  @extend %cursor__pointer;
+  @extend %color__primary;
+
+  &:hover {
+    @extend %text-decoration__underline;
+  }
+
+  // &:after {
+  //   @extend %content__read__less;
+  // }
+}
+
+input.hc-read-more:not(:checked) {
+  &~ .hc-read-more__excerpt:after {
+    @extend %content__hellip;
+  }
+
+  // &~ label.hc-read-more:after {
+  //   @extend %content__read__more;
+  // }
+
+  &~ .hc-read-more__rest {
+    @extend %display__none;
+  }
+}
+
+label.hc-read-more,
+.hc-read-more__excerpt,
+.hc-read-more__rest {
+  @extend %display__inline;
+}

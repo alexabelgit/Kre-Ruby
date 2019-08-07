@@ -1,0 +1,19 @@
+= content_for :recipient
+  = @presenter.user_first_name
+
+p = "In case you missed it, your free #{@presenter.formatted_trial_name} \
+     trial has expired."
+
+- if @presenter.shopify?
+  p = "We've automatically changed your plan to the free Helpful plan so that you can continue \
+      to access all our features, but your usage is limited to \
+      #{@presenter.helpful_plan_orders_limit} orders a month."
+  p = "If you need more orders, check out one of our other great plans today"
+
+  = call_to_action 'See all Plans', billing_back_settings_url
+- else
+  p = "To continue turning more shoppers into customers with HelpfulCrowd, \
+     choose a plan today:"
+  = call_to_action 'Choose a plan', billing_back_settings_url
+
+= render 'back_mailer/shared/contact_us_and_thank_you', contact_who: 'billing'

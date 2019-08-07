@@ -1,0 +1,10 @@
+<%= render 'shared/system_messages/replace_flash' %>
+
+<% model_name = @comment.commentable_type.parameterize %>
+<% if @comment.valid? %>
+  jQuery('[data-model="<%= model_name %>"][data-id="<%= @comment.commentable.hashid %>"]')
+          .replaceWith('<%= escape_javascript(render "back/#{model_name.pluralize}/show", :"#{model_name}" => @comment.commentable) %>').fade_out_system_message();
+<% else %>
+  jQuery('[data-model="<%= model_name %>"][data-id="<%= @comment.commentable.hashid %>"] [data-model="comment"]')
+          .replaceWith('<%= escape_javascript(render 'back/comments/form', comment: @comment) %>').fade_out_system_message();
+<% end %>

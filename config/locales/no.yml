@@ -1,0 +1,451 @@
+---
+"no":
+  "activerecord":
+    "errors":
+      "models":
+        "abuse_report":
+          "attributes":
+            "additional_info":
+              "blank": >-
+                må være oppgitt når 'noe annet' er valgt som årsaken
+            "reason":
+              "blank": >-
+                ^Du må velge en grunn
+        "product":
+          "attributes":
+            "id_from_provider":
+              "taken": >-
+                ^ID må være unik. Den du tastet inn er allerede i bruk på et annet
+                produkt.
+        "review":
+          "attributes":
+            "customer":
+              "must_be_authenticated": >-
+                ^Du må være logget inn for å skrive en anmeldelse
+            "product_ids":
+              "cannot_be_repeated": >-
+                ^Du har allerede anmeldt dette produktet
+              "taken": >-
+                ^Du har allerede anmeldt dette kjøpet
+            "review_request_id":
+              "request_must_be_sent": >-
+                ^Du kan ikke skrive en anmeldelse for det kjøpet akkurat nå
+            "source":
+              "cannot_be_voluntary": >-
+                ^Du kan ikke anmelde kjøpet akkurat nå
+        "review_request":
+          "attributes":
+            "order_id":
+              "blank": >-
+                Kan ikke opprettes uten tilsvarende kunde. Vennligst oppgi en gyldig
+                email adresse
+    "models":
+      "comment":
+        "one": >-
+          kommentar
+        "other": >-
+          kommentarer
+      "customer":
+        "one": >-
+          kunde
+        "other": >-
+          kunder
+      "product":
+        "one": >-
+          produkt
+        "other": >-
+          produkt
+      "product_group":
+        "one": >-
+          produktgruppe
+        "other": >-
+          produktgrupper
+      "question":
+        "one": >-
+          spørsmål
+        "other": >-
+          spørsmål
+      "review":
+        "one": >-
+          anmeldelse
+        "other": >-
+          anmeldelser
+      "review_request":
+        "one": >-
+          forespørsel om anmeldelse
+        "other": >-
+          forespørsler om anmeldelser
+  "answer":
+    "one": >-
+      svar
+    "other": >-
+      svar
+  "cancel": >-
+    Avbryt
+  "counterify":
+    "characters":
+      "exceeded": >-
+        Tegn grense overskredet
+      "remaining":
+        "one": >-
+          1 tegn gjenstår
+        "other": >-
+          %{count} tegn gjenstår
+  "default_templates":
+    "email":
+      "critical_review_followup_mail_body": "<p>Hei [customer_name],</p>\r\n<p>Takk
+        for din anmeldelse.</p>\r\n<p>Teamet på [store_name].</p>"
+      "critical_review_followup_mail_subject": >-
+        Takk for din anmeldelse
+      "positive_review_followup_mail_body": "<p>Hei [customer_name],</p>\r\n<p>Takk
+        for din anmeldelse.</p>\r\n<p>Team at [store_name].</p>"
+      "positive_review_followup_mail_subject": >-
+        Takk for din anmeldelse
+      "question_answer_mail_body": "<p>Hei [customer_name],</p>\r\n<p>Ditt spørsmål
+        om [product_name] har blitt besvart av vår representant:</p>\r\n<p>[answer]</p>\r\n<p>Ditt
+        spørsmål:</p>\r\n<p>[question]</p>\r\n<p>[product_link]</p>\r\n<p>Teamet på
+        [store_name].</p>"
+      "question_answer_mail_subject": >-
+        Ditt spørsmål hos [store_name] har blitt besvart
+      "repeat_review_request_mail_body": "<p>Hei [customer_name],</p>\r\n<p>Det er
+        fortsatt ikke for sent å fortelle oss hva du syns om din siste ordre.</p>\r\n<p>Trykk
+        på en stjerne for å vurdere din erfaring så langt med:</p>\r\n<p>[products]</p>\r\n<p>Ikke
+        fornøyd? Vennligst kontakt oss så vi kan hjelpe.</p>\r\n<p>Teamet hos [store_name].</p>"
+      "repeat_review_request_mail_subject": >-
+        Påminnelse om å gi anmeldelse av din siste ordre hos [store_name]
+      "review_answer_mail_body": "<p>Hei [customer_name],</p>\r\n<p>Din anmeldelse
+        av [product_name] har blitt besvart av vår representant:</p>\r\n<p>[reply]</p>\r\n<p>Din
+        anmeldelse:</p>\r\n<p>[review]</p>\r\n<p>[product_link]</p>\r\n<p>Teamet hos
+        [store_name].</p>"
+      "review_answer_mail_subject": >-
+        Din anmeldelse hos [store_name] har blitt besvart
+      "review_request_mail_body": "<p>Hello [customer_name],</p>\r\n<p>Trykk på en
+        stjerne for å gi en vurdering av din erfaring hos oss så langt:</p>\r\n<p>[products]</p>\r\n<p>Ikke
+        fornøyd? Vennligst kontakt oss så vi kan hjelpe.</p>\r\n<p>Team at [store_name].</p>"
+      "review_request_mail_subject": >-
+        Anmeld din siste order hos [store_name]
+  "embed": >-
+    Legg til
+  "errors":
+    "messages":
+      "already_confirmed": >-
+        var allerede bekreftet, vennligst prøv å logg inn
+      "confirmation_period_expired": >-
+        må bli bekreftet innen %{period}, vennligst be om en ny
+      "expired": >-
+        har utløpt, vennligst be om en ny
+      "not_found": >-
+        ikke funnet
+      "not_locked": >-
+        var ikke låst
+      "not_saved":
+        "one": >-
+          1 feil sperret %{resource} dette fra å bli lagret:
+        "other": >-
+          %{count} feil sperret dette %{resource} fra å bli lagret:
+  "flash":
+    "submitted_successfully":
+      "question": >-
+        Takk skal du ha! Vi har mottatt ditt spørsmål og vi vil gi deg beskjed via
+        email så fort det har blitt besvart.
+      "review": >-
+        Takk skal du ha! Vi har mottatt din anmeldelse.
+      "subscribed": >-
+        Du har vellykket abonert på %{store}.
+      "unsubscribed": >-
+        Du har vellykket sagt opp aboneringen  %{store}.
+  "front":
+    "based_on_reviews_count":
+      "one": >-
+        1 anmeldelse
+      "other": >-
+        %{count} anmeldelser
+    "components":
+      "customer_form":
+        "email":
+          "hint": >-
+            Din email vil ikke bli delt offentlig
+          "label": >-
+            Din email
+        "name":
+          "hint": >-
+            Navnet ditt vil vises med initialer
+          "hint_update_html": >-
+            Navnet ditt vil vises som <strong>%{initials}</strong>
+          "label": >-
+            Ditt navn
+      "privacy_notice":
+        "link_content": >-
+          personvern policy
+        "with_name":
+          "html": "Ved å sende inn dette skjemaet så godkjenner du at ditt innhold
+            og ditt navn\r\n<strong>%{name}</strong> kan bli publisert online i samsvar
+            med vår\r\n%{link}."
+        "without_name":
+          "html": >-
+            Ved å sende in dette skjemaet så godkjenner du at ditt innhold og ditt
+            navn kan bli publisert online i samsvar med vår %{link}.
+    "continue_shopping": >-
+      Fortsett å shoppe
+    "flags":
+      "new":
+        "already_flagged": >-
+          Du har allerede merket dette %{item}
+        "flag_as_inappropriate": >-
+          Merk dette %{item} som upassende
+      "show":
+        "flag_submitted": >-
+          Takk skal du ha
+    "mailer":
+      "excuses":
+        "question_answered_html": >-
+          Du har mottat denne emailen fra  %{helpfulcrowd} for å gi deg en oppdatering
+          på et spørsmål du har stilt %{store}.
+        "review_answered_html": >-
+          Du har mottat denne emailen fra  %{helpfulcrowd} for å gi deg en oppdatering
+          på en anmeldelse du har gitt  %{store}.
+        "review_follow_up_html": >-
+          Du har mottatt denne email fra  %{helpfulcrowd} som svar på din siste anmeldelse
+          hos %{store}.
+        "review_request_html": >-
+          Du har mottatt denne emailen fra %{helpfulcrowd} som et svar på din nylige
+          bestilling fra %{store}.
+      "helpers":
+        "call_to_action":
+          "view_product": >-
+            Besøk produktsiden
+    "products":
+      "questions":
+        "form":
+          "question_html": >-
+            Hva ønsker du å vite om %{product}?
+        "new":
+          "title": >-
+            Still et spørsmål
+      "view_product": >-
+        Gå til produktsiden
+    "review_requests":
+      "reviews":
+        "form":
+          "rating_html": >-
+            Vurder din erfaring med %{reviewable}
+        "new":
+          "already_reviewed_html": >-
+            Du har allerede anmeldt %{reviewable}
+          "review_other_purchases":
+            "one": >-
+              anmeld ditt andre kjøp
+            "other": >-
+              anmeld dine andre kjøp
+          "title": >-
+            Vurder kjøpet ditt
+    "search":
+      "label": >-
+        Søk:
+      "placeholder": >-
+        Skriv inn søkeord
+    "share":
+      "button": >-
+        Del
+    "sort_by": >-
+      Sorter etter:
+    "sort_options":
+      "most_helpful": >-
+        Mest hjelpfulle
+      "most_recent": >-
+        Mest nylige
+      "rating_asc": >-
+        Rating: laveste
+      "rating_desc": >-
+        Rating: høyeste
+    "suppressions":
+      "manage_subscriptions":
+        "subscribe_question_html": >-
+          Vil du tillate at HelpfulCrowd sender deg en email på vegne av %{store}?
+        "unsubscribe_question_html": >-
+          Ønsker du at HelpfulCrowd skal stoppe å sende email på vegne av %{store}?
+    "votes":
+      "upvote": >-
+        Hjelpsom
+      "upvotes_count":
+        "one": >-
+          %{count} person fant dette %{item} hjelpsomt
+        "other": >-
+          %{count} personer fant %{item} hjelpsomt
+    "widgets":
+      "products":
+        "rating":
+          "qa":
+            "html":
+              "one": >-
+                1 spørsmål
+              "other": >-
+                %{count} spørsmål
+          "reviews":
+            "html":
+              "one": >-
+                1 anmeldelse
+              "other": >-
+                %{count} anmeldelser
+        "summary":
+          "qa":
+            "html":
+              "one": >-
+                1 besvart spørsmål
+              "other": >-
+                %{count} besvarte spørsmål
+            "new": >-
+              Still spørsmål
+          "reviews":
+            "html":
+              "one": >-
+                basert på en 1 anmeldelse
+              "other": >-
+                basert på %{count} anmeldelser
+            "new": >-
+              Skriv en anmeldelse
+        "tabs":
+          "questions":
+            "new": >-
+              Still spørsmål
+            "search":
+              "label": >-
+                Søk:
+              "placeholder": >-
+                Søk Q&A
+            "title": >-
+              Spørsmål og svar
+            "write_first": >-
+              Still det første spørsmålet om dette produktet
+          "reviews":
+            "based_on_reviews":
+              "html": >-
+                Basert på %{reviews_count}
+            "media_gallery":
+              "images":
+                "one": >-
+                  1 bilde
+                "other": >-
+                  %{count} bilder
+              "search":
+                "label": >-
+                  Søk:
+                "placeholder": >-
+                  Søk i anmeldelser
+              "title": "Kunde\r\nmedia"
+              "videos":
+                "one": >-
+                  1 video
+                "other": >-
+                  %{count} videor
+            "new": >-
+              Skriv anmeldelse
+            "rating": >-
+              %{rating} av 5 stjerner
+            "title": >-
+              Kunde anmeldelser
+            "write_first": >-
+              Bli den første til å skrive en anmeldelse på dette produktet
+          "titles":
+            "questions": >-
+              Spørsmål & Svar
+            "questions_responsive": >-
+              Q&A
+            "reviews": >-
+              Anmeldelser & Ratings
+            "reviews_responsive": >-
+              Anmeldelser
+      "sidebar":
+        "default_title": >-
+          Anmdeldelser | Q&A
+    "with_incentive":
+      "reviews":
+        "text": >-
+          Anmelderen kan ha fått tilbud om en belønning for å skrive denne anmeldelsen
+    "write_review": >-
+      Skriv en anmeldelse
+  "helpers":
+    "friendly_rating": >-
+      Ingen anmeldelser enda
+    "label":
+      "customer":
+        "email": >-
+          Kunde-email
+        "name": >-
+          Kundenavn
+      "product_group":
+        "name": >-
+          Navn
+    "placeholder":
+      "promotion":
+        "template": >-
+          Fri frakt på alle ordre under Black Friday week!
+    "submit":
+      "product_group":
+        "create": >-
+          Lag gruppe
+        "update": >-
+          Oppdater gruppe
+      "question":
+        "create": >-
+          Still et spørsmål
+      "review":
+        "create": >-
+          Send in anmeldelse
+  "layouts":
+    "mailer":
+      "front":
+        "manage_subscriptions": >-
+          Håndtere abonement
+        "unsubscribe": >-
+          Avmeld
+  "load_more": >-
+    Last mer
+  "privacy_policy": >-
+    Personvern policy
+  "question_facebook_post_template": "[kunde_navn]\r\nQ: [spørsmål]\r\nA: [svar]"
+  "question_tweet_template": "[kunde_navn]\r\nQ: [spørsmål]\r\nA: [svar]"
+  "rating_1": >-
+    Forferdelig
+  "rating_2": >-
+    Dårlig
+  "rating_3": >-
+    Ok
+  "rating_4": >-
+    bra
+  "rating_5": >-
+    Kjempebra
+  "read_less": >-
+    les mindre
+  "read_more": >-
+    Hele anmeldelsen
+  "recaptcha":
+    "errors":
+      "verification_failed": >-
+        reCAPTCHA verifikasjon feilet.
+    "label": >-
+      Hjelp oss å bekjempe søppelpost
+  "report": >-
+    Rapporter
+  "review_facebook_post_template": "Check out what [customer_name] said about [product_name]:\r\n\r\n[rating]\r\n\"[feedback]\""
+  "review_tweet_template": "[kunde_navn]:\r\n[produkt_navn] - [rating], \"[tilbakemelding]\""
+  "settings":
+    "default":
+      "review_slider_c2a_text": >-
+        Vis alle
+  "stars":
+    "one": >-
+      1 stjerne
+    "other": >-
+      %{count} stjerner
+  "verified":
+    "agent":
+      "description": >-
+        %{author} jobber hos %{store}
+      "label": >-
+        %{store}
+    "customer":
+      "description": >-
+        %{author} har kjøpt dette produktet
+      "label": >-
+        Verifisert kjøper

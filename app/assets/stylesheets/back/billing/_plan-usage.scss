@@ -1,0 +1,15 @@
+.plan-usage {}
+
+.plan-usage__numbers {
+  @include flexbox(
+    $justify-content: space-between
+  );
+}
+
+.plan-usage__progress-bar {
+
+}
+
+.plan-usage__message {
+  @extend %margin-top__md;
+}

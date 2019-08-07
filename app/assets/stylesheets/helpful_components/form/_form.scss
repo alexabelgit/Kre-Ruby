@@ -1,0 +1,168 @@
+.hc-form__actions {
+  @extend %margin-top__lg;
+}
+
+.hc-form__submit {
+  @extend .hc-primary-button;
+}
+
+.hc-form__control {
+  @extend %margin-bottom__md;
+
+  &.hc-form__control--sm {
+    @extend %width__5em;
+  }
+
+  &.hc-form__control--md {
+    @extend %width__10em;
+  }
+
+  &.hc-form__control--lg {
+    @extend %width__20em;
+  }
+}
+
+.hc-form__label {
+  @extend %display__block;
+  @extend %font-family__body-font-family;
+  margin: 0 0 7px;
+  &.margin-sm {
+    margin: 0 0 3px;
+  }
+}
+
+.hc-form__input {
+  @extend %display__block;
+  @extend %min-width__2em;
+  @extend %width__100pct;
+
+  &.hc-form__input--3xs {
+    @extend %width__2em;
+  }
+
+  &.hc-form__input--2xs {
+    @extend %width__3em;
+  }
+
+  &.hc-form__input--xs {
+    @extend %width__4em;
+  }
+
+  &.hc-form__input--sm {
+    @extend %width__5em;
+  }
+
+  &.hc-form__input--md {
+    @extend %width__10em;
+  }
+
+  &.hc-form__input--lg {
+    @extend %width__20em;
+  }
+}
+
+.hc-form__input-n-addon {
+  @extend %display__flex;
+
+  > input:nth-child(1) {
+    @extend %border-top-right-radius__0;
+    @extend %border-bottom-right-radius__0;
+  }
+
+  > span:nth-child(2) {
+    @extend %border-color__#{$input__border-color};
+    @extend %border-style__#{$input__border-style};
+    @extend %border-width__#{$input__border-width};
+    @extend %padding__#{$input__padding};
+    @extend %color__pale;
+    @extend %border-left__none;
+    @extend %border-top-right-radius__#{$input__border-radius};
+    @extend %border-bottom-right-radius__#{$input__border-radius};
+
+  }
+}
+
+%hc-form__textarea {
+  @extend %display__block;
+  @extend %min-width__2em;
+  @extend %min-height__2em;
+}
+
+.hc-form__textarea {
+  @extend %hc-form__textarea;
+  @extend %width__100pct;
+  @extend %height__5em;
+
+  &.hc-form__textarea--tall {
+    @extend %height__15em;
+  }
+}
+
+.hc-form__control--inline {
+  @extend .hc-form__control;
+
+  .hc-form__input,
+  .hc-form__submit,
+  .hc-form__select {
+    @extend %display__inline-block;
+  }
+}
+
+.hc-form__control--flex {
+  @extend .hc-form__control;
+
+  @include flexbox(
+    $flex-wrap: wrap
+  );
+
+  > div {
+    @extend %flex__1;
+
+    &:first-child {
+      @extend %margin-right__md;
+    }
+  }
+}
+
+.hc-form__hint {
+  @extend %color__pale;
+}
+
+.hc-form__radio-group {
+  @extend %display__block;
+  &.hc-form__radio-group--inline {
+    @extend %display__inline-block;
+
+    &:not(:last-child) {
+      @extend %margin-right__md;
+    }
+
+    label,
+    input {
+      @extend %display__inline-block;
+    }
+  }
+}
+
+.hc-form__static-input,
+.hc-form__input[disabled="disabled"] {
+  @extend %border__base;
+  @extend %color__pale;
+}
+
+input[type="date"],
+input[type="email"],
+input[type="number"],
+input[type="password"],
+input[type="search"],
+input[type="text"],
+input[type="url"],
+textarea,
+select, .hc-dropdown__trigger.hc-dropdown__trigger--selectize, .hc-form__input-n-addon > span:nth-child(2), .auth-form__shopify-input > span:nth-child(2), .auth-form__lemonstand-input > span:nth-child(2), .comment-form__body-input {
+  padding: 7px 10px;
+  height: 38px;
+  border-radius: 5px;
+  background-color: #fff;
+  box-shadow: 0 0 3px inset #eee;
+  margin: 5px 0;
+}

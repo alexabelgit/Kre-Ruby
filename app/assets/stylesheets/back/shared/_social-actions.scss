@@ -1,0 +1,38 @@
+.social-actions {
+  @extend %margin-left__md;
+}
+
+.social-action {
+  @extend %text-button;
+  @extend %color__secondary;
+
+  &.facebook {
+    &.active {
+      @extend %color__facebook;
+    }
+
+    &:hover {
+      @extend %color__facebook--lightened;
+    }
+  }
+
+  &.twitter {
+    &.active {
+      @extend %color__twitter;
+    }
+
+    &:hover {
+      @extend %color__twitter--lightened;
+    }
+  }
+
+  &.pinterest {
+    &.active {
+      @extend %color__pinterest;
+    }
+
+    &:hover {
+      @extend %color__pinterest--lightened;
+    }
+  }
+}

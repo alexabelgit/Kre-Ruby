@@ -1,0 +1,13 @@
+- count = vote.present? ? vote.votable.votes_count : 0
+- item  = vote.present? ? vote.votable.model_name.human : Vote.new
+
+.hc-upvote title=t('upvotes_count', scope: 'front.votes', count: count, item: item)
+  span.hc-upvote__d-already
+    /  TODO: we need a text like 'you have already upvoted this item', like the one we have for flags. upvotes_count would only go over count
+
+    => hc_icon 'hc-thumbs-up justified'
+    =  t('upvote', scope: 'front.votes', default: '')
+
+  |  (
+  =  count
+  | )

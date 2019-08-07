@@ -1,0 +1,101 @@
+.reviews {
+  @extend %flexbox;
+}
+
+.reviews__filters {
+  @extend %flex__0__1__auto;
+  @extend %width__15rem;
+}
+
+.reviews__filter {
+  &:not(:last-of-type) {
+    @extend %margin-bottom__md;
+  }
+
+  label {
+    @extend %display__block;
+  }
+
+  select {
+    @extend %width__100pct;
+  }
+}
+
+.reviews__list {
+  @extend %padding-left__md;
+  @extend %flex__1__1__auto;
+  @extend %width__100pct;
+}
+
+.review {
+  @extend %background-color__white;
+  @extend %border__1px__solid__secondary;
+  @extend %border-radius__base;
+  @extend %padding-bottom__md;
+
+  &:not(:last-of-type) {
+    @extend %margin-bottom__md;
+  }
+}
+
+.review__header {
+  @extend %padding-x__md;
+  @extend %margin-y__md;
+}
+
+.review__author {
+  @extend %display__inline-block;
+}
+
+.review__product {
+  @extend %font-weight__bold;
+  @extend %color__dark;
+}
+
+.review__body {
+  @extend %padding-x__md;
+}
+
+.review__mail-to-author {
+  @extend %padding-x__md;
+  @extend %margin-bottom__md;
+}
+
+.review__media {
+  @extend %margin-x__md;
+  @extend %margin-top__xs;
+  @extend %margin-bottom__md;
+
+  &.review__media--disabled {
+    @extend %border__1px__solid__warning;
+    @extend %padding__md;
+    @extend %display__inline-block;
+  }
+}
+
+.review__media-disabled-text {
+  @extend %margin-bottom__md;
+}
+
+.review-comments {
+  @extend %padding-x__md;
+  @extend %margin-bottom__md;
+}
+
+.review__feedback {
+  @extend %margin-y__0;
+  @extend %white-space__pre-line;
+  @extend %word-break__break-word;
+  @extend %word-wrap__break-word;
+}
+
+.review-footer {
+  @extend %border-top__1px__solid__secondary;
+  @extend %padding-top__md;
+  @extend %padding-x__md;
+
+  @include flexbox(
+    $justify-content: space-between,
+    $align-items:     center
+  );
+}

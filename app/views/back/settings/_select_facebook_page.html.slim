@@ -1,0 +1,35 @@
+- facebook_pages = current_user.facebook_pages
+
+= form_for [:back, current_user.store.settings(:social_accounts)],
+            as:     :settings,
+            url:    select_facebook_page_back_settings_path,
+            method: :post,
+            html:   { id:    'social-accounts-settings',
+                      class: 'settings-form' } do |f|
+
+  = render 'shared/form/errors', resource: current_user.store.settings(:social_accounts)
+
+  - unless current_store.facebook_page_connected?
+    .system-message.warning Please select Facebook page associated with your store
+
+  input type="hidden" name="type"        value="social_accounts"
+  input type="hidden" name="redirect_to" value=social_accounts_back_settings_path
+  input type="hidden" name="view"        value="store"
+
+  - facebook_pages.each do |facebook_page|
+    = f.hidden_field 'facebook_pages[][id]',   value: facebook_page['id']
+    = f.hidden_field 'facebook_pages[][name]', value: facebook_page['name']
+
+  .hc-form__control
+    => f.label :facebook_page_id, class: 'hc-form__label' do
+       | Store page
+
+    => f.select :facebook_page_id,
+       facebook_pages.collect { |p| [ p['name'], p['id'] ] },
+       { prompt: true },
+       required: true
+
+  = button_tag 'Update',
+    type:      'submit',
+    class:     'settings-form__submit',
+    data:      { disable_with: "#{ spinner_icon } Updating" }

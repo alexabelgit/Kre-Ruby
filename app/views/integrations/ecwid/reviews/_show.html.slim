@@ -1,0 +1,25 @@
+/ review*
+
+article.plate data-model="review" data-id=review.hashid
+  h4.hc-product
+    i.icon-product>
+    = review.product.name
+  h5
+    strong => review.display_name
+    = stars_based_on(review.rating, 'lite')
+  
+  p.feedback = review.feedback
+  
+  => link_to 'Publish',
+     back_review_path(review, review: { status: :published }, app: 'ecwid'),
+     method: :put,
+     remote: true,
+     id:     'publish-review',
+     class:  'btn btn-primary'
+     
+  => link_to 'Archive',
+     back_review_path(review, review: { status: :archived }, app: 'ecwid'),
+     method: :put,
+     remote: true,
+     id:     'archive-review',
+     class:  'btn btn-default' 

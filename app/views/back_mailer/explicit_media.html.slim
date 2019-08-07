@@ -1,0 +1,14 @@
+= content_for :recipient
+  = @review.user.first_name
+
+.explicit_media
+  p
+    |
+      Our bot has marked one or more media items from following review as explicit.
+      Images in question were un-published and they are no longer displayed on your website.
+
+  p If you believe this was a mistake, you can re-publish any media items from review moderation page.
+
+  = render 'review', review: @review
+
+  = call_to_action('Go to review', back_review_url(@review))

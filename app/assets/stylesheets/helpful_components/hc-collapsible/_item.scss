@@ -1,0 +1,75 @@
+.hc-collapsible-item {
+  @include card($padding: 0);
+
+  &:not(:last-child) {
+    @extend %margin-bottom__md;
+  }
+}
+
+.hc-collapsible-item__header {
+  @extend %position__relative;
+  @extend %padding__md;
+}
+
+.hc-collapsible-item__heading {
+  @extend %display__inline-block;
+  @extend %margin__0;
+}
+
+input.hc-collapsible-item__toggler {
+  @extend %display__none;
+}
+
+label.hc-collapsible-item__toggler {
+  @extend %position__absolute;
+  @extend %width__100pct;
+  @extend %top__0;
+  @extend %left__0;
+  @extend %cursor__pointer;
+  @extend %height__100pct;
+}
+
+.hc-collapsible-item__icon {
+  @extend %position__absolute;
+  @extend %right__1em;
+  @extend %transition-property__transform;
+  @extend %transition-duration__base;
+  @extend %transition-timing-function__ease-out;
+
+  @extend %top__35pct;
+  top: calc(50% - .75rem);
+}
+
+.hc-collapsible-item {
+  input.hc-collapsible-item__toggler:checked {
+    &~ .hc-collapsible-item__header {
+      .hc-collapsible-item__icon {
+        transform: rotate(-90deg);
+      }
+    }
+  }
+
+  input.hc-collapsible-item__toggler:not(:checked) {
+    &~ .hc-collapsible-item__header {
+      .hc-collapsible-item__heading {
+        @extend %margin__0;
+      }
+
+      .hc-collapsible-item__icon {
+      }
+    }
+
+    &~ .hc-collapsible-item__content {
+      @extend %display__none;
+    }
+  }
+
+  &:target {
+    @extend .hc-targetable;
+  }
+}
+
+.hc-collapsible-item__content {
+  @extend %margin-x__md;
+  @extend %margin-bottom__md;
+}

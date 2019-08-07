@@ -1,0 +1,36 @@
+- content_for :main_class, 'boxed'
+- render 'layouts/back/sub_navs/tools'
+
+section
+  - if current_store.has_pending_imported_questions?
+    header.header-with-action
+      h1 = title 'Previewing imported Q&A'
+
+      div
+        => link_to 'Discard all',
+           proceed_back_imported_questions_path(clear_all: true),
+           remote:  true,
+           method:  :post,
+           class:   'hc-secondary-button',
+           data:    { confirm: 'All uploaded Q&A items will be discarded and nothing will be imported. Proceed?' }
+
+        = link_to 'Import selected',
+          proceed_back_imported_questions_path,
+          method: :post,
+          class:  'header-with-action__action'
+    = card do
+      = tip("These are the Q&A items we generated based on your upload. Take a look and decide \
+             which ones should be imported and which ones should be discarded. Then click \
+             <strong>Import selected</strong> button to proceed. \
+             By default all items are preselected for import.", margin: false)
+
+    - @imported_questions.each do |imported_question|
+      = render 'back/imported_questions/show', imported_question: imported_question
+
+    = will_paginate @imported_questions, class: 'hc-paging hc-paging--modern'
+
+  - else
+    = render   'shared/system_messages/custom',
+      body:    "You don't have any Q&A items pending for import at the moment.",
+      persist: true,
+      action:  { name: 'Import Q&A', url: seed_back_tools_path(anchor: 'import-questions') }

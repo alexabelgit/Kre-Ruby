@@ -1,0 +1,21 @@
+= content_for :title
+  | Resend confirmation instructions
+
+= form_for resource,
+  as:      resource_name,
+  url:     confirmation_path(resource_name),
+  html:    { method: :post } do |f|
+
+  = render 'shared/form/errors', resource: resource
+
+  .auth-form__control
+    = f.label :email
+
+    = f.email_field :email,
+      autofocus:    true,
+      value:        (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email),
+      required:     true
+
+  = render 'devise/shared/submit_button', f: f, text: 'Resend confirmation instructions'
+
+= render 'devise/shared/back_to_problems'

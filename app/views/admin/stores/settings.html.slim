@@ -1,0 +1,417 @@
+- content_for :main_class, 'boxed store-details'
+
+h1 Settings
+
+section.store-details__section
+  h2 Admin Only
+
+  = form_for [:admin, @store.settings(:admin_only)],
+    as:      :settings,
+    url:     { action: :update_settings },
+    method:  :patch,
+    html:    { id: 'reviess', class: 'settings-form' } do |f|
+
+    = render 'shared/form/errors', resource: @store.settings(:admin_only)
+
+    input type="hidden" name="type" value="admin_only"
+
+    .settings-form__control
+      = render   'helpful_components/checkbox_toggle/checkbox_toggle',
+        f:       f,
+        field:   :restrict_outgoing_emails,
+        type:    'warning',
+        txt_on:  'On',
+        txt_off: 'Off',
+        txt:     'Restrict outgoing emails'
+
+    .settings-form__control
+      = render    'helpful_components/checkbox_toggle/checkbox_toggle',
+        f:        f,
+        field:    :hide_labels_for_stars,
+        type:     'warning',
+        txt_on:   'On',
+        txt_off:  'Off',
+        txt:      'Hide labels for stars in review request emails'
+
+    .settings-form__control
+      => f.label :notes, 'Notes for the store', class: 'hc-form__label'
+      = f.text_area :notes, class: 'hc-form__textarea', placeholder: 'Visible only to admins'
+
+    .hc-form__actions
+      = f.submit 'Save', class: 'hc-primary-button'
+
+section.store-details__section
+  h2 Store status
+
+  section.settings-form__sub-section
+
+    h4.settings-form__sub-heading Backend
+    = render partial: 'backend_status'
+
+  section.settings-form__sub-section
+
+    h4.settings-form__sub-heading Storefront
+    = render partial: 'storefront_status'
+
+section.store-details__section
+  h2 Product tabs in use
+  = link_to 'Check', check_widgets_admin_store_path(@store, handle: :product_rating), method: :post
+  br
+  = @store.settings(:widgets).product_rating_in_use.to_b ? 'Yes' : 'No'
+
+section.store-details__section
+  h2 Global
+
+  = form_for [:admin, @store.settings(:global)],
+    as:      :settings,
+    url:     { action: :update_settings },
+    method:  :patch,
+    html:    { id: 'global', class: 'settings-form' } do |f|
+
+    input type="hidden" name="type" value="global"
+
+    = render 'shared/form/errors', resource: @store.settings(:global)
+
+    .settings-form__control
+      = render 'helpful_components/checkbox_toggle/checkbox_toggle',
+        f:     f,
+        field: :recaptcha,
+        txt:   'reCaptcha'
+
+    .settings-form__control
+      = render 'helpful_components/checkbox_toggle/checkbox_toggle',
+        f:     f,
+        field: :keep_hc_active,
+        txt:   'Keep receiving reviews when inactive',
+        hint:  "Enable with care! This will stop us from serving a 404 page \
+                when app is uninstalled or account is deactivated for this  \
+                store"
+
+    .settings-form__control
+      = render 'helpful_components/checkbox_toggle/checkbox_toggle',
+        f:     f,
+        field: :dismiss_product_update_webhook,
+        txt:   'Dismiss Product Update Webhook'
+
+    .hc-form__actions
+      = f.submit 'Save', class: 'hc-primary-button'
+
+section.store-details__section
+  h2 Customers
+
+  = form_for [:admin, @store.settings(:customers)],
+    as:      :settings,
+    url:     { action: :update_settings },
+    method:  :patch,
+    html:    { id: 'customers', class: 'settings-form' } do |f|
+
+    input type="hidden" name="type" value="customers"
+
+    = render 'shared/form/errors', resource: @store.settings(:customers)
+
+    .settings-form__control
+      div Display name policy
+      - [:initialize_first, :initialize_all, :initialize_none].each do |policy|
+        label.hc-form__radio-group.hc-form__radio-group--inline
+          => f.radio_button :display_name_policy, policy
+          => policy.to_s.humanize
+          span.hide-unless-screen-reader = policy
+
+    .hc-form__actions
+      = f.submit 'Save', class: 'hc-primary-button'
+
+
+section.store-details__section
+  h2 Widgets
+
+  = form_for [:admin, @store.settings(:widgets)],
+    as:      :settings,
+    url:     { action: :update_settings },
+    method:  :patch,
+    html:    { id: 'widgets', class: 'settings-form' } do |f|
+
+    = render 'shared/form/errors', resource: @store.settings(:widgets)
+
+    input type="hidden" name="type" value="widgets"
+
+    h3 Product Tabs
+
+    .settings-form__control
+      = render 'helpful_components/checkbox_toggle/checkbox_toggle',
+        f:     f,
+        field: :product_tabs_open_forms_in_new_tab,
+        txt:   'Open forms in new tab',
+        hint:  "Forces 'write new' forms to open in new browser tab or window"
+
+    .settings-form__control
+      = f.label :default_questions_header, 'Enable tab headers and personalize the text for reviews and questions'
+
+      .default-title__control
+        - custom_reviews_header  = @store.settings(:widgets).product_tabs_reviews_header
+        - default_reviews_header = t 'reviews.title',
+                                scope:  'front.widgets.products.tabs',
+                                locale: @store.settings(:global).locale
+
+        .default-title__change
+          = render 'helpful_components/checkbox_toggle/checkbox_toggle',
+            f:     f,
+            type:  'success',
+            field: :product_tabs_show_reviews_header,
+            txt:   '',
+            hint:  '',
+            data_target: 'default_title_input'
+
+        span.default-title__current
+          = custom_reviews_header.blank? ? default_reviews_header : custom_reviews_header
+
+        = f.text_field :product_tabs_reviews_header,
+          class:       'default-title__new',
+          placeholder: default_reviews_header
+
+      = form_hint 'Reviews & Ratings tab'
+
+      .default-title__control
+        - custom_questions_header  = @store.settings(:widgets).product_tabs_questions_header
+        - default_questions_header = t 'questions.title',
+                                scope:  'front.widgets.products.tabs',
+                                locale: @store.settings(:global).locale
+
+        .default-title__change
+          = render 'helpful_components/checkbox_toggle/checkbox_toggle',
+            f:     f,
+            type:  'success',
+            field: :product_tabs_show_questions_header,
+            txt:   '',
+            hint:  '',
+            data_target: 'default_title_input'
+
+        span.default-title__current
+          = custom_questions_header.blank? ? default_questions_header : custom_questions_header
+
+        = f.text_field :product_tabs_questions_header,
+          class:       'default-title__new',
+          placeholder: default_questions_header
+
+      = form_hint 'Questions & Answers tab'
+
+    .settings-form__control
+      = render 'helpful_components/checkbox_toggle/checkbox_toggle',
+        f:     f,
+        type:  'warning',
+        field: :product_tabs_hide_overviews,
+        txt:   'Hide tab overview sections',
+        hint:  'Hides sections like rating barchart on reviews tab.'
+
+    .settings-form__control
+      = render 'helpful_components/checkbox_toggle/checkbox_toggle',
+        f:     f,
+        type:  'warning',
+        field: :product_tabs_hide_filters,
+        txt:   'Hide tab filters',
+        hint:  'Hides filters on top of reviews and Q&A lists'
+
+    h3 Product Summary
+
+    .settings-form__control
+      = render 'helpful_components/checkbox_toggle/checkbox_toggle',
+        f:     f,
+        field: :product_summary_links,
+        txt:   'Links',
+        hint:  "Disable when BOTH Product Tabs and Product Summary widgets are \
+                available on page but scroll behaviour does not work for some \
+                reason (for example because of iframe on Wix sites). Links will \
+                be replaced with plain text when disabled"
+
+    .settings-form__control
+      = render 'helpful_components/checkbox_toggle/checkbox_toggle',
+        f:     f,
+        field: :product_summary_show_rating_chart,
+        txt:   'Enable ratings chart',
+        hint:  'Displays a ratings chart when user hovers over the product ratings stars'
+
+    .settings-form__control
+      = render 'helpful_components/checkbox_toggle/checkbox_toggle',
+        f:     f,
+        type:  'warning',
+        field: :product_summary_show_detailed_text,
+        txt:   'Show detailed text',
+        hint:  'This control adds "based on" string to the reviews count.'
+
+    h3 Sidebar
+
+    .default-title.settings-form__control
+      = f.label :sidebar_title, 'Title'
+
+      .default-title__control
+        - custom_sidebar_title  = @store.settings(:widgets).sidebar_title
+        - default_sidebar_title = t 'default_title',
+                          scope:  'front.widgets.sidebar',
+                          locale: @store.settings(:global).locale
+
+        .default-title__change
+          input> id="change-sidebar-title" type="checkbox" data-target="default_title_input"
+          label< for="change-sidebar-title"
+            | Change
+
+        span.default-title__current
+          = custom_sidebar_title.empty? ? default_sidebar_title : custom_sidebar_title
+
+        = f.text_field :sidebar_title,
+          class:       'default-title__new',
+          placeholder: default_sidebar_title
+
+    .settings-form__control
+      div Position
+      - ['left', 'right'].each do |position|
+        label.hc-form__radio-group.hc-form__radio-group--inline
+          => f.radio_button :sidebar_position, position
+          => position.capitalize
+          span.hide-unless-screen-reader position
+
+    .settings-form__control
+      = render   'helpful_components/checkbox_toggle/checkbox_toggle',
+        f:       f,
+        field:   :sidebar,
+        txt:     'Auto-embed on storefront'
+
+    .settings-form__control
+      = f.label        :sidebar_z_index, 'Custom z-index value', class: 'hc-form__label'
+      = f.number_field :sidebar_z_index,                         class: 'hc-form__input hc-form__input--xs'
+      = form_hint %q(Keep '0' to use default value from stylesheet)
+
+    .hc-form__actions
+      = f.submit 'Save', class: 'hc-primary-button'
+
+section.store-details__section
+  h2 Design
+
+  = form_for [:admin, @store.settings(:design)],
+    as:      :settings,
+    url:     { action: :update_settings },
+    method:  :patch,
+    html:    { id: 'design', class: 'settings-form' } do |f|
+
+    = render 'shared/form/errors', resource: @store.settings(:design)
+
+    input type="hidden" name="type" value="design"
+
+    .settings-form__control
+      - ['light', 'dark'].each do |theme|
+        .hc-form__radio-group.hc-form__radio-group--inline
+          => f.radio_button :theme,        theme, required: true
+          => f.label        :theme, value: theme
+
+    .settings-form__control
+      = f.label        :items_per_page, class: 'hc-form__label'
+      = f.number_field :items_per_page, class: 'hc-form__input hc-form__input--xs'
+
+    .settings-form__control
+      = render 'helpful_components/checkbox_toggle/checkbox_toggle',
+        f:     f,
+        type:  'warning',
+        field: :hide_card_actions,
+        txt:   'Hide card actions'
+
+    .settings-form__control
+      = render      'helpful_components/checkbox_toggle/checkbox_toggle',
+        f:          f,
+        field:      :show_hc_branding,
+        txt:        'Display HelpfulCrowd branding',
+        txt_on:     'Branding visible',
+        txt_off:    'Branding is disabled',
+        hint:       'Create immediate trust and credibility with shoppers by displaying the HelpfulCrowd branding',
+        show_label: false
+
+      = render 'front/components/hc_powered_by',
+        display_text: true
+
+    .settings-form__control
+      = render 'helpful_components/checkbox_toggle/checkbox_toggle',
+        f:     f,
+        field: :show_user_avatar,
+        txt:   'Show user avatar on the reviews/questions'
+
+    .settings-form__control
+      = render      'helpful_components/checkbox_toggle/checkbox_toggle',
+        f:          f,
+        field:      :show_store_logo_on_comment,
+        txt: 'Show store logo on Review/Q&A replies'
+
+    .hc-form__actions
+      = f.submit 'Save', class: 'hc-primary-button'
+
+section.store-details__section
+  h2 Reviews
+
+  = form_for [:admin, @store.settings(:reviews)],
+    as:      :settings,
+    url:     { action: :update_settings },
+    method:  :patch,
+    html:    { id: 'reviews', class: 'settings-form' } do |f|
+
+    = render 'shared/form/errors', resource: @store.settings(:reviews)
+
+    input type="hidden" name="type" value="reviews"
+
+    .settings-form__control
+      = render 'helpful_components/checkbox_toggle/checkbox_toggle',
+        f:     f,
+        field: :easy_reviews,
+        txt:   'Easy reviews'
+
+    .settings-form__control
+      = render 'helpful_components/checkbox_toggle/checkbox_toggle',
+        f:     f,
+        field: :authenticated_reviews,
+        txt:   'Authenticated reviews'
+
+    .settings-form__control
+      = render 'helpful_components/checkbox_toggle/checkbox_toggle',
+        f:     f,
+        field: :show_date,
+        txt:   'Display date on review cards'
+
+    .hc-form__actions
+      = f.submit 'Save', class: 'hc-primary-button'
+
+section.store-details__section
+  h2 Questions
+
+  = form_for [:admin, @store.settings(:questions)],
+    as:      :settings,
+    url:     { action: :update_settings },
+    method:  :patch,
+    html:    { id: 'questions', class: 'settings-form' } do |f|
+
+    = render 'shared/form/errors', resource: @store.settings(:questions)
+
+    input type="hidden" name="type" value="questions"
+
+    .settings-form__control
+      = render 'helpful_components/checkbox_toggle/checkbox_toggle',
+        f:     f,
+        field: :show_date,
+        txt:   'Display date on questions'
+
+    .hc-form__actions
+      = f.submit 'Save', class: 'hc-primary-button'
+
+section.store-details__section
+  h2 Dangerous zone
+
+  = button_to 'Deactivate store',
+    users_path,
+    data:   {  prompt: true,
+              'prompt-message': "To deactivate this store, please type in 'DEACTIVATE'.",
+              'prompt-confirm': 'DEACTIVATE' },
+    method: :delete,
+    class:  'users-form__deactivate'
+
+  - if @store.user.standard?
+    => link_to 'Grant translator permissions', translator_permissions_admin_store_path(@store),
+          method: :post,
+          class: 'hc-primary-button'
+  - elsif @store.user.translator?
+    => link_to "Remove translator permissions", translator_permissions_admin_store_path(@store),
+            method: :delete,
+            class: 'hc-primary-button'

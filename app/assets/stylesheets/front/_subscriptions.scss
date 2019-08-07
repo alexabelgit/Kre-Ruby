@@ -1,0 +1,16 @@
+.subscription__title > h1 {
+  @extend %heading-with-line;
+}
+
+.subscription__text {
+  @extend %margin-top__0;
+  @extend %margin-bottom__md;
+}
+
+.subscription-form-wrapper {
+  @extend .hc-card;
+}
+
+.subscription-form__submit {
+  @extend .hc-primary-button;
+}

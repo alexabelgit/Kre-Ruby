@@ -1,0 +1,413 @@
+---
+- theme: Boundless
+  injections:
+    -
+      id:          hc-product-rating-in-search
+      asset:       sections/search-template.liquid
+      code:        "{% include 'hc-product-rating', product: item %}"
+      indent:      20
+      inject_type: after_hook
+      hook:        <p class="product-item__title">{{ item.title }}</p>
+    -
+      id:          hc-product-rating-in-grid
+      asset:       snippets/product-grid-item.liquid
+      code:        "{% include 'hc-product-rating' %}"
+      indent:      12
+      inject_type: before_hook
+      hook:        <p class="product-item__price-wrapper">
+      hook_indent: 12
+      widget:      product_rating
+    -
+      id:          hc-product-summary
+      asset:       sections/product-template.liquid
+      code:        "{% include 'hc-product-summary' %}<br>"
+      indent:      10
+      inject_type: after_hook
+      hook:        <h2 itemprop="name">{{ product.title }}</h2>
+      widget:      product_summary
+    -
+      id:          hc-product-tabs
+      asset:       sections/product-template.liquid
+      code:        "{% include 'hc-product-tabs' %}"
+      indent:      0
+      inject_type: last
+      widget:      product_tabs
+    -
+      id:          hc-styles
+      asset:       layout/theme.liquid
+      code:        "{% include 'hc-styles' %}"
+      indent:      2
+      inject_type: before_hook
+      hook:        </head>
+      hook_indent: 0
+      widget:      stylesheet
+- theme: Brooklyn
+  injections:
+    -
+      id:          hc-product-rating
+      asset:       snippets/product-grid-item.liquid
+      code:        "{% include 'hc-product-rating' %}"
+      indent:      6
+      inject_type: before_hook
+      hook:        </a>
+      hook_indent: 4
+      hook_lookup: from_bottom
+      widget:      product_rating
+    -
+      id:          hc-product-summary
+      asset:       sections/product-template.liquid
+      code:        "{% include 'hc-product-summary' %}<br>"
+      indent:      10
+      inject_type: before_hook
+      hook:        <div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+      hook_indent: 10
+      widget:      product_summary
+    -
+      id:          hc-product-tabs
+      asset:       sections/product-template.liquid
+      code:        "{% include 'hc-product-tabs' %}"
+      indent:      0
+      inject_type: last
+      widget:      product_tabs
+    -
+      id:          hc-styles
+      asset:       layout/theme.liquid
+      code:        "{% include 'hc-styles' %}"
+      indent:      2
+      inject_type: before_hook
+      hook:        </head>
+      hook_indent: 0
+      widget:      stylesheet
+- theme: Debut
+  injections:
+    -
+      id:          hc-product-rating-in-list
+      asset:       snippets/product-card-list.liquid
+      code:        "{% include 'hc-product-rating' %}"
+      indent:      6
+      inject_type: after_hook
+      hook:        "{{ product.title }}</div>"
+      widget:      product_rating
+    -
+      id:          hc-product-rating-in-grid
+      asset:       snippets/product-card-grid.liquid
+      code:        "{% include 'hc-product-rating' %}"
+      indent:      2
+      inject_type: after_hook
+      hook:        "{{ product.title }}</div>"
+      widget:      product_rating
+    -
+      id:          hc-product-summary
+      asset:       sections/product-template.liquid
+      code:        "{% include 'hc-product-summary' %}"
+      indent:      10
+      inject_type: before_hook
+      hook:        <div class="product__price">
+      hook_indent: 10
+      widget:      product_summary
+    -
+      id:          hc-product-tabs
+      asset:       sections/product-template.liquid
+      code:        "{% include 'hc-product-tabs' %}"
+      indent:      0
+      inject_type: last
+      widget:      product_tabs
+    -
+      id:          hc-styles
+      asset:       layout/theme.liquid
+      code:        "{% include 'hc-styles' %}"
+      indent:      2
+      inject_type: before_hook
+      hook:        </head>
+      hook_indent: 0
+      widget:      stylesheet
+- theme: Jumpstart
+  injections:
+    -
+      id:          hc-product-rating
+      asset:       snippets/product-grid-item.liquid
+      code:        "{% include 'hc-product-rating' %}"
+      indent:      2
+      inject_type: before_hook
+      hook:        <p class="price">
+      hook_indent: 2
+      widget:      product_rating
+    -
+      id:          hc-product-summary
+      asset:       sections/product-template.liquid
+      code:        "{% include 'hc-product-summary' %}<br>"
+      indent:      6
+      inject_type: after_hook
+      hook:        <div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+      widget:      product_summary
+    -
+      id:          hc-product-tabs
+      asset:       sections/product-template.liquid
+      code:        "{% include 'hc-product-tabs' %}"
+      indent:      0
+      inject_type: last
+      widget:      product_tabs
+    -
+      id:          hc-styles
+      asset:       layout/theme.liquid
+      code:        "{% include 'hc-styles' %}"
+      indent:      2
+      inject_type: before_hook
+      hook:        </head>
+      hook_indent: 0
+      widget:      stylesheet
+- theme: Minimal
+  injections:
+    -
+      id:          hc-product-rating-in-grid
+      asset:       snippets/product-grid-item.liquid
+      code:        "{% include 'hc-product-rating' %}"
+      indent:      6
+      inject_type: before_hook
+      hook:        <p class="grid-link__meta">
+      hook_indent: 6
+      widget:      product_rating
+    -
+      id:          hc-product-rating-in-search-grid
+      asset:       snippets/search-result-grid.liquid
+      code:        "{% include 'hc-product-rating', product: item %}"
+      indent:      4
+      inject_type: after_hook
+      hook:        "{% if item.object_type == 'product' %}"
+    -
+      id:          hc-product-rating-in-search-result
+      asset:       snippets/search-result.liquid
+      code:        "{% include 'hc-product-rating', product: item %}"
+      indent:      6
+      inject_type: after_hook
+      hook:        "{% if item.object_type == 'product' %}"
+    -
+      id:          hc-product-summary
+      asset:       sections/product-template.liquid
+      code:        "{% include 'hc-product-summary' %}"
+      indent:      8
+      inject_type: after_hook
+      hook:        </h1>
+      widget:      product_summary
+    -
+      id:          hc-product-tabs
+      asset:       sections/product-template.liquid
+      code:        "{% include 'hc-product-tabs' %}"
+      indent:      0
+      inject_type: last
+      widget:      product_tabs
+    -
+      id:          hc-styles
+      asset:       layout/theme.liquid
+      code:        "{% include 'hc-styles' %}"
+      indent:      2
+      inject_type: before_hook
+      hook:        </head>
+      hook_indent: 0
+      widget:      stylesheet
+- theme: Narrative
+  injections:
+    -
+      id:          hc-product-rating
+      asset:       snippets/product-card.liquid
+      code:        "<div style='margin-top: -10px; margin-bottom: 10px;'>{% include 'hc-product-rating' %}</div>"
+      indent:      6
+      inject_type: after_hook
+      hook:        <h3 class="card__name h4">{{ product.title }}</h3>
+      widget:      product_rating
+    -
+      id:          hc-product-summary
+      asset:       sections/product-template.liquid
+      code:        "<div class='text-center' style='margin-bottom: 10px;'>{% include 'hc-product-summary' %}</div>"
+      indent:      10
+      inject_type: after_hook
+      hook:        </h1>
+      widget:      product_summary
+    -
+      id:          hc-product-tabs
+      asset:       sections/product-template.liquid
+      code:        "{% include 'hc-product-tabs' %}"
+      indent:      0
+      inject_type: last
+      widget:      product_tabs
+    -
+      id:          hc-styles
+      asset:       layout/theme.liquid
+      code:        "{% include 'hc-styles' %}"
+      indent:      2
+      inject_type: before_hook
+      hook:        </head>
+      hook_indent: 0
+      widget:      stylesheet
+- theme: Pop
+  injections:
+    -
+      id:          hc-product-rating-in-grid
+      asset:       snippets/product-grid-item.liquid
+      code:        "{% include 'hc-product-rating' %}"
+      indent:      12
+      inject_type: before_hook
+      hook:        <p class="product__price">
+      hook_indent: 12
+      widget:      product_rating
+    -
+      id:          hc-product-rating-in-search
+      asset:       'snippets/search-result.liquid'
+      code:        "{% include 'hc-product-rating', product: item %}"
+      indent:      4
+      inject_type: after_hook
+      hook:        '<h2 class="h3">{{ item.title | link_to: item.url }}</h2>'
+    -
+      id:          hc-product-summary
+      asset:       sections/product-template.liquid
+      code:        "{% include 'hc-product-summary' %}<hr class='hr--small'>"
+      indent:      4
+      inject_type: before_hook
+      hook:        <div class="h2 product-single__price">
+      hook_indent: 4
+      widget:      product_summary
+    -
+      id:          hc-product-tabs
+      asset:       sections/product-template.liquid
+      code:        "{% include 'hc-product-tabs' %}"
+      indent:      0
+      inject_type: last
+      widget:      product_tabs
+    -
+      id:          hc-styles
+      asset:       layout/theme.liquid
+      code:        "{% include 'hc-styles' %}"
+      indent:      2
+      inject_type: before_hook
+      hook:        </head>
+      hook_indent: 0
+      widget:      stylesheet
+- theme: Simple
+  injections:
+    -
+      id:          hc-product-rating
+      asset:       snippets/product-grid-item.liquid
+      code:        "{% include 'hc-product-rating' %}"
+      indent:      4
+      inject_type: after_hook
+      hook:        <div class="product__prices text-center">
+      widget:      product_rating
+    -
+      id:          hc-product-summary
+      asset:       sections/product-template.liquid
+      code:        "{% include 'hc-product-summary' %}"
+      indent:      8
+      inject_type: before_hook
+      hook:        <div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+      hook_indent: 8
+      widget:      product_summary
+    -
+      id:          hc-product-tabs
+      asset:       sections/product-template.liquid
+      code:        "{% include 'hc-product-tabs' %}"
+      indent:      0
+      inject_type: last
+      widget:      product_tabs
+    -
+      id:          hc-styles
+      asset:       layout/theme.liquid
+      code:        "{% include 'hc-styles' %}"
+      indent:      2
+      inject_type: before_hook
+      hook:        </head>
+      hook_indent: 0
+      widget:      stylesheet
+- theme: Supply
+  injections:
+    -
+      id:          hc-product-rating-in-grid
+      asset:       snippets/product-grid-item.liquid
+      code:        "{% include 'hc-product-rating' %}"
+      indent:      4
+      inject_type: after_hook
+      hook:        <p>{{ product.title }}</p>
+      widget:      product_rating
+    -
+      id:          hc-product-rating-in-list
+      asset:       snippets/product-list-item.liquid
+      code:        "{% include 'hc-product-rating' %}"
+      indent:      8
+      inject_type: before_hook
+      hook:        <div class="rte">
+      hook_indent: 8
+      widget:      product_rating
+    -
+      id:          hc-product-rating-in-search-grid
+      asset:       snippets/search-result-grid.liquid
+      code:        "{% include 'hc-product-rating', product: item %}"
+      indent:      6
+      inject_type: before_hook
+      hook:        <div class="product-item--price">
+      hook_indent: 6
+    -
+      id:          hc-product-rating-in-search
+      asset:       snippets/search-result.liquid
+      code:        "{% include 'hc-product-rating', product: item %}"
+      indent:      4
+      inject_type: after_hook
+      hook:        </h1>
+    -
+      id:          hc-product-summary
+      asset:       sections/product-template.liquid
+      code:        "{% include 'hc-product-summary' %}"
+      indent:      4
+      inject_type: before_hook
+      hook:        <div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+      hook_indent: 4
+      widget:      product_summary
+    -
+      id:          hc-product-tabs
+      asset:       sections/product-template.liquid
+      code:        "{% include 'hc-product-tabs' %}"
+      indent:      0
+      inject_type: last
+      widget:      product_tabs
+    -
+      id:          hc-styles
+      asset:       layout/theme.liquid
+      code:        "{% include 'hc-styles' %}"
+      indent:      2
+      inject_type: before_hook
+      hook:        </head>
+      hook_indent: 0
+      widget:      stylesheet
+- theme: Venture
+  injections:
+    -
+      id:          hc-product-rating
+      asset:       snippets/product-card.liquid
+      code:        "{% include 'hc-product-rating' %}"
+      indent:      4
+      inject_type: before_hook
+      hook:        "{% if product.available %}"
+      hook_indent: 4
+      widget:      product_rating
+    -
+      id:          hc-product-summary
+      asset:       sections/product-template.liquid
+      code:        "{% include 'hc-product-summary' %}<br>"
+      indent:      10
+      inject_type: after_hook
+      hook:        </h1>
+      widget:      product_summary
+    -
+      id:          hc-product-tabs
+      asset:       sections/product-template.liquid
+      code:        "{% include 'hc-product-tabs' %}"
+      indent:      0
+      inject_type: last
+      widget:      product_tabs
+    -
+      id:          hc-styles
+      asset:       layout/theme.liquid
+      code:        "{% include 'hc-styles' %}"
+      indent:      2
+      inject_type: before_hook
+      hook:        </head>
+      hook_indent: 0
+      widget:      stylesheet

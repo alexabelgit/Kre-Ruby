@@ -1,0 +1,6 @@
+jQuery('[data-model="<%= @flaggable.class.name.downcase %>"][data-id="<%= @flag.flaggable.hashid %>"] [data-model="flag"]')
+        .replaceWith('<%= escape_javascript(render 'front/flags/show', flag: @flag) %>');
+
+if (HC_JS.helpers) {
+    HC_JS.helpers.set_record_unavailability('<%= @flaggable.class.name.downcase %>', '<%= @flag.flaggable.hashid %>', 'flag');
+}

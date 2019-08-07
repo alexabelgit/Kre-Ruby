@@ -1,0 +1,69 @@
+	label {
+  @extend %vertical-align__baseline;
+}
+
+// Image/video count on hero/featured images. Will stay same for light/dark themes.
+.hc-media__image-count, .hc-media__video-count {
+	color: $color-light !important;
+}
+
+.hc-theme__dark {
+	div {
+		@extend %color__light;
+	}
+	a {
+		color: $color-pale !important;
+	}
+	.hc-sidebar__toggler {
+		color: $color-light !important;
+	}
+	.hc-product-tab--active .hc-badge {
+		color: $color-dark !important;
+	}
+	input, select, textarea {
+		background-color: $color-darker !important;
+		color: $color-light !important;
+		border-color: $color-darker !important;
+	}
+	.hc-product-tab--actions {
+		a {
+			color: $color-dark !important;
+		}
+	}
+	// Pagination link fixes
+	.hc-paging .page-item {
+		&.active .page-link {
+			color: $color-light !important;
+		}
+		&.disabled .page-link {
+			color: $color-pale !important;
+		}
+	}
+}
+
+.hc-theme__light {
+	div:not(.hc-media__thumb-icon):not(.hc-product-tab):not(.hc-upvote):not(.hc-review__date):not(.hc-question__date):not(.add-rating__star--full):not(.add-rating__star--empty):not(.hc-form__hint):not(.hc-product-rating):not(.hc-stars):not(.hc-media__image-count):not(.hc-media__video-count) {
+		@extend %color__dark;
+	}
+	.hc-product-tab--actions {
+		a {
+			color: $color-light !important;
+			&:hover {
+				color: $color-dark !important;
+			}
+		}
+	}
+	.hc-product-tab a, .hc-sidebar__tab {
+		color: inherit !important;
+		font-size: inherit !important;
+	}
+	// Pagination link fixes
+	.hc-paging .page-item {
+		&.active .page-link {
+			color: $color-light !important;
+		}
+		&.disabled .page-link {
+			color: $color-pale !important;
+		}
+	}
+}

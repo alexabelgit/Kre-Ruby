@@ -1,0 +1,2 @@
+jQuery('[data-model="question"][data-id="<%= @question.hashid %>"')
+  .replaceWith('<%= escape_javascript(render "integrations/ecwid/shared/flash") %>');

@@ -1,0 +1,11 @@
+- items = [ { name: 'Email suppressions', path: back_suppressions_path     },
+            { name: 'ContentGuard',       path: back_abuse_reports_path    },
+            { name: 'Data import',        path: seed_back_tools_path       },
+            ({ name: 'Widget console',    path: widget_console_back_tools_path } if current_store.shopify?),
+            { name: 'Setup guide',        path: onboarding_back_tools_path } ]
+            
+- items.unshift({ name: 'Promotions', path: back_promotions_path }) if @store.promotions_enabled?
+
+
+= content_for :sub_nav
+  = render 'layouts/back/sub_nav', items: items

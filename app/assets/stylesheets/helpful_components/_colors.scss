@@ -1,0 +1,47 @@
+.hc-color__primary {
+  @extend %color__primary;
+}
+
+.hc-color__secondary {
+  @extend %color__secondary;
+}
+
+.hc-color__success {
+  @extend %color__success;
+}
+
+.hc-color__warning {
+  @extend %color__warning;
+}
+
+.hc-color__danger {
+  @extend %color__danger;
+}
+
+.hc-color__info {
+  @extend %color__info;
+}
+
+.hc-color__dark {
+  @extend %color__dark;
+}
+
+.hc-color__light {
+  @extend %color__light;
+}
+
+.hc-color__pale {
+  @extend %color__pale;
+}
+
+.hc-color__white {
+  color: white;
+}
+
+.hc-color__facebook {
+  @extend %color__facebook;
+}
+
+.hc-color__twitter {
+  @extend %color__twitter;
+}

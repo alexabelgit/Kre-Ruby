@@ -1,0 +1,5 @@
+<%= render 'shared/system_messages/replace_flash' %>
+
+jQuery('[data-model="review"][data-id="<%= @review.hashid %>"]')
+        .replaceWith('<%= escape_javascript(render 'back/reviews/show', review: @review, social_connections: current_store.social_connections) %>');
+jQuery('[data-model="review"][data-id="<%= @review.hashid %>"]').hc_dropdown().copy_to_clipboard().fade_out_system_message();

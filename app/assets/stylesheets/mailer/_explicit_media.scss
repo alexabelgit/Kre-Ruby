@@ -1,0 +1,9 @@
+.explicit_media {
+  
+  .media img {
+    &.explicit {
+      @extend %border__2px__solid__danger;
+    }
+  }
+
+}

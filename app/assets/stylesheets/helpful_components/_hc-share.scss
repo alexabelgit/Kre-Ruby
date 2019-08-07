@@ -1,0 +1,30 @@
+.hc-share__icon {
+  transition: transform $transition-duration__base;
+}
+
+.hc-share {
+  @extend %flex__0;
+  .hc-dropdown--active {
+    .hc-share__icon {
+      transform: rotate(90deg) scaleX(-1);
+    }
+  }
+
+  .hc-dropdown__content {
+    @extend %background-color__transparent;
+    @extend %border__0;
+    @extend %box-shadow__none;
+    @extend %min-width__0;
+    @extend %white-space__nowrap;
+
+    @extend %bottom__2em;
+
+    > a {
+      @extend %box-shadow__base;
+      @extend %margin-x__3xs;
+      .hc-icon {
+        @extend %margin-bottom__2xs;
+      }
+    }
+  }
+}

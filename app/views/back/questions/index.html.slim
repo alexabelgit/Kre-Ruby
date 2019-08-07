@@ -1,0 +1,82 @@
+- title 'Q&A'
+= render 'back/questions/sub_nav'
+
+= render 'back/questions/disabled_message'
+
+= render 'back/imported_questions/ready'
+
+section.questions
+  .questions__filters
+    .questions__filter
+      table.statuses
+        thead
+          tr
+            th Status
+            th Questions
+
+        tbody
+          tr
+            td Pending
+            td = active_link_to current_store.questions.pending.count,
+                 filter_link(status: :pending, without_keys: [:page]),
+                 active:         :exact,
+                 class_active:   'active-status',
+                 class_inactive: 'status'
+
+          tr
+            td Published
+            td = active_link_to current_store.questions.published.count,
+                 filter_link(status: :published, without_keys: [:page]),
+                 active:         :exact,
+                 class_active:   'active-status',
+                 class_inactive: 'status'
+
+          tr
+            td Suppressed
+            td = active_link_to current_store.questions.suppressed.count,
+                 filter_link(status: :suppressed, without_keys: [:page]),
+                 active:         :exact,
+                 class_active:   'active-status',
+                 class_inactive: 'status'
+
+          tr
+            td Archived
+            td = active_link_to current_store.questions.archived.count,
+                 filter_link(status: :archived, without_keys: [:page]),
+                 active:         :exact,
+                 class_active:   'active-status',
+                 class_inactive: 'status'
+
+          tr
+            td All
+            td = active_link_to current_store.questions.count,
+                 filter_link(status: nil, without_keys: [:page]),
+                 active:         :exact,
+                 class_active:   'active-status',
+                 class_inactive: 'status'
+
+    .questions__filter
+
+      = render 'back/shared/search', action: back_questions_path, searchable: @questions
+
+    .questions__filter
+      label for="Products" Product
+      =< filter_select 'Products', @questions.filter_value,
+              :product_group_ids,
+              current_user.store.products.a24z.map { |x| { title: x.name, id: x.id } },
+              'All products',
+              html_options: { class: 'hc-select-with-search' }
+
+  .questions__list
+    - if current_user.store.questions.any?
+
+      - @questions.each do |question|
+        = render 'back/questions/show', question: question
+
+    - else
+      = render      'back/shared/no_records',
+        object:     'questions',
+        kb_article: 'import_questions',
+        action:     seed_back_tools_path(anchor: 'import-questions')
+
+= will_paginate @questions, class: 'hc-paging hc-paging--modern'

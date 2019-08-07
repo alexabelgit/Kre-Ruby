@@ -1,0 +1,34 @@
+#settings-form__custom_stylesheet {
+  @extend %width__100pct;
+  @extend %border__base;
+  min-height: 290px;
+}
+
+#settings-form__custom_stylesheet-textarea {
+  display: none;
+}
+
+#settings-design__tips {
+  @extend %margin-bottom__md;
+
+  ul {
+    @extend %margin__0;
+    padding-left: 1em;
+    font-size: 0.9em;
+  }
+  li {
+    padding: 2px 0;
+  }
+}
+
+#settings-custom_stylesheet_example {
+  @extend %width__100pct;
+  background: white;
+  margin: 7px 0 0;
+  box-shadow: 0 0 7px 1px #cacaca inset;
+  img {
+    width: calc(100% - 16px);
+    max-width: 300px;
+    margin: 8px 8px 1px 8px;
+  }
+}

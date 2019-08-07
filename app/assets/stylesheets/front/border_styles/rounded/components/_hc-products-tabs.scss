@@ -1,0 +1,25 @@
+.hc-product-tabs {
+  &.hc-product-tabs--classic {
+    .hc-product-tab {
+      &.hc-product-tab--active {
+        @extend %border-top-left-radius__#{$rounded-borders_md};
+        @extend %border-top-right-radius__#{$rounded-borders_md};
+      }
+    }
+  }
+  .hc-product-tab {
+    &--actions a {
+    	@extend %border-radius__#{$rounded-borders_sm};
+    }
+    &-filters__search {
+    	@extend %border-radius__#{$rounded-corders_md};
+      @extend %padding-left__sm;
+      &-input {
+        @extend %border-radius__#{$rounded-corders_md};
+      }
+    }
+    &-filters__list-sort {
+    	@extend %border-radius__#{$rounded-borders_sm};
+    }
+  }
+}

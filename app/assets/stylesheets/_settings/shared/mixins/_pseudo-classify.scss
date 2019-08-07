@@ -1,0 +1,63 @@
+@mixin pseudo-classify(
+  $property,
+  $link:     false,
+  $visited:  false,
+  $focus:    false,
+  $hover:    false,
+  $active:   false
+){
+  @if $link {
+    &:link {
+      #{$property}: $link;
+    }
+  }
+
+  @if $visited {
+    &:visited {
+      #{$property}: $visited;
+    }
+  }
+
+  @if $focus {
+    &:focus {
+      #{$property}: $focus;
+    }
+  }
+
+  @if $hover {
+    &:hover {
+      #{$property}: $hover;
+    }
+  }
+
+  @if $active {
+    &:active {
+      #{$property}: $active;
+    }
+  }
+}
+
+@mixin pseudo-classify-uniformly(
+  $property,
+  $value
+){
+  &:link {
+    #{$property}: $value;
+  }
+
+  &:visited {
+    #{$property}: $value;
+  }
+
+  &:focus {
+    #{$property}: $value;
+  }
+
+  &:hover {
+    #{$property}: $value;
+  }
+
+  &:active {
+    #{$property}: $value;
+  }
+}

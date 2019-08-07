@@ -1,0 +1,20 @@
+/ autofocus
+/ button_label - { initial: 'Sign in', disabled: 'Signing in' }
+
+- autofocus    ||= true
+- button_label ||= { initial: 'Authenticate', disabled: 'Authenticating' }
+
+
+= form_tag new_oauth_shopify_session_path, method: :get do
+  .auth-form__control
+    = label_tag 'shop', 'Store address'
+    .auth-form__shopify-input
+      = text_field_tag 'shop', '', placeholder: "your-awesome-store", autofocus: autofocus
+      span .myshopify.com
+
+
+  = button_tag class: 'hc-shopify-button--block',
+               data:  { disable_with: "#{ spinner_icon } #{ button_label[:disabled] }" } do
+
+    => image_tag 'shopify-icon.svg', class: 'auth-option__icon'
+    =  button_label[:initial]

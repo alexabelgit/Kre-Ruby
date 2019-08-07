@@ -1,0 +1,59 @@
+.hc-avatar {
+  @extend %display__inline-block;
+  @extend %width__30px;
+  @extend %height__30px;
+  @extend %margin-right__xs;
+  @extend %border-radius__50pct;
+  @extend %border-radius__50pct;
+  @extend %vertical-align__middle;
+  &__logo{
+    // @extend %vertical-align__mi;
+    margin-top: -10px;
+  }
+  &__initials{
+    @extend %text-align__center;
+    @extend %line-height__1pt5;
+    @extend %font-size__11px;
+    padding: 7px 3.5px;
+    @extend %background-color__brand-1;
+    @extend %color__white;
+  }
+}
+.hc-author__text{
+  @extend %display__inline-block;
+  @extend %line-height__1pt125;
+  @extend %vertical-align__middle;
+}
+.hc-author__avatar{
+  @extend %display__inline-block;
+  @extend %margin-top__2xs;
+}
+.hc-author {
+  .hc-verified-icon:not(.hc-verified-text-icon) {
+    @extend %display__none--below__sm;
+    @extend %margin-left__-sm;
+    @extend %margin-right__2xs;
+    @extend %font-size__18px;
+  }
+  // Verified icon for mobile screens (where user cannot hover)
+  .hc-verified-text-icon {
+    // @extend %display__none--above__sm;
+    @extend %margin-left__2xs;
+    @extend %font-size__16px;
+  }
+  .hc-verified-text {
+    // @extend %display__none--above__sm;
+    @extend %font-size__12px;
+    @extend %color__pale;
+    @extend %vertical-align__middle;
+  }
+  .hc-verified-icon{
+    @extend %box-sizing__inherit;
+    @extend %border__none;
+    @extend %padding-bottom__0;
+    &__shield {
+      stroke-width: 180px;
+      stroke: $color-light;
+    }
+  }
+}

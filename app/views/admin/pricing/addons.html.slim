@@ -1,0 +1,31 @@
+= content_for :sub_nav
+  = render 'layouts/admin/sub_nav', items: @presenter.navigation_items
+
+header.header-with-action
+  h2 = title "Addons are disabled for now"
+   = link_to "New Addon", new_admin_addon_path, class: 'hc-primary-button'
+
+/ table.table
+/   thead
+/     tr
+/       th Name
+/       th Description
+/       th Slug
+/       th Shopify price
+/       th Ecwid price
+/       th State
+/       th
+
+/   tbody
+/     - @presenter.addons.each do |addon|
+/       tr
+/         td = addon.name
+/         td = addon.description
+/         td = addon.slug
+/         td = number_to_currency(addon.shopify_price)
+/         td = number_to_currency(addon.ecwid_price)
+/         td = addon.state
+/         td = link_to edit_admin_addon_path(addon) do
+/           = hc_icon 'pencil'
+
+/ = will_paginate @presenter.addons, class: 'hc-paging hc-paging--modern'

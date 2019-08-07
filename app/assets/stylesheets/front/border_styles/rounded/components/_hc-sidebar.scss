@@ -1,0 +1,10 @@
+.hc-sidebar{
+	.hc-product-tab--active{
+		@extend %border-top-left-radius__#{$rounded-borders_md};
+    @extend %border-top-right-radius__#{$rounded-borders_md};
+	}
+	.hc-sidebar__toggler{
+		@extend %border-bottom-left-radius__#{$rounded-borders_md};
+    @extend %border-bottom-right-radius__#{$rounded-borders_md};
+	}
+}

@@ -1,0 +1,95 @@
+%paging {
+  // @extend %margin-top__md; // TODO This takes up space even when pagination is not rendered.. need a solution
+  @extend %text-align__center;
+  @extend %list-style__none;
+  @extend %font-size__87pt5pct;
+}
+
+.hc-paging {
+  @extend %paging;
+  .page-item {
+    @extend %display__inline-block;
+    // @extend %list-style__none;
+    .page-link {
+      @extend %position__relative;
+      @extend %padding-y__xs;
+      &:hover {
+        @extend %text-decoration__none;
+      }
+    }
+    &.disabled .page-link {
+      @extend %pointer-events__none;
+      @extend %cursor__auto;
+    }
+  }
+  &.hc-paging--load-more {
+    @extend %padding-left__0;
+    .page-item {
+      @extend %color__link;
+      @extend %underline-on-hover;
+      .page-link {
+        @extend %border-radius__base;
+      }
+      &.disabled {
+        @extend %hide-unless-screen-reader;
+      }
+    }
+  }
+  &:empty {
+    @extend %margin__0;
+  }
+}
+
+.hc-paging--classic {
+  .page-item {
+    .page-link {
+      @extend %padding-x__3xs;
+      &:hover {
+      }
+    }
+    &.active .page-link {
+      @extend %color__dark;
+    }
+  }
+}
+
+.hc-paging--modern {
+  .page-item {
+    &:first-child {
+      .page-link {
+        @extend %border-top-left-radius__base;
+        @extend %border-bottom-left-radius__base;
+      }
+    }
+    &:last-child {
+      .page-link {
+        @extend %border-top-right-radius__base;
+        @extend %border-bottom-right-radius__base;
+      }
+    }
+    .page-link {
+      @extend %display__block;
+      @extend %text-decoration__none;
+      @extend %color__primary;
+      @extend %background-color__lighter;
+      @extend %border__1px__solid__light;
+      @extend %padding-x__sm;
+      &:hover {
+        @extend %color__primary;
+        @extend %text-decoration__none;
+        @extend %background-color__light;
+      }
+    }
+    &.disabled .page-link {
+      @extend %color__pale;
+    }
+    &.active .page-link {
+      @extend %color__light;
+      @extend %background-color__primary;
+      @extend %border__1px__solid__primary;
+      &:hover {
+        @extend %background-color__primary--lightened;
+      }
+    }
+  }
+}

@@ -1,0 +1,21 @@
+.plan {
+  @extend %display__inline-block;
+  @extend %border-radius__base;
+  @extend %padding-x__2xs--rem;
+  @extend %font-size__80pct;
+
+  &.free_forever {
+    @extend %background-color__secondary;
+    @extend %color__dark;
+  }
+
+  &.trial {
+    @extend %background-color__brand-3;
+    @extend %color__white;
+  }
+
+  &.paid {
+    @extend %background-color__success;
+    @extend %color__white;
+  }
+}

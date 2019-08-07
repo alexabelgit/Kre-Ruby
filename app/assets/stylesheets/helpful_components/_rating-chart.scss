@@ -1,0 +1,69 @@
+.hc-rating-chart {
+  @extend %width__100pct;
+  @extend %max-width__320px;
+  @extend %min-width__260px;
+  @extend %display__table;
+  @extend %border-spacing__0__2px;
+  &__row {
+    @extend %display__table-row;
+    @extend %white-space__nowrap; // TODO test if child elements need white-space: normal;
+
+    @extend %color__link;
+    @extend %underline-on-hover;
+  }
+  &__rating {
+    @extend %padding-right__xs;
+    @extend %display__table-cell;
+    @extend %vertical-align__middle;
+  }
+  &__bar-wrapper {
+    @extend %width__100pct;
+    @extend %background-color__lighter;
+    @extend %border__1px__solid__secondary;
+    @extend %padding__0;
+    @extend %display__table-cell;
+    @extend %vertical-align__middle;
+  }
+
+  &__bar {
+    @extend %background-color__brand-2;
+    @extend %height__1pt4em;
+  }
+
+  &__percentage-value {
+    @extend %hide-unless-screen-reader;
+  }
+
+  &__count {
+    @extend %padding-left__xs;
+    @extend %display__table-cell;
+    @extend %vertical-align__middle;
+  }
+  &__rating {
+    .hc-icon {
+      @extend %margin-top__2px;
+    }
+  }
+}
+
+
+
+// Floating rating chart - visible on tooltip with product summary widget
+.hc-rating-chart.hc-rating-chart__floating {
+  @extend %min-width__100px;
+  @extend %border-spacing__0__4px;
+  a.hc-rating-chart__row {
+  }
+  .hc-rating-chart__rating {
+    .hc-icon {
+      @extend %margin-top__0;
+      @extend %margin-left__1px;
+    }
+  }
+}
+
+@media #{$below__sm} {
+  .hc-rating-chart {
+    max-width: 100%;
+  }
+}

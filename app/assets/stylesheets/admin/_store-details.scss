@@ -1,0 +1,25 @@
+.store-details {}
+
+.store-details__section {
+  @extend .hc-card;
+
+  &:not(:last-of-type) {
+    @extend %margin-bottom__md;
+  }
+
+  .button_to {
+      display: inline-block;
+      margin-right: 20px;
+  }
+}
+
+.store-details__subsection {
+  &:not(:last-of-type) {
+    @extend %margin-bottom__md;
+  }
+}
+
+.store-details__rating-chart {
+  @extend %margin-top__md;
+  @extend %max-width__30rem;
+}

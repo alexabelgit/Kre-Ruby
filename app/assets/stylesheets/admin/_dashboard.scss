@@ -1,0 +1,10 @@
+.dashboard__section {
+  @extend .hc-card;
+}
+
+.dashboard__section,
+.dashboard__sub-section {
+  &:not(:last-of-type) {
+    @extend %margin-bottom__md;
+  }
+}

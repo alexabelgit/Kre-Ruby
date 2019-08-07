@@ -1,0 +1,5 @@
+.hc-stars {
+  @extend %white-space__nowrap;   // so that stars don't get displayed on multiple lines
+  @extend %display__inline-block;
+  @extend %color__brand-2;
+}

@@ -1,0 +1,78 @@
+header.header-with-action
+  h1 = title 'Stores'
+
+  - active_style = 'color: #f49251;'
+  .header-with-action__search
+    = link_to admin_stores_path, style: !@storefront_active.to_b && !@backend_active.to_b ? active_style : '' do
+      | All
+    = " | "
+    = link_to admin_stores_path(storefront_active: true), style: @storefront_active.to_b && !@backend_active.to_b ? active_style : '' do
+      | Storefront Active
+    = " | "
+    = link_to admin_stores_path(backend_active: true), style: @backend_active.to_b && !@storefront_active.to_b ? active_style : '' do
+      | Backend Active
+    = " | "
+    = link_to admin_stores_path(storefront_active: true, backend_active: true), style: @storefront_active.to_b && @backend_active.to_b ? active_style : '' do
+      | Storefront & Backend Active
+    = " | "
+    = render 'admin/shared/search', action: admin_stores_path, term: @search_term
+
+table.table
+  thead
+    tr
+      th Store
+      th Status
+      th Review requests
+      th Reviews
+      th Questions
+      th Products
+      th Onboarding
+      th Billing model
+      th Subscription
+      th Owner
+
+  tbody
+    - @stores.each do |store|
+      tr
+        td
+          div
+            => link_to store.get_highlights(:name), admin_store_path(store)
+            = link_to store.url, target: '_blank' do
+              = hc_icon 'external-link'
+          / render 'plan', store: store, monthly_charge: true
+
+        td
+          = info_with_label(render('platform', store: store), 'App')
+          = info_with_label(store.status,                     'Backend')
+          = info_with_label(store.storefront_status,          'Storefront')
+
+        td
+          = info_with_label(store.review_requests.sent.count, 'Sent',      html_class: 'flex__3-vs-1')
+          = info_with_label(store.review_requests.count,      'Total',     html_class: 'flex__3-vs-1')
+
+        td
+          = info_with_label(store.reviews.published.count,    'Published', html_class: 'flex__3-vs-1')
+          = info_with_label(store.reviews.count,              'Total',     html_class: 'flex__3-vs-1')
+
+        td
+          = info_with_label(store.questions.published.count,  'Published', html_class: 'flex__3-vs-1')
+          = info_with_label(store.questions.count,            'Total',     html_class: 'flex__3-vs-1')
+
+        td = store.products.count
+        td = progress_bar store.onboarding[:progress]
+
+        td
+          span.hc-badge class="hc-badge--#{store.pricing_model == 'products' ? 'success' : 'primary'}"
+            = store.pricing_model
+
+        td
+          = Admin::BillingPresenter.new(store, self).billing_status
+        td
+          => mail_to store.user.email do
+            = store.get_highlights(:user_name, store.user.full_name)
+
+          = link_to impersonate_admin_user_path(store.user), method: :post, class: 'hc-secondary-button--small float__right' do
+            => hc_icon 'user-secret'
+            |  Impersonate
+
+= will_paginate @stores, class: 'hc-paging hc-paging--modern'

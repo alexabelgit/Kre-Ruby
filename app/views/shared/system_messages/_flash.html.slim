@@ -1,0 +1,11 @@
+/ To make flash fade, make it an array instead of string and make 2nd member :fade. Example:
+/ flash[:success] = 'Your email is now confirmed and you are all set up!', :fade
+
+- flash.each do |key, value|
+  - if value.kind_of?(Array)
+    - fade  = value.second.to_s == 'fade' ? true : nil # TODO .to_s is necessary because 'fade' did not match :fade when it was used with flash.now[].. Had no problems with just flash[]
+    - value = value.first
+  = render 'shared/system_messages/custom',
+    body:  value.html_safe,
+    fade:  fade,
+    type:  key

@@ -1,0 +1,126 @@
+jQuery.fn.cloudify = function(lang) {
+  if (typeof(lang)==='undefined') lang = 'en';
+  var i18n_resources = {
+    <% FrontLanguage.keys.each do |lang| %>
+      "<%= lang %>": {
+        text: {
+          "powered_by_cloudinary":      "<%= I18n.t 'powered_by_cloudinary', scope: 'cloudinary.upload_widget.text',                locale: lang %>",
+          "sources.local.title":        "<%= I18n.t 'title',                 scope: 'cloudinary.upload_widget.text.sources.local',  locale: lang %>",
+          "sources.local.drop_file":    "<%= I18n.t 'drop_file',             scope: 'cloudinary.upload_widget.text.sources.local',  locale: lang %>",
+          "sources.local.drop_files":   "<%= I18n.t 'drop_files',            scope: 'cloudinary.upload_widget.text.sources.local',  locale: lang %>",
+          "sources.local.drop_or":      "<%= I18n.t 'drop_or',               scope: 'cloudinary.upload_widget.text.sources.local',  locale: lang %>",
+          "sources.local.select_file":  "<%= I18n.t 'select_file',           scope: 'cloudinary.upload_widget.text.sources.local',  locale: lang %>",
+          "sources.local.select_files": "<%= I18n.t 'select_files',          scope: 'cloudinary.upload_widget.text.sources.local',  locale: lang %>",
+          "sources.url.title":          "<%= I18n.t 'title',                 scope: 'cloudinary.upload_widget.text.sources.url',    locale: lang %>",
+          "sources.url.note":           "<%= I18n.t 'note',                  scope: 'cloudinary.upload_widget.text.sources.url',    locale: lang %>",
+          "sources.url.upload":         "<%= I18n.t 'upload',                scope: 'cloudinary.upload_widget.text.sources.url',    locale: lang %>",
+          "sources.url.error":          "<%= I18n.t 'error',                 scope: 'cloudinary.upload_widget.text.sources.url',    locale: lang %>",
+          "sources.camera.title":       "<%= I18n.t 'title',                 scope: 'cloudinary.upload_widget.text.sources.camera', locale: lang %>",
+          "sources.camera.note":        "<%= I18n.t 'note',                  scope: 'cloudinary.upload_widget.text.sources.camera', locale: lang %>",
+          "sources.camera.capture":     "<%= I18n.t 'capture',               scope: 'cloudinary.upload_widget.text.sources.camera', locale: lang %>",
+          "progress.uploading":         "<%= I18n.t 'uploading',             scope: 'cloudinary.upload_widget.text.progress',       locale: lang %>",
+          "progress.upload_cropped":    "<%= I18n.t 'upload_cropped',        scope: 'cloudinary.upload_widget.text.progress',       locale: lang %>",
+          "progress.processing":        "<%= I18n.t 'processing',            scope: 'cloudinary.upload_widget.text.progress',       locale: lang %>",
+          "progress.retry_upload":      "<%= I18n.t 'retry_upload',          scope: 'cloudinary.upload_widget.text.progress',       locale: lang %>",
+          "progress.use_succeeded":     "<%= I18n.t 'use_succeeded',         scope: 'cloudinary.upload_widget.text.progress',       locale: lang %>",
+          "progress.failed_note":       "<%= I18n.t 'failed_note',           scope: 'cloudinary.upload_widget.text.progress',       locale: lang %>"
+        },
+        button_caption: "<%= I18n.t 'button_caption', scope: 'cloudinary.upload_widget', locale: lang %>",
+        lang: "<%= lang %>"
+      },
+    <% end %>
+  };
+
+  var init_upload_widget = function(upload_widget, stylesheet_url){
+    var form = upload_widget.parents('form').first();
+    var form_selector = '#' + form.attr('id');
+    upload_widget.cloudinary_upload_widget({
+      api_key:          "<%= Rails.configuration.cloudinary.api_key %>",
+      button_caption:   '<%= ApplicationController.helpers.hc_icon("camera") %> ' + i18n_resources[lang].button_caption,
+      button_class:     'hc-secondary-button hc-display__inline-block',
+      client_allowed_formats: [ <%= (Upload::CLOUDINARY_IMAGE_FORMATS + Upload::CLOUDINARY_VIDEO_FORMATS).map{|f| "'#{f}'"}.join(',') %> ],
+      cloud_name:       '<%= Rails.configuration.cloudinary.cloud_name %>',
+      field_name:       'review[media_attributes][cloudinary_public_id]',
+      form:             form_selector,
+      max_files:        5,
+      show_powered_by:  false,
+      sources:          ['local'],
+      stylesheet:       stylesheet_url,
+      text:             i18n_resources[lang].text,
+      theme:            'minimal',
+      thumbnails:       form_selector + ' [data-cloudinary-thumbnails-container]',
+      upload_preset:    'unassigned-media-preset',
+      upload_signature: function (callback, params_to_sign){
+        jQuery.ajax({
+          url:      HC_JS.routes.signature_resources_cloudinary_index_url(),
+          type:     'GET',
+          dataType: 'text',
+          data:     { data: params_to_sign},
+          sources:  ['local'],
+          theme:    'minimal',
+          complete:  function() { console.log('complete') },
+          success:  function(signature, textStatus, xhr) { callback(signature); },
+          error:    function(xhr, status, error) { console.log(xhr, status, error); }
+        });
+      }
+      },
+      function(error, result) { console.log(error, result)
+    });
+
+    form.bindFirst('submit', function() {
+      form.find('[data-cloudinary-public-id]').each(function(index){
+        var hidden = jQuery(this);
+        hidden.val(hidden.attr('data-cloudinary-public-id'));
+        hidden.attr('name', hidden.attr('name').replace('[media_attributes]', '[media_attributes][' + index + ']'));
+        var matched_hidden = jQuery('[data-cloudinary-public-id-on-resource-field="' + hidden.attr('data-cloudinary-public-id') + '"]');
+        matched_hidden.attr('name', matched_hidden.attr('name').replace('[media_attributes]', '[media_attributes][' + index + ']'));
+        matched_hidden.appendTo(form);
+      });
+    });
+  };
+
+  var func = function (item){
+    var upload_widgets = item.find('[data-role="cloudinary-upload-widget"]');
+    jQuery.get(HC_JS.routes.styles_resources_cloudinary_index_url(), function (stylesheet_url){
+      upload_widgets.each(function (){
+        init_upload_widget(jQuery(this), stylesheet_url);
+      });
+    });
+
+    jQuery(document).on('cloudinarywidgetfileuploadsuccess', function(e, data) {
+      jQuery('body').append('<input type="hidden" name="review[media_attributes][media_type]" value="' + data.resource_type + '" data-cloudinary-public-id-on-resource-field="' + data.public_id + '"/>');
+    });
+
+    jQuery('[data-cloudinary-thumbnails-container]').inner_html_change(function() {
+      var that = jQuery(this);
+      if (that.find('ul').length > 1){
+        that.find('ul:not(:last)').remove();
+      }
+      that.find('.cloudinary-thumbnail[data-remove-button!="true"]').each(function (){
+        var thumbnail = jQuery(this);
+        thumbnail.append('<a href="javascript:void(0);" class="cloudinary-thumbnail__remove" data-role="remove-button"><%= ApplicationController.helpers.hc_icon("times") %>');
+        thumbnail.attr('data-remove-button', 'true');
+        thumbnail.find('[data-role="remove-button"]').click(function (){
+          jQuery('input.cloudinary-hidden-field[data-cloudinary-public-id]').each(function (){
+            var hidden = jQuery(this);
+            if (thumbnail.find('img').attr('src').indexOf(hidden.attr('data-cloudinary-public-id')) !== -1) {
+              hidden.remove();
+            }
+          });
+          thumbnail.remove();
+        });
+      });
+    });
+  };
+
+  var item = jQuery(this);
+  if (item.cloudinary_upload_widget){
+    func(item);
+  }
+  else{
+    jQuery.getScript('https://widget.cloudinary.com/global/all.js', function() {
+      func(item);
+    });
+  }
+  return this;
+};

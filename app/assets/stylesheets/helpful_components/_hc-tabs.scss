@@ -1,0 +1,69 @@
+$max-tabs: 5;
+
+.hc-tabs {
+  @include flexbox(
+    $flex-wrap: wrap
+  );
+  &:after {
+    @extend %align-self__flex-end;
+    @extend %border-bottom__base;
+    @extend %content__-empty-;
+    @extend %flex__1;
+  }
+}
+
+.hc-tab {
+  @extend %width__100pct;
+  @extend %order__1; // Order is needed to appear after .hc-tabs:after pseudo-element
+  @extend %margin-top__md;
+}
+
+.hc-tab__input {
+  @extend %display__none;
+}
+
+.hc-tab__label {
+  @extend %border-color__secondary;
+  @extend %border-style__solid;
+  @extend %padding-x__md;
+  @extend %padding-bottom__0;
+  @extend %padding-top__1px;
+  @extend %cursor__pointer;
+  @extend %border-width__0__0__1px__0;
+  @extend %line-height__xl--px;
+  @extend %vertical-align__bottom;
+
+  .hc-tab__icon  {
+    @extend %color__pale;
+  }
+}
+
+%hc-tab__label--active {
+  @extend %border-width__1px__1px__0__1px;
+  @extend %border-top-left-radius__base;
+  @extend %border-top-right-radius__base;
+  @extend %padding-bottom__1px;
+  @extend %padding-top__0;
+
+  .hc-tab__icon {
+    @extend %color__dark;
+  }
+}
+
+.hc-tab__input {
+  @for $i from 1 through $max-tabs {
+    &[id^='hc-tab-#{$i}'] {
+      &:checked ~ {
+        .hc-tab__label[for^='hc-tab-#{$i}'] {
+          @extend %hc-tab__label--active;
+        }
+      }
+
+      &:not(:checked) ~ {
+        .hc-tab--#{$i} {
+          @extend %display__none;
+        }
+      }
+    }
+  }
+}

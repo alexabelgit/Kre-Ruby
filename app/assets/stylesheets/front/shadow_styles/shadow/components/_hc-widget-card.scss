@@ -1,0 +1,11 @@
+&.hc-theme__light {
+	.hc-widget-card {
+    @extend %background-color__white;
+    box-shadow: 10px 14px 14px -6px lighten($color-dark, 55%); // TODO no extend?
+	}
+}
+&.hc-theme__dark {
+  .hc-widget-card {
+    box-shadow: 10px 10px 10px -4px rgba(0,0,0,0.5) // TODO no extend?
+  }
+}

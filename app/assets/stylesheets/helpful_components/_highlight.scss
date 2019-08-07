@@ -1,0 +1,6 @@
+.hc-highlight {
+  background-color: lighten($color-warning, 30%); //TODO do this in wetsy
+  @extend %color__inherit;
+  @extend %display__inline;
+  @extend %padding-x__3xs;
+}

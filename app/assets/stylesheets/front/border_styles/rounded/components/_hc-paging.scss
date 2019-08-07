@@ -1,0 +1,22 @@
+.hc-paging--modern {
+  .page-item {
+    &:first-child {
+      .page-link {
+        @extend %border-top-left-radius__#{$rounded-borders_sm};
+        @extend %border-bottom-left-radius__#{$rounded-borders_sm};
+      }
+    }
+    &:last-child {
+      .page-link {
+        @extend %border-top-right-radius__#{$rounded-borders_sm};
+        @extend %border-bottom-right-radius__#{$rounded-borders_sm};
+      }
+    }
+  }
+
+  &.hc-paging--load-more {
+    .page-item .page-link {
+      @extend %border-radius__#{$rounded-borders_sm};
+    }
+  }
+}

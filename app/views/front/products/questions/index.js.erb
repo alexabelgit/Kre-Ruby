@@ -1,0 +1,3 @@
+var selector = '[data-role="question-list"]';
+jQuery(selector).replaceWith('<%= escape_javascript(render 'front/widgets/products/tabs/questions', questions: @questions, product: @product, store: @store) %>');
+jQuery(selector).remotify().tabify().hc_filter_select().hc_reset_search();

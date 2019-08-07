@@ -1,0 +1,36 @@
+.hc-comment {
+  @extend %margin-bottom__md;
+  @extend %padding__sm;
+}
+
+.hc-comment__header {
+  @extend %margin-y__xs;
+  @extend %flex-direction__row-reverse;
+  @include flexbox(
+    $flex-wrap:       wrap,
+    $justify-content: space-between
+  );
+  .hc-comment__date {
+    @extend %font-size__75pct;
+  }
+}
+
+.hc-comment__body {
+  @extend %color__dark;
+  @extend %margin-bottom__sm;
+  @extend %margin-top__0;
+  @extend %margin-x__0;
+  @extend %padding__0;
+  @extend %font-size__87pt5pct;
+  @extend %white-space__pre-line;
+  @extend %word-break__break-word;
+  @extend %word-wrap__break-word;
+}
+
+// .hc-comment__author-and-date {
+//   @extend %font-size__80pct;
+// }
+
+// .hc-comment__author {
+//   @extend %display__inline;
+// }

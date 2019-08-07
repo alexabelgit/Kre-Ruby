@@ -1,0 +1,100 @@
+.add-rating {
+  @extend %margin-bottom__md;
+}
+
+.add-rating__title {
+  @extend %margin__0;
+  @extend %font-family__inherit;
+  @extend %font-weight__normal;
+  @extend %font-size__inherit;
+
+  a {
+    @extend %font-weight__bold;
+    @extend %color__inherit;
+    @extend %font-size__inherit;
+    @extend %underline-on-hover;
+  }
+}
+
+.add-rating__stars {
+  @extend %position__relative;
+  @extend %display__inline-flex;
+  @extend %flex-direction__row-reverse;
+  @extend %justify-content__flex-end;
+}
+
+// input element selector is needed to override ecwid default styles
+input.add-rating__input {
+  @extend %hide-unless-screen-reader;
+}
+
+.add-rating__label {
+  @extend %cursor__pointer;
+  @extend %color__brand-2;
+  @extend %width__1pt4em;
+  @extend %height__1em;
+}
+
+%add-rating__star {
+  @extend %transition-property__color__opacity;
+  @extend %transition-duration__base;
+  @extend %line-height__1pt5em;
+  @extend %position__absolute;
+}
+
+.add-rating__star--empty {
+  @extend %add-rating__star;
+  @extend %opacity__1;
+}
+
+.add-rating__star--full {
+  @extend %add-rating__star;
+  @extend %opacity__0;
+}
+
+.add-rating__input:checked ~ .add-rating__label,
+.add-rating__label:hover,
+.add-rating__label:hover ~ .add-rating__label {
+  .add-rating__star--empty {
+    @extend %opacity__0;
+  }
+  .add-rating__star--full {
+    @extend %opacity__1;
+  }
+}
+
+.add-rating__label:hover,
+.add-rating__label:hover ~ .add-rating__label {
+  @extend %color__brand-2--lightened;
+}
+
+.add-rating__stars-count {
+  @extend %hide-unless-screen-reader;
+}
+
+.add-rating__star-name {
+  @extend %position__absolute;
+  @extend %line-height__1pt5;
+  @extend %left__0;
+  @extend %margin-left__100pct;
+  @extend %padding-left__xs;
+  @extend %color__dark;
+  @extend %white-space__nowrap; // TODO test if child elements need white-space: normal;
+  @extend %visibility__hidden;
+  @extend %opacity__0;
+  @extend %transition-property__color__opacity;
+  @extend %transition-duration__base;
+  @extend %transition-delay__0pt1s;
+}
+
+/*.add-rating__stars:not(:hover)*/ .add-rating__input:checked + .add-rating__label .add-rating__star-name {
+  @extend %visibility__visible;
+  @extend %opacity__1;
+}
+
+// .add-rating__label:hover .add-rating__star-name {
+//   @extend %visibility__visible;
+//   @extend %opacity__1;
+// }
+
+// add-rating__star-name is commented our because hover + visibility did not work on iOS

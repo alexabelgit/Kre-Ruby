@@ -1,0 +1,47 @@
+.addon-icon {
+  @extend %background-color__brand-3;
+  @extend %color__white;
+  @extend %font-size__0pt75rem;
+  @extend %position__relative;
+  @extend %display__inline-block;
+  @extend %padding-x__2xs--rem;
+  @extend %transition__background;
+  @extend %text-decoration__never;
+  @extend %vertical-align__top;
+  @extend %line-height__1pt5;
+
+  &:hover {
+    @extend %background-color__brand-3--lightened;
+
+    &:after {
+      @extend %border-color__transparent;
+      @extend %border-width__0;
+    }
+  }
+
+  &:after {
+    @extend %transition-duration__base;
+    transition-property: border;
+    @extend %position__absolute;
+    @extend %top__0;
+    @extend %left__100pct;
+    @extend %height__1pt5em;
+    @extend %display__block;
+    @extend %content__-empty-;
+    border-width: 0.75em 0.5em 0.75em 0;
+    border-color: $color-brand-3 transparent $color-brand-3 $color-brand-3;
+    @extend %border-style__solid;
+  }
+
+  &:before {
+    @extend %position__absolute;
+    @extend %top__100pct;
+    @extend %left__0;
+    @extend %display__block;
+    @extend %content__-empty-;
+    border-width: 0.5em 0 0 1em;
+    border-color: $color-brand-3 transparent transparent transparent;
+    @extend %opacity_0pt5;
+    @extend %border-style__solid;
+  }
+}

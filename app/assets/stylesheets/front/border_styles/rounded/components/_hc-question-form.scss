@@ -1,0 +1,6 @@
+.hc-question-form-wrapper{
+  @extend %border-radius__#{$rounded-borders_md};
+	input, textarea{
+  	@extend %border-radius__#{$rounded-borders_md};
+	}
+}

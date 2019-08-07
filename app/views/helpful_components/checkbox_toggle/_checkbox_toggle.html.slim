@@ -1,0 +1,32 @@
+/ f*
+/ field*
+/ hint
+/ txt
+/ txt_off
+/ txt_on
+/ type    - 'warning'
+/ data_target
+
+- txt        ||= false
+- txt_off    ||= false
+- txt_on     ||= false
+- hint       ||= false
+- type       ||= false
+- data_target||= ''
+
+/ get object to pass to label
+- object = f.object.class.name.downcase             # TODO needs to be tested how it works with multiworded model names.. may need to be underscorized before downcasing
+- category = f.object.respond_to?(:var) ? f.object.var.downcase : nil
+- object = 'settings' if object == 'settingsobject' # this is a special case with current gem for settings as it follows a weird naming convention
+- id = category.present? ? "#{object}_#{category}_#{field}" : "#{object}_#{field}"
+
+.hc-checkbox-toggle class=('hc-checkbox-toggle--' + type if type)
+  = f.check_box field, class: 'hc-checkbox-toggle__input', data: {target: data_target}, id: id
+
+  = render     'helpful_components/checkbox_toggle/label',
+    label_for: id,
+    txt:       txt,
+    txt_off:   txt_off,
+    txt_on:    txt_on
+
+  = form_hint hint if hint

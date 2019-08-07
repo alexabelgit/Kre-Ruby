@@ -1,0 +1,14 @@
+.seed__section {
+  @extend %background-color__white;
+  @extend %simple-card;
+
+  &:not(:last-of-type) {
+    @extend %margin-bottom__md;
+  }
+
+  @extend .hc-targetable;
+}
+
+.seed__orders {
+  @extend .hc-primary-button;
+}

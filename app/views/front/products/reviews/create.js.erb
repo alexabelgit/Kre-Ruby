@@ -1,0 +1,19 @@
+<%
+  view = @success ?
+  render('shared/system_messages/custom', body: t('review', scope: 'flash.submitted_successfully'), type: 'success', align: 'center') :
+  render('front/products/reviews/form', product: @product, review: @review)
+%>
+var selector = '[data-model="review"][data-id="<%= @product.hashid %>"]';
+jQuery(selector).replaceWith('<div></div>');
+<% if @success %>
+  jQuery.get('<%= front_product_reviews_url(store_id: @product.store.hashid, product_id: @product.hashid, format: :js) %>', function (js) {
+    var new_review_selector = '[data-model="review"][data-id="<%= @review.hashid %>"]';
+    if (jQuery(new_review_selector).length <= 0)
+      eval(js);
+    jQuery(new_review_selector).addClass('hc-just-reviewed');
+    jQuery('[data-role="review-list"]').prepend('<%= escape_javascript(view) %>');
+  });
+<% else %>
+  jQuery('[data-role="review-list"]').prepend('<%= escape_javascript(view) %>');
+  jQuery(selector).cloudify('<%= I18n.locale %>').remotify().modal_form().hc_filter_select().hc_lightbox().hc_dropdown().recaptcha_multiplify();
+<% end %>

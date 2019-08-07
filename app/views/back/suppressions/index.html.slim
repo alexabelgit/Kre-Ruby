@@ -1,0 +1,38 @@
+- content_for :main_class, 'boxed'
+- render 'layouts/back/sub_navs/tools'
+
+header.heading-and-action
+  h1 = title 'Email suppressions'
+
+  = link_to new_back_suppression_path, class: 'hc-primary-button' do
+    => hc_icon 'plus'
+    |  New suppression
+
+- if @suppressions.any?
+  .responsive-table
+    table.table
+      thead
+        tr
+          th Email address
+          th Suppressed by
+          th Suppressed since
+          th
+      tbody
+        - @suppressions.each do |suppression|
+          tr
+            td = suppression.email
+            td = t ".#{suppression.source}"
+            td = humane_datetime suppression.created_at
+            td
+              - if suppression.by_merchant?
+                = link_to 'Remove', back_suppression_path(suppression),
+                  method: :delete,
+                  data:   { disable_with: "#{spinner_icon} Removing" },
+                  class:  'hc-secondary-button--small'
+
+    = will_paginate @suppressions, class: 'hc-paging hc-paging--modern'
+
+- else
+  = render      'back/shared/no_records',
+    object:     'suppressions',
+    kb_article: 'email_suppressions'

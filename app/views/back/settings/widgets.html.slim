@@ -1,0 +1,597 @@
+- content_for :main_class, 'boxed'
+- render 'layouts/back/sub_navs/settings'
+
+h1 = title 'Widgets'
+
+section.hc-margin-bottom__xl
+  h3 Main
+
+  = render layout: 'helpful_components/collapsible/item',
+           locals: { name:    'product-summary',
+                     title:   'Product Summary',
+                     heading: :h3 } do
+
+    section.widget__about
+      .widget__description
+        = t 'description.html', scope: 'back.widgets.product_summary'
+
+      .widget__mockup
+        = widget_mockup_image('product_summary')
+
+    - tabs = [{ title: 'Customize',    icon: 'sliders' },
+              { title: 'Embed on web', icon: 'code'    }]
+
+    - unless @store.custom?
+      - if I18n.exists?("back.widgets.product_tabs.embed_guide.#{@store.provider}") || @store.ecwid?
+        - dedicated_embed        = true
+        - autoembed_available    = false
+        - custom_embed_available = false
+        - tabs.insert 1, { title: "Embed on #{@store.provider.capitalize}", icon: "hc-#{@store.provider}" }
+      - if @store.ecwid?
+        - autoembed_available = true
+      - if I18n.exists?("back.widgets.product_tabs.embed_guide.#{@store.provider}")
+        - custom_embed_available = true
+
+    = render layout: 'helpful_components/tabs/tabs', locals: { tabs: tabs } do
+
+      = content_for :customize do
+        = form_for [:back, @store.settings(:widgets)],
+          as:      :settings,
+          url:     { action: :update, anchor: 'product-summary' },
+          method:  :put,
+          html:    { id: 'widgets-settings', class: 'settings-form' } do |f|
+
+          = render 'shared/form/errors', resource: @store.settings(:widgets)
+
+          input type="hidden" name="type"        value="widgets"
+          input type="hidden" name="redirect_to" value=widgets_back_settings_path
+          input type="hidden" name="view"        value="widgets"
+
+          .settings-form__control
+            = render   'helpful_components/checkbox_toggle/checkbox_toggle',
+              f:       f,
+              field:   :product_summary_show_qa,
+              hint:    'Show or hide Q&A information in Product Summary widget',
+              txt:     'Q&A info',
+              txt_on:  'Visible',
+              txt_off: 'Hidden'
+
+          .settings-form__control
+            div Position
+            - ['auto', 'left', 'center', 'right'].each do |position|
+              label.hc-form__radio-group.hc-form__radio-group--inline
+                => f.radio_button :product_summary_position, position
+                => position.capitalize
+
+          = render 'back/settings/submit'
+
+      - if dedicated_embed
+        = content_for "embed_on_#{@store.provider}".to_sym, flush: true do
+          - if custom_embed_available
+            = render    'back/settings/widgets/embed_guide',
+              store:    @store,
+              widget:   :product_summary,
+              platform: @store.provider
+
+          - if autoembed_available
+            = form_for [:back, @store.settings(:widgets)],
+              as:      :settings,
+              url:     { action: :update, anchor: 'product-summary' },
+              method:  :put,
+              html:    { id: 'widgets-settings', class: 'settings-form' } do |f|
+
+              = render 'shared/form/errors', resource: @store.settings(:widgets)
+
+              input type="hidden" name="type"        value="widgets"
+              input type="hidden" name="redirect_to" value=widgets_back_settings_path
+              input type="hidden" name="view"        value="widgets"
+
+              .settings-form__control
+                = render 'helpful_components/checkbox_toggle/checkbox_toggle',
+                  f:     f,
+                  field: :product_summary_autoembed,
+                  hint:  'Product Summary widget will be automatically added to product pages',
+                  txt:   'Embed automatically'
+
+              = render 'back/settings/submit'
+
+      = content_for :embed_on_web, flush: true do
+        = render  'back/settings/widgets/embed_guide',
+          store:  @store,
+          widget: :product_summary
+
+  = render layout: 'helpful_components/collapsible/item',
+           locals: { name:    'product-tabs',
+                     title:   'Product Tabs',
+                     heading: :h3 } do
+
+    section.widget__about
+      .widget__description
+        = t 'description.html', scope: 'back.widgets.product_tabs'
+
+      .widget__mockup
+        = widget_mockup_image('product_tabs')
+
+    - tabs = [{ title: 'Customize',    icon: 'sliders' },
+              { title: 'Embed on web', icon: 'code'    }]
+
+    - unless @store.custom?
+      - if I18n.exists?("back.widgets.product_tabs.embed_guide.#{@store.provider}") || @store.ecwid?
+        - dedicated_embed        = true
+        - autoembed_available    = false
+        - custom_embed_available = false
+        - tabs.insert 1, { title: "Embed on #{@store.provider.capitalize}", icon: "hc-#{@store.provider}" }
+      - if @store.ecwid?
+        - autoembed_available = true
+      - if I18n.exists?("back.widgets.product_tabs.embed_guide.#{@store.provider}")
+        - custom_embed_available = true
+
+    = render layout: 'helpful_components/tabs/tabs', locals: { tabs: tabs } do
+
+      = content_for :customize do
+        = form_for [:back, @store.settings(:widgets)],
+          as:      :settings,
+          url:     { action: :update, anchor: 'product-tabs' },
+          method:  :put,
+          html:    { id: 'widgets-settings', class: 'settings-form' } do |f|
+
+          = render 'shared/form/errors', resource: @store.settings(:widgets)
+
+          input type="hidden" name="type"        value="widgets"
+          input type="hidden" name="redirect_to" value=widgets_back_settings_path
+          input type="hidden" name="view"        value="widgets"
+
+          .settings-form__control
+            div Layout
+            - ['boxed', 'full_width'].each do |product_tabs_layout|
+              label.hc-form__radio-group.hc-form__radio-group--inline
+                => f.radio_button :product_tabs_layout, product_tabs_layout
+                => product_tabs_layout.humanize
+            = form_hint 'Choose how Product Tabs widget should appear on large screens'
+
+          .settings-form__control
+            div Layout
+            - ['classic', 'modern'].each do |product_tabs_style|
+              label.hc-form__radio-group.hc-form__radio-group--inline
+                => f.radio_button :product_tabs_style, product_tabs_style
+                => product_tabs_style.humanize
+            = form_hint 'Choose the style for product tabs'
+
+          .settings-form__control
+            = render 'helpful_components/checkbox_toggle/checkbox_toggle',
+              f:     f,
+              type:  'warning',
+              field: :product_tabs_hide_overviews,
+              txt:   'Hide tab overview sections',
+              hint:  'Hides sections like rating barchart on reviews tab.'
+
+          .settings-form__control
+            = render 'helpful_components/checkbox_toggle/checkbox_toggle',
+              f:     f,
+              type:  'warning',
+              field: :product_tabs_hide_filters,
+              txt:   'Hide tab filters',
+              hint:  'Hides filters on top of reviews and Q&A lists'
+
+          .settings-form__control
+            = f.label :default_questions_header, 'Enable tab headers and personalize the text for reviews and questions'
+
+            .default-title__control
+              - custom_reviews_header  = @store.settings(:widgets).product_tabs_reviews_header
+              - default_reviews_header = t 'reviews.title',
+                                      scope:  'front.widgets.products.tabs',
+                                      locale: @store.settings(:global).locale
+
+              .default-title__change
+                = render 'helpful_components/checkbox_toggle/checkbox_toggle',
+                  f:     f,
+                  type:  'success',
+                  field: :product_tabs_show_reviews_header,
+                  txt:   '',
+                  hint:  '',
+                  data_target: 'default_title_input'
+
+              span.default-title__current
+                = custom_reviews_header.blank? ? default_reviews_header : custom_reviews_header
+
+              = f.text_field :product_tabs_reviews_header,
+                class:       'default-title__new',
+                placeholder: default_reviews_header
+
+            = form_hint 'Reviews & Ratings tab'
+
+            .default-title__control
+              - custom_questions_header  = @store.settings(:widgets).product_tabs_questions_header
+              - default_questions_header = t 'questions.title',
+                                      scope:  'front.widgets.products.tabs',
+                                      locale: @store.settings(:global).locale
+
+              .default-title__change
+                = render 'helpful_components/checkbox_toggle/checkbox_toggle',
+                  f:     f,
+                  type:  'success',
+                  field: :product_tabs_show_questions_header,
+                  txt:   '',
+                  hint:  '',
+                  data_target: 'default_title_input'
+
+              span.default-title__current
+                = custom_questions_header.blank? ? default_questions_header : custom_questions_header
+
+              = f.text_field :product_tabs_questions_header,
+                class:       'default-title__new',
+                placeholder: default_questions_header
+
+            = form_hint 'Questions & Answers tab'
+
+          = render 'back/settings/submit'
+
+      - if dedicated_embed
+        = content_for "embed_on_#{@store.provider}".to_sym, flush: true do
+          - if custom_embed_available
+            = render    'back/settings/widgets/embed_guide',
+              store:    @store,
+              widget:   :product_tabs,
+              platform: @store.provider
+
+          - if autoembed_available
+            = form_for [:back, @store.settings(:widgets)],
+              as:      :settings,
+              url:     { action: :update, anchor: 'product-tabs' },
+              method:  :put,
+              html:    { id: 'widgets-settings', class: 'settings-form' } do |f|
+
+              = render 'shared/form/errors', resource: @store.settings(:widgets)
+
+              input type="hidden" name="type"        value="widgets"
+              input type="hidden" name="redirect_to" value=widgets_back_settings_path
+              input type="hidden" name="view"        value="widgets"
+
+              .settings-form__control
+                = render 'helpful_components/checkbox_toggle/checkbox_toggle',
+                  f:     f,
+                  field: :product_tabs_autoembed,
+                  hint:  'Product Tabs widget will be automatically added to product pages',
+                  txt:   'Embed automatically'
+
+              = render 'back/settings/submit'
+
+      = content_for :embed_on_web, flush: true do
+        = render 'back/settings/widgets/embed_guide', store: @store, widget: :product_tabs
+
+  = render layout: 'helpful_components/collapsible/item',
+           locals: { name:    'product-rating',
+                     title:   'Product Rating',
+                     heading: :h3 } do
+
+    section.widget__about
+      .widget__description
+        = t 'description.html', scope: 'back.widgets.product_rating'
+      .widget__mockup
+        = widget_mockup_image('product_rating')
+
+    - tabs = [{ title: 'Customize',    icon: 'sliders' },
+              { title: 'Embed on web', icon: 'code'    }]
+
+    - unless @store.custom?
+      - if I18n.exists?("back.widgets.product_tabs.embed_guide.#{@store.provider}") || @store.ecwid?
+        - dedicated_embed        = true
+        - autoembed_available    = false
+        - custom_embed_available = false
+        - tabs.insert 1, { title: "Embed on #{@store.provider.capitalize}", icon: "hc-#{@store.provider}" }
+      - if @store.ecwid?
+        - autoembed_available = true
+      - if I18n.exists?("back.widgets.product_tabs.embed_guide.#{@store.provider}")
+        - custom_embed_available = true
+
+    = render layout: 'helpful_components/tabs/tabs', locals: { tabs: tabs } do
+
+      = content_for :customize do
+        = form_for [ :back, @store.settings(:widgets) ],
+          as:      :settings,
+          url:     { action: :update, anchor: 'product-rating' },
+          method:  :put,
+          html:    { id: 'widgets-settings', class: 'settings-form' } do |f|
+
+          = render 'shared/form/errors', resource: @store.settings(:widgets)
+
+          input type="hidden" name="type" value="widgets"
+          input type="hidden" name="redirect_to" value=widgets_back_settings_path
+          input type="hidden" name="view" value="widgets"
+
+          .settings-form__control
+            div Layout
+            // TODO: These options should ideally come automatically from some global variable or method.
+            - {summary: 'Summarized star ratings', detailed: 'Detailed star ratings'}.each do |key, value|
+               label.hc-form__radio-group
+                 => f.radio_button :product_rating_layout, key
+                 => value.capitalize
+
+          .settings-form__control
+            div Position
+            - ['auto', 'left', 'center', 'right'].each do |position|
+               label.hc-form__radio-group.hc-form__radio-group--inline
+                 => f.radio_button :product_rating_position, position
+                 => position.capitalize
+
+          = render 'back/settings/submit'
+      - if dedicated_embed
+        = content_for "embed_on_#{@store.provider}".to_sym, flush: true do
+          - if custom_embed_available
+            = render    'back/settings/widgets/embed_guide',
+              store:    @store,
+              widget:   :product_rating,
+              platform: @store.provider
+
+          - if autoembed_available
+            = form_for [:back, @store.settings(:widgets)],
+              as:      :settings,
+              url:     { action: :update, anchor: 'product-rating' },
+              method:  :put,
+              html:    { id: 'widgets-settings', class: 'settings-form' } do |f|
+
+              = render 'shared/form/errors', resource: @store.settings(:widgets)
+
+              input type="hidden" name="type"        value="widgets"
+              input type="hidden" name="redirect_to" value=widgets_back_settings_path
+              input type="hidden" name="view"        value="widgets"
+
+              .settings-form__control
+                = render 'helpful_components/checkbox_toggle/checkbox_toggle',
+                  f:     f,
+                  field: :product_rating_autoembed,
+                  hint:  'Product Rating widget will be automatically added to product listing pages and sections',
+                  txt:   'Embed automatically'
+
+              = render 'back/settings/submit'
+
+      = content_for :embed_on_web, flush: true do
+        = render  'back/settings/widgets/embed_guide',
+          store:  @store,
+          widget: :product_rating
+
+section.hc-margin-bottom__xl
+  h3 Optional
+
+  = render layout: 'helpful_components/collapsible/item',
+           locals: { name:    'sidebar',
+                     title:   'Sidebar',
+                     heading: :h3 } do
+
+    section.widget__about
+      .widget__description
+        = t 'description.html', scope: 'back.widgets.sidebar'
+
+    = render layout: 'helpful_components/tabs/tabs',
+             locals: { tabs: [ { title: 'Customize', icon: 'sliders' },
+                               { title: 'Embed on any website',     icon: 'code'    }  ] } do
+
+      = content_for :customize do
+        = form_for [ :back, @store.settings(:widgets) ],
+          as:      :settings,
+          url:     { action: :update, anchor: 'sidebar' },
+          method:  :put,
+          html:    { id: 'widgets-settings', class: 'settings-form' } do |f|
+
+          = render 'shared/form/errors', resource: @store.settings(:widgets)
+
+          input type="hidden" name="type"        value="widgets"
+          input type="hidden" name="redirect_to" value=widgets_back_settings_path
+          input type="hidden" name="view"        value="widgets"
+
+          .default-title.settings-form__control
+            = f.label :sidebar_title, 'Title'
+
+            .default-title__control
+              - custom_sidebar_title  = @store.settings(:widgets).sidebar_title
+              - default_sidebar_title = t 'default_title',
+                                scope:  'front.widgets.sidebar',
+                                locale: @store.settings(:global).locale
+
+              .default-title__change
+                input> id="change-sidebar-title" type="checkbox" data-target="default_title_input"
+                label< for="change-sidebar-title"
+                  | Change
+
+              span.default-title__current
+                = custom_sidebar_title.empty? ? default_sidebar_title : custom_sidebar_title
+
+              = f.text_field :sidebar_title,
+                class:       'default-title__new',
+                placeholder: default_sidebar_title
+
+            = form_hint 'This is how sidebar trigger button appears on your website'
+
+          .settings-form__control
+            div Position
+            - ['left', 'right'].each do |position|
+              label.hc-form__radio-group.hc-form__radio-group--inline
+                => f.radio_button :sidebar_position, position
+                => position.capitalize
+
+          - if @store.ecwid?
+            .settings-form__control
+              = render 'helpful_components/checkbox_toggle/checkbox_toggle',
+                f:     f,
+                field: :sidebar,
+                hint:  'If enabled, you do not need to paste the code snippet on the store pages',
+                txt:   'Auto-embed on storefront'
+
+          .settings-form__control
+            = render 'helpful_components/checkbox_toggle/checkbox_toggle',
+              f:     f,
+              field: :sidebar_toggle_transparent_on_mobile,
+              hint:  'If enabled, the sidebar toggle element on smaller screens will become transparent so that it doesn\'t obstruct the elements behind it',
+              txt:   'Make sidebar toggler transparent on smaller devices'
+
+          .settings-form__control
+            = render 'helpful_components/checkbox_toggle/checkbox_toggle',
+              f:     f,
+              field: :sidebar_open_links_in_new_tab,
+              hint:  'Enable if your sidebar is embedded inside iframe',
+              txt:   'Open links in new tab'
+
+          = render 'back/settings/submit'
+
+      = content_for :embed_on_any_website do
+        = render 'back/settings/widgets/embed_guide', store: @store, widget: :sidebar
+
+  = render layout: 'helpful_components/collapsible/item',
+           locals: { name:    'review-journal',
+                     title:   'Review Journal',
+                     heading: :h3 } do
+
+    section.widget__about
+      .widget__description
+        = t 'description.html', scope: 'back.widgets.review_journal'
+
+    = render layout: 'helpful_components/tabs/tabs',
+             locals: { tabs: [ { title: 'Customize', icon: 'sliders' },
+                               { title: 'Embed on any website',     icon: 'code'    }  ] } do
+
+      = content_for :customize do
+        = form_for [ :back, @store.settings(:widgets) ],
+          as:      :settings,
+          url:     { action: :update, anchor: 'review-journal' },
+          method:  :put,
+          html:    { id: 'widgets-settings', class: 'settings-form' } do |f|
+
+          = render 'shared/form/errors', resource: @store.settings(:widgets)
+
+          input type="hidden" name="type"        value="widgets"
+          input type="hidden" name="redirect_to" value=widgets_back_settings_path
+          input type="hidden" name="view"        value="widgets"
+
+          .settings-form__control
+            = render 'helpful_components/checkbox_toggle/checkbox_toggle',
+               f:     f,
+               field: :review_journal_disable_product_links,
+               hint:  'Enable if you don\'t want to link the product details to the product page on reivew card.',
+               txt:   'Disable links for the product attached to review'
+
+          .settings-form__control
+            = render 'helpful_components/checkbox_toggle/checkbox_toggle',
+               f:     f,
+               field: :review_journal_open_links_in_new_tab,
+               hint:  'Enable if your Review Journal is embedded inside iframe',
+               txt:   'Open links in new tab'
+
+          = render 'back/settings/submit'
+
+      = content_for :embed_on_any_website do
+        = render 'back/settings/widgets/embed_guide', store: @store, widget: :review_journal
+
+  = render layout: 'helpful_components/collapsible/item',
+           locals: { name:    'review-slider',
+                     title:   'Review Slider',
+                     heading: :h3 } do
+
+    section.widget__about
+      .widget__description
+        = t 'description.html', scope: 'back.widgets.review_slider'
+
+    = render layout: 'helpful_components/tabs/tabs',
+             locals: { tabs: [ { title: 'Customize', icon: 'sliders' },
+                               { title: 'Embed on any website',     icon: 'code'    }  ] } do
+      = content_for :customize do
+        = form_for [ :back, @store.settings(:widgets) ],
+          as:      :settings,
+          url:     { action: :update, anchor: 'review-slider' },
+          method:  :put,
+          html:    { id: 'widgets-settings', class: 'settings-form' } do |f|
+
+          = render 'shared/form/errors', resource: @store.settings(:widgets)
+
+          input type="hidden" name="type"        value="widgets"
+          input type="hidden" name="redirect_to" value=widgets_back_settings_path
+          input type="hidden" name="view"        value="widgets"
+
+          .settings-form__control
+            = render 'helpful_components/checkbox_toggle/checkbox_toggle',
+               f:     f,
+               field: :review_slider_open_product_in_new_tab,
+               hint:  'Enable if your Review Slider is embedded inside iframe',
+               txt:   'Open products in new tab'
+
+          .settings-form__control
+            = render   'helpful_components/checkbox_toggle/checkbox_toggle',
+              f:       f,
+              field:   :review_slider_c2a_enabled,
+              hint:    'Enable to append an extra item to Review Slider, pointing to the list of all your reviews',
+              txt:     'Call-to-action box'
+
+          .hc-radio-toggle.settings-form__control
+            span.hc-radio-toggle__main-label Call-to-action text
+            - [true, false].each do |bool|
+              - text = bool ? 'Default' : 'Custom'
+              => f.radio_button :review_slider_c2a_text_use_default, bool
+              => f.label        :review_slider_c2a_text_use_default, value: bool, class: 'hc-margin-right__md' do
+                = text
+
+            .hc-radio-toggle__togglable
+              .hc-form__static-input
+                = t 'review_slider_c2a_text', scope: 'settings.default', locale: current_store.settings(:global).locale
+
+            .hc-radio-toggle__togglable
+              = f.text_field :review_slider_c2a_text_custom,
+                class:       'hc-form__input',
+                placeholder: ( t       'review_slider_c2a_text',
+                               scope:  'settings.default',
+                               locale: current_store.settings(:global).locale )
+
+          .hc-radio-toggle.settings-form__control
+            span.hc-radio-toggle__main-label Call-to-action URL
+            - [true, false].each do |bool|
+              - text = bool ? 'Default' : 'Custom'
+              => f.radio_button :review_slider_c2a_url_use_default, bool
+              => f.label        :review_slider_c2a_url_use_default, value: bool, class: 'hc-margin-right__md' do
+                = text
+
+            .hc-radio-toggle__togglable
+              .hc-form__static-input
+                = link_to front_reviews_url(current_store), front_reviews_url(current_store), target: '_blank'
+
+            .hc-radio-toggle__togglable
+              = f.text_field :review_slider_c2a_url_custom,
+                class:       'hc-form__input',
+                placeholder: 'http://example.com/reviews'
+
+            = form_hint 'Keep default to show all your reviews on a HelpfulCrowd page or paste custom URL in case you have set up the Review Journal widget on your site'
+
+          = render 'back/settings/submit'
+
+      = content_for :embed_on_any_website do
+        = render 'back/settings/widgets/embed_guide', store: @store, widget: :review_slider
+
+  = render layout: 'helpful_components/collapsible/item',
+           locals: { name:    'reviews-facebook-tab',
+                     title:   'Reviews Facebook Tab',
+                     heading: :h3 } do
+
+    section.widget__about
+      .widget__description
+        = t 'description.html', scope: 'back.widgets.reviews_facebook_tab'
+
+    = render layout: 'helpful_components/tabs/tabs',
+             locals: { tabs: [ { title: 'Customize', icon: 'sliders' } ] } do
+      = content_for :customize do
+        = form_for [ :back, @store.settings(:widgets) ],
+          as:      :settings,
+          url:     { action: :update, anchor: 'reviews-facebook-tab' },
+          method:  :put,
+          html:    { id: 'widgets-settings', class: 'settings-form' } do |f|
+
+          = render 'shared/form/errors', resource: @store.settings(:widgets)
+
+          input type="hidden" name="type"        value="widgets"
+          input type="hidden" name="redirect_to" value=widgets_back_settings_path
+          input type="hidden" name="view"        value="widgets"
+
+          .settings-form__control
+            = render 'helpful_components/checkbox_toggle/checkbox_toggle',
+              f:     f,
+              field: :reviews_facebook_tab,
+              hint:  'Toggle to enable or disable',
+              txt:   'Reviews tab on Facebook'
+
+          = render 'back/settings/submit'

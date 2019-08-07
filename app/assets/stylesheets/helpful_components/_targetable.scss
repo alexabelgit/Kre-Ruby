@@ -1,0 +1,7 @@
+.hc-targetable {
+  &:target {
+    // @extend %border-color__primary;
+    border-color: lighten($color-primary, 20%);
+    box-shadow: 0 0 10px 0 lighten($color-primary, 20%); // TODO wetsyთ ამას
+  }
+}

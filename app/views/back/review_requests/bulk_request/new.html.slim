@@ -1,0 +1,14 @@
+- content_for :main_class, 'boxed'
+= render 'back/reviews/sub_nav'
+
+.hc-card
+  - if current_store.settings(:background_workers).review_requests_seed_running
+    = render   'shared/system_messages/custom',
+      type:    'info',
+      persist: true,
+      body:    "#{spinner_icon} Processing uploaded file",
+      role:    'imported-review-requests'
+  - else
+    = render 'back/imported_review_requests/ready'
+
+  = render 'new'

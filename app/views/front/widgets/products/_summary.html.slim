@@ -1,0 +1,99 @@
+/ product*
+/ store*
+/ link_role - 'scroll_to', 'go_to'
+/ links     - true, false
+
+- link_role         ||= 'scroll_to'
+- links             ||= store.settings(:widgets).product_summary_links.to_b
+- show_rating_chart   = store.settings(:widgets).product_summary_show_rating_chart.to_b
+- positioning_class   = "hc-product-summary--#{store.settings(:widgets).product_summary_position}"
+- show_detailed_text  = store.settings(:widgets).product_summary_show_detailed_text.to_b
+
+// Variables for floating rating chart
+- if link_role == 'scroll_to'
+  - hc_scroll_to   = true
+  - target         = nil
+  - turbolinks     = false
+  - reviews_url    = '#hc-reviews-tab'
+  - hc_scroll_target = '#hc-product-tabs'
+- elsif link_role == 'go_to'
+  - hc_scroll_to   = nil
+  - target         = '_blank'
+  - turbolinks     = nil
+  - reviews_url    = front_product_url(store, product)
+  - hc_scroll_target = nil
+
+.hc-product-summary class=positioning_class
+  .hc-product-summary__reviews
+    span.hc-product-summary__rating>
+      .hc-tooltip
+        = stars_based_on product.rating
+        =< product.rating if product.rating > 0
+        - if show_rating_chart && product.rating > 0
+          = hc_icon('chevron-down justified', resize: 0.8, style: "margin-left: 5px;")
+          .hc-tooltip__content.hc-tooltip__bottom
+            i
+            - cache [store, product, 'reviews/rating-chart'] do
+              .hc-tooltip__header
+                = t('reviews.rating', scope: 'front.widgets.products.summary', rating: product.rating)
+              .hc-rating-chart.hc-rating-chart__floating
+                - product.rating_data.each do |rating_data|
+                  - if links
+                    = link_to front_product_reviews_url( store_id: product.store.hashid,
+                                                         product_id: product.hashid,
+                                                         rating:   rating_data.rating,
+                                                         format:   :js ),
+                      remote: true,
+                      data: { hc_scroll_to: hc_scroll_to, hc_scroll_target: hc_scroll_target, href: "#hc-reviews-tab" },
+                      class: 'hc-rating-chart__row' do
+                      .hc-rating-chart__rating
+                        = rating_data.rating
+                        = hc_icon('star', resize: 0.8)
+
+                      .hc-rating-chart__bar-wrapper
+                        .hc-rating-chart__bar style="width: #{rating_data.percentage}%;"
+
+                      span.hc-rating-chart__percentage-value
+                        | #{rating_data.percentage}%
+                      .hc-rating-chart__count
+                        | #{rating_data.percentage_rounded}%
+                  - else
+                    .hc-rating-chart__row
+                      .hc-rating-chart__rating
+                        = rating_data.rating
+                        = hc_icon('star', resize: 0.8)
+
+                      .hc-rating-chart__bar-wrapper
+                        .hc-rating-chart__bar style="width: #{rating_data.percentage}%;"
+
+                      span.hc-rating-chart__percentage-value
+                        | #{rating_data.percentage}%
+                      .hc-rating-chart__count
+                        | #{rating_data.percentage_rounded}%
+              - if links
+                = link_to reviews_url,
+                  data:   { hc_scroll_to: hc_scroll_to,
+                            turbolinks:   turbolinks,
+                            hc_scroll_target: hc_scroll_target },
+                  target: target,
+                  class: "hc-tooltip__footer" do
+                    = t('reviews.show_all', scope: 'front.widgets.products.summary')
+
+    .hc-product-summary__text
+      = render     'front/widgets/products/summary/reviews',
+        product:   product,
+        store:     store,
+        link_role: link_role,
+        links:     links,
+        show_detailed_text: show_detailed_text
+
+      - if store.questions_enabled? && store.settings(:widgets).product_summary_show_qa.to_b
+        = ' | '
+
+        .hc-product-summary__qa
+          = render     'front/widgets/products/summary/questions',
+            product:   product,
+            store:     store,
+            link_role: link_role,
+            links:     links,
+            show_detailed_text: show_detailed_text

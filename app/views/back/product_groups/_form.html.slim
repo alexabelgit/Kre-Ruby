@@ -1,0 +1,25 @@
+.hc-card
+  = form_for [:back, @product_group], html: { class: 'product-group-form' } do |f|
+    = render 'shared/form/errors', resource: @product_group
+
+    .hc-form__control
+      = f.label      :name, class: 'hc-form__label'
+      = f.text_field :name, class: 'hc-form__input hc-form__input--md', required: true, autofocus: true
+
+    fieldset.hc-form__control
+      legend Choose products
+      - current_store.products.unsuppressed.a24z.each do |product|
+        .product-group-form__product
+          input> [
+            type    = 'checkbox'
+            name    = "product_group[product_ids][]"
+            value   = product.id
+            id      = "product_checkbox_#{product.hashid}"
+            checked = @product_group.products.include?(product)
+          ]
+
+          label for="product_checkbox_#{product.hashid}"
+            = product.name
+
+    => f.submit class: 'hc-primary-button'
+    =  back_button     'Cancel'

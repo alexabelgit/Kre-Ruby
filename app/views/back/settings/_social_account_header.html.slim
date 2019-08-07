@@ -1,0 +1,44 @@
+/ provider*
+
+- connect_route     = "#{provider}_oauth_path"
+- already_connected = current_store.send("#{provider}_connected?")
+- account_to_delete = current_store.send("#{provider}_account")
+
+header.social-account__header
+  div
+    h3.social-account__heading
+
+      .social-account__icon> class="social-account__icon--#{provider}"
+        - if provider == 'facebook'
+          = hc_icon 'facebook-official'
+        - else
+          = hc_icon provider
+      = provider.capitalize
+
+    =< hc_icon 'check-circle success',
+       title:  "#{provider.capitalize} account already connected" if already_connected
+
+
+  .social-account__on-off
+    - if already_connected
+
+      = link_to self.send(connect_route),
+        class: 'hc-text-button' do
+
+        => hc_icon 'refresh'
+        =  'Reconnect'
+
+      = link_to back_social_account_path(account_to_delete),
+        data:   { confirm: "You are about to disconnect HelpfulCrowd from your #{provider.capitalize} account. This will restrict HelpfulCrowd to post on your behalf from now on. Please note that previous posts published via HelpfulCrowd will not be affected by this action. Are you sure you wish to proceed?" },
+        method: :delete,
+        class:  'hc-text-button' do
+
+        => hc_icon 'times'
+        |  Disconnect
+
+    - else
+      = link_to self.send(connect_route),
+        class: "social-accounts__connect-#{provider}" do
+
+        => hc_icon provider
+        =  "Connect with #{provider.capitalize}"

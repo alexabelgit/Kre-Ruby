@@ -1,0 +1,20 @@
+.hc-upload-button {
+  @include flexbox(
+    $align-items: baseline
+  );
+}
+
+.hc-upload-button__hidden-input {
+  @extend %hide-unless-screen-reader;
+}
+
+.hc-upload-button__button {
+  @extend .hc-secondary-button;
+  @extend %margin-right__xs;
+}
+
+.hc-upload-button__filename {
+  @extend %overflow__hidden;
+  @extend %text-overflow__ellipsis;
+  @extend %white-space__nowrap;
+}

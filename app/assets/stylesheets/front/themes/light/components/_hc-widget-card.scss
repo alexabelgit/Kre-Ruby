@@ -1,0 +1,15 @@
+.hc-widget-card {
+  @extend %background-color__lighter;
+  @extend %border-color__secondary;
+
+  &.hc-just-reviewed {
+    @extend %border-color__success;
+    box-shadow: 0 0 10px 0 lighten($color-success, 10%); // TODO wetsyთ ამას
+  }
+	&__footer {
+	  border-color: #e6e6e6;
+	}
+	&__date {
+  	@extend %color__pale--darkened;
+	}
+}

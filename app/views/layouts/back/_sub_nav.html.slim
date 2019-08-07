@@ -1,0 +1,10 @@
+/ locals:
+/ - items* [array]
+/ - active
+
+- active ||= :inclusive
+
+nav.sub-nav
+  - items.each do |item|
+    - if item.present?
+      = active_link_to item[:name], item[:path], active: active, class: 'sub-nav-item'

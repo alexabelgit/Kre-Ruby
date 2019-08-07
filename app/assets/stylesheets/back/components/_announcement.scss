@@ -1,0 +1,67 @@
+.announcement {
+  @extend %color__white;
+  @extend %box-shadow__base;
+  @extend %position__relative;
+
+  @include flexbox(
+    $justify-content: space-between,
+    $flex-wrap:       wrap
+  );
+
+  &.announcement--info {
+    @extend %background-color__info;
+  }
+
+  &.announcement--danger {
+    @extend %background-color__danger;
+  }
+
+  &.announcement--success {
+    @extend %background-color__success;
+  }
+
+  &.announcement--warning {
+    @extend %background-color__warning;
+  }
+}
+
+.announcement__message {
+  @extend %margin-x__md;
+  @extend %margin-y__xs;
+}
+
+.announcement__action-wrapper {
+  display: inherit;
+}
+
+.announcement__action {
+  @extend %margin-x__md;
+  @extend %margin-y__xs;
+  @extend %color__inherit;
+  @extend %border__base;
+  @extend %border-radius__md;
+  @extend %padding-x__md;
+  @extend %opacity__0pt875;
+  @extend %transition-property__opacity;
+  @extend %transition-duration__base;
+  @extend %text-decoration__never;
+
+  @include pseudo-classify(
+    opacity,
+    $focus:    1,
+    $hover:    1,
+    $active:   1
+  )
+}
+
+.announcement__hide {
+  @extend %margin-right__lg;
+  @extend %margin-y__md;
+  @extend %color__inherit;
+  @extend %opacity__0pt875;
+  @extend %transition-property__opacity;
+  @extend %transition-duration__base;
+  @extend %text-decoration__never;
+  @extend %font-size__sm;
+  border-bottom: 1px solid;
+}

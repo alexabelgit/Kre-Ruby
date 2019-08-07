@@ -1,0 +1,13 @@
+<% view = @success ?
+   ( render   'shared/system_messages/custom',
+     body:    t('question', scope: 'flash.submitted_successfully'),
+     type:    'success',
+     align:   'center' ) :
+
+   ( render       'front/products/questions/form',
+     question:    @question,
+     product:     @product,
+     hide_header: true ) %>
+
+var selector = '[data-model="question"][data-id="<%= @product.hashid %>"]';
+jQuery(selector).replaceWith('<%= escape_javascript(view) %>');

@@ -1,0 +1,17 @@
+= content_for :recipient
+  = @user.first_name
+
+- if @plan_extensible
+  p = "You are close to exceeding your allowance of in-plan orders. Once you \
+       exceed the limit, you will be charged for out-of-plan orders according \
+       your current subscription rates. Consider upgrading to a higher value plan."
+- else
+  p = "Your are close to exceeding your allowance of in-plan orders. Once you \
+       exceed the limit, you will need to upgrade to a higher plan to continue \
+       using HelpfulCrowd."
+
+p = "Open billing page in HelpfulCrowd settings to learn more or upgrade."
+
+= call_to_action 'Go to billing', billing_back_settings_url
+
+= render 'back_mailer/shared/contact_us_and_thank_you', hide_thank_you: true, contact_who: 'billing'

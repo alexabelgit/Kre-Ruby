@@ -1,0 +1,34 @@
+.hc-product-card {
+  @extend %margin-bottom__sm;
+  @extend %color__dark;
+  @extend %display__block;
+  &__thumb,
+  &__name {
+    @extend %display__inline-block;
+    @extend %vertical-align__top;
+  }
+  &__thumb {
+    @extend %border-color__secondary;
+    @extend %border-style__solid;
+    @extend %border-width__1px;
+    @extend %margin-right__xs--px;
+    @extend %transition-duration__base;
+    @extend %transition-property__border-color;
+
+    &:hover, &:active, &:focus {
+      @extend %border-color__secondary--darkened;
+    }
+
+    img {
+      @extend %display__block;
+      @extend %width__60px;
+      @extend %height__60px;
+      @extend %overflow__hidden;
+    }
+  }
+  &__name {
+    @extend %overflow__hidden;
+    @extend %font-size__80pct;
+  }
+}
+

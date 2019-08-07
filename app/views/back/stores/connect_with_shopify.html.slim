@@ -1,0 +1,7 @@
+- content_for :main_class, 'boxed'
+section.auth-form
+  header
+    h1.auth-form__title = title 'Connect with Shopify'
+  = render 'devise/shared/shopify_auth_form', button_label: { initial: 'Connect', disabled: 'Connecting' }
+
+  = render "back/stores/back_to_connect_options"

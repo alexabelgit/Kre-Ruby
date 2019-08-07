@@ -1,0 +1,15 @@
+.payment-info {
+  @extend %margin__0;
+}
+
+.payment-info__label {
+  @extend %font-weight__bold;
+}
+
+.payment-info__value {
+  @extend %margin-x__0;
+
+  &:not(:last-of-type) {
+    @extend %margin-bottom__md;
+  }
+}

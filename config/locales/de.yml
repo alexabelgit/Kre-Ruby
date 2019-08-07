@@ -1,0 +1,460 @@
+---
+"de":
+  "activerecord":
+    "errors":
+      "models":
+        "abuse_report":
+          "attributes":
+            "additional_info":
+              "blank": >-
+                muss angegeben werden, wenn als Grund "etwas anderes" gewählt wird
+            "reason":
+              "blank": >-
+                ^Sie müssen einen Grund auswählen
+        "product":
+          "attributes":
+            "id_from_provider":
+              "taken": >-
+                ^ID muss eindeutig sein. Die von Ihnen angegebene wurde bereits für
+                ein anderes Produkt verwendet.
+        "review":
+          "attributes":
+            "customer":
+              "must_be_authenticated": >-
+                ^Sie müssen angemeldet sein, um eine Bewertung schreiben zu können.
+            "product_ids":
+              "cannot_be_repeated": >-
+                ^Sie haben dieses Produkt bereits bewertet.
+              "taken": >-
+                ^Sie haben diesen Kauf bereits bewertet.
+            "review_request_id":
+              "request_must_be_sent": >-
+                ^Sie können diesen Kauf im Moment nicht bewerten.
+            "source":
+              "cannot_be_voluntary": >-
+                ^Sie können diesen Kauf im Moment nicht bewerten.
+        "review_request":
+          "attributes":
+            "order_id":
+              "blank": >-
+                kann nicht erstellt werden ohne zugehörigen Kunden. Bitte stellen
+                Sie eine gültige E-Mail-Adresse zur Verfügung.
+    "models":
+      "comment":
+        "one": >-
+          Kommentar
+        "other": >-
+          Kommentare
+      "customer":
+        "one": >-
+          Kunde
+        "other": >-
+          Kunden
+      "product":
+        "one": >-
+          Produkt
+        "other": >-
+          Produkte
+      "product_group":
+        "one": >-
+          Produktgruppe
+        "other": >-
+          Produktgruppen
+      "question":
+        "one": >-
+          Frage
+        "other": >-
+          Fragen
+      "review":
+        "one": >-
+          Bewertung
+        "other": >-
+          Bewertungen
+      "review_request":
+        "one": >-
+          Bewertungsanfrage
+        "other": >-
+          Bewertungsanfragen
+  "answer":
+    "one": >-
+      Antwort
+    "other": >-
+      Antworten
+  "cancel": >-
+    Abbrechen
+  "counterify":
+    "characters":
+      "exceeded": >-
+        Maximale Textlänge erreicht
+      "remaining":
+        "one": >-
+          noch 1 Zeichen
+        "other": >-
+          noch %{count} Zeichen
+  "default_templates":
+    "email":
+      "critical_review_followup_mail_body": "<p>Hallo [customer_name],</p>\r\n<p>vielen
+        Dank für Ihre Bewertung.</p>\r\n<p>Das Team von [store_name].</p>"
+      "critical_review_followup_mail_subject": >-
+        Vielen Dank für Ihre Bewertung.
+      "positive_review_followup_mail_body": "<p>Hallo [customer_name],</p>\r\n<p>vielen
+        Dank für Ihre Bewertung.</p>\r\n<p>Das Team von [store_name].</p>"
+      "positive_review_followup_mail_subject": >-
+        Vielen Dank für Ihre Bewertung.
+      "question_answer_mail_body": "<p>Hallo [customer_name],</p>\r\n<p>Ihre Frage
+        zu [product_name] wurde von unserem Mitarbeiter beantwortet:</p>\r\n<p>[answer]</p>\r\n<p>Ihre
+        Frage:</p>\r\n<p>[question]</p>\r\n<p>[product_link]</p>\r\n<p>Das Team von
+        [store_name].</p>"
+      "question_answer_mail_subject": >-
+        Ihre Frage bei [store_name] wurde beantwortet.
+      "repeat_review_request_mail_body": "<p>Hallo [customer_name],</p>\r\n<p>Es ist
+        noch nicht zu spät, uns mitzuteilen, was Sie von Ihrer letzten Bestellung
+        halten.</p>\r\n<p>Klicken Sie auf einen Stern, um Ihre bisherige Erfahrung
+        zu bewerten:</p>\r\n<p>[products]</p>\r\n<p>Nicht glücklich? Bitte kontaktieren
+        Sie uns zuerst, damit wir Ihnen helfen können.</p>\r\n<p>Das Team von [store_name].</p>"
+      "repeat_review_request_mail_subject": >-
+        Erinnerung an die Überprüfung Ihrer letzten Bestellung bei [store_name]
+      "review_answer_mail_body": "<p>Hallo [customer_name],</p>\r\n<p>Ihre Bewertung
+        für [product_name] wurde von unserem Mitarbeiter beantwortet:</p>\r\n<p>[reply]</p>\r\n<p>Ihre
+        Bewertung:</p>\r\n<p>[review]</p>\r\n<p>[product_link]</p>\r\n<p>Das Team
+        von [store_name].</p>"
+      "review_answer_mail_subject": >-
+        Ihre Bewertung bei [store_name] wurde beantwortet.
+      "review_request_mail_body": "<p>Hallo [customer_name],</p>\r\n<p>Klicken Sie
+        auf einen Stern, um Ihre bisherige Erfahrung zu bewerten:</p>\r\n<p>[products]</p>\r\n<p>Nicht
+        zufrieden? Bitte kontaktieren Sie uns zuerst, damit wir Ihnen helfen können.</p>\r\n<p>Das
+        Team von [store_name].</p>"
+      "review_request_mail_subject": >-
+        Überprüfen Sie Ihre aktuelle Bestellung bei [store_name]
+  "embed": >-
+    Einbetten
+  "errors":
+    "messages":
+      "already_confirmed": >-
+        wurde bereits bestätigt
+      "confirmation_period_expired": >-
+        muss innerhalb %{period} bestätigt werden, bitte fordere einen neuen Link
+        an
+      "expired": >-
+        ist abgelaufen, bitte neu anfordern
+      "not_found": >-
+        nicht gefunden
+      "not_locked": >-
+        ist nicht gesperrt
+      "not_saved":
+        "one": >-
+          Konnte %{resource} nicht speichern: ein Fehler.
+        "other": >-
+          Konnte %{resource} nicht speichern: %{count} Fehler.
+  "flash":
+    "submitted_successfully":
+      "question": >-
+        Vielen Dank! Wir haben Ihre Frage erhalten und werden Sie über E-Mail benachrichtigen,
+        wenn Sie eine Antwort erhalten haben.
+      "review": >-
+        Vielen Dank! Wir haben Ihre Bewertung erhalten
+      "subscribed": >-
+        Sie haben sich erfolgreich bei %{store} angemeldet.
+      "unsubscribed": >-
+        Sie haben sich erfolgreich von %{store} abgemeldet.
+  "front":
+    "based_on_reviews_count":
+      "one": >-
+        1 Bewertung
+      "other": >-
+        %{count} Bewertungen
+    "components":
+      "customer_form":
+        "email":
+          "hint": >-
+            Ihre E-Mail-Adresse wird nicht veröffentlicht.
+          "label": >-
+            Ihre Mailadresse
+        "name":
+          "hint": >-
+            Ihr Name wird als Initialen erscheinen.
+          "hint_update_html": >-
+            Ihr Name wird als <strong>%{initials}</strong> angezeigt.
+          "label": >-
+            Ihr Name
+      "privacy_notice":
+        "link_content": >-
+          Datenschutzerklärung
+        "with_name":
+          "html": "Mit dem Absenden dieses Formulars erklären Sie sich damit einverstanden,
+            dass Ihr Inhalt und Ihr Name\r\n<strong>%{name}</strong> online veröffentlicht
+            werden kann gemäß unserer\r\n%{link}."
+        "without_name":
+          "html": >-
+            Mit dem Absenden dieses Formulars erklären Sie sich damit einverstanden,
+            dass Ihr Inhalt und Ihr Name online gemäß unseren %{link} veröffentlicht
+            werden.
+    "continue_shopping": >-
+      Einkauf fortsetzen
+    "flags":
+      "new":
+        "already_flagged": >-
+          %{item} wurde bereits von Ihnen gemeldet
+        "flag_as_inappropriate": >-
+          %{item} als unangemessen melden
+      "show":
+        "flag_submitted": >-
+          Vielen Dank
+    "mailer":
+      "excuses":
+        "question_answered_html": >-
+          Sie haben diese E-Mail von %{helpfulcrowd} erhalten, um Ihnen ein Update
+          zu Ihrer Frage zu %{store} zu geben.
+        "review_answered_html": >-
+          Sie haben diese E-Mail von %{helpfulcrowd} erhalten, um Ihnen ein Update
+          zu Ihrer Bewertung zu geben, welche Sie bei %{store} hinterlassen haben.
+        "review_follow_up_html": >-
+          Sie haben diese E-Mail von %{helpfulcrowd} als Antwort auf Ihre neueste
+          Bewertung bei %{store} erhalten.
+        "review_request_html": >-
+          Sie haben diese E-Mail von %{helpfulcrowd} erhalten als Antwort zu Ihrer
+          letzten Bestellung bei %{store}.
+      "helpers":
+        "call_to_action":
+          "view_product": >-
+            Besuchen Sie die Produktseite
+    "products":
+      "questions":
+        "form":
+          "question_html": >-
+            Was möchten Sie gern erfahren über %{product}?
+        "new":
+          "title": >-
+            Eine Frage stellen
+      "view_product": >-
+        Zur Produktseite gehen
+    "review_requests":
+      "reviews":
+        "form":
+          "rating_html": >-
+            Bewerten Sie Ihre Erfahrung mit %{reviewable}
+        "new":
+          "already_reviewed_html": >-
+            Sie haben  %{reviewable} bereits bewertet
+          "review_other_purchases":
+            "one": >-
+              Bewerten Sie Ihren anderen Kauf
+            "other": >-
+              Bewerten Sie Ihre anderen Käufe
+          "title": >-
+            Bewerten Sie Ihren Kauf
+    "search":
+      "label": >-
+        Suche:
+      "placeholder": >-
+        Suchbegriff eingeben
+    "share":
+      "button": >-
+        Teilen
+    "sort_by": >-
+      Sortieren nach
+    "sort_options":
+      "most_helpful": >-
+        Am hilfreichsten
+      "most_recent": >-
+        Am neuesten
+      "rating_asc": >-
+        Bewertungen: höchste
+      "rating_desc": >-
+        Bewertungen: niedrigste
+    "suppressions":
+      "manage_subscriptions":
+        "subscribe_question_html": >-
+          Möchten Sie es HelpfulCrowd ermöglichen, Ihnen im Namen von %{store} E-Mails
+          zu schicken?
+        "unsubscribe_question_html": >-
+          Möchten Sie, dass HelpfulCrowd aufhört, Ihnen E-Mails im Namen von %{store}
+          zu schicken?
+    "votes":
+      "upvote": >-
+        Hilfreich
+      "upvotes_count":
+        "one": >2-
+           %{item} wurde von %{count} Person als hilfreich bewertet
+        "other": >2-
+           %{item} wurde von %{count} Personen als hilfreich bewertet
+    "widgets":
+      "products":
+        "rating":
+          "qa":
+            "html":
+              "one": >-
+                1 Frage
+              "other": >-
+                %{count} Fragen
+          "reviews":
+            "html":
+              "one": >-
+                1 Bewertung
+              "other": >-
+                %{count} Bewertungen
+        "summary":
+          "qa":
+            "html":
+              "one": >-
+                1 Frage
+              "other": >-
+                %{count} Fragen
+            "new": >-
+              Frage stellen
+          "reviews":
+            "html":
+              "one": >-
+                1 Bewertung
+              "other": >-
+                %{count} Bewertungen
+            "new": >-
+              Bewertung schreiben
+        "tabs":
+          "questions":
+            "new": >-
+              Frage stellen
+            "search":
+              "label": >-
+                Suche:
+              "placeholder": >-
+                Fragen und Antworten durchsuchen
+            "title": >-
+              Fragen und Antworten
+            "write_first": >-
+              Stellen Sie die erste Frage über dieses Produkt
+          "reviews":
+            "based_on_reviews":
+              "html": >-
+                Basierend auf %{reviews_count}
+            "media_gallery":
+              "images":
+                "one": >-
+                  1 Foto
+                "other": >-
+                  %{count} Fotos
+            "search":
+              "label": >-
+                Suche:
+              "placeholder": >-
+                Bewertungen durchsuchen
+              "title": "Kunden-\r\nmedien"
+              "videos":
+                "one": >-
+                  1 Video
+                "other": >-
+                  %{count} Videos
+            "new": >-
+              Bewertung schreiben
+            "rating": >-
+              %{rating} von 5 Sternen
+            "title": >-
+              Kundenbewertungen
+            "write_first": >-
+              Seien Sie die erste Person, die dieses Produkt bewertet
+          "titles":
+            "questions": >-
+              Fragen und Antworten
+            "questions_responsive": >-
+              FAQ
+            "reviews": >-
+              Rezensionen & Bewertungen
+            "reviews_responsive": >-
+              Bewertungen
+      "sidebar":
+        "default_title": >-
+          Bewertungen | Fragen & Antworten
+    "with_incentive":
+      "reviews":
+        "text": >-
+          Dem Bewerter wurde möglicherweise ein Anreiz geboten, diese Bewertung zu
+          schreiben.
+    "write_review": >-
+      Bewertung verfassen
+  "helpers":
+    "friendly_rating": >-
+      Keine Bewertungen
+    "label":
+      "customer":
+        "email": >-
+          E-Mail des Kunden
+        "name": >-
+          Name des Kunden
+      "product_group":
+        "name": >-
+          Name
+    "placeholder":
+      "promotion":
+        "template": >-
+          Kostenloser Versand für alle Bestellungen während der Black-Friday-Woche!
+    "submit":
+      "product_group":
+        "create": >-
+          Gruppe erstellen
+        "update": >-
+          Gruppe aktualisieren
+      "question":
+        "create": >-
+          Frage stellen
+      "review":
+        "create": >-
+          Bewertung hochladen
+  "layouts":
+    "mailer":
+      "front":
+        "manage_subscriptions": >-
+          Abonnements verwalten
+        "unsubscribe": >-
+          Abmelden
+  "load_more": >-
+    Mehr
+  "privacy_policy": >-
+    Datenschutzerklärung
+  "question_facebook_post_template": "[customer_name]\r\nFrage: [question]\r\nAntwort:
+    [answer]"
+  "question_tweet_template": "[customer_name]\r\nFrage: [question]\r\nAntwort: [answer]"
+  "rating_1": >-
+    Ungenügend
+  "rating_2": >-
+    Mangelhaft
+  "rating_3": >-
+    Zufriedenstellend
+  "rating_4": >-
+    Gut
+  "rating_5": >-
+    Hevorragend
+  "read_less": >-
+    weniger
+  "read_more": >-
+    Volle Bewertung
+  "recaptcha":
+    "errors":
+      "verification_failed": >-
+        reCAPTCHA-Überprüfung fehlgeschlagen.
+    "label": >-
+      Helfen Sie uns, Spam zu bekämpfen.
+  "report": >-
+    Bericht
+  "review_facebook_post_template": "Finden Sie heraus, was [customer_name] über [product_name]
+    gesagt hat:\r\n\r\n[rating]\r\n\"[feedback]\""
+  "review_tweet_template": "[customer_name]:\r\n[product_name] - [rating], \"[feedback]\""
+  "settings":
+    "default":
+      "review_slider_c2a_text": >-
+        Alle anzeigen
+  "stars":
+    "one": >-
+      1 Stern
+    "other": >-
+      %{count} Sterne
+  "verified":
+    "agent":
+      "description": >-
+        %{author} arbeitet bei %{store}
+      "label": >-
+        %{store}
+    "customer":
+      "description": >-
+        %{author} hat dieses Produkt gekauft
+      "label": >-
+        Verifizierter Käufer

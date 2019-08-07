@@ -1,0 +1,64 @@
+/ store*
+/ reviews*
+/ questions*
+/ disable_product_links
+
+
+- t_reviews          = t 'reviews',       scope: 'front.widgets.products.tabs.titles'
+- t_qa               = t 'questions',     scope: 'front.widgets.products.tabs.titles'
+- default_title      = t 'default_title', scope: 'front.widgets.sidebar'
+
+- custom_title       = store.settings(:widgets).sidebar_title
+- custom_z_index     = store.settings(:widgets).sidebar_z_index.to_i
+- custom_styles      = ''
+- custom_styles     += "z-index: #{ custom_z_index };" if custom_z_index > 0
+- position           = store.settings(:widgets).sidebar_position
+- bg_color           = store.settings(:design).primary_color
+- questions_enabled  = store.settings(:questions).enabled.to_b
+- container_uuid     = SecureRandom.uuid
+- toggle_transparent = store.settings(:widgets).sidebar_toggle_transparent_on_mobile
+- open_links_in_new_tab = store.settings(:widgets).sidebar_open_links_in_new_tab.to_b
+- disable_product_links = false
+
+.hc-sidebar style=(custom_styles unless custom_styles.empty?)
+  section.hc-sidebar__wrapper.hc-hide data-role="tabs" class="hc-#{ position }"
+    a.hc-sidebar__toggler class="#{'transparent--below__sm' if toggle_transparent == '1'}" href="javascript:void(0);" data-role="sidebar-trigger" style="background-color: #{ bg_color };"
+      = custom_title.empty? ? default_title : custom_title
+      | &nbsp;
+      .hc-sidebar__toggler-icon
+        = hc_icon "hc-chevron-up md"
+
+
+    header.hc-sidebar__header data-role="header"
+      a.hc-sidebar__tab.hc-product-tab--active href="javascript:void(0);" data-tab="true" data-role="review-journal-list-container"
+        = hc_icon 'star md'
+        span.hide--below__sm #{t 'reviews', scope: 'front.widgets.products.tabs.titles'}
+        span.hide--above__sm #{t 'reviews_responsive', scope: 'front.widgets.products.tabs.titles'}
+        .hc-badge
+          = store.published_reviews_count
+
+      - if questions_enabled
+        a.hc-sidebar__tab href="javascript:void(0);" data-tab="true" data-role="all-question-list-container"
+          = hc_icon 'hc-bubble justified md'
+          span.hide--below__sm #{t 'questions', scope: 'front.widgets.products.tabs.titles'}
+          span.hide--above__sm #{t 'questions_responsive', scope: 'front.widgets.products.tabs.titles'}
+          .hc-badge
+            = store.published_questions_count
+
+    .hc-sidebar__content data-role="tabs-container"
+      .hc-sidebar__tab-content data-role="review-journal-list-container" data-hc="review-journal-list-container" data-id=container_uuid
+        = render          'front/reviews/list',
+          reviews:        reviews,
+          load_more:      true,
+          container_uuid: container_uuid,
+          grid_layout:    'masonry',
+          disable_product_links: disable_product_links,
+          open_links_in_new_tab: open_links_in_new_tab
+
+      - if questions_enabled
+        .hc-sidebar__tab-content data-role="all-question-list-container" data-hc="all-question-list-container"
+          = render 'front/questions/list',
+            questions: questions,
+            disable_product_links: disable_product_links,
+            grid_layout: 'masonry',
+            open_links_in_new_tab: open_links_in_new_tab

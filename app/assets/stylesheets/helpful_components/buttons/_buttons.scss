@@ -1,0 +1,142 @@
+%hc-button--gradient {
+  @extend %transition-property__opacity;
+  @extend %border__none;
+  @extend %line-height__1pt75;
+
+  &:hover {
+    @extend %opacity__0pt8;
+  }
+}
+
+%hc-button--small--gradient {
+  @extend %transition-property__opacity;
+  @extend %border__none;
+  @extend %line-height__1pt5;
+
+  &:hover {
+    @extend %opacity__0pt8;
+  }
+}
+
+.hc-brand-1-button {
+  @include button($background-color: 'brand-1', $color: 'white');
+}
+
+.hc-primary-button {
+  @extend %primary-button;
+}
+
+.hc-primary-outlined-button {
+  @extend %info-button;
+  background-color: transparent;
+  border: 1px solid #4990e2;
+  color: #4990e2;
+  &:hover {
+    background-color: #fff !important;
+    color: #4990e2 !important;
+  }
+}
+
+.hc-secondary-button {
+  @extend %secondary-button;
+}
+
+.hc-info-button {
+  @extend %info-button;
+}
+
+.hc-success-button {
+  @extend %success-button;
+}
+
+.hc-warning-button {
+  @extend %warning-button;
+}
+
+.hc-danger-button {
+  @extend %danger-button;
+}
+
+.hc-text-button {
+  @extend %text-button;
+}
+
+.hc-stripped-button {
+  @extend %stripped-button;
+}
+
+.hc-disabled-button {
+  @include button(
+    $background-color:       'secondary',
+    $color:                  'pale',
+    $hover-background-color: 'secondary'
+    // TODO @mizurnix add cursor variable to button mixin
+  );
+  text-decoration: none !important;
+  cursor: not-allowed;
+}
+
+.hc-primary-button--small {
+  @extend %primary-button--small;
+}
+
+.hc-primary-outlined-button--small {
+  @extend .hc-primary-outlined-button;
+  font-size: 0.9em;
+}
+
+.hc-success-button--small {
+  @extend %success-button--small;
+}
+
+.hc-secondary-button--small {
+  @extend %secondary-button--small;
+}
+
+.hc-danger-button--small {
+  @extend %danger-button--small;
+}
+
+.hc-facebook-button {
+  @include button($background-color: 'facebook', $color: 'light');
+}
+
+.hc-twitter-button {
+  @include button($background-color: 'twitter', $color: 'light');
+}
+
+.hc-facebook-icon-button {
+  @include button(
+    $background-color: 'facebook',
+    $color:            'light',
+    $height:           'lg',
+    $padding-x:        0,
+    $width:            'lg'
+  );
+
+  @include pseudo-classify-uniformly(color, $color-light);
+}
+
+.hc-twitter-icon-button {
+  @include button(
+    $background-color: 'twitter',
+    $color:            'light',
+    $height:           'lg',
+    $padding-x:        0,
+    $width:            'lg'
+  );
+
+  @include pseudo-classify-uniformly(color, $color-light);
+}
+
+.hc-email-icon-button {
+  @include button(
+    $background-color: 'primary',
+    $color:            'light',
+    $height:           'lg',
+    $padding-x:        0,
+    $width:            'lg'
+  );
+
+  @include pseudo-classify-uniformly(color, $color-light);
+}

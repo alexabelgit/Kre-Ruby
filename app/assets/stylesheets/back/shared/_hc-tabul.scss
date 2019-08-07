@@ -1,0 +1,26 @@
+// This component should be used when we have key/value type list which visually
+// resembles a table but does not have a tabular data
+
+.hc-tabul {
+  @extend %display__table;
+  @extend %padding__0;
+  @extend %margin__0;
+  @extend %list-style__none;
+}
+
+.hc-tabul__row {
+  @extend %display__table-row;
+
+  &:not(:last-of-type) {
+    .hc-tabul__cell {
+      @extend %padding-bottom__xs;
+    }
+  }
+}
+
+.hc-tabul__cell {
+  @extend %display__table-cell;
+  &:first-child {
+    @extend %padding-right__md;
+  }
+}

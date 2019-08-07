@@ -1,0 +1,13 @@
+/ store*
+
+=> store.provider.titleize
+
+- if store.installed?
+  = hc_icon 'check-circle',
+    class:  'hc-color__success',
+    title:  'App installed'
+
+- else
+  = hc_icon 'exclamation-circle',
+    class:  'hc-color__warning',
+    title:  'App uninstalled'

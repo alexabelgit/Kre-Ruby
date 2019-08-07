@@ -1,0 +1,13 @@
+.hc-reviews__list {
+  @extend %margin-bottom__md;
+
+  &.hc-reviews__list--single_column {
+
+  }
+
+  &.hc-reviews__list--masonry {
+    @extend %column-count__3;
+    @extend %column-gap__1em;
+    @extend %column-width__15em;
+  }
+}

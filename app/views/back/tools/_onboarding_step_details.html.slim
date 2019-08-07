@@ -1,0 +1,11 @@
+h2.onboarding-step__heading class="#{ step_heading_class(status) }"
+  = title
+.onboarding-step__description
+  - if status == :complete
+    = description_complete.html_safe
+  - else
+    = description.html_safe
+
+- if snippet
+  .onboarding-step__snippet
+    = hc_code snippet[:code], snippet[:language]

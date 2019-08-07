@@ -1,0 +1,451 @@
+---
+"tr":
+  "activerecord":
+    "errors":
+      "models":
+        "abuse_report":
+          "attributes":
+            "additional_info":
+              "blank": >-
+                neden olarak "başka bir şey" seçildiğinde yazılmalıdır
+            "reason":
+              "blank": >-
+                ^Bir neden seçmelisiniz
+        "product":
+          "attributes":
+            "id_from_provider":
+              "taken": >-
+                ^Kimliğin başka bir eşi olmamalıdır. Girdiğiniz kimlik başka bir üründe
+                kullanılmış
+        "review":
+          "attributes":
+            "customer":
+              "must_be_authenticated": >-
+                ^Yorum yazmak için giriş yapmış olmalısınız
+            "product_ids":
+              "cannot_be_repeated": >-
+                ^Bu ürüne zaten yorum yazmışsınız
+              "taken": >-
+                ^Bu satın alıma zaten yorum yazmışsınız
+            "review_request_id":
+              "request_must_be_sent": >-
+                ^Bu satın alıma şu an yorum yazamazsınız
+            "source":
+              "cannot_be_voluntary": >-
+                ^Bu satın alıma şu an yorum yazamazsınız
+        "review_request":
+          "attributes":
+            "order_id":
+              "blank": >-
+                ilgili müşteri olmadan oluşturulamaz. Lütfen geçerli bir e-posta adresi
+                girin
+    "models":
+      "comment":
+        "one": >-
+          yorum
+        "other": >-
+          yorum
+      "customer":
+        "one": >-
+          müşteri
+        "other": >-
+          müşteri
+      "product":
+        "one": >-
+          ürün
+        "other": >-
+          ürün
+      "product_group":
+        "one": >-
+          ürün grubu
+        "other": >-
+          ürün grubu
+      "question":
+        "one": >-
+          soru
+        "other": >-
+          soru
+      "review":
+        "one": >-
+          yorum
+        "other": >-
+          yorum
+      "review_request":
+        "one": >-
+          yorum talebi
+        "other": >-
+          yorum isteği
+  "answer":
+    "one": >-
+      cevap
+    "other": >-
+      cevap
+  "cancel": >-
+    İptal
+  "counterify":
+    "characters":
+      "exceeded": >-
+        Karakter sınırı aşıldı
+      "remaining":
+        "one": >-
+          1 karakter kaldı
+        "other": >-
+          %{count} karakter kaldı
+  "default_templates":
+    "email":
+      "critical_review_followup_mail_body": "<p>Merhaba [customer_name],</p>\r\n<p>Yorumunuz
+        için teşekkür ederiz.</p>\r\n<p>[store_name] ekibi.</p>"
+      "critical_review_followup_mail_subject": >-
+        Yorumunuz için teşekkür ederiz
+      "positive_review_followup_mail_body": "<p>Merhaba [customer_name],</p>\r\n<p>Yorumunuz
+        için teşekkür ederiz.</p>\r\n<p>[store_name] ekibi.</p>"
+      "positive_review_followup_mail_subject": >-
+        Yorumunuz için teşekkür ederiz
+      "question_answer_mail_body": "<p>Merhaba [customer_name],</p>\r\n<p>[product_name]
+        hakkındaki sorunuz temsilcimiz tarafından yanıtlandı:</p>\r\n<p>[answer]</p>\r\n<p>Sorunuz:</p>\r\n<p>[question]</p>\r\n<p>[product_link]</p>\r\n<p>[store_name]
+        ekibi.</p>"
+      "question_answer_mail_subject": >-
+        [store_name] adlı mağazadaki sorunuz yanıtlandı
+      "repeat_review_request_mail_body": "<p>Merhaba [customer_name],</p>\r\n<p>Yakın
+        zaman önce verdiğiniz siparişiniz hakkında ne düşündüğünüzü söylemek için
+        henüz geç değil. </p>\r\n<p>Lütfen şu ürünleri puanlayın:</p>\r\n<p>[products]</p>\r\n<p>Memnun
+        kalmadınız mı? Yardım edebilmemiz için bize ulaşın.</p>\r\n<p>[store_name]
+        ekibi.</p>"
+      "repeat_review_request_mail_subject": >-
+        [store_name] adlı mağazadaki siparişinize yorum yazın
+      "review_answer_mail_body": "<p>Merhaba [customer_name],</p>\r\n<p>[product_name]
+        için yazdığınız yoruma temsilcimiz tarafından yanıt verilmiştir:</p>\r\n<p>[reply]</p>\r\n<p>Yorumunuz:</p>\r\n<p>[review]</p>\r\n<p>[product_link]</p>\r\n<p>[store_name]
+        ekibi.</p>"
+      "review_answer_mail_subject": >-
+        [store_name] mağazasında yazdığınız yoruma yanıt verilmiştir
+      "review_request_mail_body": "<p>Merhaba [customer_name],</p>\r\n<p>Lütfe şu
+        ürünler hakkında ne düşündüğünüzü puanlayın:</p>\r\n<p>[products]</p>\r\n<p>Memnun
+        kalmadınız mı? Yardım edebilmemiz için bize ulaşın.</p>\r\n<p>[store_name]
+        ekibi.</p>"
+      "review_request_mail_subject": >-
+        [store_name] adlı mağazadaki siparişinize yorum yazın
+  "embed": >-
+    Gömme
+  "errors":
+    "messages":
+      "already_confirmed": >-
+        zaten onaylanmış, tekrar giriş yapmayı deneyin
+      "confirmation_period_expired": >-
+        %{period} içinde onaylanmalı, lütfen yenisini isteyin
+      "expired": >-
+        süresi doldu, lütfen yenisini isteyin
+      "not_found": >-
+        bulunamadı
+      "not_locked": >-
+        kilitli değildi
+      "not_saved":
+        "one": >-
+          1 hata nedeniyle bu %{resource} kaydedilemedi:
+        "other": >-
+          %{count} hata nedeniyle bu %{resource} kaydedilemedi:
+  "flash":
+    "submitted_successfully":
+      "question": >-
+        Teşekkür ederiz! Sorunuzu aldık, yanıtladıktan sonra size e-posta ile haber
+        vereceğiz
+      "review": >-
+        Teşekkür ederiz! Yorumunuzu aldık
+      "subscribed": >-
+        Başarıyla %{store} mağazasına abone oldunuz.
+      "unsubscribed": >-
+        Başarıyla %{store} mağazasının aboneliğinden çıktınız.
+  "front":
+    "based_on_reviews_count":
+      "one": >-
+        1 yorum
+      "other": >-
+        %{count} yorum
+    "components":
+      "customer_form":
+        "email":
+          "hint": >-
+            E-posta adresiniz açık olarak paylaşılmayacak
+          "label": >-
+            E-postanız
+        "name":
+          "hint": >-
+            İsminiz baş harfleriyle gösterilecek
+          "hint_update_html": >-
+            İsminiz <strong>%{initials}</strong> şeklinde gösterilecek
+          "label": >-
+            İsminiz
+      "privacy_notice":
+        "link_content": >-
+          gizlilik politikası
+        "with_name":
+          "html": "Bu formu yollayarak içeriğinizin ve isminizin\r\n<strong>%{name}</strong>
+            internette\r\n%{link} ile yayınlanabileceğini kabul ediyorsunuz."
+        "without_name":
+          "html": "Bu formu yollayarak içeriğinizin ve isminizin\r\n%{link} ile internette
+            yayınlanabileceğini kabul ediyorsunuz."
+    "continue_shopping": >-
+      Alışverişe devam et
+    "flags":
+      "new":
+        "already_flagged": >-
+          Bu %{item} zaten sizin tarafınızdan bildirildi
+        "flag_as_inappropriate": >-
+          Bunu uygunsuz olarak işaretle: %{item}
+      "show":
+        "flag_submitted": >-
+          Teşekkürler
+    "mailer":
+      "excuses":
+        "question_answered_html": >-
+          Bu e-posta %{helpfulcrowd} tarafından %{store} için sorduğunuz soruyla ilgili
+          bir yeni haber olması sebebiyle gönderildi.
+        "review_answered_html": >-
+          Bu e-posta %{helpfulcrowd} tarafından %{store} için yazdığınız yorumla ilgili
+          bir yeni haber olması sebebiyle gönderildi.
+        "review_follow_up_html": >-
+          Bu e-posta %{helpfulcrowd} tarafından %{store} için yazdığınız yoruma cevap
+          olarak gönderildi.
+        "review_request_html": >-
+          Bu e-posta %{helpfulcrowd} tarafından %{store} ile verdiğiniz siparişe cevap
+          olarak gönderildi.
+      "helpers":
+        "call_to_action":
+          "view_product": >-
+            Ürün sayfasını ziyaret et
+    "products":
+      "questions":
+        "form":
+          "question_html": >-
+            %{product} hakkında ne öğrenmek istersiniz?
+        "new":
+          "title": >-
+            Soru sor
+      "view_product": >-
+        Ürün sayfasına git
+    "review_requests":
+      "reviews":
+        "form":
+          "rating_html": >-
+            %{reviewable} ile olan deneyimini puanla
+        "new":
+          "already_reviewed_html": >-
+            %{reviewable} için zaten yorum yazmışsın
+          "review_other_purchases":
+            "one": >-
+              Diğer satın alımına yorum yaz
+            "other": >-
+              Diğer satın alımlarına yorum yaz
+          "title": >-
+            Satın alımına yorum yap
+    "search":
+      "label": >-
+        Ara:
+      "placeholder": >-
+        Anahtar kelime gir
+    "share":
+      "button": >-
+        Paylaş
+    "sort_by": >-
+      Sıralama ölçütü:
+    "sort_options":
+      "most_helpful": >-
+        En faydalı
+      "most_recent": >-
+        En son
+      "rating_asc": >-
+        Puan: en düşük
+      "rating_desc": >-
+        Puan: en yüksek
+    "suppressions":
+      "manage_subscriptions":
+        "subscribe_question_html": >-
+          HelpfulCrowd'u aktifleştirerek %{store} adına e-posta göndermesini ister
+          misiniz?
+        "unsubscribe_question_html": >-
+          HelpfulCrowd'un %{store} adına e-posta göndermeyi bırakmasını ister misiniz?
+    "votes":
+      "upvote": >-
+        Faydalı
+      "upvotes_count":
+        "one": >-
+          %{count} kişiye göre bu %{item} faydalı
+        "other": >-
+          %{count} kişiye göre bu %{item} faydalı
+    "widgets":
+      "products":
+        "rating":
+          "qa":
+            "html":
+              "one": >-
+                1 soru
+              "other": >-
+                %{count} soru
+          "reviews":
+            "html":
+              "one": >-
+                1 yorum
+              "other": >-
+                %{count} yorum
+        "summary":
+          "qa":
+            "html":
+              "one": >-
+                1 soru
+              "other": >-
+                %{count} soru
+            "new": >-
+              Soru sor
+          "reviews":
+            "html":
+              "one": >-
+                1 yorum
+              "other": >-
+                %{count} yorum
+            "new": >-
+              Yorum yaz
+        "tabs":
+          "questions":
+            "new": >-
+              Soru sor
+            "search":
+              "label": >-
+                Ara:
+              "placeholder": >-
+                Soru-Cevap Ara
+            "title": >-
+              Soru-Cevap
+            "write_first": >-
+              Bu ürün hakkında ilk soruyu sen sor
+          "reviews":
+            "based_on_reviews":
+              "html": >-
+                %{reviews_count} yoruma göre
+            "media_gallery":
+              "images":
+                "one": >-
+                  1 fotoğraf
+                "other": >-
+                  %{count} fotoğraf
+              "search":
+                "label": >-
+                  Ara:
+                "placeholder": >-
+                  Yorum ara
+              "title": "Müşteri\r\nmedya"
+              "videos":
+                "one": >-
+                  1 video
+                "other": >-
+                  %{count} video
+            "new": >-
+              Yorum yaz
+            "rating": >-
+              5 üzerinden %{rating}
+            "title": >-
+              Müşteri yorumları
+            "write_first": >-
+              Bu ürün hakkında ilk yorumu sen yaz
+          "titles":
+            "questions": >-
+              Soru-Cevap
+            "questions_responsive": >-
+              Soru-Cevap
+            "reviews": >-
+              Yorum ve Puanlar
+            "reviews_responsive": >-
+              Yorumlar
+      "sidebar":
+        "default_title": >-
+          Yorumlar | Soru-Cevap
+    "with_incentive":
+      "reviews":
+        "text": >-
+          Bu yorumcu, bu yorumu yazmak için teşvik almış olabilir
+    "write_review": >-
+      Yorum yaz
+  "helpers":
+    "friendly_rating": >-
+      Yorum yok
+    "label":
+      "customer":
+        "email": >-
+          Müşterinin e-postası
+        "name": >-
+          Müşterinin ismi
+      "product_group":
+        "name": >-
+          İsim
+    "placeholder":
+      "promotion":
+        "template": >-
+          Black Friday haftasında, tüm ürünlerde kargo ücretsiz!
+    "submit":
+      "product_group":
+        "create": >-
+          Grup oluştur
+        "update": >-
+          Grubu güncelle
+      "question":
+        "create": >-
+          Soru sor
+      "review":
+        "create": >-
+          Yorumu yolla
+  "layouts":
+    "mailer":
+      "front":
+        "manage_subscriptions": >-
+          Abonelikleri yönet
+        "unsubscribe": >-
+          Abonelikten çık
+  "load_more": >-
+    Daha fazla yükle
+  "privacy_policy": >-
+    Gizlilik politikası
+  "question_facebook_post_template": "[customer_name]\r\nS: [question]\r\nC: [answer]"
+  "question_tweet_template": "[customer_name]\r\nS: [question]\r\nC: [answer]"
+  "rating_1": >-
+    Çok Kötü
+  "rating_2": >-
+    Kötü
+  "rating_3": >-
+    Orta
+  "rating_4": >-
+    İyi
+  "rating_5": >-
+    Çok İyi
+  "read_less": >-
+    daha az oku
+  "read_more": >-
+    yorumun tamamı
+  "recaptcha":
+    "errors":
+      "verification_failed": >-
+        reCAPTCHA doğrulaması başarısız.
+    "label": >-
+      Spam reklamlarla savaşmamıza yardım edin
+  "report": >-
+    Bildir
+  "review_facebook_post_template": "[customer_name], [product_name] hakkında ne demiş
+    gör:\r\n\r\n[rating]\r\n\"[feedback]\""
+  "review_tweet_template": "[customer_name]:\r\n[product_name] - [rating], \"[feedback]\""
+  "settings":
+    "default":
+      "review_slider_c2a_text": >-
+        Tümünü göster
+  "stars":
+    "one": >-
+      1 yıldız
+    "other": >-
+      %{count} yıldız
+  "verified":
+    "agent":
+      "description": >-
+        %{author} %{store} adlı mağazada çalışıyor
+      "label": >-
+        %{store}
+    "customer":
+      "description": >-
+        %{author} bu ürünü satın aldı
+      "label": >-
+        Onaylı alıcı

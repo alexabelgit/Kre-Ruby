@@ -1,0 +1,19 @@
+/ hide_contact_us
+/ hide_thank_you
+/
+/ contact_who
+/ contact_us
+/ thank_you
+
+- hide_contact_us ||= false
+- hide_thank_you  ||= false
+
+- contact_who ||= 'support'
+- contact_us  ||= "Reach out to us anytime via our in-app chat or at <a href='mailto:#{contact_who}@helpfulcrowd.com'>#{contact_who}@helpfulcrowd.com</a> if you have any questions."
+- thank_you   ||= 'Thanks for teaming up and we look forward to doing more, together.'
+
+- unless hide_contact_us
+  p == contact_us
+
+- unless hide_thank_you
+  p == thank_you

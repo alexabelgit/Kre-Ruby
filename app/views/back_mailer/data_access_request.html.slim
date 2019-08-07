@@ -1,0 +1,10 @@
+= content_for :recipient
+  = @user.first_name
+
+p
+  |
+    Looks like your customer #{@customer.display_name} has requested access to
+    data you keep on them. Click below to view data stored in HelpfulCrowd
+    about #{@customer.display_name} on behalf of you.
+
+= call_to_action 'View customer data', back_customer_url(@customer)

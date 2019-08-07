@@ -1,0 +1,63 @@
+- content_for :main_class, 'product-details-page boxed'
+= render 'back/products/sub_nav'
+
+header.header-with-action
+  h1
+    =  title @product.name
+    =< stamp_product_if_archived_or_hidden(@product)
+
+  = edit_button edit_back_product_path(@product)
+
+section.product-details
+  header.product-details__header
+    = link_to @product.url, target: '_blank' do
+      = image_tag @product.featured_image.small.url.to_s, class: 'product-details__image'
+
+    .hc-margin-bottom__md
+      div
+        = link_to @product.url, target: '_blank' do
+          ' View on #{@product.store.name}
+          = hc_icon "external-link"
+
+      div
+        = link_to front_product_url(@product.store, @product), target: '_blank' do
+          ' View on HelpfulCrowd
+          = hc_icon "external-link"
+
+    .product-details__rating = stars_and_rating(@product.rating)
+
+    - if @product.has_groups?
+
+      .product-details__individual-rating
+        div
+          ' Individual rating
+          = hc_icon 'info-circle',
+            title:   "Aggregated rating based on reviews for #{@product.name} \
+                      only. It is not displayed publicly since #{@product.name} \
+                      is grouped with other products."
+
+        = stars_and_rating(@product.individual_rating)
+
+      .product-details__groups
+        ' #{'Product group'.pluralize(@product.groups.count)}:
+        == @product.groups.map{ |group| link_to(group.name, back_product_group_path(group)) }.to_sentence
+
+  section.product-details__rating-chart
+    = render 'shared/rating_chart', reviews: @product.reviews.published, product: @product
+
+  section.product-details__reviews
+    h2 Reviews
+
+    ul
+      li
+        = link_to "Pending: #{@product.reviews.pending.count}", back_reviews_path(status: :pending, product_group_ids: @product.id)
+
+      li
+        = link_to "Published: #{@product.reviews.published.count}", back_reviews_path(status: :published, product_group_ids: @product.id)
+
+      li
+        = link_to "Archived: #{@product.reviews.archived.count}", back_reviews_path(status: :archived, product_group_ids: @product.id)
+
+      li
+        strong
+          = link_to "Total: #{@product.reviews.count}", back_reviews_path(product_group_ids: @product.id)

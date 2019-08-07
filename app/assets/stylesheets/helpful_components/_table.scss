@@ -1,0 +1,48 @@
+.responsive-table {
+  @extend %overflow-x__auto;
+}
+
+.table {
+  @extend %min-width__840px;
+  @extend %width__100pct;
+  @extend %border-collapse__collapse;
+
+  th, td {
+    @extend %padding__md;
+    @extend %text-align__left;
+    &.product__review-count, &.product__question-count, &.product__ratings {
+      @extend %text-align__center;
+    }
+  }
+
+  td.table__actions {
+    @extend %text-align__right;
+    @extend %min-width__110px;
+    @media screen and (max-width: 1400px) {
+      a {
+        margin-bottom: 0.5em;
+      }
+    }
+  }
+
+  th {
+    @extend %background-color__light--darkened;
+    @extend %white-space__nowrap; // TODO test if child elements need white-space: normal;
+
+    &.sortable {
+      @extend %padding__0;
+
+      .sortable-link {
+        @extend %color__inherit;
+        @extend %display__block;
+        @extend %padding__md;
+      }
+    }
+  }
+
+  tr {
+    @extend %background-color__white;
+    @extend %border__1px__solid__secondary;
+  }
+
+}

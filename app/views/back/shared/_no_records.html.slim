@@ -1,0 +1,21 @@
+/ object*
+/ heading
+/ content
+/ action
+
+- heading          ||= t("no_records.#{object}.heading",  default: false)
+- content          ||= t("no_records.#{object}.content",  default: false)
+- kb_article       ||= false
+- action           ||= false
+- action_name      ||= t("no_records.#{object}.action_name", default: 'Proceed')
+
+section.no-records
+  - if heading
+    h2 = heading
+  - if content
+    p.no-records__content
+      =  content
+      =< kb_article(kb_article, icon: false, nowrap: true) if kb_article
+
+  - if action
+    div = link_to action_name, action, class: 'hc-primary-button'

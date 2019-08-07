@@ -1,0 +1,20 @@
+/ button_label
+/ shopify_auth_link - provide path where Shopify button should lead. Ex: sign_up_with_shopify_path
+
+- button_label      ||= { initial: 'Authenticate', disabled: 'Authenticating' }
+- shopify_auth_link ||= sign_in_with_shopify_path
+
+section.auth-options__section.auth-options__section--alt
+
+  h2.auth-options__heading data-auth-options-heading-alt=''
+    span
+      | or
+      span.hide-unless-screen-reader #{ button_label[:action] } with an alternative method
+
+  = render             'shared/oauth_authentication',
+    button_label:      button_label,
+    hide:              [:lemonstand],
+    shopify_auth_link: shopify_auth_link
+    # Hide lemonstand option from sign-in / sign-up pages as LS users will use email
+    # to perform those actions. LS form will only appear on connect store page
+    

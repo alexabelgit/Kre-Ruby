@@ -1,0 +1,36 @@
+= content_for :title
+  | Sign in
+
+section.auth-options__section
+  = form_for resource,
+    as:      resource_name,
+    url:     session_path(resource_name) do |f|
+
+    .auth-form__control
+      = f.label       :authentication_key
+      = f.email_field :authentication_key, autofocus: true
+
+    .auth-form__control--margin-bottom__xs
+      = f.label          :password
+      = f.password_field :password, autocomplete: 'off'
+
+    .auth-form__remember-or-forget
+      = f.label :remember_me do
+        => f.check_box :remember_me
+        =  'Stay signed in'
+
+      = link_to 'Problems signing in?', sign_in_problems_path
+
+    = button_tag class: 'hc-brand-1-button--block',
+                 data:  { disable_with: "#{ spinner_icon } Signing in with email" } do
+
+      => hc_icon 'envelope'
+      =  "Sign in with email"
+
+= render        'devise/shared/auth_options_alt',
+  button_label: { initial:  'Sign in',
+                  disabled: 'Signing in' }
+
+.auth-form__toggle-sign-in-up
+  | Don't have an account yet?
+  =< link_to 'Sign up', new_registration_path(resource_name)

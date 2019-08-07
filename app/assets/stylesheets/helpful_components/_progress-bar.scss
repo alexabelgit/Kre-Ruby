@@ -1,0 +1,46 @@
+.hc-progress-bar {
+  @extend %height__1em;
+  @extend %width__100pct;
+  @extend %min-width__1em;
+  @extend %position__relative;
+  background-color: #c7c7c7;
+
+  .hc-progress_bar__percents {
+    @extend %position__absolute;
+    width: 100%;
+    text-align: center;
+    color: white;
+    display: block;
+    font-size: 0.7em;
+    padding: 1px 0;
+  }
+}
+
+.hc-progress-bar__current-progress {
+  @extend %background-color__success;
+  @extend %height__1em;
+  @extend %width__0;
+  @extend %max-width__100pct;
+
+  @extend %left__0;
+  @extend %top__0;
+}
+
+.hc-progress-bar.hc-progress-bar--mock_min_value {
+  // @extend %min-width__1px;
+  .hc-progress-bar__current-progress {
+    @extend %min-width__xs;
+  }
+}
+
+.hc-progress-bar.hc-progress-bar--warning {
+  .hc-progress-bar__current-progress {
+    @extend %background-color__warning;
+  }
+}
+
+.hc-progress-bar.hc-progress-bar--danger {
+  .hc-progress-bar__current-progress {
+    @extend %background-color__danger;
+  }
+}

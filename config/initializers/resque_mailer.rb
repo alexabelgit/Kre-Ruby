@@ -1,0 +1,1 @@
+Resque::Mailer.argument_serializer = Resque::Mailer::Serializers::ActiveRecordSerializer

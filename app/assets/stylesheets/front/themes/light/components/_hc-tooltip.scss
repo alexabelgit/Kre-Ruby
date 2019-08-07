@@ -1,0 +1,9 @@
+.hc-tooltip .hc-tooltip__content{
+  @extend %color__dark;
+  @extend %background-color__light;
+  box-shadow:0 1px 8px rgba(0,0,0,0.3);
+}
+.hc-tooltip .hc-tooltip__content i::after {
+  @extend %background-color__light;
+  box-shadow:0 1px 8px rgba(0,0,0,0.3);
+}

@@ -1,0 +1,279 @@
+en:
+  back:
+    widgets:
+      product_summary:
+        title: Product Summary
+        subtitle: 2. Product Summary on product pages
+        description:
+          html: |-
+            <p>
+              The Product Summary displays the average rating, number of reviews and number of answered questions for a specific product.
+            </p>
+            <p>
+              It usually appears on the product pages under the product title.
+            </p>
+        mockup_image_url: "https://res.cloudinary.com/helpfulcrowd/image/upload/v1516169408/app_assets/product-summary-mockup.png"
+        embed_guide:
+          custom:
+            snippet:
+            - label: Include script tag
+              code: |-
+                <script defer src="%{url}"></script>
+              language: html
+              hint: |-
+                Display widget on any web page by pasting this snippet in the &lt;head&gt; tag
+            - label: Include wrapper div
+              code: |-
+                <div class="hc-widget">
+                  <div data-hc="product-summary" data-hc-id="{PRODUCT_ID}"></div>
+                </div>
+              language: html
+              hint: |-
+                Paste this snippet in the &lt;body&gt; tag at the location where
+                you wish the widget to appear. Replace {PRODUCT_ID} with the id
+                of the product that your page belongs to.
+          shopify:
+            snippet:
+            - label: "To embed <strong>Product Summary</strong> widget, paste the
+                      following code snippet in a file where you want it to appear:"
+              code: |-
+                {% comment %} HelpfulCrowd injected code. Please do not change or remove this and the next comment {% endcomment %}
+                {% include 'hc-product-summary' %}
+                {% comment %} HelpfulCrowd injected code. Please do not change or remove this and the previous comment {% endcomment %}
+              language: liquid
+              hint:
+              example:
+              - label: "This is an example of what your <strong>product-template.liquid</strong> file might look like after including <strong>Product Summary</strong> widget in it. Please remember that the exact location in your theme may be different, depending on your theme customization."
+                code: |-
+                  …
+                  <div class="grid__item {{ product_description_width }}">
+                    <div class="product-single__meta">
+                      <h1 itemprop="name" class="product-single__title">…</h1>
+                      {% if section.settings.show_vendor %}
+                        …
+                      {% endif %}
+
+                      {% comment %} HelpfulCrowd injected code. Please do not change or remove this and the next comment {% endcomment %}
+                      {% include 'hc-product-summary' %}
+                      {% comment %} HelpfulCrowd injected code. Please do not change or remove this and the previous comment {% endcomment %}
+
+                      <div itemprop="offers" itemscope itemtype="http://schema.org/Offer">…</div>
+                      <div class="product-single__description rte" itemprop="description">…</div>
+                      {% if section.settings.show_share_buttons %}
+                        …
+                      {% endif %}
+                    </div>
+                  </div>
+                  ...
+      product_tabs:
+        title: Product Tabs
+        subtitle: 3. Product Tabs on product pages
+        description:
+          html: |-
+            <p>
+              The Product Tab displays all of the reviews and Q&A for a specific product.
+            </p>
+            <p>
+              It can be displayed anywhere on the product pages, but normally after the description or recommended products section.
+            </p>
+        mockup_image_url:
+          rounded: "https://res.cloudinary.com/helpfulcrowd/image/upload/v1553702296/app_assets/product-tabs-rounded.png"
+          squared: "https://res.cloudinary.com/helpfulcrowd/image/upload/v1553702297/app_assets/product-tabs-squared.png"
+          shadows: "https://res.cloudinary.com/helpfulcrowd/image/upload/v1553702299/app_assets/product-tabs-shadow.png"
+          noshadows: "https://res.cloudinary.com/helpfulcrowd/image/upload/v1553702297/app_assets/product-tabs-squared.png"
+        embed_guide:
+          custom:
+            snippet:
+            - label: Include script tag
+              code: |-
+                <script defer src="%{url}"></script>
+              language: html
+              hint: |-
+                Display widget on any web page by pasting this snippet in the &lt;head&gt; tag
+            - label: Include wrapper div
+              code: |-
+                <div class="hc-widget">
+                  <div data-hc="product-tabs" data-hc-id="{PRODUCT_ID}"></div>
+                </div>
+              language: html
+              hint: |-
+                Paste this snippet in the &lt;body&gt; tag at the location where
+                you wish the widget to appear. Replace {PRODUCT_ID} with the id
+                of the product that your page belongs to.
+          shopify:
+            snippet:
+            - label: "To embed <strong>Product Tabs</strong> widget, paste the
+                      following code snippet in a file where you want it to appear:"
+              code: |-
+                {% comment %} HelpfulCrowd injected code. Please do not change or remove this and the next comment {% endcomment %}
+                {% include 'hc-product-tabs' %}
+                {% comment %} HelpfulCrowd injected code. Please do not change or remove this and the previous comment {% endcomment %}
+              language: liquid
+              hint:
+              example:
+              - label: "This is an example of what your <strong>product-template.liquid</strong> file might look like after including <strong>Product Tabs</strong> widget in it. Please remember that the exact location in your theme may be different, depending on your theme customization."
+                code: |-
+                  <div class="product-template__container page-width" itemscope itemtype="http://schema.org/Product" id="ProductSection-{{ section.id }}" data-section-id="{{ section.id }}" data-section-type="product" data-enable-history-state="true">
+                    …
+                  </div>
+
+                  {% comment %} HelpfulCrowd injected code. Please do not change or remove this and the next comment {% endcomment %}
+                  {% include 'hc-product-tabs' %}
+                  {% comment %} HelpfulCrowd injected code. Please do not change or remove this and the previous comment {% endcomment %}
+
+                  {% if collection %}
+                    …
+                  {% endif %}
+                  …
+      product_rating:
+        title: Product Rating
+        subtitle: 4. Product Rating on product listing
+        description:
+          html: |-
+            <p>
+              The Product Rating displays the average rating of a product only.
+            </p>
+            <p>
+              It usually appears on the product listing page under each product.
+            </p>
+        mockup_image_url: "https://res.cloudinary.com/helpfulcrowd/image/upload/v1516166983/app_assets/product-rating-mockup.png"
+        embed_guide:
+          custom:
+            snippet:
+            - label: Include script tag
+              code: |-
+                <script defer src="%{url}"></script>
+              language: html
+              hint: |-
+                Display widget on any web page by pasting this snippet in the &lt;head&gt; tag
+            - label: Include wrapper div
+              code: |-
+                <div class="hc-widget">
+                  <div data-hc="product-rating" data-hc-id="{PRODUCT_ID}"></div>
+                </div>
+              language: html
+              hint: |-
+                Paste this snippet in the &lt;body&gt; tag at the location where
+                you wish the widget to appear. Replace {PRODUCT_ID} with the id
+                of the product under which this widget should appear.
+          shopify:
+            snippet:
+            - label: "To embed <strong>Product Rating</strong> widget, paste the
+                      following code snippet in a file where you want it to appear:"
+              code: |-
+                {% comment %} HelpfulCrowd injected code. Please do not change or remove this and the next comment {% endcomment %}
+                {% include 'hc-product-rating' %}
+                {% comment %} HelpfulCrowd injected code. Please do not change or remove this and the previous comment {% endcomment %}
+              language: liquid
+              hint:
+              example:
+              - label: "This is an example of what your <strong>product-card-grid.liquid</strong> file might look like after including <strong>Product Rating</strong> widget in it. Please remember that the exact location in your theme may be different, depending on your theme customization."
+                code: |-
+                  <div class="grid-view-item{% unless product.available %} product-price--sold-out grid-view-item--sold-out{% endunless %}">
+                    <a class="grid-view-item__link grid-view-item__image-container" href="{{ product.url | within: collection }}">
+                      {% capture img_id %}…{% endcapture %}
+                      {% capture wrapper_id %}…{% endcapture %}
+                      {%- assign img_url = product.featured_image.url.to_s | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+                      {% unless product.featured_image == blank %}
+                        …
+                      {% endunless %}
+                      <div id="{{ wrapper_id }}" class="grid-view-item__image-wrapper js">…</div>
+                      <noscript>…</noscript>
+                      <div class="h4 grid-view-item__title">…</div>
+                      {% if section.settings.show_vendor %}
+                        …
+                      {% endif %}
+
+                      {% comment %} HelpfulCrowd injected code. Please do not change or remove this and the next comment {% endcomment %}
+                      {% include 'hc-product-rating' %}
+                      {% comment %} HelpfulCrowd injected code. Please do not change or remove this and the previous comment {% endcomment %}
+
+                      <div class="grid-view-item__meta">…</div>
+                    </a>
+                  </div>
+              - label: "And this is what <strong>product-card-list.liquid</strong>
+                        file might look like after including
+                        <strong>Product Rating</strong> widget in it:"
+                code: |-
+                  …
+                  <div class="list-view-item__title-column">
+                    <div class="list-view-item__title">{{ product.title }}</div>
+
+                    {% comment %} HelpfulCrowd injected code. Please do not change or remove this and the next comment {% endcomment %}
+                    {% include 'hc-product-rating' %}
+                    {% comment %} HelpfulCrowd injected code. Please do not change or remove this and the previous comment {% endcomment %}
+
+                    {% if product.compare_at_price > product.price %}
+                      …
+                    {% endif %}
+                    {% if section.settings.show_vendor %}
+                      …
+                    {% endif %}
+                    {% unless product.available %}
+                      …
+                    {% endunless %}
+                  </div>
+                  …
+      sidebar:
+        title: Sidebar
+        description:
+          html: |-
+            Slides in from the left or right edge of browser window on pages
+            where you embed it.<br>Displays reviews and Q&A linking to corresponding products.
+        embed_guide:
+          custom:
+            snippet:
+            - label: Embed with code snippet
+              code: |-
+                <script defer src="%{url}"></script>
+              language: html
+              hint: |-
+                Display widget on any web page by pasting this snippet in the &lt;head&gt; tag
+      review_journal:
+        description:
+          html: |-
+            Appears on a dedicated web page on your site.<br>Displays reviews linking to corresponding products.
+        embed_guide:
+          custom:
+            snippet:
+            - label: Embed with code snippet
+              code: |-
+                <script defer src="%{url}"></script>
+              language: html
+              hint: |-
+                Display widget on any web page by pasting this snippet in the &lt;head&gt; tag
+            - label: Embed wrapper tag
+              code: |-
+                <div class="hc-widget"><div data-hc="review-journal"></div></div>
+              language: html
+              hint: |-
+                In addition to the snippet above put this wrapper element inside the &lt;body&gt; tag at a desired location.
+      review_slider:
+        description:
+          html: |-
+            Appears on homepage and other promotional pages.<br>Displays latest reviews linking to corresponding products.
+        embed_guide:
+          custom:
+            snippet:
+            - label: Embed with code snippet
+              code: |-
+                <script defer src="%{url}"></script>
+              language: html
+              hint: |-
+                Display widget on any web page by pasting this snippet in the &lt;head&gt; tag
+            - label: Embed wrapper tag
+              code: |-
+                <div class="hc-widget"><div data-hc="review-slider"></div></div>
+              language: html
+              hint: |-
+                In addition to the snippet above put this wrapper element inside the &lt;body&gt; tag at a desired location.
+      reviews_facebook_tab:
+        description:
+          html: |-
+            Adds new tab named <strong>Product Reviews</strong> to your store's Facebook page.<br>Displays reviews linking to corresponding products.
+    design:
+      pagination:
+        styles:
+          mockup_image_url:
+            classic: "https://res.cloudinary.com/helpfulcrowd/image/upload/app_assets/pagination_darklight_classic_mock.jpg"
+            modern: "https://res.cloudinary.com/helpfulcrowd/image/upload/app_assets/pagination_darklight_modern_mock.jpg"

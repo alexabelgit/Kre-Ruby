@@ -1,0 +1,59 @@
+body {
+  @extend %margin__0;
+  @extend %padding__0;
+  @extend %background-color__secondary--lightened;
+}
+
+.wrapper {
+  @extend %background-color__secondary--lightened;
+  @extend %color__dark;
+  @extend %font-size__16px;
+}
+
+.header-wrapper {
+  @extend %text-align__center;
+  @extend %margin-x__auto;
+}
+
+.main-wrapper {
+  @extend %border__1px__solid__secondary;
+}
+
+.main {
+  @extend %padding__md--px;
+}
+
+.help-wrapper {
+  text-align: center;
+  @media (max-width: 599px) {
+    text-align: right;
+    table {
+      width: 100% !important;
+      text-align: right;
+    }
+  }
+}
+
+.help {
+  @extend %padding-top__xs;
+  @extend %text-align__right;
+  a {
+    @extend %border-radius__100px;
+    @extend %background-color__transparent;
+    @extend %color__primary;
+    padding: 5px 12px;
+    border: 1px solid $color-primary;
+  }
+}
+
+.wrapper,
+.header,
+.footer {
+  @extend %padding__md--px;
+}
+
+.footer-wrapper {
+  @extend %text-align__center;
+  @extend %color__dark--lightened;
+  @extend %font-size__87pt5pct;
+}

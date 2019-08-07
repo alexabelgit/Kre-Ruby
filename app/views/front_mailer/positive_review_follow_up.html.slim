@@ -1,0 +1,13 @@
+= content_for :sender
+  = @store.name
+
+= content_for :branding
+  = render 'layouts/front/store_branding', store: @store
+
+= content_for :excuse
+  = t             'review_follow_up_html',
+    scope:        'front.mailer.excuses',
+    helpfulcrowd: link_to('HelpfulCrowd', 'https://www.helpfulcrowd.com'),
+    store:        "<b>#{ @store.name }</b>".html_safe
+
+== @store.settings(:reviews).positive_review_followup_mail_body.parse_placeholders( @store.promotions.placeholders_hash.merge(Placeholders::REVIEW_FOLLOWUP_MAIL_BODY), self, true, true, @review_request, @review)

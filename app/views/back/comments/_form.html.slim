@@ -1,0 +1,37 @@
+.comment-form data-model="comment"
+  = form_for   [ :back, comment.commentable, comment ],
+    remote:    true,
+    namespace: "#{ comment.commentable_type }-#{ comment.commentable_id }" do |f|
+
+    = render 'shared/form/errors', resource: comment
+
+    .hc-form__control
+      = f.label :display_name,
+        class: 'hide-unless-screen-reader'
+
+      = f.text_field :display_name,
+        value:       comment.display_name || current_store.settings(:agents).default_name,
+        required:    true,
+        class:       'comment-form__display-name'
+
+      =< hc_icon 'info-circle', title: "This name will be displayed next to this comment on your website."
+
+    .comment-form__body
+      = f.label :body,
+        "Reply to #{ comment.commentable_type.downcase }",
+        class: 'hide-unless-screen-reader'
+
+      = f.text_area  :body,
+        required:    true,
+        rows:        2,
+        placeholder: 'Want to add an answer?',
+        class:       'comment-form__body-input'
+
+
+      / TODO this can be cleaner
+      - if comment.id.present?
+        - submit_value = 'Update'
+      - else
+        - submit_value = comment.commentable.published? ? 'Reply' : 'Reply & Publish'
+
+      = f.submit submit_value, class: 'comment-form__submit'

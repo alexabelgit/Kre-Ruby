@@ -1,0 +1,13 @@
+.hc-dropdown__content {
+  @extend %background-color__darker;
+  @extend %border-color__dark;
+  box-shadow: $box-shadow__darker;
+}
+
+.hc-dropdown__item {
+  @extend %background-color__darker;
+
+  &:hover, &:focus {
+    @extend %background-color__dark;
+  }
+}

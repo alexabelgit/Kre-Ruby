@@ -1,0 +1,21 @@
+.hc-review__feedback {
+  @extend %margin-bottom__sm;
+  @extend %margin-top__0;
+  @extend %margin-x__0;
+  @extend %padding__0;
+  @extend %font-size__87pt5pct;
+  @extend %line-height__1pt375;
+
+  @extend %white-space__pre-line;
+  @extend %word-break__break-word;
+  @extend %word-wrap__break-word;
+}
+
+.hc-review__media {
+  @extend %margin-bottom__md;
+}
+
+.hc-review__title {
+  @extend %font-weight__lighter;
+  @extend %font-size__1pt4rem;
+}

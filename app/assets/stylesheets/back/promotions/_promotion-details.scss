@@ -1,0 +1,13 @@
+.promotion-details__overview-wrapper {
+  @extend %background-color__white;
+  @extend %simple-card;
+  @extend %margin-bottom__md;
+}
+
+.promotion-details__overview {
+  @extend %flex-grid;
+}
+
+.promotion-details__overview-item {
+  @extend %flex-grid__column;
+}

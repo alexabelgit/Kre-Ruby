@@ -1,0 +1,44 @@
+products:
+  scoopful_ecwid_products_migration:
+    name: Scoopful
+    price_in_cents: 395
+    min_products_limit: 0
+    max_products_limit: 10
+    chargebee_id: scoopful_ecwid_products_migration
+    is_secret: true
+  handful_ecwid_products_migration:
+    name: Handful
+    price_in_cents: 995
+    min_products_limit: 11
+    max_products_limit: 50
+    chargebee_id: handful_ecwid_products_migration
+    is_secret: true
+  boxful_ecwid_products_migration:
+    name: Boxful
+    price_in_cents: 1495
+    min_products_limit: 51
+    max_products_limit: 500
+    chargebee_id: boxful_ecwid_products_migration
+    is_secret: true
+  bucketful_ecwid_products_migration:
+    name: Bucketful
+    price_in_cents: 2995
+    min_products_limit: 501
+    max_products_limit: 1500
+    chargebee_id: bucketful_ecwid_products_migration
+    is_secret: true
+  plentiful_ecwid_products_migration:
+    name: Plentiful
+    price_in_cents: 4995
+    min_products_limit: 1501
+    max_products_limit: 10000
+    chargebee_id: plentiful_ecwid_products_migration
+    is_secret: true
+  boastful_ecwid_products_migration:
+    name: Boastful
+    price_in_cents: 9995
+    min_products_limit: 10001
+    max_products_limit:
+    chargebee_id: boastful_ecwid_products_migration
+    is_secret: true
+

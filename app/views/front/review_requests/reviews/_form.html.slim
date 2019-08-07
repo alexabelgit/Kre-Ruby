@@ -1,0 +1,64 @@
+/ header
+/ review*
+
+/ TODO ~ change classes to hc-review-form__reviewable-image for example
+
+- header     ||= false
+- reviewable   = review.transaction_item.reviewable
+
+section.hc-review-form-wrapper data-model="review" data-id="#{ review.transaction_item.hashid }"
+  = form_for   [:front, review],
+    url:       front_review_request_reviews_url( store_id:          review.store.hashid,
+                                                 review_request_id: review.review_request.hashid,
+                                                 header:            header,
+                                                 format:            :js ),
+    html:      { class: 'hc-review-form' },
+    namespace: review.transaction_item.hashid,
+    method:    :post,
+    remote:    true do |f|
+
+    = f.hidden_field :transaction_item_id,  value: review.transaction_item.hashid
+    = f.hidden_field :review_request_id,    value: review.review_request.hashid
+
+    - if header
+      header.hc-review-form__header
+        = link_to reviewable.url, target: '_blank' do
+          => image_tag reviewable.public_image.small.url.to_s,
+             alt:      reviewable.name,
+             class:    'hc-review-form__product-image'
+
+    = render 'shared/form/errors', resource: review
+
+    .add-rating
+
+      h5.add-rating__title
+        = t('.rating_html', reviewable: link_to(reviewable.name, reviewable.url, target: '_blank'))
+
+      .add-rating__stars
+        - 5.downto(1) do |i|
+
+          = f.radio_button :rating, i, required: true, class: 'add-rating__input'
+
+          = f.label "rating_#{i}".to_sym, class: 'add-rating__label' do
+            .add-rating__star--empty
+              = hc_icon 'star-o lg'
+            .add-rating__star--full
+              = hc_icon 'star lg'
+
+            span.add-rating__stars-count = i
+            span.add-rating__star-name   = t "rating_#{i}"
+
+    .hc-review-form__feedback
+      = f.label     :feedback, t('.feedback'),  class: 'hc-review-form__feedback-label'
+      = f.text_area :feedback, required: true,  class: 'hc-review-form__feedback-input'
+
+      span.hc-review-form__feedback-hint data-role="character-count"
+
+    - if @store.media_reviews_enabled?
+      = render 'helpful_components/cloudinary/upload_widget_trigger'
+
+    = render 'front/components/privacy_notice', name: review.customer.display_name
+
+    => button_tag t('helpers.submit.review.create'),
+       class:     'hc-review-form__submit',
+       data:      { disable_with: "#{ spinner_icon } #{ t('helpers.submit.review.create') }" }

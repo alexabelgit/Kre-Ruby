@@ -1,0 +1,22 @@
+/ object*
+/ url*
+
+- item = object.model_name.human
+
+- if session.validate_record?(object, scope: :flag)
+  = link_to url,
+    method: :post,
+    remote: true,
+    data:   { model: 'flag' },
+    title:  t( '.flag_as_inappropriate',
+               item:    item,
+               default: 'Flag as inappropriate' ),
+    class:  'hc-flag' do
+
+    => hc_icon 'flag', class: 'hc-flag__icon'
+    = t 'report', default: 'Report'
+
+- else
+  .hc-flag
+    => hc_icon 'flag', class: 'hc-flag__icon hc-flag__icon--flagged', title: t('.already_flagged', item: item, default: 'You have already flagged this')
+    = t 'report', default: 'Report'

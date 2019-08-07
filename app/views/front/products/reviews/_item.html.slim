@@ -1,0 +1,57 @@
+/ review*
+/ published_media*
+/ read_more_after
+/ show_media
+/ show_titles
+/ card_media_layout
+
+- @css_added        ||= false
+- read_more_after   ||= 100
+- show_media        ||= false
+- show_titles       ||= false
+- card_media_layout ||= 'grid'
+
+- unless @css_added
+  css:
+    label.hc-read-more:after{content:"#{ t 'read_less' }"}
+    input.hc-read-more:not(:checked) ~ label.hc-read-more:after{content:"#{ t 'read_more' }";}
+  - @css_added = true
+
+- if show_media && @store.media_reviews_enabled? && card_media_layout == 'featured'
+  - unless published_media.blank?
+    .hc-media class="hc-media__#{card_media_layout}" data-lightgallery="true"
+      - published_media.each_with_index do | media, index |
+        = render 'front/products/reviews/media/show_single', medium: media, count: index, review: review
+
+- if show_titles
+  .hc-review__title
+    = t('rating_'+ review.rating.to_s)
+
+article.hc-review
+  p.hc-review__feedback
+    - if review.read_more?(:feedback, length: read_more_after)
+      - guid      = SecureRandom.uuid
+      - read_more = review.read_more(:feedback, length: read_more_after)
+      input.hc-read-more id="read_more-#{guid}" type="checkbox"
+
+      span.hc-read-more__excerpt
+        = read_more.excerpt
+
+      span.hc-read-more__rest
+        = read_more.rest
+
+      label.hc-read-more< for="read_more-#{guid}"
+
+    - else
+      = review.get_highlights(:feedback)
+  - if show_media && @store.media_reviews_enabled? && card_media_layout == 'grid'
+    // Filter media on Ruby level to prevent additional queries
+    - unless published_media.blank?
+      .hc-review__media
+        .hc-media data-lightgallery="true"
+          - published_media.each_with_index do | media, index |
+            = render 'front/products/reviews/media/show', medium: media, review: review,
+                                                          total_count: published_media.count,
+                                                          count: index, limit_count: 3
+  section
+    = author_of_(review)

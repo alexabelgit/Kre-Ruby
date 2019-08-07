@@ -1,0 +1,11 @@
+/ question*
+
+article.plate data-model="question" data-id=question.hashid
+  h4.hc-product
+    i.icon-product> 
+    = question.product.name
+  h5
+    strong = question.display_name
+  p.feedback = question.body
+  
+  = render 'integrations/ecwid/comments/form', comment: Comment.new(commentable: question)

@@ -1,0 +1,23 @@
+// Polaris Baner - Within Containers
+
+.Polaris-Banner.Polaris-Banner--withinContentContainer{
+	@extend %padding-y__sm;
+	@extend %margin-y__md;
+	.Polaris-Banner__Content{
+		h3{
+			@extend %font-weight__bold;
+ 			@extend %padding-bottom__2xs;
+		}
+	}
+}
+// Color Schemes for banners within containers
+.Polaris-Banner.Polaris-Banner--withinContentContainer{
+  &.Polaris-Banner--info{
+  	background-color: #f4f6f8;
+		box-shadow: inset 0 3px 0 0 #637381,inset 0 0 0 0 transparent,0 0 0 1px rgba(63,63,68,.05),0 1px 3px 0 rgba(63,63,68,.15)
+	}
+	&.Polaris-Banner--error{
+		box-shadow: inset 0 3px 0 0 #ed6347,inset 0 0 0 0 transparent,0 0 0 1px rgba(63,63,68,.05),0 1px 3px 0 rgba(63,63,68,.15);
+		background-color: #fbeae5;
+	}
+}

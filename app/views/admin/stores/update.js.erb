@@ -1,0 +1,6 @@
+<%= render 'shared/system_messages/replace_flash' %>
+
+jQuery('[data-maintenance="backend"]')
+    .replaceWith('<%= escape_javascript(render 'admin/stores/backend_status') %>');
+jQuery('[data-maintenance="storefront"]')
+    .replaceWith('<%= escape_javascript(render 'admin/stores/storefront_status') %>');

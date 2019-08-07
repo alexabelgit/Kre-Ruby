@@ -1,0 +1,17 @@
+= content_for :head
+  = display_meta_tags site: 'HelpfulCrowd Admin', reverse: true
+
+= content_for :body
+
+  = render 'layouts/back/header'
+  = render 'layouts/admin/nav'
+  = yield :sub_nav
+
+  main.main class="#{ yield :main_class }" data-behavior="admin-container"
+    = render 'shared/system_messages/flash'
+    = hc_breadcrumbs
+    = yield
+
+  = render 'layouts/back/footer'
+
+= render template: 'layouts/base', locals: { stylesheet: 'admin', javascript: 'admin', custom_fonts: true }

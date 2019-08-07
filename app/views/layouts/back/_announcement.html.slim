@@ -1,0 +1,19 @@
+/ action - to make link open in new tab, `action[:blank]` must be `true`
+/ message
+/ type
+
+- type         ||= announcement.type
+- message      ||= announcement.message
+
+.announcement class="announcement--#{type}"
+  p.announcement__message = message
+  - if announcement.action?
+    .announcement__action-wrapper
+      - action = announcement.action
+      = link_to action.label,
+                action.url,
+        target: action.target,
+        class:  'announcement__action'
+      - if announcement.hide_action
+        - hide_action = announcement.hide_action
+        = link_to hide_action.label, hide_action.url, method: :patch, remote: true, class: 'announcement__hide'

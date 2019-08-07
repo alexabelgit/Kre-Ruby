@@ -1,0 +1,123 @@
+/ product*
+/ read_more_after
+/ reviews*
+/ reviews_with_media*
+/ store*
+- actions             ||= true
+- read_more_after = store.settings(:reviews).grid_layout == 'masonry' ? 100 : 300
+- custom_title       = store.settings(:widgets).product_tabs_reviews_header
+- default_title      = t 'reviews.title', scope: 'front.widgets.products.tabs'
+- pagination_style      = @store.settings(:design).pagination_style
+
+section#hc-reviews-tab.hc-reviews-tab data-role="review-list"
+  - if store.product_tabs_show_reviews_header?
+    header data-role="review-list-header"
+      h3 = custom_title.blank? ? default_title : custom_title
+
+  - if storefront_reviews?
+    - cache [store, product, 'new-review', @guest_customer&.cache_key, I18n.locale] do
+      = render   'front/products/reviews/form',
+        product: product,
+        review:  Review.new
+
+  - if product.reviews.published.empty?
+    .hc-product-tab__no-records
+      .hc-product-tab__no-records-info
+        .hc-product-tab__no-records-stars
+          = stars_based_on product.rating
+        .hc-product-tab__no-records-hint
+          = render   'front/widgets/products/tabs/review_form_link',
+            store:   store,
+            product: product,
+            text:    t('write_first', scope: 'front.widgets.products.tabs.reviews')
+      .hc-product-tab--actions
+        - if storefront_reviews?
+          = render   'front/widgets/products/tabs/review_form_link',
+            store:   store,
+            product: product,
+            icon:    true,
+            text:    t('new', scope: 'front.widgets.products.tabs.reviews')
+
+  - else
+    section.hc-reviews-overview
+      .hc-reviews-overview__column.hc-reviews-overview__column-1
+        - unless store.product_tabs_hide_overviews?
+          - cache [store, product, 'reviews-overview__header'] do
+            header.hc-reviews-overview__header
+              h5.hc-reviews-overview__heading
+                .hc-reviews-overview__rating
+                  = product.rating
+                => stars_based_on(product.rating, 'default', 'md')
+
+                span.hc-reviews-overview__count
+                  = t '.based_on_reviews.html',
+                    reviews_count: link_to( t('front.based_on_reviews_count', count: product.reviews_count),
+                                            front_product_reviews_url(store_id: product.store.hashid, product_id: product.hashid, format: :js),
+                                            remote: true )
+      .hc-reviews-overview__column.hc-reviews-overview__column-2
+        - unless store.product_tabs_hide_overviews?
+          - cache [store, product, reviews.sort_mode, 'reviews/rating-chart'] do
+            .hc-rating-chart
+              - product.rating_data.each do |rating_data|
+                = link_to front_product_reviews_url( store_id: product.store.hashid, product_id: product.hashid,
+                                                     rating:   rating_data.rating,
+                                                     sort:     (%w(best worst).include?(reviews.sort_mode) ? :latest : reviews.sort_mode),
+                                                     format:   :js ),
+                  remote: true,
+                  class:  'hc-rating-chart__row' do
+
+                  .hc-rating-chart__rating
+                    = rating_data.rating
+                    = hc_icon('star', resize: 0.6)
+
+                  .hc-rating-chart__bar-wrapper
+                    .hc-rating-chart__bar style="width: #{rating_data.percentage}%;"
+
+                  span.hc-rating-chart__percentage-value
+                    | #{rating_data.percentage}%
+                  .hc-rating-chart__count
+                    | #{rating_data.percentage_rounded}%
+      .hc-reviews-overview__column.hc-reviews-overview__column-3
+        - unless store.product_tabs_hide_overviews?
+
+      .hc-reviews-overview__column.hc-reviews-overview__column-4
+        - if actions
+          .hc-product-tab--actions
+            - if storefront_reviews?
+              = render   'front/widgets/products/tabs/review_form_link',
+                store:   store,
+                product: product,
+                icon:    true,
+                text:    t('new', scope: 'front.widgets.products.tabs.reviews')
+
+    - if store.show_media_gallery?
+      - if reviews_with_media.count > 0
+        - all_media = extract_media(reviews_with_media)
+        section.hc-reviews-media
+          = render   'front/widgets/products/tabs/review_media',
+            all_media:  all_media
+
+    section.hc-reviews-tab__list
+      - unless store.product_tabs_hide_filters?
+        = render 'front/products/reviews/filter', product: product, reviews: reviews
+
+      .hc-reviews__list {
+        class     = "hc-reviews__list--#{store.settings(:reviews).grid_layout}"
+        data-role = "list-item-container"
+      }
+        - reviews.each do |review|
+          = render           'front/products/reviews/card',
+            read_more_after: read_more_after,
+            review:          review,
+            show_actions:    true,
+            show_comments:   true,
+            show_dropdown:   true,
+            show_media:      true
+
+      - pagination_class = "hc-paging hc-paging--#{pagination_style}"
+      = will_paginate  reviews,
+        class:         pagination_class,
+        renderer:      HCAbsoluteLinkRenderer,
+        base_link_url: front_product_reviews_url({ store_id:   product.store.hashid,
+                                                   product_id: product.hashid,
+                                                   format:     :js }.merge(request.query_parameters))

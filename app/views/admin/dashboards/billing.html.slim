@@ -1,0 +1,32 @@
+- content_for :main_class, 'boxed'
+= render 'sub_nav'
+
+h1 = title 'Billing'
+
+
+section.dashboard__section
+  h2 Stores to be billed soon
+  .hc-row
+    section.dashboard__sub-section.hc-card
+      table.table
+        thead
+          tr
+            th Store name
+            th Billing date
+            th Amount to be charged
+            th Plan
+            th Overages
+            th Upgrade charge
+        tbody
+          - @presenters.each do |presenter|
+            tr
+              td = link_to presenter.store_name, admin_store_path(presenter.store_id)
+              td = presenter.billing_date
+              td = presenter.total_charge
+              td = presenter.plan_price
+              td = presenter.overage_charge
+              td = presenter.upgrade_charge
+
+      = will_paginate @subscriptions, class: "hc-paging hc-paging--modern"
+
+

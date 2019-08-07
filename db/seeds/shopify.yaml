@@ -1,0 +1,43 @@
+products:
+  helpful:
+    name: Helpful
+    price_in_cents: 0
+    min_products_limit: 0
+    max_products_limit: 10
+  scoopful:
+    name: Scoopful
+    price_in_cents: 595
+    min_products_limit: 11
+    max_products_limit: 50
+  handful:
+    name: Handful
+    price_in_cents: 995
+    min_products_limit: 51
+    max_products_limit: 150
+  boxful:
+    name: Boxful
+    price_in_cents: 1495
+    min_products_limit: 151
+    max_products_limit: 500
+  bucketful:
+    name: Bucketful
+    price_in_cents: 2995
+    min_products_limit: 501
+    max_products_limit: 1500
+  plentiful:
+    name: Plentiful
+    price_in_cents: 4995
+    min_products_limit: 1501
+    max_products_limit: 5000
+  skyful:
+    name: Skyful
+    price_in_cents: 9995
+    min_products_limit: 5001
+    max_products_limit:
+  affiliate:
+    name: Affiliate
+    price_in_cents: 0
+    min_products_limit: 0
+    max_products_limit:
+    is_secret: true
+

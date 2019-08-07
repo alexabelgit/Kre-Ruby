@@ -1,0 +1,52 @@
+.purchased-products {
+  @extend %margin-x__auto;
+  @extend %border-spacing__0__32px;
+  @extend %max-width__400px;
+  @extend %width__100pct;
+  @extend %white-space__normal;
+}
+
+.purchased-product {
+  @extend %border__1px__solid__secondary;
+  @extend %text-align__center;
+  @extend %padding__md--px;
+}
+
+.purchased-product__image-wrapper {
+  @extend %margin-y__md--px;
+}
+
+.purchased-product__image {
+  @extend %border__1px__solid__secondary;
+}
+
+.purchased-product__name {
+  @extend %font-size__24px;
+  @extend %margin-y__md--px;
+}
+
+.rate-purchased-product {
+  @extend %margin-y__md--px;
+}
+
+.rate-purchased-product__link-wrapper {
+  @extend %text-align__center;
+  @extend %vertical-align__top;
+  @extend %width__20pct;
+}
+
+.rate-purchased-product__link {
+  @extend %text-decoration__none;
+  @extend %line-height__1;
+  @extend %display__inline-block;
+}
+
+.rate-purchased-product__star {
+  @extend %color__brand-2;
+  @extend %font-size__40px;
+}
+
+.rate-purchased-product__star-label {
+  @extend %color__dark;
+  @extend %font-size__80pct;
+}

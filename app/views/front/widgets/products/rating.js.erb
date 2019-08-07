@@ -1,0 +1,19 @@
+<% if @product.rating > 0 && !@product.suppressed %>
+  var container = jQuery('[data-hc="product-rating"][data-hc-id="<%= @product.id_from_provider %>"]');
+  <% rating_layout = @store.settings(:widgets).product_rating_layout %>
+  <% position = "hc-product-rating--#{ @store.settings(:widgets).product_rating_position }" %>
+  <%case rating_layout
+	  when "summary"%>
+	  container.html('<div class="hc-product-rating <%= position %>">\
+										<%= escape_javascript(render 'front/widgets/products/ratings/summary', product: @product, store: @store) %>\
+										</div>');
+	<% when "detailed" %>
+		container.html('<div class="hc-product-rating <%= position %>">\
+										<%= escape_javascript(render 'front/widgets/products/ratings/detailed', product: @product, store: @store) %>\
+										</div>');
+	<% else %>
+		container.html('<div class="hc-product-rating <%= position %>">\
+										<%= escape_javascript(render 'front/widgets/products/ratings/summary', product: @product, store: @store) %>\
+										</div>');
+	<% end %>
+<% end %>

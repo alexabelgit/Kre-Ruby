@@ -1,0 +1,77 @@
+.review-requests__search {
+  @extend %display__inline-block;
+  @extend %margin-right__md;
+
+  input[type="search"] {
+    @extend %width__auto;
+  }
+}
+
+.review-requests__new {
+  @extend .hc-primary-button;
+}
+
+.review-request__products {
+  @extend %margin__0;
+  @extend %unstyled-list;
+}
+
+.review-request__product {
+
+}
+
+.review-request__status {
+
+  > span {
+    @extend %hide-unless-screen-reader;
+  }
+
+  &.review-request__status--scheduled {
+    @extend %color__warning;
+  }
+
+  &.review-request__status--pending {
+    @extend %color__primary;
+  }
+
+  &.review-request__status--incomplete {
+    @extend %color__primary;
+  }
+
+  &.review-request__status--complete {
+    @extend %color__success;
+  }
+
+  &.review-request__status--cancelled {
+    @extend %color__danger;
+  }
+
+  &.review-request__status--on_hold {
+    @extend %color__warning;
+  }
+
+}
+
+.review_request__sent-emails {
+  @extend %margin__0;
+  @extend %unstyled-list;
+}
+
+%review-request__action {
+  @extend %margin-y__2xs;
+  @extend %white-space__nowrap; // TODO test if child elements need white-space: normal;
+}
+
+.review-request__action--send {
+  @extend %review-request__action;
+  @extend .hc-success-button--small;
+}
+
+.review-request__action--cancel {
+  @extend %review-request__action;
+  @extend .hc-danger-button--small;
+}
+
+.review-requests__send-all-on-hold {
+  @extend %margin-y__md;
+}

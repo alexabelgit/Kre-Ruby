@@ -1,0 +1,55 @@
+- content_for :main_class, 'boxed'
+- render 'layouts/back/sub_navs/tools'
+
+h1 = title "Report ##{ @abuse_report.hashid }"
+
+
+section.hc-card
+  ul.hc-tabul
+    li.hc-tabul__row
+      span.hc-tabul__cell Reported item:
+      span.hc-tabul__cell
+        = link_to_blank "#{ @abuse_report.abusable.hashid } (#{ @abuse_report.abusable.class.name.downcase })",
+          controller:   "back/#{ @abuse_report.abusable.class.name.tableize }",
+          action:       "show",
+          id:           @abuse_report.abusable.hashid
+
+    li.hc-tabul__row
+      span.hc-tabul__cell Reported by:
+      span.hc-tabul__cell = AbuseReport.humane_enum_name(:source, @abuse_report.source)
+
+    li.hc-tabul__row
+      span.hc-tabul__cell Reported at:
+      span.hc-tabul__cell = humane_datetime @abuse_report.created_at
+
+    li.hc-tabul__row
+      span.hc-tabul__cell Reason:
+      span.hc-tabul__cell = AbuseReport.humane_enum_name(:reason, @abuse_report.reason)
+
+    - if @abuse_report.additional_info
+      li.hc-tabul__row
+        span.hc-tabul__cell Additional details:
+        span.hc-tabul__cell = @abuse_report.additional_info
+
+    li.hc-tabul__row
+      span.hc-tabul__cell Status:
+      span.hc-tabul__cell = @abuse_report.status.humanize
+    li.hc-tabul__row
+      span.hc-tabul__cell Decision:
+      span.hc-tabul__cell = @abuse_report.decision.humanize
+
+  - if @abuse_report.open?
+    footer.hc-margin-top__md
+      => link_to back_abuse_report_path(@abuse_report, abuse_report: { decision: :accepted }),
+         method: :put,
+         remote: true,
+         data:   { disable_with: "#{ spinner_icon } Accepting" },
+         class:  'hc-primary-button' do
+        |  Accept
+
+      => link_to back_abuse_report_path(@abuse_report, abuse_report: { decision: :rejected }),
+         method: :put,
+         remote: true,
+         data:   { disable_with: "#{ spinner_icon } Rejecting" },
+         class:  'hc-secondary-button' do
+        |  Reject

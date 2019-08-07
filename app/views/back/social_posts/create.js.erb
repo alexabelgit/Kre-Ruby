@@ -1,0 +1,7 @@
+<% model_name = @social_post.postable_type.parameterize %>
+
+jQuery('main .system-message').remove();
+jQuery('main').prepend('<%= escape_javascript(render 'shared/system_messages/flash') %>');
+jQuery('[data-model="<%= model_name %>"][data-id="<%= @social_post.postable.hashid %>"]')
+        .replaceWith('<%= escape_javascript(render "back/#{model_name.pluralize}/show",
+        :"#{model_name}" => @social_post.postable, social_connections: current_store.social_connections) %>');

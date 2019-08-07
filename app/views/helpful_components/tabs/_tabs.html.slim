@@ -1,0 +1,24 @@
+/ tabs* - [{ title: 'Tab 1', icon: 'check' }, { title: 'Tab 2', icon: 'minus-circle' }]
+
+- unique_id  = SecureRandom.base58
+
+/ This is used to render `content_for :tab_n`-s and then we render tabs based on those
+= yield
+
+.hc-tabs
+  - tabs.each.with_index(1) do |tab, index|
+    = radio_button_tag "hc-tabs-#{unique_id}", '', (index == 1),
+      id:              "hc-tab-#{index}-#{unique_id}",
+      class:           'hc-tab__input'
+
+    label for="hc-tab-#{index}-#{unique_id}" class="hc-tab__label"
+      => hc_icon tab[:icon], class: 'hc-tab__icon'
+      =  tab[:title]
+
+  - tabs.each.with_index(1) do |tab, index|
+    .hc-tab class="hc-tab--#{index}"
+      = yield tab[:title].parameterize(separator: '_').to_sym
+
+      / Clears content_for value so that we can reuse tab name without content
+      / being prepended from previous instance
+      - @view_flow.content.delete tab[:title].downcase.parameterize.underscore.to_sym

@@ -1,0 +1,18 @@
+jQuery(document).ready(function() {
+<% if @store.present? %>
+  var identificator = '<%= @store.hashid %>';
+<% else %>
+  var identificator = encodeURIComponent(Shopify.shop) + '/d';
+<% end %>
+//  jQuery.get('<%= ENV['WEB_APP_PROTOCOL'] %>://<%= ENV['WEB_APP_HOST'] %>/res/shopify/' + identificator + '.json',
+//          function (data){
+//            if (data){
+//              jQuery.getScript(data.js.url, function() {
+//                hc_process_page_type(data);
+//              });
+//              if (jQuery('head link[type="text/css"][rel="stylesheet"][href="' + data.css.url + '"]').length <= 0)
+//                jQuery('head').append(jQuery('<link rel="stylesheet" type="text/css" />').attr('href', data.css.url));
+//            }
+//          });
+  console.log('FIRST HC SCRIPT OLD');
+});

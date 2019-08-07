@@ -1,0 +1,12 @@
+input[type="date"],
+input[type="email"],
+input[type="number"],
+input[type="password"],
+input[type="search"],
+input[type="text"],
+input[type="url"],
+textarea,
+select {
+  @extend %background-color__lighter;
+  @extend %color__dark;
+}

@@ -1,0 +1,11 @@
+/ store
+
+- store ||= current_store
+
+- if store.has_pending_imported_questions?
+  = render  'shared/system_messages/custom',
+    type:   'success',
+    persist: true,
+    body:   'Your Q&A items are ready for import. You can now preview them and complete the import process.',
+    action: { name: 'Preview', url: back_imported_questions_path },
+    role:   'imported-questions'

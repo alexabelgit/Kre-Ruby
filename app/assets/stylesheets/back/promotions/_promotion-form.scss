@@ -1,0 +1,50 @@
+.promotion-form__main {
+  @include flexbox(
+    $flex-wrap:       wrap,
+    $justify-content: space-between
+  );
+  margin: 0 0 20px;
+}
+
+.promotion-form__buttons {
+  @include flexbox(
+          $align-items:     flex-end,
+          $flex-wrap:       wrap,
+          $justify-content: flex-end
+  );
+}
+
+.promotion-form__left_button {
+  @extend %margin-bottom__md;
+  @extend %margin-left__xs;
+
+  &:first-of-type {
+    @extend %margin-left__md;
+  }
+}
+
+.promotion__coupon-control {
+  float: right;
+}
+
+.promotion-form__fields {
+  width: 100%;
+  .hc-form__control {
+    width: 50%;
+    input, select {
+      width: 100%;
+    }
+  }
+  .hc-form__date-select {
+    width: 51%;
+    select {
+      width: 32%;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .hc-form__control {
+      width: 100%;
+    }
+  }
+}

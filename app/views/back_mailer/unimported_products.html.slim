@@ -1,0 +1,19 @@
+= content_for :recipient
+  = @user.first_name
+
+p
+  |
+    You recently uploaded a CSV file to HelpfulCrowd to import your products.
+    #{@unimported_count} from #{@imported_count} items could not be imported.
+    You will find those on the #{link_to 'downloads page', downloads_back_tools_url}.
+p
+  |
+    You can correct the data and upload this file once again from
+    #{link_to 'product upload page', back_products_upload_url}. On the same page
+    you can check out our guidelines on importing CSV files to make sure your
+    data satisfies all requirements.
+p
+  |
+    Other items from the original file that you don't see in this attachment are
+    already imported and you can view them in your
+    #{link_to 'product catalog', back_products_url}.

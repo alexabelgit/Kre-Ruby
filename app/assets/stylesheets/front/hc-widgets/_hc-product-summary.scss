@@ -1,0 +1,38 @@
+.hc-product-summary {
+  &.hc-product-summary--auto {
+    @extend %text-align__inherit;
+  }
+
+  &.hc-product-summary--left {
+    @extend %text-align__left;
+  }
+
+  &.hc-product-summary--center {
+    @extend %text-align__center;
+  }
+
+  &.hc-product-summary--right {
+    @extend %text-align__right;
+  }
+}
+
+.hc-product-summary__reviews,
+.hc-product-summary__qa {
+  @extend %display__inline-block;
+}
+
+.hc-product-summary__rating {
+  @extend %font-size__inherit;
+  @extend %display__inline-block;
+  @extend %vertical-align__top;
+}
+
+.hc-product-summary__text {
+  @extend %display__inline-block;
+}
+
+@media screen and (max-width: 400px) {
+  .hc-product-summary__review-count {
+    display: block;
+  }
+}

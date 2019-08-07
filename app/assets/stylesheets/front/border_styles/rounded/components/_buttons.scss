@@ -1,0 +1,23 @@
+.hc-primary-button {
+  @extend %border-radius__#{$rounded-borders_sm};
+}
+
+.hc-secondary-button {
+  @extend %border-radius__#{$rounded-borders_sm};
+}
+
+.hc-info-button {
+  @extend %border-radius__#{$rounded-borders_sm};
+}
+
+.hc-success-button {
+  @extend %border-radius__#{$rounded-borders_sm};
+}
+
+.hc-warning-button {
+  @extend %border-radius__#{$rounded-borders_sm};
+}
+
+.hc-danger-button {
+  @extend %border-radius__#{$rounded-borders_sm};
+}

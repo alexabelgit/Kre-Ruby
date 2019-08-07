@@ -1,0 +1,8 @@
+= content_for :title
+  | Sign in with Shopify
+
+= render 'devise/shared/shopify_auth_form', button_label: { initial: 'Sign in', disabled: 'Signing in' }
+
+= link_to new_session_path(resource_name), class: 'hc-margin-top__xl hc-text-align__center hc-display__block' do
+  = hc_icon 'angle-left'
+  = "Back to sign in options"

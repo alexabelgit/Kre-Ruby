@@ -1,0 +1,457 @@
+---
+"hi":
+  "activerecord":
+    "errors":
+      "models":
+        "abuse_report":
+          "attributes":
+            "additional_info":
+              "blank": >-
+                जब 'कुछ और' को कारण चुनें तो अतिरिक्त जानकारी ज़रूर दें
+            "reason":
+              "blank": >-
+                ^आप कोई एक कारण ज़रूर चुनें
+        "product":
+          "attributes":
+            "id_from_provider":
+              "taken": >-
+                ^आईडी विशिष्ट होनी चाहिए। आपने जो लिखी है वह पहले ही किसी अन्य उत्पाद
+                के लिए प्रयोग की जा चुकी है।
+        "review":
+          "attributes":
+            "customer":
+              "must_be_authenticated": >-
+                ^रिव्यू लिखने के लिए आपको साइन इन करना होगा
+            "product_ids":
+              "cannot_be_repeated": >-
+                ^आप इस उत्पाद का रिव्यू पहले ही कर चुके हैं
+              "taken": >-
+                ^आप इस खरीदारी का रिव्यू पहले ही कर चुके हैं
+            "review_request_id":
+              "request_must_be_sent": >-
+                ^आप इस खरीदारी का रिव्यू इस समय नहीं कर सकते हैं
+            "source":
+              "cannot_be_voluntary": >-
+                ^आप इस खरीदारी का रिव्यू इस समय नहीं कर सकते हैं
+        "review_request":
+          "attributes":
+            "order_id":
+              "blank": >-
+                रिव्यू निवेदन बिना संवाद करने वाला ग्राहक बने नहीं किया जा सकता है।
+                कृपया अपना वैध ईमेल पता प्रदान करें।
+    "models":
+      "comment":
+        "one": >-
+          टिप्पणी
+        "other": >-
+          टिप्पणियां
+      "customer":
+        "one": >-
+          ग्राहक
+        "other": >-
+          ग्राहकों
+      "product":
+        "one": >-
+          उत्पाद
+        "other": >-
+          उत्पादों
+      "product_group":
+        "one": >-
+          उत्पाद समूह
+        "other": >-
+          उत्पाद समूहों
+      "question":
+        "one": >-
+          प्रश्न
+        "other": >-
+          प्रश्नों
+      "review":
+        "one": >-
+          रिव्यू
+        "other": >-
+          रिव्यूज़
+      "review_request":
+        "one": >-
+          रिव्यू निवेदन
+        "other": >-
+          रिव्यू निवेदनों
+  "answer":
+    "one": >-
+      उत्तर
+    "other": >-
+      उत्तरों
+  "cancel": >-
+    निरस्त
+  "counterify":
+    "characters":
+      "exceeded": >-
+        अक्षर सीमा अधिक
+      "remaining":
+        "one": >-
+          1 अक्षर बाकी
+        "other": >-
+          %{count} अक्षर बाकी
+  "default_templates":
+    "email":
+      "critical_review_followup_mail_body": "<p>नमस्कार [customer_name],</p>\r\n<p>आपके
+        रिव्यू के लिए आपका धन्यवाद।</p>\r\n<p>[store_name] की टीम.</p>"
+      "critical_review_followup_mail_subject": >-
+        आपके रिव्यू के लिए आपका धन्यवाद
+      "positive_review_followup_mail_body": "<p>नमस्कार [customer_name],</p>\r\n<p>आपके
+        रिव्यू के लिए आपका धन्यवाद।</p>\r\n<p>[store_name] की टीम.</p>"
+      "positive_review_followup_mail_subject": >-
+        आपके रिव्यू के लिए आपका धन्यवाद
+      "question_answer_mail_body": "<p>नमस्कार [customer_name],</p>\r\n<p>[product_name]
+        के बारे में आपके प्रश्न का उत्तर हमारे प्रतिनिधि ने दे दिया हैः</p>\r\n<p>[answer]</p>\r\n<p>आपका
+        प्रश्नः</p>\r\n<p>[question]</p>\r\n<p>[product_link]</p>\r\n<p>[store_name]
+        की टीम.</p>"
+      "question_answer_mail_subject": >-
+        [store_name] पर आपके प्रश्न का उत्तर दे दिया गया है
+      "repeat_review_request_mail_body": "<p>नमस्कार [customer_name],</p>\r\n<p>अब
+        भी बहुत देर नहीं हुई है, हमें बताएं कि अपने नए ऑर्डर के बारे में आप क्या सोचते
+        हैं।</p>\r\n<p>इनके साथ अपना अब तक का अनुभव रेट करने के लिए स्टार पर क्लिक
+        करेंः</p>\r\n<p>[products]</p>\r\n<p>ख़ुश नहीं हैं? कृपया पहले हमसे संपर्क
+        करें ताकि हम मदद कर सकें।</p>\r\n<p>[store_name] की टीम.</p>"
+      "repeat_review_request_mail_subject": >-
+        [store_name] से आपके नए ऑर्डर के रिव्यू के लिए रिमाइंडर
+      "review_answer_mail_body": "<p>नमस्कार [customer_name],</p>\r\n<p>[product_name]
+        के लिए आपके रिव्यू का उत्तर हमारे प्रतिनिधि ने दे दिया हैः</p>\r\n<p>[reply]</p>\r\n<p>आपका
+        रिव्यू</p>\r\n<p>[review]</p>\r\n<p>[product_link]</p>\r\n<p>[store_name]
+        की टीम.</p>"
+      "review_answer_mail_subject": >-
+        [store_name] पर आपके रिव्यू का उत्तर दे दिया गया है
+      "review_request_mail_body": "<p>नमस्कार [customer_name],</p>\r\n<p>इनके साथ
+        अपना अब तक का अनुभव रेट करने के लिए स्टार पर क्लिक करेंः</p>\r\n<p>[products]</p>\r\n<p>ख़ुश
+        नहीं हैं? कृपया पहले हमसे संपर्क करें ताकि हम मदद कर सकें।</p>\r\n<p>[store_name]
+        की टीम.</p>"
+      "review_request_mail_subject": >-
+        [store_name] पर अपने नए ऑर्डर का रिव्यू करें
+  "embed": >-
+    एंबेड करें
+  "errors":
+    "messages":
+      "already_confirmed": >-
+        खाता की पहले ही पुष्टि की जा चुकी है, कृपया साइन इन करने की कोशिश करें
+      "confirmation_period_expired": >-
+        %{period} के अंदर पुष्टि करना ज़रूरी है, कृपया नए रिव्यू के लिए निवेदन करें
+      "expired": >-
+        समय समाप्त, कृपया नया निवेदन करें
+      "not_found": >-
+        नहीं मिला
+      "not_locked": >-
+        लॉक नहीं किया था
+      "not_saved":
+        "one": >-
+          1 त्रुटि ने इस %{resource} को सहेजे जाने से रोक लियाः
+        "other": >-
+          %{count} त्रुटियों ने इस %{resource} सहेजे जाने से रोक लियाः
+  "flash":
+    "submitted_successfully":
+      "question": >-
+        धन्यवाद! हमें आपका प्रश्न मिल गया है। जब इसका उत्तर दे दिया जाएगा तो हम आपको
+        ईमेल से सूचित कर देंगे।
+      "review": >-
+        धन्यवाद! हमें आपका रिव्यू मिल गया है
+      "subscribed": >-
+        आप सफलतापूर्वक %{store} के ग्राहक बन गए हैं।
+      "unsubscribed": >-
+        आप सफलतापूर्वक %{store} की ग्राहक सूची से हट गए हैं।
+  "front":
+    "based_on_reviews_count":
+      "one": >-
+        1 रिव्यू
+      "other": >-
+        %{count} रिव्यूज़
+    "components":
+      "customer_form":
+        "email":
+          "hint": >-
+            आपकी ईमेल सार्वजनिक रूप से शेयर नहीं की जाएगी
+          "label": >-
+            आपकी ईमेल
+        "name":
+          "hint": >-
+            आपका नाम प्रथमाक्षरों से प्रदर्शित होगा
+          "hint_update_html": >-
+            आपका नाम इस तरह <strong>%{initials}</strong> प्रदर्शित होगा
+          "label": >-
+            आपका नाम
+      "privacy_notice":
+        "link_content": >-
+          गोपनीयता नीति
+        "with_name":
+          "html": >-
+            यह फॉर्म जमा करके आप सहमति देते हैं कि आपकी जानकारी और नाम <strong>%{name}</strong>
+            हमारी %{link} के अनुसार प्रकाशित किया जा सकता है।
+        "without_name":
+          "html": >-
+            यह फॉर्म जमा करके आप सहमति देते हैं कि आपकी जानकारी और नाम हमारी %{link}
+            के अनुसार प्रकाशित किया जा सकता है।
+    "continue_shopping": >-
+      खरीदारी जारी रखें
+    "flags":
+      "new":
+        "already_flagged": >-
+          आप पहले ही यह %{item} फ्लैग कर चुके हैं
+        "flag_as_inappropriate": >-
+          इस %{item} को अनुचित फ्लैग करें
+      "show":
+        "flag_submitted": >-
+          धन्यवाद
+    "mailer":
+      "excuses":
+        "question_answered_html": >-
+          आपको यह ईमेल %{helpfulcrowd} की ओर से उस प्रश्न के बारे में अपडेट देने के
+          लिए भेजी गई है जो आपने %{store} से पूछा था।
+        "review_answered_html": >-
+          आपको यह ईमेल %{helpfulcrowd} की ओर से उस रिव्यू के बारे में अपडेट देने के
+          लिए से भेजी गई है जो आपने %{store} पर छोड़ा था।
+        "review_follow_up_html": >-
+          आपको यह ईमेल %{helpfulcrowd} की ओर से %{store} पर आपके ताज़ा रिव्यू के जवाब
+          में भेजी गई है।
+        "review_request_html": >-
+          आपको यह ईमेल %{helpfulcrowd} की ओर से %{store} पर आपके नए ऑर्डर के जवाब
+          में भेजी गई है।
+      "helpers":
+        "call_to_action":
+          "view_product": >-
+            उत्पाद पृष्ठ पर जाएं
+    "products":
+      "questions":
+        "form":
+          "question_html": >-
+            %{product} के बारे में आप क्या जानना चाहते हैं?
+        "new":
+          "title": >-
+            प्रश्न पूछें
+      "view_product": >-
+        उत्पाद पृष्ठ पर जाएं
+    "review_requests":
+      "reviews":
+        "form":
+          "rating_html": >-
+            %{reviewable} के साथ अपना अनुभव रेट करें
+        "new":
+          "already_reviewed_html": >-
+            आप पहले ही रिव्यू कर चुके हैं %{reviewable}
+          "review_other_purchases":
+            "one": >-
+              अपनी अन्य खरीदारी का रिव्यू करें
+            "other": >-
+              अपनी अन्य खरीदारियों का रिव्यू करें
+          "title": >-
+            अपनी खरीदारी का रिव्यू करें
+    "search":
+      "label": >-
+        खोजें
+      "placeholder": >-
+        कीवर्ड लिखें
+    "share":
+      "button": >-
+        शेयर करें
+    "sort_by": >-
+      छांटें
+    "sort_options":
+      "most_helpful": >-
+        सर्वाधिक उपयोगी
+      "most_recent": >-
+        सबसे नया
+      "rating_asc": >-
+        रेटिंगः न्यूनतम
+      "rating_desc": >-
+        रेटिंगः उच्चतम
+    "suppressions":
+      "manage_subscriptions":
+        "subscribe_question_html": >-
+          क्या आप HelpfulCrowd को %{store} की ओर से आपको ईमेल भेजने का अधिकार देना
+          पसंद करेंगे?
+        "unsubscribe_question_html": >-
+          क्या आप चाहेंगे कि HelpfulCrowd आपको %{store} की ओर से ईमेल भेजना बंद कर
+          दे?
+    "votes":
+      "upvote": >-
+        उपयोगी
+      "upvotes_count":
+        "one": >-
+          %{count} व्यक्ति को यह %{item} उपयोगी लगा
+        "other": >-
+          %{count} व्यक्तियों को यह %{item} उपयोगी लगा
+    "widgets":
+      "products":
+        "rating":
+          "qa":
+            "html":
+              "one": >-
+                1 प्रश्न
+              "other": >-
+                %{count} प्रश्नों
+          "reviews":
+            "html":
+              "one": >-
+                1 रिव्यू
+              "other": >-
+                %{count} रिव्यूज़
+        "summary":
+          "qa":
+            "html":
+              "one": >-
+                1 प्रश्न
+              "other": >-
+                %{count} प्रश्नों
+            "new": >-
+              प्रश्न पूछें
+          "reviews":
+            "html":
+              "one": >-
+                1 रिव्यू
+              "other": >-
+                %{count} रिव्यूज़
+            "new": >-
+              रिव्यू लिखें
+        "tabs":
+          "questions":
+            "new": >-
+              प्रश्न पूछें
+            "search":
+              "label": >-
+                खोजेंः
+              "placeholder": >-
+                प्रश्नोत्तर खोजें
+            "title": >-
+              प्रश्नोत्तर
+            "write_first": >-
+              इस उत्पाद के बारे में पहला प्रश्न पूछें
+          "reviews":
+            "based_on_reviews":
+              "html": >-
+                %{reviews_count} पर आधारित
+            "media_gallery":
+              "images":
+                "one": >-
+                  1 फोटो
+                "other": >-
+                  %{count} फोटो
+              "search":
+                "label": >-
+                  खोजेंः
+                "placeholder": >-
+                  रिव्यूज़ खोजें
+              "title": "ग्राहक\r\nमीडिया"
+              "videos":
+                "one": >-
+                  1 वीडियो
+                "other": >-
+                  %{count} वीडियो
+            "new": >-
+              रिव्यू लिखें
+            "rating": >-
+              5 स्टार में से %{rating}
+            "title": >-
+              ग्राहक रिव्यूज़
+            "write_first": >-
+              यह उत्पाद रिव्यू करने वाले पहले व्यक्ति बनें
+          "titles":
+            "questions": >-
+              प्रश्नोत्तर
+            "questions_responsive": >-
+              प्रश्नोत्तर
+            "reviews": >-
+              रिव्यूज़ और रेटिंग
+            "reviews_responsive": >-
+              रिव्यूज़
+      "sidebar":
+        "default_title": >-
+          रिव्यूज़ | प्रश्नोत्तर
+    "with_incentive":
+      "reviews":
+        "text": >-
+          समीक्षक को यह रिव्यू लिखने के लिए प्रोत्साहन की पेशकश की गई हो सकती है
+    "write_review": >-
+      रिव्यू लिखें
+  "helpers":
+    "friendly_rating": >-
+      अब तक एक भी रिव्यू नहीं
+    "label":
+      "customer":
+        "email": >-
+          ग्राहक की ईमेल
+        "name": >-
+          ग्राहक का नाम
+      "product_group":
+        "name": >-
+          नाम
+    "placeholder":
+      "promotion":
+        "template": >-
+          ब्लैक फ्राइडे सप्ताह के दौरान सभी ऑर्डरों पर फ्री शिपिंग!
+    "submit":
+      "product_group":
+        "create": >-
+          समूह बनाएं
+        "update": >-
+          समूह अपडेट करें
+      "question":
+        "create": >-
+          प्रश्न पूछें
+      "review":
+        "create": >-
+          रिव्यू दाखिल करें
+  "layouts":
+    "mailer":
+      "front":
+        "manage_subscriptions": >-
+          सदस्यता प्रबंधित करें
+        "unsubscribe": >-
+          सदस्यता समाप्त करें
+  "load_more": >-
+    और लोड करें
+  "privacy_policy": >-
+    गोपनीयता नीति
+  "question_facebook_post_template": "[customer_name]\r\nप्रश्नः [question]\r\nउत्तरः
+    [answer]"
+  "question_tweet_template": "[customer_name]\r\nप्रश्नः [question]\r\nउत्तरः [answer]"
+  "rating_1": >-
+    भद्दा
+  "rating_2": >-
+    ख़राब
+  "rating_3": >-
+    ठीक है
+  "rating_4": >-
+    अच्छा
+  "rating_5": >-
+    शानदार
+  "read_less": >-
+    कम पढ़ें
+  "read_more": >-
+    संपूर्ण रिव्यू
+  "recaptcha":
+    "errors":
+      "verification_failed": >-
+        reCAPTCHA पुष्टीकरण विफल
+    "label": >-
+      स्पैम से मुक़ाबला करने में हमारी मदद करें
+  "report": >-
+    रिपोर्ट करें
+  "review_facebook_post_template": "जानें [customer_name] ने [product_name] के बारे
+    में क्या कहाः\r\n\r\n[rating]\r\n\"[feedback]\""
+  "review_tweet_template": "[customer_name]:\r\n[product_name] - [rating], \"[feedback]\""
+  "settings":
+    "default":
+      "review_slider_c2a_text": >-
+        सभी दर्शाएं
+  "stars":
+    "one": >-
+      1 स्टार
+    "other": >-
+      %{count} स्टार
+  "verified":
+    "agent":
+      "description": >-
+        %{author} %{store} पर कार्यरत है
+      "label": >-
+        %{store}
+    "customer":
+      "description": >-
+        %{author} ने यह उत्पाद खरीदा है
+      "label": >-
+        सत्यापित खरीदार

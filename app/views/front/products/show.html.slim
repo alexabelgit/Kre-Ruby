@@ -1,0 +1,27 @@
+- content_for :head
+  = render 'front/widgets/products/ld_json', product: @product if @product.has_reviews?
+
+section.hc-card.product-details
+  header.product-details__header
+    = link_to @product.url, target: '_blank' do
+
+      = image_tag @product.featured_image.small.url.to_s,
+        alt:      @product.name,
+        class:    'hc-product-thumb'
+
+    h1.product-details__heading = @product.name
+
+    = render   'front/widgets/products/summary',
+      product: @product,
+      store:   @store,
+      links:   true
+
+  = render              'front/widgets/products/tabs',
+    product:            @product,
+    reviews:            @reviews,
+    reviews_with_media: @reviews_with_media,
+    questions:          @questions,
+    show_hc_branding:   true
+
+- content_for :footer
+  = render 'front/shared/go_to_product', url: @product.url

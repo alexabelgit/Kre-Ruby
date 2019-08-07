@@ -1,0 +1,31 @@
+.promotion__status {
+
+  > span {
+    @extend %hide-unless-screen-reader;
+  }
+
+  &.promotion__status--true {
+    @extend %color__success;
+  }
+
+  &.promotion__status--false {
+    @extend %color__danger;
+  }
+
+}
+
+.promotion__incentive {
+
+  > span {
+    @extend %hide-unless-screen-reader;
+  }
+
+  &.promotion__incentive--true {
+    @extend %color__success;
+  }
+
+  &.promotion__incentive--false {
+    @extend %color__danger;
+  }
+
+}

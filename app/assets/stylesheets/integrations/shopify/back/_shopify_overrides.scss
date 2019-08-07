@@ -1,0 +1,11 @@
+.hc-main {
+  a.btn-primary {
+    &:hover {
+      @extend %color__white;
+    }
+  }
+
+  .hc-code {
+    @extend %font-size__100pct;
+  }
+}

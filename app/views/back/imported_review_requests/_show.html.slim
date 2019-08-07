@@ -1,0 +1,41 @@
+article.review data-model="imported_review_request" data-id=imported_review_request.hashid
+  section.import-toggle
+    .toggle class=(imported_review_request.marked_for_deletion? ? 'off' : 'on')
+      = form_for [:back, imported_review_request], remote: true do |f|
+
+        = f.hidden_field :marked_for_deletion, value: !imported_review_request.marked_for_deletion?
+
+        = button_tag(type: 'submit', class: 'toggle__button') do
+          - if imported_review_request.marked_for_deletion?
+            => hc_icon 'toggle-off xl'
+            | Discard
+
+          - else
+            => hc_icon 'toggle-on xl'
+            | Import
+
+  header.review__header
+    ul#selector
+      li
+        ' Customer:
+        span.bold = imported_review_request.customer.name
+
+      li
+        ' Email:
+        = mail_to imported_review_request.customer.email,
+          imported_review_request.customer.email,
+          target: '_blank'
+
+      li
+        - if imported_review_request.products.any?
+          '  Products:
+          ul
+            - imported_review_request.products.each do |product|
+              li
+                =  product.name
+                =< stamp_product_if_archived_or_hidden(product)
+        - else
+          '  Business Review Request
+      li
+        ' Schedule for:
+        span.bold = humane_datetime(imported_review_request.scheduled_for)

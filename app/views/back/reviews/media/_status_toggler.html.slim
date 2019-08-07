@@ -1,0 +1,36 @@
+/ medium*
+/ review*
+/ toggler_no_hover
+
+- toggler_no_hover ||= false
+- cache [review, medium, toggler_no_hover, 'status_toggler'] do
+  .hc-media__toggler-wrapper data-status-toggler-container="true"
+    - if medium.published?
+      h6.hide-unless-screen-reader This item is published
+      = link_to back_review_medium_path(review, medium, status: :archived, format: :js),
+        method: :put,
+        remote: true,
+        title:  'Un-publish',
+        class:  "hc-media__toggler hc-media__toggler--published #{ 'hc-media__toggler--no-hover' if toggler_no_hover }",
+        data:   { role: 'medium-status-toggler' } do
+
+        .hc-media__icon.hc-media__icon--check
+          = hc_icon 'check-circle lg'
+
+        .hc-media__icon.hc-media__icon--minus
+          = hc_icon 'minus-circle lg'
+
+    - else
+      h6.hide-unless-screen-reader This item is unpublished
+      = link_to back_review_medium_path(review, medium, status: :published, format: :js),
+        method: :put,
+        remote: true,
+        title:  'Publish',
+        class:  "hc-media__toggler hc-media__toggler--archived #{ 'hc-media__toggler--no-hover' if toggler_no_hover }",
+        data:   { role: 'medium-status-toggler' } do
+
+        .hc-media__icon.hc-media__icon--check
+          = hc_icon 'check-circle lg'
+
+        .hc-media__icon.hc-media__icon--minus
+          = hc_icon 'minus-circle lg'

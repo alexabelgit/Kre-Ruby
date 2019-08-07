@@ -1,0 +1,17 @@
+.hc-product-rating {
+  &.hc-product-rating--auto {
+    @extend %text-align__inherit;
+  }
+
+  &.hc-product-rating--left {
+    @extend %text-align__left;
+  }
+
+  &.hc-product-rating--center {
+    @extend %text-align__center;
+  }
+
+  &.hc-product-rating--right {
+    @extend %text-align__right;
+  }
+}

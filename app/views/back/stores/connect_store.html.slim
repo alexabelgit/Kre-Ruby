@@ -1,0 +1,14 @@
+- content_for :main_class, 'boxed'
+
+section.auth-form
+  header
+    h1.auth-form__title = title 'Connect with your website platform'
+  - if current_user.installed?
+    - flash.now[:success] = "Already connected to #{current_user.store.provider.capitalize}"
+  - else
+    = render partial: 'shared/oauth_authentication',
+             locals:  { button_label: { initial: 'Connect', disabled: 'Connecting' }, shopify_auth_link: connect_with_shopify_back_stores_path, lemonstand_auth_link: connect_with_lemonstand_back_stores_path }
+
+    .auth-option.auth-option--custom
+      = link_to connect_with_custom_website_back_stores_path, class: 'auth-option__button' do
+        | #{hc_icon 'code'} Connect with custom website

@@ -1,0 +1,14 @@
+- content_for :main_class, 'product-details-page boxed'
+
+h1 = title "Customer profile - #{@customer.name}"
+
+section.customer
+  dl.hc-dl
+    dt.hc-dl__dt Full name
+    dd.hc-dl__dd = @customer.name
+
+    dt.hc-dl__dt Display name
+    dd.hc-dl__dd = @customer.display_name
+
+    dt.hc-dl__dt Email
+    dd.hc-dl__dd = @customer.email

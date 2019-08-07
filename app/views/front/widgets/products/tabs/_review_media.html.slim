@@ -1,0 +1,22 @@
+/ all_media*
+
+- all_media_types = extract_media_types(all_media)
+- image_count = all_media_types.count("image")
+- video_count = all_media_types.count("video")
+
+.hc-reviews-media__column.hc-reviews-media__column-1
+  .hc-reviews-media__title
+    = t('media_gallery.title', scope: 'front.widgets.products.tabs.reviews')
+  .hc-reviews-media__image-count
+    = hc_icon 'camera md'
+    | &nbsp;
+    = t('media_gallery.images', scope: 'front.widgets.products.tabs.reviews', count: image_count)
+  .hc-reviews-media__video-count
+    = hc_icon 'video-camera md'
+    | &nbsp;
+    = t('media_gallery.videos', scope: 'front.widgets.products.tabs.reviews', count: video_count)
+
+.hc-reviews-media__column.hc-reviews-media__column-2
+  .hc-media data-lightgallery="true"
+    - all_media.first(20).each_with_index do |media, index|
+      = render 'front/products/reviews/media/show', medium: media, review: media.mediable, total_count: all_media.count, count: index, limit_count: 9

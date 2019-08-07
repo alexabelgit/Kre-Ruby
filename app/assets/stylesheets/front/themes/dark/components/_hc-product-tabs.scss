@@ -1,0 +1,52 @@
+// TODO: here we don't have colors like this: dark / darker. Should it have been light / lighter instad of pale / light? Who knows..
+.hc-product-tab {
+  @extend %border-color__pale--darkened;
+  @extend %color__pale--darkened;
+  .hc-badge{
+  	@extend %background-color__dark--lightened;
+    @extend %color__pale;
+  }
+}
+
+.hc-product-tab.hc-product-tab--active {
+	@extend %color__light;
+	.hc-badge{
+		@extend %background-color__light;
+    @extend %color__dark;
+	}
+}
+
+@media #{$below__sm} {
+  .hc-product-tabs__header:after {
+    border-color: $color-dark;
+  }
+}
+
+.hc-product-tab-filters__search {
+  @extend %background-color__darker;
+  @extend %border-color__darker;
+  &-input {
+    @extend %background-color__darker;
+    @extend %color__pale;
+    &::placeholder {
+      @extend %color__pale;
+    }
+  }
+}
+
+.hc-product-tab--actions a {
+  @extend %color__dark;
+  @extend %background-color__light;
+  &:hover {
+    @extend %background-color__pale;
+  }
+}
+
+.hc-product-tab-filters__list-sort{
+  @extend %border-color__darker;
+  @extend %background-color__darker;
+}
+
+.hc-author__text{
+  @extend %color__light--darkened;
+}

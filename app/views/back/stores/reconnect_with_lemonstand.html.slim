@@ -1,0 +1,10 @@
+- content_for :main_class, 'boxed'
+section.auth-form
+  header
+    h1.auth-form__title = title 'Reconnect with LemonStand'
+
+  = render 'lemonstand_form', store: @store, method: :put
+
+  = link_to connect_back_stores_path, class: 'hc-margin-top__xl hc-text-align__center hc-display__block' do
+    = hc_icon 'angle-left'
+    = "Connect with different platform"

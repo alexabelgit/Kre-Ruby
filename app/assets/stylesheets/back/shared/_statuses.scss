@@ -1,0 +1,56 @@
+.statuses {
+  @extend %border-collapse__collapse;
+  @extend %border-spacing__0;
+  @extend %width__100pct;
+  thead {
+    th {
+      @extend %padding-y__xs;
+    }
+
+    th:first-child {
+      @extend %text-align__left;
+    }
+
+    th:last-child {
+      @extend %text-align__right;
+    }
+  }
+
+  tbody {
+    @extend %background-color__white;
+
+    td {
+      @extend %border__1px__solid__secondary;
+
+      &:first-child {
+        @extend %padding-x__sm;
+      }
+
+      &:last-child {
+        @extend %text-align__center;
+      }
+    }
+  }
+}
+
+%status {
+  @extend %display__block;
+  @extend %padding-y__xs;
+  @extend %padding-x__sm;
+  @extend %font-weight__bold;
+  @extend %margin__-1px;
+
+  &:hover {
+    @extend %text-decoration__none;
+  }
+}
+
+.status {
+  @extend %status;
+}
+
+.active-status {
+  @extend %status;
+  @extend %background-color__primary;
+  @extend %color__light;
+}

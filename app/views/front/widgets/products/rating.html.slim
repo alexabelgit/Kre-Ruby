@@ -1,0 +1,16 @@
+/ TODO: Probably extract this logic to product model or some concern.
+- if !product.suppressed && (product.has_reviews? || store.show_non_rated_products?)
+
+	- rating_layout = @store.settings(:widgets).product_rating_layout
+	- position = "hc-product-rating--#{ @store.settings(:widgets).product_rating_position }"
+	.hc-product-rating class=position
+
+		/ Mentioning all possible layout values with ifs-elsif for better readability
+		case rating_layout
+		when "summary"
+			= render 'front/widgets/products/ratings/summary', product: @product, store: @store
+		when "detailed"
+			= render 'front/widgets/products/ratings/detailed', product: @product, store: @store
+		else
+			= render 'front/widgets/products/ratings/detailed', product: @product, store: @store
+		end

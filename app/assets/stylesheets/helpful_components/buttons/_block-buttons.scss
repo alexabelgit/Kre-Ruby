@@ -1,0 +1,42 @@
+%hc-platform-button--block {
+  img {
+    @extend %width__md--em;
+    @extend %max-height__md--em;
+    @extend %margin-bottom__-2px;
+  }
+}
+
+.hc-primary-button--block {
+  @extend %primary-block-button;
+}
+
+.hc-brand-1-button--block {
+  @include button($background-color: 'brand-1', $color: 'white', $display: 'block', $width: '100pct');
+}
+
+.hc-shopify-button--block {
+  @extend %hc-platform-button--block;
+  @include button(
+    shopify,
+    white,
+    $width: 100pct
+  );
+}
+
+.hc-lemonstand-button--block {
+  @extend %hc-platform-button--block;
+  @include button(
+    lemonstand,
+    white,
+    $width: 100pct
+  );
+}
+
+.hc-ecwid-button--block {
+  @extend %hc-platform-button--block;
+  @include button(
+    ecwid,
+    white,
+    $width: 100pct
+  );
+}

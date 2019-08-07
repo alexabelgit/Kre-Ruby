@@ -1,0 +1,3 @@
+jQuery('[data-model="review-request"][data-id="<%= @review_request.hashid %>"]').replaceWith('<%= escape_javascript(render 'back/review_requests/item', review_request: @review_request) %>');
+jQuery('main .system-message').remove();
+jQuery('main').prepend('<%= escape_javascript(render 'shared/system_messages/flash') %>');

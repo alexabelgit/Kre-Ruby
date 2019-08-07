@@ -1,0 +1,3 @@
+var auto_remove_button = jQuery('[data-role="auto-remove-button"]');
+auto_remove_button.attr('data-completed-text', auto_remove_button.html());
+auto_remove_button.attr('href', 'javascript:void(0);').html('<span class="hc-margin-right__xs"><%= spinner_icon %></span> ' + auto_remove_button.attr('data-processing-text'));

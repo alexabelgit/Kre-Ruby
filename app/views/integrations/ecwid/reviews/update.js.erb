@@ -1,0 +1,2 @@
+jQuery('[data-model="review"][data-id="<%= @review.hashid %>"')
+  .replaceWith('<%= escape_javascript(render 'integrations/ecwid/shared/flash') %>');

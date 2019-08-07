@@ -1,0 +1,24 @@
+.hc-product-tab.hc-product-tab--actions {
+  a {
+    @extend %color__dark;
+
+    &:hover {
+      @extend %color__darker;
+    }
+  }
+}
+
+.hc-product-tab {
+  @extend %border-color__pale--lightened;
+  @extend %color__pale;
+}
+
+.hc-product-tab.hc-product-tab--active {
+  @extend %color__dark;
+}
+
+@media #{$below__sm} {
+  .hc-product-tabs__header:after {
+    border-color: $color-secondary;
+  }
+}

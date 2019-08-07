@@ -1,0 +1,450 @@
+---
+"sv":
+  "activerecord":
+    "errors":
+      "models":
+        "abuse_report":
+          "attributes":
+            "additional_info":
+              "blank": >-
+                måste tillhandahållas när 'något annat' väljs som skäl
+            "reason":
+              "blank": >-
+                ^Du måste välja en anledning
+        "product":
+          "attributes":
+            "id_from_provider":
+              "taken": >-
+                ^ID måste vara unikt. Den du skrev in används redan för en annan produkt.
+        "review":
+          "attributes":
+            "customer":
+              "must_be_authenticated": >-
+                ^Du måste vara inloggad för att skriva en recension
+            "product_ids":
+              "cannot_be_repeated": >-
+                ^Du har redan lämnat omdömme för den här produkten
+              "taken": >-
+                ^Du har redan granskat detta köp
+            "review_request_id":
+              "request_must_be_sent": >-
+                ^Du kan inte lämna omdömme på det här köpet just nu
+            "source":
+              "cannot_be_voluntary": >-
+                ^Du kan inte lämna omdömme på det här köpet just nu
+        "review_request":
+          "attributes":
+            "order_id":
+              "blank": >-
+                kan inte skapas utan motsvarande kund. Var god ange en giltig e-postadress.
+    "models":
+      "comment":
+        "one": >-
+          kommentar
+        "other": >-
+          kommentarer
+      "customer":
+        "one": >-
+          kund
+        "other": >-
+          kunder
+      "product":
+        "one": >-
+          produkt
+        "other": >-
+          produkter
+      "product_group":
+        "one": >-
+          produkt grupp
+        "other": >-
+          produkt grupper
+      "question":
+        "one": >-
+          fråga
+        "other": >-
+          frågor
+      "review":
+        "one": >-
+          omdömme
+        "other": >-
+          omdömmen
+      "review_request":
+        "one": >-
+          granskningsförfrågan
+        "other": >-
+          granskningsförfrågor
+  "answer":
+    "one": >-
+      fråga
+    "other": >-
+      frågor
+  "cancel": >-
+    Annullera
+  "counterify":
+    "characters":
+      "exceeded": >-
+        Karaktärgränsen har överskridits
+      "remaining":
+        "one": >-
+          1 tecken kvar
+        "other": >-
+          %{count} tecken kvar
+  "default_templates":
+    "email":
+      "critical_review_followup_mail_body": "<p>Hej [kundnamn],</p>\r\n<p>Tack för
+        din recension.</p>\r\n<p>Gänget på [store_name].</p>"
+      "critical_review_followup_mail_subject": >-
+        Tack för din recension
+      "positive_review_followup_mail_body": "<p>Hej [customer_name],</p>\r\n<p>Tack
+        för din recension.</p>\r\n<p>Gänget på [store_name].</p>"
+      "positive_review_followup_mail_subject": >-
+        Tack för din recension.
+      "question_answer_mail_body": "<p>Hej [customer_name],</p>\r\n<p>Din fråga angående
+        [product_name] har besvarats av vår representant:</p>\r\n<p>[answer]</p>\r\n<p>Din
+        fråga:</p>\r\n<p>[question]</p>\r\n<p>[product_link]</p>\r\n<p>Teamet på [store_name].</p>"
+      "question_answer_mail_subject": >-
+        Din fråga angående [store_bane] har besvarats
+      "repeat_review_request_mail_body": "<p>Hej [kundnamn],</p>\r\n<p>Det är fortfarande
+        inte för sent att berätta vad du tycker om din senaste order.</p>\r\n<p>Klicka
+        på en stjärna för att betygsätta din upplevelse hittills med:</p>\r\n<p>[products]</p>\r\n<p>Inte
+        glad? Vänligen kontakta oss först så att vi kan hjälpa till.</p>\r\n<p>Teamet
+        på [store_name].</p>"
+      "repeat_review_request_mail_subject": >-
+        Påminnelse om att granska din senaste order på [store_name]
+      "review_answer_mail_body": "<p>Hej [customer_name],</p>\r\n<p>Din recension
+        för [produktnamn] har besvarats av vår representant:</p>\r\n<p>[reply]</p>\r\n<p>Din
+        recension:</p>\r\n<p>[review]</p>\r\n<p>[product_link]</p>\r\n<p>Teamet på
+        [store_name].</p>"
+      "review_answer_mail_subject": >-
+        Din recension på [store_name] har besvarats
+      "review_request_mail_body": "<p>Hej [customer_name],</p>\r\n<p>Klicka på en
+        stjärna för att betygsätta din upplevelse hittills med:</p>\r\n<p>[products]</p>\r\n<p>Inte
+        nöjd? Vänligen kontakta oss först så att vi kan hjälpa till.</p>\r\n<p>Teamet
+        på [store_name].</p>"
+      "review_request_mail_subject": >-
+        Granska din senaste order på [butiknamn]
+  "embed": >-
+    Bädda in
+  "errors":
+    "messages":
+      "already_confirmed": >-
+        var redan bekräftad, var vänlig och försök att logga in
+      "confirmation_period_expired": >-
+        måste bekräftas inom %{period}, var god be om en ny
+      "expired": >-
+        har gått ut, vänligen be om en ny
+      "not_found": >-
+        hittades inte
+      "not_locked": >-
+        var inte låst
+      "not_saved":
+        "one": >-
+          1 fel förbjuder att detta% {resource} sparas:
+        "other": >-
+          %{count} fel förbjuder detta %{resource} från att sparas:
+  "flash":
+    "submitted_successfully":
+      "question": >-
+        Tack! Vi har tagit emot din fråga och vi meddelar dig via e-post när den har
+        besvarats
+      "review": >-
+        Tack! Vi har fått din recension
+      "subscribed": >-
+        Du har lyckats prenumerera på %{store}.
+      "unsubscribed": >-
+        Du har lyckats avregistrera dig från %{store}.
+  "front":
+    "based_on_reviews_count":
+      "one": >-
+        1 omdömme
+      "other": >-
+        %{count} omdömmen
+    "components":
+      "customer_form":
+        "email":
+          "hint": >-
+            Din e-post kommer inte att delas offentligt
+          "label": >-
+            Din e-post
+        "name":
+          "hint": >-
+            Ditt namn kommer att visas som initialer
+          "hint_update_html": >-
+            Ditt namn kommer att visas som <strong>%{initials}</strong>
+          "label": >-
+            Ditt namn
+      "privacy_notice":
+        "link_content": >-
+          integritetspolicy
+        "with_name":
+          "html": "Genom att skicka in denna blankett accepterar du att ditt innehåll
+            och ditt namn\r\n<strong>%{name}</strong> kan publiceras online enligt
+            vår %{link}."
+        "without_name":
+          "html": "Genom att skicka in denna blankett accepterar du att ditt innehåll
+            och ditt namn kan\r\npubliceras online enligt vårt %{link}."
+    "continue_shopping": >-
+      Fortsätt handla
+    "flags":
+      "new":
+        "already_flagged": >-
+          Du har redan flaggat denna %{item}
+        "flag_as_inappropriate": >-
+          Flagga detta %{item} som olämpligt
+      "show":
+        "flag_submitted": >-
+          Tack
+    "mailer":
+      "excuses":
+        "question_answered_html": >-
+          Du har fått det här e-postmeddelandet från %{helpfulcrowd} för att ge dig
+          en uppdatering angående en fråga du ställde till %{store}.
+        "review_answered_html": >-
+          Du har fått det här e-postmeddelandet från %{helpfulcrowd} för att ge dig
+          en uppdatering angående ett omdömme som du lämnade till %{store}.
+        "review_follow_up_html": >-
+          Du har fått det här e-postmeddelandet från %{helpfulcrowd} som svar på din
+          senaste recension på %{store}.
+        "review_request_html": >-
+          Du har fått det här e-postmeddelandet från %{helpfulcrowd} som svar på din
+          senaste beställning på %{store}.
+      "helpers":
+        "call_to_action":
+          "view_product": >-
+            Besök produktsidan
+    "products":
+      "questions":
+        "form":
+          "question_html": >-
+            Vad önskar du veta om %{product}?
+        "new":
+          "title": >-
+            Ställa en fråga
+      "view_product": >-
+        Gå till produktsidan
+    "review_requests":
+      "reviews":
+        "form":
+          "rating_html": >-
+            Betygsätt din erfarenhet med %{reviewable}
+        "new":
+          "already_reviewed_html": >-
+            Du har redan granskat %{reviewable}
+          "review_other_purchases":
+            "one": >-
+              Granska ditt andra köp
+            "other": >-
+              Granska dina andra köp
+          "title": >-
+            Granska ditt köp
+    "search":
+      "label": >-
+        Sök:
+      "placeholder": >-
+        Ange sökord
+    "share":
+      "button": >-
+        Dela
+    "sort_by": >-
+      Sortera efter:
+    "sort_options":
+      "most_helpful": >-
+        Mest hjälpsam
+      "most_recent": >-
+        Senaste
+      "rating_asc": >-
+        Betyg: lägsta
+      "rating_desc": >-
+        Betyg: högst
+    "suppressions":
+      "manage_subscriptions":
+        "subscribe_question_html": >-
+          Vill du tillåta HelpfulCrowd att skicka e-post på uppdrag av %{store}?
+        "unsubscribe_question_html": >-
+          Vill du stoppa HelpfulCrowd att skicka e-post på uppdrag av %{store}?
+    "votes":
+      "upvote": >-
+        Hjälpsam
+      "upvotes_count":
+        "one": >-
+          %{count} person tyckte denna %{item} hjälpsam
+        "other": >-
+          %{count} personer tyckte denna %{item} hjälpsam
+    "widgets":
+      "products":
+        "rating":
+          "qa":
+            "html":
+              "one": >-
+                1 fråga
+              "other": >-
+                %{count} frågor
+          "reviews":
+            "html":
+              "one": >-
+                1 omdömme
+              "other": >-
+                %{count} omdömmen
+        "summary":
+          "qa":
+            "html":
+              "one": >-
+                1 fråga
+              "other": >-
+                %{count} frågor
+            "new": >-
+              Ställ en fråga
+          "reviews":
+            "html":
+              "one": >-
+                1 omdömme
+              "other": >-
+                %{count} omdömmen
+            "new": >-
+              Skriv recension
+        "tabs":
+          "questions":
+            "new": >-
+              Ställ frågan
+            "search":
+              "label": >-
+                Sök:
+              "placeholder": >-
+                Sök Q&A
+            "title": >-
+              Q&A
+            "write_first": >-
+              Ställ din första fråga om den här produkten
+          "reviews":
+            "based_on_reviews":
+              "html": >-
+                Basead på %{reviews_count}
+            "media_gallery":
+              "images":
+                "one": >-
+                  1 foto
+                "other": >-
+                  %{count} foton
+              "search":
+                "label": >-
+                  Sök:
+                "placeholder": >-
+                  Sök omdömmen
+              "title": >-
+                Kund media
+              "videos":
+                "one": >-
+                  1 video
+                "other": >-
+                  %{count} videor
+            "new": >-
+              Skriv recension
+            "rating": >-
+              %{rating} av 5 stjärnor
+            "title": >-
+              Kund recensioner
+            "write_first": >-
+              Bli den första att recensera den här produkten
+          "titles":
+            "questions": >-
+              Q&amp;A
+            "questions_responsive": >-
+              Q&A
+            "reviews": >-
+              Recensioner & Betyg
+            "reviews_responsive": >-
+              Omdömmen
+      "sidebar":
+        "default_title": >-
+          Recensioner | Q&A
+    "with_incentive":
+      "reviews":
+        "text": >-
+          Granskaren kan ha blivit erbjuden ett incitament för att skriva denna recension
+    "write_review": >-
+      Skriv recension
+  "helpers":
+    "friendly_rating": >-
+      Inga recensioner än
+    "label":
+      "customer":
+        "email": >-
+          Kundens e-post
+        "name": >-
+          Kundens namn
+      "product_group":
+        "name": >-
+          Namn
+    "placeholder":
+      "promotion":
+        "template": >-
+          Fri frakt på alla beställningar under Black Friday ​​veckan!
+    "submit":
+      "product_group":
+        "create": >-
+          Skapa grupp
+        "update": >-
+          Uppdatera grupp
+      "question":
+        "create": >-
+          Ställ en fråga
+      "review":
+        "create": >-
+          Skicka in recension
+  "layouts":
+    "mailer":
+      "front":
+        "manage_subscriptions": >-
+          Hantera prenumerationer
+        "unsubscribe": >-
+          Avregistrera
+  "load_more": >-
+    Ladda mer
+  "privacy_policy": >-
+    Integritetspolicy
+  "question_facebook_post_template": "[customer_name]\r\nQ: [question]\r\nA: [answer]"
+  "question_tweet_template": "[customer_name]\r\nQ: [question]\r\nA: [answer]"
+  "rating_1": >-
+    Fruktansvärd
+  "rating_2": >-
+    Dåligt
+  "rating_3": >-
+    OK
+  "rating_4": >-
+    Bra
+  "rating_5": >-
+    Kanon
+  "read_less": >-
+    läs mindre
+  "read_more": >-
+    fullständig recension
+  "recaptcha":
+    "errors":
+      "verification_failed": >-
+        reCAPTCHA verifiering misslyckades.
+    "label": >-
+      Hjälp oss att bekämpa spam
+  "report": >-
+    Rapportera
+  "review_facebook_post_template": "Kolla vad [customer_name] sa om [product_name]:\r\n\r\n[rating]\r\n\"[feedback]\""
+  "review_tweet_template": "[customer_name]:\r\n[product_name] - [rating], \"[feedback]\""
+  "settings":
+    "default":
+      "review_slider_c2a_text": >-
+        Visa alla
+  "stars":
+    "one": >-
+      1 stjärna
+    "other": >-
+      %{count} stjärnor
+  "verified":
+    "agent":
+      "description": >-
+        %{author} jobbar på %{store}
+      "label": >-
+        %{store}
+    "customer":
+      "description": >-
+        %{author} har köpt den här produkten
+      "label": >-
+        Verifierad köpare

@@ -1,0 +1,29 @@
+= form_for [:back, @review_request], html: { class: 'review-request-form' } do |f|
+  = render 'shared/form/errors', resource: @review_request
+
+  .review-request-form__controls
+    .hc-form__control
+      label.hc-form__label for="email"
+        | Customer name
+      input.hc-form__input.hc-form__input--lg type="text" name="customer[name]" required="true"
+
+    .hc-form__control
+      label.hc-form__label for="email"
+        | Customer email
+      input.hc-form__input.hc-form__input--lg type="email" name="customer[email]" required="true"
+
+    .hc-form__control
+      label.hc-form__label for="product[id]"
+        | Product
+      = collection_select :product, :id, current_store.products.unsuppressed.a24z.all, :id, :name
+
+    .hc-form__control
+      = f.label           :scheduled_for, 'Schedule for', class: 'hc-form__label'
+
+      = f.datetime_select :scheduled_for,
+        start_year:       Time.current.year,
+        end_year:         Time.current.year + 1,
+        minute_step:      5
+
+    => render  'shared/form/submit', value: 'Schedule'
+    =  link_to 'Cancel',             back_review_requests_path, class: 'hc-secondary-button'

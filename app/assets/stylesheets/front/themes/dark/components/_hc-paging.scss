@@ -1,0 +1,44 @@
+.hc-paging {
+  &.hc-paging--load-more {
+    .page-item .page-link {
+      &:hover {
+        @extend %color__light;
+        @extend %text-decoration__underline;
+      }
+    }
+  }
+  &.hc-paging--classic {
+    .page-item {
+      &.active .page-link {
+        @extend %color__primary;
+      }
+      &.disabled .page-link {
+        @extend %color__pale--darkened;
+      }
+    }
+  }
+  &.hc-paging--modern {
+    .page-item {
+      .page-link {
+        @extend %color__light;
+        @extend %background-color__dark;
+        @extend %border__1px__solid__dark;
+        &:hover {
+          @extend %color__primary;
+          @extend %background-color__dark--lightened;
+        }
+      }
+      &.disabled .page-link {
+        @extend %color__pale;
+      }
+      &.active .page-link {
+        @extend %color__light;
+        @extend %background-color__primary;
+        @extend %border__1px__solid__primary;
+        &:hover {
+          @extend %background-color__primary--lightened;
+        }
+      }
+    }
+  }
+}

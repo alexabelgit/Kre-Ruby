@@ -1,0 +1,8 @@
+var selector = '[data-hc="all-question-list-container"]';
+<% if @load_more %>
+  jQuery(selector).find('.hc-paging').remove();
+  jQuery(selector).append('<%= escape_javascript(render 'front/questions/list', questions: @questions) %>');
+<% else %>
+  jQuery(selector).html('<%= escape_javascript(render 'front/questions/list', questions: @questions) %>');
+<% end %>
+jQuery(selector).remotify();

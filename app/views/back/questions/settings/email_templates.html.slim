@@ -1,0 +1,71 @@
+- title 'Q&A email templates'
+- content_for :main_class, 'email-templates'
+= render 'back/questions/sub_nav'
+
+- @presenter = TemplatePresenter.new(current_store, self)
+
+- content_for :sample_answer do
+  .previewer__quote
+    = @presenter.sample_question_comment
+
+- content_for :sample_question do
+  .previewer__quote
+    = @presenter.sample_question_body
+
+- content_for :sample_product_link do
+  .previewer__c2a
+    span = t 'view_product', scope: 'front.mailer.helpers.call_to_action', locale: current_store.settings(:global).locale
+
+= render 'plugins/previewable_sample_data',
+  data:  @presenter.sample_data_hash
+
+h1 Email templates
+
+= render layout: 'helpful_components/collapsible/item', locals: { name: 'question_reply_notification' } do
+
+  = form_for [:back, @store.settings(:questions)],
+    as:      :settings,
+    url:     update_emails_back_questions_path,
+    method:  :patch,
+    html:    { class: 'template template--email' },
+    remote: true do |f|
+
+    = render 'shared/form/errors', resource: @store.settings(:questions)
+
+    .template__source-and-preview
+      .template__source
+
+        .template__control
+          => f.label      :comment_mail_subject, 'Email subject', class: 'hc-form__label'
+          => f.text_field :comment_mail_subject, required: true,  class: 'hc-form__input', data: { previewable: 'input', role: 'comment_mail_subject' }
+
+        .template__control
+          => f.label     :comment_mail_body, 'Email body',   class: 'hc-form__label'
+          => f.text_area :comment_mail_body, required: true, class: 'hc-form__textarea hc-form__textarea--tall', data: { previewable: 'input', role: 'comment_mail_body' }
+
+        = render 'back/shared/available_placeholders', placeholders: [Placeholders::FRONT_MAILER_SUBJECT.keys, Placeholders::QUESTION_COMMENT_MAIL_BODY.keys]
+
+      .template__preview-button
+        button type="button" data-previewable="button" data-role="comment_mail_subject,comment_mail_body"
+          = hc_icon 'chevron-right'
+          = hc_icon 'hc-spinner spin'
+          = hc_icon 'save'
+
+      .template__preview
+        .template__preview-controls
+          / .template__layout-switch
+            = link_to "javascript:void(0)", class: "current" do
+              = hc_icon 'desktop'
+            = link_to "javascript:void(0)" do
+              = hc_icon 'mobile'
+            = link_to "javascript:void(0)" do
+              = hc_icon 'file-text-o'
+
+          = render "back/shared/send_test_email", store: @store, email_type: "comment_on_question"
+
+        .template__preview-inner
+          = render         'back/shared/email_previewer',
+            excuse:        'front.mailer.excuses.question_answered_html',
+            store:         current_store,
+            subject_role:  'comment_mail_subject',
+            body_role:     'comment_mail_body'

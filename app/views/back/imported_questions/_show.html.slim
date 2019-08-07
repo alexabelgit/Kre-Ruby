@@ -1,0 +1,56 @@
+article.question data-model="imported_question" data-id=imported_question.hashid
+  section.import-toggle
+    .toggle class=(imported_question.marked_for_deletion? ? 'off' : 'on')
+      = form_for [:back, imported_question], remote: true do |f|
+
+        = f.hidden_field :marked_for_deletion, value: !imported_question.marked_for_deletion?
+
+        = button_tag(type: 'submit', class: 'toggle__button') do
+          - if imported_question.marked_for_deletion?
+            => hc_icon 'toggle-off xl'
+            | Discard
+
+          - else
+            => hc_icon 'toggle-on xl'
+            | Import
+
+  header.question__header
+    div
+      = link_to back_product_path(imported_question.product),
+        class: 'question__product' do
+
+        =  imported_question.product.name
+        =< stamp_product_if_archived_or_hidden(imported_question.product)
+
+    div
+      span.question__author>
+        => author_of_(imported_question)
+      ' |
+      =< humane_date(imported_question.submitted_at)
+
+  .question__wrapper
+    p.question__body = imported_question.body
+
+  - if imported_question.answer
+    .question-comments
+      article.comment
+        p.comment__body= imported_question.answer
+        .comment__author
+          .comment__author-avatar
+            = avatar_logo(imported_question) if @store.logo_visible?
+          .comment__author-text
+            span.bold
+              => @store.settings(:agents).default_name
+            div
+              = store_description(label:       t('verified.agent.label',       store:  @store.name),
+                                  description: t('verified.agent.description', author: @store.settings(:agents).default_name, store: @store.name))
+
+  footer.question-footer
+    .question-actions
+
+      .rqa-statuses
+        .rqa-status class="rqa-status--#{imported_question.status}"
+
+          = rqa_status_icon imported_question.status
+
+          =< imported_question.status.capitalize

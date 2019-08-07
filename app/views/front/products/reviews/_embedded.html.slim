@@ -1,0 +1,8 @@
+- if review.new_record?
+  = render 'front/review_requests/reviews/form', review: review, header: false
+
+- else
+  = render         'front/products/reviews/card',
+    review:        review,
+    show_comments: true,
+    show_media:    true

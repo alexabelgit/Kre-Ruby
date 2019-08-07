@@ -1,0 +1,24 @@
+/ text*
+/ store*
+/ product*
+/ icon
+
+- icon ||= false
+
+- cache [store, product, text, 'review-form-link', I18n.locale] do
+  - if store.product_tabs_open_forms_in_new_tab?
+    = link_to new_front_product_review_url(store, product),
+      style:  'order: 1',
+      data:   { turbolinks: nil },
+      target: '_blank' do
+      => hc_icon 'hc-bubble-tick justified md' if icon
+      = text
+
+  - else
+    = link_to 'javascript:void(0);',
+      style:  'order: 1',
+      data:   { role:   'voluntary-review-form-toggle',
+                action: 'show',
+                "toggle-with-form": true  } do
+      => hc_icon 'hc-bubble-tick justified md' if icon
+      = text

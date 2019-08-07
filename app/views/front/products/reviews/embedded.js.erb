@@ -1,0 +1,5 @@
+<% if defined? @review %>
+  var container = jQuery('[data-hc="review-form"][data-hc-id="<%= @review.order.id_from_provider %>-<%= @review.product.id_from_provider %>"]');
+  container.html('<%= escape_javascript(render 'front/products/reviews/embedded', review: @review) %>');
+  container.cloudify('<%= I18n.locale %>').remotify().counterify();
+<% end %>

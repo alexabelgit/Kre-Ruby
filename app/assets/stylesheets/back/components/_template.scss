@@ -1,0 +1,195 @@
+.email-templates {
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+.template {
+}
+
+.template__source-and-preview {
+  @include flexbox(
+    // $align-items: center
+  );
+}
+
+.template__source {
+  @extend %flex__1;
+}
+
+.template__control {
+  margin-bottom: 1.7rem;
+}
+
+.template.template--facebook,
+.template.template--twitter {
+  .template__source {
+    .hc-form__textarea {
+      @extend %height__10rem;
+    }
+  }
+}
+
+.template__source {
+  @extend %min-width__10rem;
+  width: 55%;
+  min-width: 300px;
+  max-width: 600px;
+}
+
+.template__preview-button {
+  @extend %align-self__stretch;
+  @extend %flex__0;
+  @extend %margin-x__md;
+  @extend %position__relative;
+  @extend %display__flex;
+  @extend %align-items__center;
+
+  button {
+    @extend %position__relative;
+    @extend %z-index__1;
+    @include button(
+      $background-color:       'primary',
+      $border-radius:          '50pct',
+      $color:                  'white',
+      $height:                 40px,
+      $width:                  40px
+    );
+  }
+
+  .hc-icon {
+    margin-top: 0;
+  }
+
+  .hc-icon--chevron-right {
+    display: block;
+  }
+
+  .hc-icon--hc-spinner {
+    display: none;
+  }
+
+  .hc-icon--save {
+    display: none;
+  }
+
+  &:after {
+    @extend %display__block;
+    @extend %content__-empty-;
+    @extend %position__absolute;
+    @extend %border-left__base;
+    @extend %height__100pct;
+    @extend %top__0;
+    @extend %left__50pct;
+    @extend %z-index__0;
+  }
+}
+
+.template__preview {
+  @extend %padding__md;
+  @extend %border__base;
+  @extend %position__relative;
+  @extend %height__100pct;
+  width: 45%;
+  min-width: 350px;
+  max-width: 600px;
+}
+
+.template__preview-inner {
+  @extend %overflow__scroll;
+  @extend %height__100pct;
+}
+
+.template__preview-controls {
+  position: absolute;
+  top: -50px;
+  left: 0;
+  right: 35px;
+  pointer-events: none;
+}
+
+.template__layout-switch {
+  float: left;
+  border: 1px solid $color-primary;
+  border-radius: 100px;
+  padding: 4px 10px;
+  pointer-events: all;
+}
+
+.template__layout-switch svg {
+  margin: 0 3px;
+  &.hc-icon--mobile {
+    font-size: 1.3rem;
+  }
+  &.hc-icon--file-text-o {
+    font-size: 0.95rem;
+  }
+  &.hc-icon--desktop {
+    width: 20px;
+    margin-left: 1px;
+  }
+}
+
+.template__layout-switch a {
+  color: $color-pale;
+  &.current, &:hover {
+    color: $color-primary;
+  }
+}
+
+.template__send-test-email {
+  float: right;
+  pointer-events: all;
+  .hc-primary-button, .hc-disabled-button, .hc-success-button {
+    width: 98px;
+    text-decoration: none !important;
+  }
+  .disabled {
+    @extend %background-color__success;
+  }
+}
+
+#frx-text {
+  position: absolute;
+  @extend %top__sm;
+  @extend %right__lg;
+
+  @media (max-width: 767px) {
+    position: relative;
+    top: auto;
+    right: auto;
+  }
+}
+
+.template__placeholders-list {
+  @extend %position__relative;
+  background: #F8F8FA;
+  box-shadow: 0 0 7px 1px #cacaca inset;
+  padding: 10px;
+  margin: 7px 0 0;
+  font-size: 0.9em;
+  border-radius: 5px;
+  line-height: 1.55;
+  width: 100%;
+  span {
+    cursor: grab;
+    &:hover {
+      background-color: #e3effd;
+    }
+  }
+}
+
+label .hc-hint {
+  font-size: 0.8rem;
+  color: $color-pale;
+}
+
+.tox-tinymce {
+  border-radius: 5px !important;
+  border: 1px solid #ececec !important;
+  .tox-toolbar, .tox-edit-area {
+    box-shadow: 0 0 3px inset #eee !important;
+  }
+  .tox-edit-area__iframe {
+    background-color: transparent !important;
+  }
+}

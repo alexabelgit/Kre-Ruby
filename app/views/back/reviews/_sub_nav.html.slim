@@ -1,0 +1,7 @@
+- items = [ { name: 'Moderation',       path: back_reviews_path                  },
+            { name: 'Review requests',  path: back_review_requests_path          },
+            { name: 'Email templates',  path: emails_back_reviews_path           },
+            { name: 'Social templates', path: social_templates_back_reviews_path } ]
+
+= content_for :sub_nav
+  = render 'layouts/back/sub_nav', items: items

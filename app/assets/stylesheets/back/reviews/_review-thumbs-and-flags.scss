@@ -1,0 +1,15 @@
+.review-thumbs-and-flags {
+
+}
+
+.review-thumbs {
+  @extend %display__inline-block;
+  @extend %color__primary;
+  @extend %margin-right__xs;
+}
+
+
+.review-flags {
+  @extend %display__inline-block;
+  @extend %color__danger;
+}

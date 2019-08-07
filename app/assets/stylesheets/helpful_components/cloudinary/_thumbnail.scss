@@ -1,0 +1,43 @@
+ul.cloudinary-thumbnails {
+  @extend %margin-top__xs;
+  @extend %margin-bottom__0;
+
+  @include flexbox(
+    $flex-wrap: wrap
+  );
+}
+
+.cloudinary-thumbnails {
+  .cloudinary-thumbnail {
+    @extend %margin-right__xs;
+    @extend %margin-bottom__xs;
+    @extend %position__relative;
+
+    img {
+      @extend %display__block;
+      @extend %border__base;
+      @extend %object-fit__contain;
+      @extend %width__90px;
+      @extend %height__60px;
+    }
+  }
+
+  .cloudinary-thumbnail__remove {
+    @extend %position__absolute;
+    @extend %top__0;
+    @extend %right__0;
+    @extend %padding__1px;
+    @extend %transition__color;
+    @extend %background-color__white;
+    @extend %border__base;
+    box-shadow: 0 0 1px 0 lighten($color-dark, 10%);
+    @extend %text-decoration__never;
+    @extend %line-height__1;
+
+    @extend %color__pale;
+
+    &:hover {
+      @extend %color__danger;
+    }
+  }
+}

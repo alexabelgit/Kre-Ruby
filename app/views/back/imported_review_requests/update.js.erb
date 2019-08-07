@@ -1,0 +1,2 @@
+jQuery('[data-model="imported_review_request"][data-id="<%= @imported_review_request.hashid %>"]')
+        .replaceWith('<%= escape_javascript(render 'back/imported_review_requests/show', imported_review_request: @imported_review_request) %>');

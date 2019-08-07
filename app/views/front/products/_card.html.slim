@@ -1,0 +1,23 @@
+/ product*
+/ size
+/ hide_thumbnail
+
+- disable_product_links   ||= false
+- hide_thumbnail          ||= false
+- open_product_in_new_tab ||= false
+
+- if disable_product_links
+  .hc-product-card
+    - unless hide_thumbnail
+      .hc-product-card__thumb
+        = image_tag product.featured_image.square_thumb.url.to_s, alt: product.name
+    .hc-product-card__name
+      = product.name
+
+- else
+  = link_to product.url, class: "hc-product-card", target: ('_blank' if open_product_in_new_tab) do
+    - unless hide_thumbnail
+      .hc-product-card__thumb
+        = image_tag product.featured_image.square_thumb.url.to_s, alt: product.name
+    .hc-product-card__name
+      = product.name

@@ -1,0 +1,67 @@
+.auth-form {
+  @extend %background-color__white;
+  @extend %max-width__400px;
+  @extend %margin-x__auto;
+  @extend %border__base;
+  @extend %border-radius__base;
+  @extend %padding__lg;
+  @extend %margin-y__xl;
+}
+
+.auth-form__actions {
+  @extend %margin-top__md;
+}
+
+.auth-form__title {
+  @extend %text-align__center;
+  @extend %margin-top__md--rem;
+  @extend %margin-bottom__xl--rem;
+}
+
+%auth-form__control {
+  label, input {
+    @extend %display__block;
+    @extend %width__100pct;
+  }
+}
+
+.auth-form__control {
+  @extend %auth-form__control;
+  @extend %margin-bottom__md;
+}
+
+.auth-form__control--margin-bottom__xs {
+  @extend %auth-form__control;
+  @extend %margin-bottom__xs;
+}
+
+.auth-form__remember-or-forget {
+  @extend %flexbox--space-between;
+  @extend %margin-bottom__md;
+}
+
+.auth-form__terms-and-privacy {
+  @extend %margin-bottom__md;
+  @extend %color__pale;
+  @include flexbox(
+    $align-items: baseline
+  );
+
+  input {
+    @extend %flex-shrink__0;
+    @extend %margin-right__xs;
+  }
+
+  label {
+    @extend %flex-shrink__1;
+  }
+}
+
+.auth-form__toggle-sign-in-up {
+  @extend %margin-top__xl;
+  @extend %text-align__center;
+
+  a {
+    @extend %display__block;
+  }
+}

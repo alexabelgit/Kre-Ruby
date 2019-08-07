@@ -1,0 +1,6 @@
+- flash.each do |type, message|
+  - if message.kind_of?(Array)
+    - message = message.first
+    / Check for array is necessary because we set some flash messages to an array like this:
+    / ['Hello world', :fade] and :fade triggers fade_out functionality we have in /back controller
+  = render 'integrations/ecwid/shared/alert', message: message, type: type

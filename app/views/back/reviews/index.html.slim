@@ -1,0 +1,94 @@
+- title 'Reviews'
+= render 'sub_nav'
+
+= render 'back/imported_reviews/ready'
+
+section.reviews
+  .reviews__filters
+
+    .reviews__filter
+      table.statuses
+        thead
+          tr
+            th Status
+            th Reviews
+
+        tbody
+          tr
+            td Pending
+            td = active_link_to current_store.reviews.pending.count,
+                 filter_link(status: :pending, without_keys: [:page]),
+                 active:         :exact,
+                 class_active:   'active-status',
+                 class_inactive: 'status'
+
+          tr
+            td Published
+            td = active_link_to current_store.reviews.published.count,
+                 filter_link(status: :published, without_keys: [:page]),
+                 active:         :exact,
+                 class_active:   'active-status',
+                 class_inactive: 'status'
+
+          tr
+            td Suppressed
+            td = active_link_to current_store.reviews.suppressed.count,
+                filter_link(status: :suppressed, without_keys: [:page]),
+                active:         :exact,
+                class_active:   'active-status',
+                class_inactive: 'status'
+
+          tr
+            td Archived
+            td = active_link_to current_store.reviews.archived.count,
+                 filter_link(status: :archived, without_keys: [:page]),
+                 active:         :exact,
+                 class_active:   'active-status',
+                 class_inactive: 'status'
+
+          tr
+            td All
+            td = active_link_to current_store.reviews.count,
+                 filter_link(status: nil, without_keys: [:page]),
+                 active:         :exact,
+                 class_active:   'active-status',
+                 class_inactive: 'status'
+
+    .reviews__filter
+
+      = render 'back/shared/search', action: back_reviews_path, searchable: @reviews
+
+    .reviews__filter
+      label for="Stars" Filter by rating
+
+      =< filter_select 'Stars',
+         @reviews.filter_value,
+         :rating,
+         5.downto(1).map { |x| { title: pluralize(x, 'star'), id: x } },
+         'All ratings'
+
+    .reviews__filter
+      label for="Products" Filter by product
+
+      =< filter_select 'Products',
+         @reviews.filter_value,
+         :product_group_ids,
+         current_user.store.products.a24z.map { |x| { title: x.name, id: x.id } },
+         'All products',
+         html_options: { class: "hc-select-with-search" }
+
+  .reviews__list
+    - if current_store.reviews.any?
+      - social_connections = current_store.social_connections
+      - @reviews.each do |review|
+        = render              'back/reviews/show',
+          review:             review,
+          social_connections: social_connections
+
+    - else
+      = render      'back/shared/no_records',
+        object:     'reviews',
+        kb_article: 'import_reviews',
+        action:     seed_back_tools_path(anchor: 'import-reviews')
+
+= will_paginate @reviews, class: 'hc-paging hc-paging--modern'

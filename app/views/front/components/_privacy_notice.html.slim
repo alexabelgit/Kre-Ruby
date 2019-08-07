@@ -1,0 +1,12 @@
+/ name - "John D."
+
+- name ||= false
+
+p.hc-privacy-notice
+  - if name
+    = t     'front.components.privacy_notice.with_name.html',
+      name: name,
+      link: link_to_pp(content: t('front.components.privacy_notice.link_content'))
+  - else
+    = t     'front.components.privacy_notice.without_name.html',
+      link: link_to_pp(content: t('front.components.privacy_notice.link_content'))

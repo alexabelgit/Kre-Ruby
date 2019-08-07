@@ -1,0 +1,48 @@
+= render 'layouts/back/sub_navs/tools'
+
+header.heading-and-action
+  h1 = title 'Coupon history'
+
+  div
+    - if @review_request_coupon_codes
+      .header-with-action__search
+        = render 'back/shared/search', action: history_back_discount_coupons_path, searchable: @review_request_coupon_codes
+
+    = link_to 'Manage Coupons', back_discount_coupons_path, class: 'hc-secondary-button'
+
+- if @review_request_coupon_codes.any?
+  .responsive-table
+    table.table
+      thead
+        tr
+          th Name
+          th Code
+          th Discount
+          th Customer email
+          th Date sent
+          th Promotion name
+      tbody
+        - @review_request_coupon_codes.each do |review_request_coupon_code|
+          - coupon_code     = review_request_coupon_code.coupon_code
+          - discount_coupon = coupon_code.discount_coupon
+          - promotion       = discount_coupon.promotions.first
+          - customer        = review_request_coupon_code.review_request.customer
+          tr
+            td = link_to edit_back_discount_coupon_path(discount_coupon) do
+              =< stamp_discount_coupon_if_archived(discount_coupon)
+              = discount_coupon.name
+            td = coupon_code.code
+            td = discount_coupon.discount_text
+            td
+              = mail_to customer.email do
+                => email_icon(customer)
+                = customer.email
+            td = review_request_coupon_code.created_at
+            td = promotion.present? ? link_to(promotion.name, edit_back_promotion_path(promotion)) : ''
+
+    = will_paginate @review_request_coupon_codes, class: "hc-paging hc-paging--modern"
+
+- else
+  = render      'back/shared/no_records',
+    object:     'discount_coupons',
+    kb_article: 'discount_coupons'

@@ -1,0 +1,18 @@
+.dashboard-message--with-action {
+  @include flexbox(
+    $justify-content: space-between,
+    $flex-wrap:       wrap,
+    $align-items:     center
+    );
+  @extend .system-message;
+  @extend .system-message.warning;
+}
+
+.dashboard-message__link {
+  @extend %color__inherit;
+  @extend %font-weight__bold;
+}
+
+.dashboard-message__action {
+  @extend .hc-success-button;
+}

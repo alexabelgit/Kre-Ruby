@@ -1,0 +1,13 @@
+.hc-flag {
+  @extend %color__link;
+  @extend %underline-on-hover;
+}
+
+.hc-flag__icon {
+  @extend %cursor__pointer;
+
+  &.hc-flag__icon--flagged {
+    @extend %color__pale;
+    @extend %cursor__default;
+  }
+}

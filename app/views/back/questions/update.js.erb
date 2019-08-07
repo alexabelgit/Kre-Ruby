@@ -1,0 +1,5 @@
+<%= render 'shared/system_messages/replace_flash' %>
+
+jQuery('[data-model="question"][data-id="<%= @question.hashid %>"]')
+        .replaceWith('<%= escape_javascript(render 'back/questions/show', question: @question) %>');
+jQuery('[data-model="question"][data-id="<%= @question.hashid %>"]').hc_dropdown().copy_to_clipboard().fade_out_system_message();

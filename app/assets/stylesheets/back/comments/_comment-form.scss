@@ -1,0 +1,32 @@
+.comment-form {
+}
+
+.comment-form__display-name {
+  @extend %max-width__10rem;
+  @extend %width__100pct;
+}
+
+.comment-form__body {
+  @include flexbox(
+    $flex-wrap: wrap
+  );
+}
+
+.comment-form__body-input {
+  @extend %flex__1__0__auto;
+  @extend %min-height__2rem;
+  @extend %margin-right__md;
+  @extend %padding__2xs;
+}
+
+
+.comment-form__submit {
+  @extend .hc-secondary-button;
+  // top: calc(50% - 1rem); // TODO-wetsy figure out a way to handle calcs
+  // TODO-wetsy update wetsy buttons in a way that it is possible to use transition__color_background-color in this case
+}
+
+.comment-form__body-input:focus ~ .comment-form__submit,
+.comment-form__body-input:valid ~ .comment-form__submit {
+  @extend .hc-primary-button;
+}

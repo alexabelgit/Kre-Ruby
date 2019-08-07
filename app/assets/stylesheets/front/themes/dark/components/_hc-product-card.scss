@@ -1,0 +1,13 @@
+.hc-product-card {
+  @extend %color__pale--lightened;
+
+  @extend %border-color__dark;
+
+  &:hover, &:active, &:focus {
+    @extend %border-color__dark--lightened;
+  }
+}
+
+.hc-author {
+	@extend %color__light--darkened;
+}

@@ -1,0 +1,31 @@
+/ store*
+/ reviews*
+
+- disable_product_links = false
+- open_product_in_new_tab = store.review_slider_open_product_in_new_tab
+.hc-review-slider
+  .hc-review-slider__list-wrapper
+
+    span.hc-review-slider__slide-left*{ data: { hc_review_slider_scroll_button: '', hc_review_slider_scroll_left:   '' } }
+
+      = hc_icon 'angle-left xl', class: 'hc-review-slider__icon'
+
+    span.hc-review-slider__slide-right*{ data: { hc_review_slider_scroll_button: '', hc_review_slider_scroll_right:  '' } }
+
+      = hc_icon 'angle-right xl', class: 'hc-review-slider__icon'
+
+    .hc-review-slider__list data-hc-review-slider-list=''
+      = render partial: 'front/products/reviews/card',
+        collection:     reviews,
+        as:             :review,
+        locals:         { open_product_in_new_tab: open_product_in_new_tab,
+                          show_product:            true,
+                          read_more_after:         50,
+                          show_date:               false,
+                          disable_product_links:   disable_product_links }
+
+      - if store.review_slider_c2a_enabled?
+        .hc-review-slider__c2a
+          = link_to store.review_slider_c2a_text, store.review_slider_c2a_url,
+            class:  'hc-review-slider__c2a-button',
+            target: '_blank'

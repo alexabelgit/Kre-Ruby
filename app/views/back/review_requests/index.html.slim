@@ -1,0 +1,61 @@
+= render 'back/reviews/sub_nav'
+
+= render 'back/imported_review_requests/ready'
+
+header.header-with-action
+  h1 = title 'Review requests'
+
+  div
+    - if @review_requests.any?
+      .header-with-action__search
+        = render 'back/shared/search', action: back_review_requests_path, searchable: @review_requests
+
+    => link_to back_bulk_request_index_path, class: 'hc-secondary-button' do
+      => hc_icon 'upload'
+      '  Bulk request
+
+    = link_to new_back_review_request_path, class: 'review-requests__new' do
+      => hc_icon 'plus'
+      |  New request
+
+// TODO this if-else probably belongs to a partial
+
+- if current_store.settings(:background_workers).proceed_on_hold_review_requests_running
+  = render   'shared/system_messages/custom',
+    type:    'success',
+    body:    'On hold review requests will be sent shortly.',
+    role:    'process-on-hold-review-request',
+    persist: true
+
+// TODO add something to cancel on hold reviews, all or one by one
+
+- elsif current_store.has_on_hold_review_requests?
+  .review-requests__send-all-on-hold
+    => link_to process_on_hold_back_review_requests_path, class: 'hc-success-button', method: :post,
+       data: { role: 'process-on-hold-review-request', disable_with: "#{spinner_icon} Sending" } do
+      => hc_icon 'paper-plane'
+      |  Send all on hold
+
+- if @review_requests.any?
+  .responsive-table
+    table.table.review-requests
+      thead
+        tr
+          th.width__0
+            span.hide-unless-screen-reader Status
+          th Order ID
+          th Reviews
+          th Customer
+          th Notifications
+          th Actions
+
+      tbody
+        - @review_requests.each do |review_request|
+          = render 'back/review_requests/item', review_request: review_request
+
+  = will_paginate @review_requests, class: 'hc-paging hc-paging--modern'
+
+- else
+  = render      'back/shared/no_records',
+    object:     'review_requests',
+    kb_article: 'review_requests'

@@ -1,0 +1,16 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+
+production:
+  url:  <%= ENV["DATABASE_URL"] %>
+  pool: <%= ENV["DB_CONNECTION_POOL"] || ENV['RAILS_MAX_THREADS'] || 5 %>
+
+development:
+  <<: *default
+  database: <%= ENV["DEVELOPMENT_DATABASE_NAME"] || 'helpful_crowd_development' %>
+  pool: 15
+
+test:
+  <<: *default
+  database: helpful_crowd_test

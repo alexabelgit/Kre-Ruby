@@ -1,0 +1,14 @@
+= content_for :head
+  = javascript_include_tag 'https://widget.cloudinary.com/global/all.js', 'data-turbolinks-track' => 'reload'
+  = cloudinary_js_config
+  = display_meta_tags site: @store.name, reverse: true
+  = render 'layouts/google_analytics'
+
+= content_for :body_class, @store.theme_css
+
+= content_for :body
+
+  main
+    = yield
+
+= render template: 'layouts/base', locals: { stylesheet: 'front', javascript: 'front', custom_fonts: true }

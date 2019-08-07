@@ -1,0 +1,88 @@
+.onboarding-step {
+  @extend %background-color__white;
+  @extend %simple-card;
+  @extend %margin-bottom__sm;
+  padding: 0.8em;
+  @include flexbox(
+    $align-items: center
+  );
+}
+
+.onboarding-step__status {
+  @extend %margin-right__md;
+  @extend %flex__0__1__auto;
+}
+
+.onboarding-step__to-completed {
+  @extend %color__inherit;
+
+  .onboarding-step__to-completed-icon {
+
+    &.onboarding-step__to-completed-icon--incomplete {
+      @extend %display__inline-block;
+    }
+
+    &.onboarding-step__to-completed-icon--complete {
+      @extend %display__none;
+    }
+
+  }
+
+  &:hover,
+  &:active,
+  &:focus {
+    .onboarding-step__to-completed-icon {
+      @extend %color__success;
+
+      &.onboarding-step__to-completed-icon--incomplete {
+        @extend %display__none;
+      }
+
+      &.onboarding-step__to-completed-icon--complete {
+        @extend %display__inline-block;
+      }
+
+    }
+  }
+
+}
+
+.onboarding-step__details {
+  @extend %flex__1__1__auto;
+}
+
+.onboarding-step__link {
+  @extend %color__inherit;
+  @extend %display__block;
+
+  &:hover {
+    @extend %text-decoration__none;
+
+    .onboarding-step__heading,
+    .onboarding-step__description {
+      @extend %text-decoration__underline;
+    }
+  }
+}
+
+.onboarding-step__heading {
+  margin: 0 0 5px;
+}
+
+.onboarding-step__heading,
+.onboarding-step__description {
+  @extend %margin__0;
+}
+
+.onboarding-step__snippet {
+  @extend %margin-top__md;
+}
+
+.onboarding__recommended-steps {
+  @extend %margin-top__lg;
+}
+
+.onboarding__optional-steps {
+  @extend %margin-top__lg;
+  @extend %hc-separator-after;
+}

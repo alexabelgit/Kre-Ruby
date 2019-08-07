@@ -1,0 +1,66 @@
+- page_title = title || 'HelpfulCrowd'
+
+doctype html
+html lang="en"
+
+  head
+    meta charset="utf-8"
+    meta name="viewport"              content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    meta http-equiv="x-ua-compatible" content="ie=edge"
+
+    title = page_title
+
+    meta name="description" content="HelpfulCrowd dashboard for Shopify admin panel"
+
+    = csrf_meta_tags
+
+    = javascript_include_tag "https://cdn.shopify.com/s/assets/external/app.js?#{Time.now.strftime('%Y%m%d%H')}"
+    javascript:
+      ShopifyApp.init({
+        apiKey:        '#{ ENV['SHOPIFY_API_KEY'] }',
+        shopOrigin:    'https://#{current_user&.store&.domain}',
+        debug:         '#{ Rails.env.development? ? "true" : "false" }',
+        forceRedirect: '#{ Rails.env.development? || Rails.env.test? ? "false" : "true" }'
+      });
+
+    link rel="stylesheet" href="https://sdks.shopifycdn.com/polaris/1.8.3/polaris.min.css"
+
+    = stylesheet_link_tag    'integrations/shopify/back',     media: 'all', 'data-turbolinks-track' => 'reload'
+    = javascript_include_tag 'integrations/shopify/back',                   'data-turbolinks-track' => 'reload'
+    = javascript_include_tag 'integrations/shopify/redirect', crossorigin: 'anonymous', integrity: true
+
+  body.Polaris-Page data-turbolinks="false" data-shopify-domain= @shopify_store_domain
+    header.Polaris-Page__Header
+      .Polaris-Page__Title
+        h1.Polaris-DisplayText.Polaris-DisplayText--sizeLarge = page_title
+
+      .hc-margin-y__xl
+        = render 'integrations/shopify/shared/flash'
+
+    main.hc-main.Polaris-Page__Content
+      = yield
+
+    footer.hc-footer
+      .Polaris-FooterHelp
+        .Polaris-FooterHelp__Content
+
+          .Polaris-FooterHelp__Icon
+            span.Polaris-Icon.Polaris-Icon--colorTeal.Polaris-Icon--hasBackdrop
+              svg.Polaris-Icon__Svg viewbox=("0 0 20 20")
+                circle cx="10" cy="10" fill="currentColor" r="9"
+                path d=("M10 0C4.486 0 0 4.486 0 10s4.486 10 10 10 10-4.486 10-10S15.514 0 10 0m0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8m0-4a1 1 0 1 0 0 2 1 1 0 1 0 0-2m0-10C8.346 4 7 5.346 7 7a1 1 0 1 0 2 0 1.001 1.001 0 1 1 1.591.808C9.58 8.548 9 9.616 9 10.737V11a1 1 0 1 0 2 0v-.263c0-.653.484-1.105.773-1.317A3.013 3.013 0 0 0 13 7c0-1.654-1.346-3-3-3")
+
+          .Polaris-FooterHelp__Text
+
+            - if content_for?(:footer)
+              = yield :footer
+            - else
+              => 'To do more go to'
+              =  link_to_blank root_url, root_url,
+                 class: "Polaris-Link",
+                 data:  { polaris_unstyled: true }
+
+    div data-turbolinks-temporary=''
+      = render        'layouts/integrations/shopify/back/init',
+        title:        page_title,
+        init_options: (content_for?(:init_options) ? (yield :init_options) : nil)

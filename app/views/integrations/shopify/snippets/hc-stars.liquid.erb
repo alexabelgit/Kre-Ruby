@@ -1,0 +1,17 @@
+{% assign hc_storefront_status = shop.metafields.helpfulcrowd.global.storefront_status %}
+{% if hc_storefront_status == "active" %}
+  {% assign hc_rating = product.metafields.helpfulcrowd.product.rating | plus: 0 %}
+
+  <span class="hc-stars">
+    {% for i in (1..5) %}
+    	{% assign next_value = hc_rating | plus: 1 %}
+    	{% if hc_rating >= i %}
+        <%= ApplicationController.helpers.hc_icon('star lg') %>
+    	{% elsif next_value > i and hc_rating > 0 %}
+        <%= ApplicationController.helpers.hc_icon('star-half lg') %>
+    	{% else %}
+    		<%= ApplicationController.helpers.hc_icon('star-o lg') %>
+    	{% endif %}
+    {% endfor %}
+  </span>
+{% endif %}

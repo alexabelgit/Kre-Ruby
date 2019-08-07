@@ -1,0 +1,50 @@
+.rqa-statuses {
+
+}
+
+.rqa-status {
+  @extend %display__inline-block;
+  @extend %font-weight__bold;
+  @extend %margin-right__md;
+
+  &.rqa-status--pending {
+    @extend %color__warning;
+  }
+
+  &.rqa-status--published {
+    @extend %color__success;
+  }
+
+  &.rqa-status--archived {
+    @extend %color__pale;
+  }
+
+  &.rqa-status--suppressed {
+    @extend %color__danger;
+  }
+}
+
+.rqa-statuses__publish {
+  @extend .hc-success-button;
+  @extend %margin-right__md;
+}
+
+.rqa-statuses__archive {
+  @extend .hc-secondary-button;
+}
+
+.rqa-statuses__hide {
+  @extend .hc-secondary-button;
+}
+
+.rqa-statuses__publish--small {
+  @extend .hc-success-button--small;
+}
+
+.rqa-statuses__archive--small {
+  @extend .hc-secondary-button--small;
+}
+
+.rqa-statuses__hide--small {
+  @extend .hc-secondary-button--small;
+}

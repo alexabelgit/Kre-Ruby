@@ -1,0 +1,15 @@
+= content_for :recipient
+  = @presenter.user_first_name
+
+p = "This is a friendly reminder to let you know that your free \
+     #{@presenter.formatted_trial_name} trial is almost over."
+
+p = "We hope that you love how easy it is to collect reviews, create more traffic, \
+     build more credibility and sell more with HelpfulCrowd!"
+
+p = "To continue doing more, check out our plans which start as low as price of a \
+     good cup of coffee a month."
+
+= call_to_action 'Choose a plan', billing_back_settings_url
+
+= render 'back_mailer/shared/contact_us_and_thank_you', contact_who: 'billing'

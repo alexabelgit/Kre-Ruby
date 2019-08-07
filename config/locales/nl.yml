@@ -1,0 +1,454 @@
+---
+"nl":
+  "activerecord":
+    "errors":
+      "models":
+        "abuse_report":
+          "attributes":
+            "additional_info":
+              "blank": >-
+                moet worden opgegeven als 'Iets anders' is geselecteerd als reden
+            "reason":
+              "blank": >-
+                ^Je moet een reden selecteren
+        "product":
+          "attributes":
+            "id_from_provider":
+              "taken": >-
+                ^ID moet uniek zijn. Degene die je hebt ingevuld is al in gebruik
+                bij een ander product
+        "review":
+          "attributes":
+            "customer":
+              "must_be_authenticated": >-
+                ^Je moet ingelogd zijn om een beoordeling te schrijven
+            "product_ids":
+              "cannot_be_repeated": >-
+                ^Je hebt dit product al beoordeeld
+              "taken": >-
+                ^Je hebt deze aankoop al beoordeeld
+            "review_request_id":
+              "request_must_be_sent": >-
+                ^Je kan deze aankoop momenteel niet beoordelen
+            "source":
+              "cannot_be_voluntary": >-
+                ^Je kan deze aankoop momenteel niet beoordelen
+        "review_request":
+          "attributes":
+            "order_id":
+              "blank": >-
+                kan niet worden gemaakt zonder een bijbehorende klant. Gelieve een
+                geldig e-mailadres op te geven.
+    "models":
+      "comment":
+        "one": >-
+          reactie
+        "other": >-
+          reacties
+      "customer":
+        "one": >-
+          klant
+        "other": >-
+          klanten
+      "product":
+        "one": >-
+          product
+        "other": >-
+          producten
+      "product_group":
+        "one": >-
+          productgroep
+        "other": >-
+          productgroepen
+      "question":
+        "one": >-
+          vraag
+        "other": >-
+          vragen
+      "review":
+        "one": >-
+          beoordeling
+        "other": >-
+          beoordelingen
+      "review_request":
+        "one": >-
+          beoordelingsaanvraag
+        "other": >-
+          beoordelingsaanvragen
+  "answer":
+    "one": >-
+      antwoord
+    "other": >-
+      antwoorden
+  "cancel": >-
+    Annuleer
+  "counterify":
+    "characters":
+      "exceeded": >-
+        Maximum aantal tekens overschreden
+      "remaining":
+        "one": >-
+          1 teken resterend
+        "other": >-
+          %{count} tekens resterend
+  "default_templates":
+    "email":
+      "critical_review_followup_mail_body": "<p>Hallo [customer_name],</p>\r\n<p>Bedankt
+        voor je beoordeling.</p>\r\n<p>[store_name] Team.</p>"
+      "critical_review_followup_mail_subject": >-
+        Bedankt voor je beoordeling.
+      "positive_review_followup_mail_body": "<p>Hallo [customer_name],</p>\r\n<p>Bedankt
+        voor je beoordeling.</p>\r\n<p>[store_name] Team.</p>"
+      "positive_review_followup_mail_subject": >-
+        Bedankt voor je review
+      "question_answer_mail_body": "<p>Hallo [customer_name],</p>\r\n<p>Je vraag over
+        [product_name] is beantwoord door onze vertegenwoordiger:</p>\r\n<p>[answer]</p>\r\n<p>Je
+        vraag:</p>\r\n<p>[question]</p>\r\n<p>[product_link]</p>\r\n<p>[store_name]
+        Team.</p>"
+      "question_answer_mail_subject": >-
+        Je vraag bij [store_name] is beantwoord.
+      "repeat_review_request_mail_body": "<p>Hallo [customer_name],</p>\r\n<p>Het
+        is nog niet te laat om ons te vertellen wat je vond van je recente bestelling.</p>\r\n<p>Klik
+        op een sterretje om je ervaring te beoordelen met:</p>\r\n<p>[products]</p>\r\n<p>Niet
+        tevreden? Contacteer ons alsjeblieft eerst zodat we kunnen helpen.</p>\r\n<p>[store_name]
+        Team.</p>"
+      "repeat_review_request_mail_subject": >-
+        Herinnering om je recente bestelling bij [store_name] te beoordelen
+      "review_answer_mail_body": "<p>Hallo [customer_name],</p>\r\n<p>Je beoordeling
+        van [product_name] is beantwoord door onze vertegenwoordiger:</p>\r\n<p>[answer]</p>\r\n<p>Je
+        beoordeling:</p>\r\n<p>[review]</p>\r\n<p>[product_link]</p>\r\n<p>[store_name]
+        Team.</p>"
+      "review_answer_mail_subject": >-
+        Je review bij [store_name] is beantwoord
+      "review_request_mail_body": "<p>Hallo [customer_name],</p>\r\n<p>Klik op een
+        sterretje om je ervaring te beoordelen met:</p>\r\n<p>[products]</p>\r\n<p>Niet
+        tevreden? Contacteer ons alsjeblieft eerst zodat we kunnen helpen.</p>\r\n<p>[store_name]
+        Team.</p>"
+      "review_request_mail_subject": >-
+        Beoordeel je recente bestelling bij [store_name]
+  "embed": >-
+    Embedden
+  "errors":
+    "messages":
+      "already_confirmed": >-
+        was al bevestigd, probeer alsjeblieft in te loggen
+      "confirmation_period_expired": >-
+        moet worden bevestigd binnen %{period}, vraag alsjeblieft een nieuwe aan
+      "expired": >-
+        is verlopen, vraag alsjeblieft een nieuwe aan
+      "not_found": >-
+        niet gevonden
+      "not_locked": >-
+        was niet vergrendeld
+      "not_saved":
+        "one": >-
+          1 foutmelding zorgde ervoor dat %{resource} niet kon worden opgeslagen:
+        "other": >-
+          %{count} foutmeldingen zorgden ervoor dat %{resource} niet kon worden opgeslagen:
+  "flash":
+    "submitted_successfully":
+      "question": >-
+        Bedankt! We hebben je vraag ontvangen en we laten je iets weten via mail wanneer
+        het beantwoord is
+      "review": >-
+        Bedankt! We hebben je beoordeling ontvangen
+      "subscribed": >-
+        Je bent succesvol geabonneerd aan %{store}.
+      "unsubscribed": >-
+        Je hebt je succesvol afgemeld van %{store}.
+  "front":
+    "based_on_reviews_count":
+      "one": >-
+        1 beoordeling
+      "other": >-
+        %{count} beoordelingen
+    "components":
+      "customer_form":
+        "email":
+          "hint": >-
+            Je e-mailadres zal niet publiekelijk worden gedeeld.
+          "label": >-
+            Je e-mailadres
+        "name":
+          "hint": >-
+            Je name zal verschijnen als initialen.
+          "hint_update_html": >-
+            Je naam zal verschijnen als <strong>%{initials}</strong>
+          "label": >-
+            Je naam
+      "privacy_notice":
+        "link_content": >-
+          Privacybeleid
+        "with_name":
+          "html": "Door dit formulier te verzenden, ga je akkoord dat je inhoud en
+            naam\r\n<strong>%{name}</strong>  mogelijk online gepubliceerd mogen worden
+            volgens onze\r\n%{link}."
+        "without_name":
+          "html": "Door dit formulier te verzenden, ga je akkoord dat je inhoud en
+            naam\r\nmogelijk online gepubliceerd mogen worden volgens onze %{link}."
+    "continue_shopping": >-
+      Ga verder met shoppen
+    "flags":
+      "new":
+        "already_flagged": >-
+          Je hebt dit %{item} al gemarkeerd als ongepast
+        "flag_as_inappropriate": >-
+          Markeer dit %{item} als ongepast
+      "show":
+        "flag_submitted": >-
+          Bedankt
+    "mailer":
+      "excuses":
+        "question_answered_html": >-
+          Je hebt deze mail van %{helpfulcrowd} ontvangen om je een update te geven
+          over de vraag die je stelde aan %{store}.
+        "review_answered_html": >-
+          Je hebt deze mail van %{helpfulcrowd} ontvangen om je een update te geven
+          over de beoordeling die je achterliet bij %{store}.
+        "review_follow_up_html": >-
+          Je hebt deze mail van %{helpfulcrowd} ontvangen naar aanleiding van je recente
+          beoordeling bij %{store}.
+        "review_request_html": >-
+          Je hebt deze mail van %{helpfulcrowd} ontvangen vanwege je recente bestelling
+          bij %{store}.
+      "helpers":
+        "call_to_action":
+          "view_product": >-
+            Bezoek productpagina
+    "products":
+      "questions":
+        "form":
+          "question_html": >-
+            Wat zou je graag willen weten over %{product}?
+        "new":
+          "title": >-
+            Stel een vraag
+      "view_product": >-
+        Ga naar de productpagina
+    "review_requests":
+      "reviews":
+        "form":
+          "rating_html": >-
+            Beoordeel je ervaring met %{reviewable}
+        "new":
+          "already_reviewed_html": >-
+            Je hebt %{reviewable} al beoordeeld
+          "review_other_purchases":
+            "one": >-
+              Je andere aankoop beoordelen
+            "other": >-
+              Je andere aankopen beoordelen
+          "title": >-
+            Je aankoop beoordelen
+    "search":
+      "label": >-
+        Zoeken:
+      "placeholder": >-
+        Voer trefwoord in
+    "share":
+      "button": >-
+        Delen
+    "sort_by": >-
+      Sorteren op:
+    "sort_options":
+      "most_helpful": >-
+        Meest behulpzaam
+      "most_recent": >-
+        Recentste
+      "rating_asc": >-
+        Rating: laagste
+      "rating_desc": >-
+        Rating: hoogste
+    "suppressions":
+      "manage_subscriptions":
+        "subscribe_question_html": >-
+          Wil je dat HelpfulCrowd mails naar je toestuurt stuurt in naam van %{store}?
+        "unsubscribe_question_html": >-
+          Wil je dat HelpfulCrowd stopt met het sturen van mails in naam van %{store}?
+    "votes":
+      "upvote": >-
+        Behulpzaam
+      "upvotes_count":
+        "one": >-
+          %{count} persoon vond dit %{item} behulpzaam
+        "other": >-
+          %{count} mensen vonden dit %{item} behulpzaam
+    "widgets":
+      "products":
+        "rating":
+          "qa":
+            "html":
+              "one": >-
+                1 vraag
+              "other": >-
+                %{count} vragen
+          "reviews":
+            "html":
+              "one": >-
+                1 beoordeling
+              "other": >-
+                %{count} beoordelingen
+        "summary":
+          "qa":
+            "html":
+              "one": >-
+                1 vraag
+              "other": >-
+                %{count} vragen
+            "new": >-
+              Stel een vraag
+          "reviews":
+            "html":
+              "one": >-
+                1 beoordeling
+              "other": >-
+                %{count} beoordelingen
+            "new": >-
+              Schrijf een beoordeling
+        "tabs":
+          "questions":
+            "new": >-
+              Stel de eerste vraag
+            "search":
+              "label": >-
+                Zoeken:
+              "placeholder": >-
+                Q&A zoeken
+            "title": >-
+              Q&A
+            "write_first": >-
+              Stel de eerste vraag over dit product
+          "reviews":
+            "based_on_reviews":
+              "html": >-
+                Gebaseerd op %{reviews_count}
+            "media_gallery":
+              "images":
+                "one": >-
+                  1 foto
+                "other": >-
+                  %{count} foto's
+              "search":
+                "label": >-
+                  Zoeken:
+                "placeholder": >-
+                  Beoordelingen zoeken
+              "title": "Klant\r\nmedia"
+              "videos":
+                "one": >-
+                  1 video
+                "other": >-
+                  %{count} video's
+            "new": >-
+              Schrijf beoordeling
+            "rating": >-
+              %{rating} van de 5 sterren
+            "title": >-
+              Klantenbeoordelingen
+            "write_first": >-
+              Wees de eerste die dit product beoordeelt
+          "titles":
+            "questions": >-
+              Vragen & Antwoorden
+            "questions_responsive": >-
+              Q&A
+            "reviews": >-
+              Beoordelingen en Ratings
+            "reviews_responsive": >-
+              Beoordelingen
+      "sidebar":
+        "default_title": >-
+          Beoordelingen | Q&A
+    "with_incentive":
+      "reviews":
+        "text": >-
+          De schrijver heeft mogelijk een compensatie gekregen voor het schrijven
+          van deze beoordeling.
+    "write_review": >-
+      Beoordeling schrijven
+  "helpers":
+    "friendly_rating": >-
+      Nog geen beoordelingen
+    "label":
+      "customer":
+        "email": >-
+          E-mailadres klant
+        "name": >-
+          Naam klant
+      "product_group":
+        "name": >-
+          Naam
+    "placeholder":
+      "promotion":
+        "template": >-
+          Gratis verzending van alle bestellingen tijdens de Black Friday week!
+    "submit":
+      "product_group":
+        "create": >-
+          Groep maken
+        "update": >-
+          Groep bijwerken
+      "question":
+        "create": >-
+          Vraag stellen
+      "review":
+        "create": >-
+          Beoordeling verzenden
+  "layouts":
+    "mailer":
+      "front":
+        "manage_subscriptions": >-
+          Abonnementen beheren
+        "unsubscribe": >-
+          Uitschrijven
+  "load_more": >-
+    Meer laden
+  "privacy_policy": >-
+    Privacybeleid
+  "question_facebook_post_template": "[customer_name]\r\nVraag: [question]\r\nAntwoord:
+    [answer]"
+  "question_tweet_template": "[customer_name]\r\nVraag: [question]\r\nAntwoord: [answer]"
+  "rating_1": >-
+    Vreselijk
+  "rating_2": >-
+    Slecht
+  "rating_3": >-
+    Oké
+  "rating_4": >-
+    Goed
+  "rating_5": >-
+    Uitstekend
+  "read_less": >-
+    minder lezen
+  "read_more": >-
+    Volledige beoordeling
+  "recaptcha":
+    "errors":
+      "verification_failed": >-
+        reCAPTCHA verificatie mislukt.
+    "label": >-
+      Help ons in de strijd tegen spam
+  "report": >-
+    Rapporteren
+  "review_facebook_post_template": "Bekijk wat [customer_name] zei over [product_name]:\r\n\r\n[rating]\r\n\"[feedback]\""
+  "review_tweet_template": "[customer_name]:\r\n[product_name] - [rating], \"[feedback]\""
+  "settings":
+    "default":
+      "review_slider_c2a_text": >-
+        Alles zien
+  "stars":
+    "one": >-
+      1 ster
+    "other": >-
+      %{count} sterren
+  "verified":
+    "agent":
+      "description": >-
+        %{author} werkt bij %{store}
+      "label": >-
+        %{store}
+    "customer":
+      "description": >-
+        %{author} heeft dit product gekocht
+      "label": >-
+        Geverifieerde koper

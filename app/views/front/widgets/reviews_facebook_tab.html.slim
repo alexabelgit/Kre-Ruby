@@ -1,0 +1,6 @@
+section.hc-reviews-facebook-tab
+  h1 = title 'Product Reviews'
+
+  = render                 'front/reviews/list',
+    reviews:               @reviews,
+    open_links_in_new_tab: true

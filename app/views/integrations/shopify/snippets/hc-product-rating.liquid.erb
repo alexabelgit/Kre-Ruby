@@ -1,0 +1,68 @@
+<%
+  review_link_content       = I18n.translate('front.widgets.products.rating.reviews.html', locale: lang)
+  review_link_content_one   = review_link_content[:one].gsub('%{count}', '{{hc_reviews_count}}')
+  review_link_content_other = review_link_content[:other].gsub('%{count}', '{{hc_reviews_count}}')
+%>
+
+{% assign hc_storefront_status = shop.metafields.helpfulcrowd.global.storefront_status %}
+{% if product and hc_storefront_status == "active" %}
+  {% assign hc_reviews_count    = product.metafields.helpfulcrowd.product.reviews_count | plus: 0 %}
+  {% assign hc_rating 		       = product.metafields.helpfulcrowd.product.rating | plus: 0 %}
+  {% assign hc_suppressed	       = product.metafields.helpfulcrowd.product.suppressed | plus: 0 %}
+  {% assign hc_rating_position   = shop.metafields.helpfulcrowd.global.rating_position %}
+  {% assign hc_rating_layout     = shop.metafields.helpfulcrowd.global.rating_layout %}
+  {% assign hc_id 			         = shop.metafields.helpfulcrowd.global.store_id %}
+  {% assign hc_theme 			       = shop.metafields.helpfulcrowd.global.theme %}
+
+  <div class="hc-widget">
+    <div data-hc="product-rating" data-hc-id="{{ product.id }}" data-hc-store-id="{{ hc_id }}" class="{{ hc_theme }}">
+      {% if hc_rating > 0 and hc_suppressed < 1 %}
+        <div class="hc-product-rating hc-product-rating--{{ hc_rating_position }}">
+          {% if hc_rating_layout == "detailed" %}
+            <span class="hc-product-rating__stars">
+              {% include 'hc-stars' %}
+            </span>
+            <span class="hc-product-rating__text">
+              {{ hc_rating }}
+            </span>
+            <span class="hc-product-rating__review-count">
+              <span>(</span>
+              {% if hc_reviews_count == 1 %}
+                <span>
+                  <%=review_link_content_one%>
+                </span>
+              {% else %}
+                <span>
+                  <%=review_link_content_other%>
+                </span>
+              {% endif %}
+              <span>)</span>
+            </span>
+          {% elsif hc_rating_layout == 'summary' %}
+            <span class="hc-product-rating__stars">
+              <span class="hc-stars">
+                <%= ApplicationController.helpers.hc_icon('star lg') %>
+              </span>
+            </span>
+            <span class="hc-product-rating__text">
+              {{ hc_rating }}
+            </span>
+            <span class="hc-product-rating__review-count">
+              <span>(</span>
+              {% if hc_reviews_count == 1 %}
+                <span>
+                  <%=review_link_content_one%>
+                </span>
+              {% else %}
+                <span>
+                  <%=review_link_content_other%>
+                </span>
+              {% endif %}
+              <span>)</span>
+            </span>
+          {% endif %}
+        </div>
+      {% endif %}
+    </div>
+  </div>
+{% endif %}

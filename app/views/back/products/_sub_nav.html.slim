@@ -1,0 +1,5 @@
+- items = [{ name: 'Catalog', path: back_products_path },
+           { name: 'Groups', path: back_product_groups_path }]
+
+= content_for :sub_nav
+  = render 'layouts/back/sub_nav', items: items 

@@ -1,0 +1,7 @@
+wb = xlsx_package.workbook
+wb.add_worksheet(name: "Billing") do |sheet|
+  sheet.add_row @keys
+  @values.each do |value|
+    sheet.add_row value
+  end
+end

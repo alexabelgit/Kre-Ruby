@@ -1,0 +1,6 @@
+.hc-theme__light {
+  @extend %color__dark;
+  @extend %background-color__inherit;
+
+  @import 'components/**/*';
+}

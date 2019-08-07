@@ -1,0 +1,13 @@
+- content_for :main_class, 'boxed'
+- render 'layouts/back/sub_navs/tools'
+- title 'Reporting inappropriate content'
+
+h1
+  ' Reporting
+  = link_to_blank "#{ @abusable.hashid } (#{ @abusable.class.name.downcase })",
+    controller:   "back/#{ @abusable.class.name.tableize }",
+    action:       "show",
+    id:           @abusable.hashid
+
+.hc-card
+  = render 'form'

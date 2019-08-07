@@ -1,0 +1,6 @@
+en:
+  helpful_components:
+    cloudinary:
+      upload_widget_trigger:
+        button: Upload
+        label: Photo / Video

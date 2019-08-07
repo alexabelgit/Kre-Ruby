@@ -1,0 +1,19 @@
+<% @encoded_params =  %>
+
+<script type='text/javascript'>
+  if (window.top == window.self) {
+    window.top.location.href = "https://<%= @shop %>/admin/oauth/authorize?<%= OmniAuth::Strategies::Shopify.encoded_params_for_signature(
+                                                                                client_id: ENV['SHOPIFY_API_KEY'], scope: @scope,
+                                                                                state: @state, redirect_uri: new_oauth_shopify_url) %>";
+                                                                                //"/auth/shopify?shop=myshopname";
+  } else {
+    message = JSON.stringify({
+      message: "Shopify.API.remoteRedirect",
+      data: { location: "https://<%= @shop %>/admin/oauth/authorize?<%= OmniAuth::Strategies::Shopify.encoded_params_for_signature(
+                                                                                client_id: ENV['SHOPIFY_API_KEY'], scope: @scope,
+                                                                                state: @state, redirect_uri: new_oauth_shopify_url(iframe: true)) %>" }
+                                                                                //window.location.origin + "/auth/shopify?shop=myshopname" }
+    });
+    window.parent.postMessage(message, "https://<%= @shop %>");
+  }
+</script>

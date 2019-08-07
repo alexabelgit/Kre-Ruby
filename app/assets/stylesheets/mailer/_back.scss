@@ -1,0 +1,8 @@
+.media {
+  img {
+    @extend %display__inline-block;
+    @extend %border__base;
+    @extend %margin-y__2xs--px;
+    @extend %margin-right__2xs--px;
+  }
+}

@@ -1,0 +1,2 @@
+jQuery('[data-model="imported_question"][data-id="<%= @imported_question.hashid %>"]')
+        .replaceWith('<%= escape_javascript(render 'back/imported_questions/show', imported_question: @imported_question) %>');

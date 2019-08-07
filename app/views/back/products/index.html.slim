@@ -1,0 +1,202 @@
+= render 'back/products/sub_nav'
+
+header.header-with-action
+  h1 = title 'Product catalog'
+
+  div
+    = link_to sync_back_products_path,
+      method: :post,
+      class:  'hc-secondary-button',
+      data:   { disable_with: "#{spinner_icon} Syncing products" } do
+
+      | #{hc_icon 'refresh'} Sync products
+
+    - if current_store.manages_products?
+      => link_to back_products_upload_path, class: 'hc-secondary-button' do
+        | #{hc_icon 'upload'} Upload products
+
+      = new_button 'New product', new_back_product_path
+
+section.products
+  .products__filters
+    .products__filter
+      table.statuses
+        thead
+          tr
+            th Status
+            th Products
+
+        tbody
+          tr
+            td Active
+            td = active_link_to current_store.products.active.count,
+                  filter_link(status: :active, without_keys: [:page]),
+                  active:         :exact,
+                  class_active:   'active-status',
+                  class_inactive: 'status'
+
+          tr
+            td Hidden
+            td = active_link_to current_store.products.hidden.count,
+                  filter_link(status: :hidden, without_keys: [:page]),
+                  active:         :exact,
+                  class_active:   'active-status',
+                  class_inactive: 'status'
+
+          tr
+            td Archived
+            td = active_link_to current_store.products.archived.count,
+                  filter_link(status: :archived, without_keys: [:page]),
+                  active:         :exact,
+                  class_active:   'active-status',
+                  class_inactive: 'status'
+
+          tr
+            td All
+            td = active_link_to current_store.products.count,
+                  filter_link(status: nil, without_keys: [:page]),
+                  active:         :exact,
+                  class_active:   'active-status',
+                  class_inactive: 'status'
+
+    .products__filter
+      .header-with-action__search
+        = render 'back/shared/search', action: back_products_path, searchable: @products
+
+
+    .products__filter
+        label for="Stars" Filter by rating
+
+        =< filter_select 'Stars',
+          @products.filter_value,
+          :rating,
+          4.downto(1).map { |x| { title: x.to_s + ' Stars & Up', id: x } },
+          'All ratings'
+
+    .products__filter
+        label for="Product Groups" Filter by product groups
+
+        =< filter_select 'Product Groups',
+          @products.filter_value,
+          :product_group_ids,
+          current_user.store.product_groups.a24z.map { |x| { title: x.name, id: x.id } }
+
+  .products__list
+    - if @products_any
+      .responsive-table
+        table.table
+          thead
+            tr
+              th.sortable
+                = link_to back_products_path(sort_param(@products.sort_mode, :a24z)),
+                  class:  'sortable-link' do
+
+                  ' Product
+                  = sort_icon(@products.sort_mode, :a24z)
+
+              th.sortable.product__ratings
+                = link_to back_products_path(sort_param(@products.sort_mode, :by_rating)),
+                  class:  'sortable-link' do
+
+                  ' Rating
+                  = sort_icon(@products.sort_mode, :by_rating)
+
+              th.sortable.product__review-count
+                = link_to back_products_path(sort_param(@products.sort_mode, :reviews_count)),
+                  class:  'sortable-link' do
+
+                  ' Reviews
+                  = sort_icon(@products.sort_mode, :reviews_count)
+
+              th.sortable.product__question-count
+                = link_to back_products_path(sort_param(@products.sort_mode, :questions_count)),
+                  class:  'sortable-link' do
+
+                  ' Questions
+                  = sort_icon(@products.sort_mode, :questions_count)
+              th
+
+          tbody
+            - @products.each do |product|
+              tr.product
+
+                td.product__info
+                  = link_to back_product_path(product), class: 'product__image-wrapper' do
+
+                    = image_tag product.featured_image.thumb.url,
+                      alt:      product.name.truncate(20),
+                      class:    'product__image'
+
+                  .product__name-n-id
+                    = link_to back_product_path(product), class: 'product__name' do
+
+                      =  product.get_highlights(:name)
+                      =< stamp_product_if_archived_or_hidden(product)
+
+                    .product__id
+                      ' ##{product.id_from_provider}
+                      = link_to hc_icon('external-link'), product.url, target: '_blank'
+
+                td.product__ratings = stars_and_rating(product.rating)
+
+                td.product__review-count = product.reviews_count
+
+                td.product__question-count = product.questions_count
+
+                td.table__actions
+
+                  - unless product.active?
+                    => link_to back_product_path(product, product: { status: :active, suppressed: false }, page: @page),
+                      method: :put,
+                      remote: true,
+                      data:   { disable_with: "#{ spinner_icon } Publishing" },
+                      class:  'rqa-statuses__publish--small' do
+
+                      => hc_icon 'globe'
+                      |  Publish
+
+                  - unless product.archived?
+                    = link_to back_product_path(product, product: { status: :archived, suppressed: true }, page: @page),
+                      method: :put,
+                      remote: true,
+                      data:   { disable_with: "#{ spinner_icon } Archiving" },
+                      class:  'rqa-statuses__archive--small' do
+
+                      => hc_icon 'archive'
+                      =  'Archive'
+
+                  - unless product.hidden?
+                    = link_to back_product_path(product, product: { status: :hidden, suppressed: true }, page: @page),
+                      method: :put,
+                      remote: true,
+                      data:   { disable_with: "#{ spinner_icon } Hiding" },
+                      class:  'rqa-statuses__hide--small' do
+
+                      =  'Hide'
+
+
+
+                  => edit_button edit_back_product_path(product), size: 'small'
+
+                  - if current_store.manages_products?
+                    = delete_button back_product_path(product),
+                      size:         'small',
+                      confirm:      "Your are about to perform a potentially destructive action. \
+                                    By deleting a product, you are also deleting all the \
+                                    content related to it, including reviews and Q&A. \
+                                    \n\n \
+                                    Are you sure you want to delete this product?"
+
+      = will_paginate @products, class: 'hc-paging hc-paging--modern'
+
+    - else
+      - if current_store.manages_products?
+        = render       'back/shared/no_records',
+          object:      'products',
+          content:     'This is where your products will show up.',
+          action:      new_back_product_path,
+          action_name: 'Create first product'
+      - else
+        = render  'back/shared/no_records',
+          object: 'products',
+          append_chat_link: true

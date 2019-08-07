@@ -1,0 +1,22 @@
+- content_for :main_class, 'onboarding'
+= render 'layouts/back/sub_navs/tools'
+
+h1 = title 'Downloads'
+
+section.settings-section
+  table.table.downloads
+    thead
+      tr
+        th File
+        th Content
+        th Expires at
+        th
+    tbody.downloads
+      - @downloads.each do |download|
+        tr.downloads__item
+          td = link_to download.name, back_download_path(download.hashid), target: '_blank'
+          td = download.filetype.humanize
+          td = humane_date(download.expired_at)
+
+  = will_paginate @downloads, class: "hc-paging hc-paging--modern"
+

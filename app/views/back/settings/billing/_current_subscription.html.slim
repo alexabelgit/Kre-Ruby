@@ -1,0 +1,79 @@
+section.current-subscription
+  h2 Current subscription
+
+  section.current-subscription__current-plan
+    == render 'back/settings/billing/current_plan', presenter: presenter
+
+  - if presenter.active_subscription?
+    - if presenter.orders_based_billing? && presenter.charge_extras?
+      .current-subscription__usage
+        section.plan-usage
+          h3 Plan usage
+
+          .plan-usage__numbers
+            span = presenter.orders_plan_usage_vs_allowance
+            span = "#{presenter.plan_usage_percent}%"
+
+          .plan-usage__progress-bar
+            = progress_bar presenter.plan_usage_percent, color: presenter.orders_plan_usage_state, mock_min_value: true
+
+          - if presenter.orders_plan_usage_message
+            .plan-usage__message
+              = presenter.orders_plan_usage_message
+    - if presenter.products_based_billing? && presenter.plan_exceeded?
+      .current-subscription__usage
+        section.plan-usage
+          h3 Plan usage
+
+          - if presenter.gifted_products?
+            .plan-usage__numbers
+              span
+                ' Your store has
+                strong> = presenter.products_plan_usage
+                ' active products. Your current plan covers up to
+                strong> = presenter.products_limit_without_gifts
+                ' products and you have
+                strong> = presenter.gifted_products
+                | free products as a gift from us.
+          - else
+            .plan-usage__numbers
+              span = presenter.products_plan_usage_vs_allowance
+
+          - if presenter.products_plan_over_limit_message
+            .plan-usage__message
+              = presenter.products_plan_over_limit_message
+
+  - if presenter.real_subscription?
+    = render 'helpful_components/collapsible/item', name: 'Subscription details', heading: :h3
+      .current-subscription__payment-info
+        dl.payment-info
+          - if presenter.payment_method.present?
+            dt.payment-info__label Payment method
+            dd.payment-info__value = presenter.payment_method
+
+          dt.payment-info__label Next payment
+          dd.payment-info__value
+            - if current_store.shopify?
+              - if presenter.payment_method.present?
+                | Available Shopify admin
+
+            - else
+              - if presenter.next_payment_date?
+                = humane_date presenter.next_payment_date
+
+              - elsif presenter.subscription_cancelled?
+                | Subscription cancelled on #{presenter.cancellation_date}
+
+          dt.payment-info__label Billing history
+          dd.payment-info__value
+            - if current_store.shopify?
+              - if presenter.payment_method.present?
+                | Available Shopify admin
+            - elsif presenter.manage_subscription?
+              a href='javascript:' data-behavior="manage-subscription" data-subscription-id=presenter.subscription_id
+                | Open
+
+      - if presenter.manage_subscription?
+        .current-subscription__manage
+          a.hc-secondary-button href='javascript:' data-behavior="manage-subscription" data-subscription-id=presenter.subscription_id
+            | Manage subscription

@@ -1,0 +1,14 @@
+/ product*
+/ store*
+
+span.hc-product-rating__stars>
+	.hc-stars
+		= hc_icon 'star lg'
+
+span.hc-product-rating__text>
+  = friendly_rating product.rating
+
+span.hc-product-rating__review-count
+ 	| (
+ 	= t 'reviews.html', count: product.reviews_count, scope: 'front.widgets.products.rating'
+ 	| )

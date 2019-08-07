@@ -1,0 +1,45 @@
+/ platform
+/ store*
+/ widget*
+
+- platform           ||= 'custom'
+- widget_embed_guide   = "back.widgets.#{widget}.embed_guide.#{platform}"
+
+- if I18n.exists?("#{widget_embed_guide}.message", :en)
+
+  = render 'shared/system_messages/custom',
+    body:  t("#{widget_embed_guide}.message.text"),
+    type:  t("#{widget_embed_guide}.message.type")
+
+- snippet_key = "#{widget_embed_guide}.snippet"
+
+- if I18n.exists?(snippet_key, :en)
+  - snippets = t(snippet_key)
+
+  - snippets.each do | snippet |
+
+    - snippet_language = snippet[:language].present? ? snippet[:language] : :html
+    - snippet_url      = integrations_widgets_url store.hashid, widget: widget, format: :js
+    - snippet_code     = I18n.interpolate snippet[:code], url: snippet_url
+
+    .code-snippet
+      .code-snippet__label = snippet[:label].html_safe
+      .code-snippet__code = hc_code snippet_code, snippet_language
+
+      - if snippet[:hint].present?
+        .code-snippet__hint = form_hint snippet[:hint]
+
+    - if snippet[:example].present?
+
+      = render layout: 'helpful_components/collapsible/item',
+               locals: { name:    "#{widget}_example",
+                         title:   'Example',
+                         heading: :h4  } do
+
+        - snippet[:example].each do | example |
+
+          - example_code = I18n.interpolate example[:code], url: snippet_url
+
+          .code-snippet
+            .code-snippet__label = example[:label].html_safe
+            .code-snippet__code = hc_code example_code, snippet_language

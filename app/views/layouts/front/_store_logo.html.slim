@@ -1,0 +1,8 @@
+/ store*
+/ url
+
+- url ||= store.url
+
+div
+  = link_to url, target: '_blank' do
+    = image_tag (store.logo.present? ? store.logo.small.url.to_s : "dummy_logo.png"), alt: store.name

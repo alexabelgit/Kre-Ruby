@@ -1,0 +1,49 @@
+.admin-form {
+  padding: 20px;
+}
+
+.admin-form__control-group {
+  display: flex;
+  flex-direction: row;
+}
+
+.admin-form__input {
+  flex: 1 1 auto;
+  display: block;
+  margin-bottom: 10px;
+  margin-right: 8px;
+  padding: 4px;
+  margin-top: -4px;
+}
+
+.admin-form__label {
+  display: block;
+  flex: none;
+  font-weight: bold;
+  font-size: 1em;
+  margin-right: 10px;
+  width: 120px;
+}
+
+.admin-form__submit {
+  @extend .hc-secondary-button;
+}
+
+.admin-form__body-input:focus ~ .admin-form__submit,
+.admin-form__body-input:valid ~ .admin-form__submit {
+  @extend .hc-primary-button;
+}
+
+@media (max-width: 768px) {
+  .admin-form {
+    padding: 20px 8px;
+  }
+
+  .admin-form__control-group {
+    flex-direction: column;
+  }
+
+  .admin-form__input {
+    margin-top: 5px;
+  }
+}

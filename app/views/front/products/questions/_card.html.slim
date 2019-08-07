@@ -1,0 +1,57 @@
+/ question*
+/ show_date
+/ show_actions
+/ show_product
+
+- show_date         ||= @store.settings(:questions).show_date.to_b
+- show_comment_date ||= false
+- product             = question.product
+- show_actions      ||= false
+- show_product      ||= false
+- show_qa_icons     ||= true
+- disable_product_links ||=false
+/ Override show/hide options based on store settings
+- if @store.hide_card_actions?
+  / - show_dropdown = false TODO this should be enabled after we have a dropdown in Q&A
+  - show_actions = false
+
+section.hc-widget-card {
+  data-model = "question"
+  data-id    = question.hashid
+}
+  / article.hc-question__question
+  - if show_product
+    .hc-widget-card__product
+      = render 'front/products/card', product: product, hide_thumbnail: false, disable_product_links: disable_product_links
+  header.hc-widget-card__header
+    .hc-widget-card__icon
+      - if show_qa_icons
+        = hc_icon 'hc-question lg'
+    .hc-widget-card__date
+      - if show_date
+        = humane_datetime question.submitted_at, hide_time: true
+  section.hc-widget-card__item
+    = render       'front/products/questions/item',
+      question:    question
+
+
+  - if question.comment.present?
+    = render 'front/comments/show', comment: question.comment, commentable: question, show_date: show_comment_date, show_answer_icon: show_qa_icons
+
+
+  - if show_actions
+    footer.hc-widget-card__footer
+      .hc-actions
+        = render  'front/votes/new',
+          object: question,
+          url:    front_product_question_votes_url(store_id:    question.store.hashid,
+                                                   product_id:  product.hashid,
+                                                   question_id: question.hashid,
+                                                   format:      :js)
+
+        = render  'front/flags/new',
+          object: question,
+          url:    front_product_question_flags_url(store_id:    question.store.hashid,
+                                                   product_id:  product.hashid,
+                                                   question_id: question.hashid,
+                                                   format:      :js)

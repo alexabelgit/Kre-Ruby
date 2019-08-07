@@ -1,0 +1,24 @@
+= content_for :help
+  = mail_to @help_to,
+            subject: @help_subject,
+            target: "_blank" do
+    / = image_tag 'life-ring.png'
+    = t('.get_help')
+
+= content_for :header
+  = yield :branding
+
+= content_for :main
+  = yield
+
+= content_for :footer
+  = yield :excuse
+  br
+  br
+  => link_to t('.unsubscribe', default: t('.unsubscribe', locale: :en)),
+     manage_subscriptions_front_suppressions_url(@store.hashid, customer_id: @customer.hashid, uid: @helpful_id, unsubscribe: 'true')
+  =  "·"
+  =< link_to t('.manage_subscriptions', default: t('.manage_subscriptions', locale: :en)),
+     manage_subscriptions_front_suppressions_url(@store.hashid, customer_id: @customer.hashid, uid: @helpful_id)
+
+= render template: 'layouts/mailer/base'

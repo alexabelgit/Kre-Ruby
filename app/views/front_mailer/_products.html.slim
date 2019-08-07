@@ -1,0 +1,47 @@
+/ TODO ~ change all product related classes to those of reviewable and rename this file also
+
+table.purchased-products[width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF"]
+  tbody
+
+    - @review_request.reviewable_transaction_items.without_reviews.each do |transaction_item|
+      - reviewable = transaction_item.reviewable
+
+      tr
+        td.purchased-product
+
+          .purchased-product__image-wrapper
+            = link_to new_front_review_request_review_url(reviewable.store.hashid,
+                                                          @review_request.hashid,
+                                                          transaction_item_id: transaction_item.hashid) do
+
+              = image_tag reviewable.public_image.small.url.to_s,
+                alt:      reviewable.name,
+                class:    'purchased-product__image'
+
+          h2.purchased-product__name
+            = link_to reviewable.name,
+              new_front_review_request_review_url(reviewable.store.hashid,
+                                                  @review_request.hashid,
+                                                  transaction_item_id: transaction_item.hashid)
+
+          table.rate-purchased-product [
+            width       = "100%"
+            border      = "0"
+            cellpadding = "0"
+            cellspacing = "0"
+            bgcolor     = "#FFFFFF"
+          ]
+            tbody
+              tr
+                - 1.upto(5) do |i|
+                  td.rate-purchased-product__link-wrapper
+                    = link_to new_front_review_request_review_url(reviewable.store.hashid,
+                                                                  @review_request.hashid,
+                                                                  transaction_item_id: transaction_item.hashid,
+                                                                  rating:           i),
+                      class: 'rate-purchased-product__link' do
+
+                      span.rate-purchased-product__star ☆
+                      - if @show_star_labels
+                        br
+                        span.rate-purchased-product__star-label = t("rating_#{i}")

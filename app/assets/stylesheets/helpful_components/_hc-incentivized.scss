@@ -1,0 +1,21 @@
+.incentivized-icon--false {
+  @extend %cursor__pointer;
+  @extend %color__pale;
+
+  &:hover {
+    @extend %color__success;
+  }
+}
+
+.incentivized-icon--true {
+  @extend %cursor__pointer;
+  @extend %color__success;
+
+  &:hover {
+    @extend %color__pale;
+  }
+}
+
+.incentivized {
+  
+}

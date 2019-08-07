@@ -1,0 +1,51 @@
+.change-plan__plans {
+  @include flexbox(
+    $align-items: stretch,
+    $flex-wrap:   wrap
+  );
+}
+
+.change-plan__old,
+.change-plan__new {
+  @extend %flex__1;
+  @extend %border-radius__base;
+  @extend %border-style__base;
+  @extend %border-width__base;
+  @extend %background-color__white;
+  @extend %padding__md;
+  @extend %text-align__center;
+
+  > h3 {
+    @extend %margin-bottom__lg;
+    @extend %margin-top__md;
+  }
+}
+
+.change-plan__old {
+  @extend %margin-right__xs;
+  @extend %border-color__base;
+
+  .bundle {
+    @extend %color__pale; // TODO usage of external component
+  }
+}
+
+.change-plan__new {
+  @extend %margin-left__xs;
+  @extend %border-color__base;
+
+  > h3 {
+    @extend %color__success;
+  }
+}
+
+.change-plan__trial {
+  @extend %padding-y__lg--rem;
+  @extend %font-size__lg;
+}
+
+.change-plan__button {
+  @extend %margin-bottom__md;
+  @extend %margin-top__lg;
+  @extend %success-button;
+}

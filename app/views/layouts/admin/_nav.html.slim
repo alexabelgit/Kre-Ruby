@@ -1,0 +1,49 @@
+nav.nav
+  = active_link_to admin_root_path,
+    active:         [['admin/dashboards'],[]],
+    class_active:   'nav__button--active',
+    class_inactive: 'nav__button' do
+
+    | Dashboard
+
+  = active_link_to admin_stores_path,
+    active:         [['admin/stores'],[]],
+    class_active:   'nav__button--active',
+    class_inactive: 'nav__button' do
+
+    | Stores
+
+  = active_link_to admin_users_path,
+    active:         [['admin/users'],[]],
+    class_active:   'nav__button--active',
+    class_inactive: 'nav__button' do
+
+    | Users
+
+  = active_link_to admin_reviews_path,
+    active:         [['admin/reviews'],[]],
+    class_active:   'nav__button--active',
+    class_inactive: 'nav__button' do
+
+    | Reviews
+
+  = active_link_to admin_questions_path,
+    active:         [['admin/questions'],[]],
+    class_active:   'nav__button--active',
+    class_inactive: 'nav__button' do
+
+    | Q&A
+
+  = active_link_to admin_abuse_reports_path,
+    active:         [['admin/abuse_reports'],[]],
+    class_active:   'nav__button--active',
+    class_inactive: 'nav__button' do
+
+    | ContentGuard
+
+  = active_link_to admin_pricing_index_path,
+    active:         [['admin/pricing'], []],
+    class_active:   'nav__button--active',
+    class_inactive: 'nav__button' do
+
+    | Pricing

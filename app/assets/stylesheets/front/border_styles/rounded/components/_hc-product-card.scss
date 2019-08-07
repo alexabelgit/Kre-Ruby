@@ -1,0 +1,5 @@
+.hc-product-card {
+	.hc-product-card__thumb, .hc-product-card__thumb img{
+		@extend %border-radius__#{$rounded-borders_sm};
+	}
+}

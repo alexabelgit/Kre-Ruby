@@ -1,0 +1,8 @@
+.hc-question-form-wrapper {
+  @extend %background-color__white;
+}
+.hc-question-form__submit,
+input.hc-question-form__submit {
+  @extend %background-color__dark;
+  @extend %color__light;
+}

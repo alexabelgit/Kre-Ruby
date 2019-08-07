@@ -1,0 +1,2 @@
+jQuery('main .system-message:not(.persistent)').remove();
+jQuery('main').prepend('<%= escape_javascript(render 'shared/system_messages/flash') %>');

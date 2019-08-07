@@ -1,0 +1,12 @@
+.hc-rating-chart__bar-wrapper {
+  @extend %background-color__darker;
+  @extend %border-color__dark;
+}
+
+.hc-rating-chart__rating {
+	@extend %color__pale;
+}
+
+.hc-rating-chart__count {
+	@extend %color__pale;
+}

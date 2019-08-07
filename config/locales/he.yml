@@ -1,0 +1,442 @@
+---
+"he":
+  "activerecord":
+    "errors":
+      "models":
+        "abuse_report":
+          "attributes":
+            "additional_info":
+              "blank": >-
+                יש למלא במידה ו-'משהו אחר' נבחר כסיבה
+            "reason":
+              "blank": >-
+                ^יש לבחור סיבה
+        "product":
+          "attributes":
+            "id_from_provider":
+              "taken": >-
+                ^ID חייב להיות ייחודי. ה-ID שהוזן כבר משויך למוצר אחר.
+        "review":
+          "attributes":
+            "customer":
+              "must_be_authenticated": >-
+                ^עליך להיות מחובר על מנת לכתוב חוות דעת
+            "product_ids":
+              "cannot_be_repeated": >-
+                ^כבר נתת חוות דעת על המוצר הזה
+              "taken": >-
+                ^כבר נתת חוות דעת על הרכישה הזו
+            "review_request_id":
+              "request_must_be_sent": >-
+                ^כרגע, לא ניתן לתת חוות דעת על הרכישה הזו
+            "source":
+              "cannot_be_voluntary": >-
+                ^כרגע, לא ניתן לתת חוות דעת על הרכישה הזו
+        "review_request":
+          "attributes":
+            "order_id":
+              "blank": >-
+                לא ניתן ליצור ללא לקוח תואם. יש לספק אימייל חוקי.
+    "models":
+      "comment":
+        "one": >-
+          תגובה
+        "other": >-
+          תגובות
+      "customer":
+        "one": >-
+          לקוח
+        "other": >-
+          לקוחות
+      "product":
+        "one": >-
+          מוצר
+        "other": >-
+          מוצרים
+      "product_group":
+        "one": >-
+          קבוצת מוצר
+        "other": >-
+          קבוצות מוצר
+      "question":
+        "one": >-
+          שאלה
+        "other": >-
+          שאלות
+      "review":
+        "one": >-
+          חוות דעת
+        "other": >-
+          חוות דעת
+      "review_request":
+        "one": >-
+          בקשת חוות דעת
+        "other": >-
+          בקשות חוות דעת
+  "answer":
+    "one": >-
+      תשובה
+    "other": >-
+      תשובות
+  "cancel": >-
+    ביטול
+  "counterify":
+    "characters":
+      "exceeded": >-
+        חריגה ממגבלת התווים
+      "remaining":
+        "one": >-
+          1 תווים נשארו
+        "other": >-
+          %{count} תווים נשארו
+  "default_templates":
+    "email":
+      "critical_review_followup_mail_body": "<p>[customer_name] שלום,</p>\r\n<p>תודה
+        על חוות הדעת שלך.</p>\r\n<p>[store_name] צוות חנות.</p>"
+      "critical_review_followup_mail_subject": >-
+        תודה על חוות הדעת שלך
+      "positive_review_followup_mail_body": "<p>[customer_name] שלום,</p>\r\n<p>תודה
+        על חוות הדעת שלך.</p>\r\n<p>[store_name] צוות חנות.</p>"
+      "positive_review_followup_mail_subject": >-
+        תודה על חוות הדעת שלך
+      "question_answer_mail_body": "<p>[customer_name] שלום,</p>\r\n<p>הנציג שלנו
+        ענה על השאלה שלך לגבי [product_name]:</p>\r\n<p>[answer]</p>\r\n<p>השאלה שלך:</p>\r\n<p>[question]</p>\r\n<p>[product_link]</p>\r\n<p>[store_name]
+        צוות חנות.</p>"
+      "question_answer_mail_subject": >-
+        [store_name] קיבלת תשובה על השאלה שלך בחנות
+      "repeat_review_request_mail_body": "<p>[customer_name] שלום,</p>\r\n<p>עדיין
+        לא מאוחר לשתף אותנו בחווית הרכישה האחרונה שלך.</p>\r\n<p>לחץ על כוכב כדי לדרג
+        את החוויה שלך עד עכשיו מ:</p>\r\n<p>[products]</p>\r\n<p>לא מרוצה? נשמח אם
+        תיצור קשר כדי שנוכל לעזור.</p>\r\n<p>[store_name] צוות חנות.</p>"
+      "repeat_review_request_mail_subject": >-
+        תזכורת לתת חוות דעת על ההזמנה האחרונה שלך בחנות [store_name]
+      "review_answer_mail_body": "<p>[customer_name] שלום,</p>\r\n<p>חוות הדעת שלך
+        על [product_name] קיבלה תשובה מהנציג שלנו:</p>\r\n<p>[reply]</p>\r\n<p>חוות
+        הדעת שלך:</p>\r\n<p>[review]</p>\r\n<p>[product_link]</p>\r\n<p>[store_name]
+        צוות חנות.</p>"
+      "review_answer_mail_subject": >-
+        חוות הדעת שלך בחנות [store_name] קיבלה תשובה
+      "review_request_mail_body": "<p>[customer_name] שלום,</p>\r\n<p>לחץ על כוכב
+        כדי לדרג את החוויה שלך עד עכשיו מ:</p>\r\n<p>[products]</p>\r\n<p>לא מרוצה?
+        נשמח אם תיצור קשר כדי שנוכל לעזור.</p>\r\n<p>[store_name] צוות חנות.</p>"
+      "review_request_mail_subject": >-
+        לתת חוות דעת על ההזמנה האחרונה שלך בחנות [store_name]
+  "embed": >-
+    להטמיע
+  "errors":
+    "messages":
+      "already_confirmed": >-
+        כבר אושר, יש לנסות להיכנס
+      "confirmation_period_expired": >-
+        צריך להיות מאושר תוך %{period}, יש לבקש מחדש
+      "expired": >-
+        לא בתוקף, יש לבקש סיסמה חדשה
+      "not_found": >-
+        לא נמצא
+      "not_locked": >-
+        לא ננעל
+      "not_saved":
+        "one": >-
+          שגיאה לא מאפשרת ל %{resource} לשמור:
+        "other": >-
+          %{count} שגיאות לא מאפשרות ל %{resource} לשמור:
+  "flash":
+    "submitted_successfully":
+      "question": >-
+        תודה! קיבלנו את השאלה שלך, אנחנו נודיע לך באימייל ברגע שתתקבל תשובה
+      "review": >-
+        תודה! קיבלנו את חוות הדעת שלך
+      "subscribed": >-
+        נרשמת בהצלחה לחנות %{store}.
+      "unsubscribed": >-
+        ביטלת את ההרשמה לחנות %{store}.
+  "front":
+    "based_on_reviews_count":
+      "one": >-
+        1 ביקורת
+      "other": >-
+        %{count} ביקורות
+    "components":
+      "customer_form":
+        "email":
+          "hint": >-
+            האימייל שלך יישאר חסוי במערכת
+          "label": >-
+            האימייל שלך
+        "name":
+          "hint": >-
+            השם שלך יוצג בראשי תיבות
+          "hint_update_html": >-
+            השם שלך יוצג ככה <strong>%{initials}</strong>
+          "label": >-
+            השם שלך
+      "privacy_notice":
+        "link_content": >-
+          מדיניות פרטיות
+        "with_name":
+          "html": "על ידי שליחת טופס זה אתה מסכים שהתוכן והשם שלך\r\n<strong>%{name}</strong>
+            יהיו עשויים להתפרסם בהתאם ל%{link} שלנו."
+        "without_name":
+          "html": "על ידי שליחת טופס זה אתה מסכים שהתוכן והשם שלך יהיו עשויים\r\nלהתפרסם
+            בהתאם ל%{link} שלנו."
+    "continue_shopping": >-
+      המשך קנייה
+    "flags":
+      "new":
+        "already_flagged": >-
+          כבר סימנת את %{item}
+        "flag_as_inappropriate": >-
+          סימון %{item} כלא הולם
+      "show":
+        "flag_submitted": >-
+          תודה
+    "mailer":
+      "excuses":
+        "question_answered_html": >-
+          קיבלת אימייל זה מאתר %{helpfulcrowd} כעדכון על השאלה שלך לחנות %{store}.
+        "review_answered_html": >-
+          קיבלת אימייל זה מאתר %{helpfulcrowd} כעדכון על חוות הדעת שהשארת בחנות %{store}.
+        "review_follow_up_html": >-
+          קיבלת אימייל זה מאתר %{helpfulcrowd} בתגובה לחוות הדעת שלך בחנות %{store}.
+        "review_request_html": >-
+          קיבלת אימייל זה מאתר %{helpfulcrowd} בתגובה להזמנה האחרונה שלך בחנות %{store}.
+      "helpers":
+        "call_to_action":
+          "view_product": >-
+            ביקור בעמוד מוצר
+    "products":
+      "questions":
+        "form":
+          "question_html": >-
+            מה הית רוצה לדעת על %{product}?
+        "new":
+          "title": >-
+            לשאול שאלה
+      "view_product": >-
+        מעבר לעמוד מוצר
+    "review_requests":
+      "reviews":
+        "form":
+          "rating_html": >-
+            דירוג החוויה שלך עם %{reviewable}
+        "new":
+          "already_reviewed_html": >-
+            כבר נתת חוות דעת על %{reviewable}
+          "review_other_purchases":
+            "one": >-
+              חוות דעת על קנייה אחרת
+            "other": >-
+              חוות דעת על קניות אחרות
+          "title": >-
+            חוות דעת על הרכישה שלך
+    "search":
+      "label": >-
+        חיפוש:
+      "placeholder": >-
+        הזנת מילות מפתח
+    "share":
+      "button": >-
+        שיתוף
+    "sort_by": >-
+      מיון לפי:
+    "sort_options":
+      "most_helpful": >-
+        הכי עוזר
+      "most_recent": >-
+        העדכני ביותר
+      "rating_asc": >-
+        דירוג: הכי נמוך
+      "rating_desc": >-
+        דירוג: הכי גבוה
+    "suppressions":
+      "manage_subscriptions":
+        "subscribe_question_html": >-
+          האם תרצה לאפשר לאתר HelpfulCrowd לשלוח לך אימייל בשם החנות %{store}?
+        "unsubscribe_question_html": >-
+          האם תרצה שאתר HelpfulCrowd לא ישלח לך אימייל בשם החנות %{store}?
+    "votes":
+      "upvote": >-
+        עוזר
+      "upvotes_count":
+        "one": >-
+          %{count} חשב ש%{item} עוזר
+        "other": >-
+          %{count} חשבו ש%{item} עוזר
+    "widgets":
+      "products":
+        "rating":
+          "qa":
+            "html":
+              "one": >-
+                1 שאלה
+              "other": >-
+                %{count} שאלות
+          "reviews":
+            "html":
+              "one": >-
+                1 חוות דעת
+              "other": >-
+                %{count} חוות דעת
+        "summary":
+          "qa":
+            "html":
+              "one": >-
+                1 שאלה
+              "other": >-
+                %{count} שאלות
+            "new": >-
+              לשאול שאלה
+          "reviews":
+            "html":
+              "one": >-
+                1 ביקורת
+              "other": >-
+                %{count} ביקורות
+            "new": >-
+              לכתוב חוות דעת
+        "tabs":
+          "questions":
+            "new": >-
+              לשאול שאלה
+            "search":
+              "label": >-
+                חיפוש:
+              "placeholder": >-
+                חיפוש שאלות ותשובות
+            "title": >-
+              שאלות ותשובות
+            "write_first": >-
+              לשאול שאלה ראשונה על המוצר הזה
+          "reviews":
+            "based_on_reviews":
+              "html": >-
+                מבוסס על %{reviews_count}
+            "media_gallery":
+              "images":
+                "one": >-
+                  1 תמונה
+                "other": >-
+                  %{count} תמונות
+              "search":
+                "label": >-
+                  חיפוש:
+                "placeholder": >-
+                  חיפוש חוות דעת
+              "title": "לקוח\r\nמדיה"
+              "videos":
+                "one": >-
+                  1 וידאו
+                "other": >-
+                  %{count} וידאו
+            "new": >-
+              לכתוב חוות דעת
+            "rating": >-
+              %{rating} מתוך 5 כוכבים
+            "title": >-
+              חוות דעת לקוחות
+            "write_first": >-
+              תהיה הראשון שנותן חוות דעת למוצר הזה
+          "titles":
+            "questions": >-
+              שאלות ותשובות
+            "questions_responsive": >-
+              שאלות ותשובות
+            "reviews": >-
+              חוות דעת ודירוגים
+            "reviews_responsive": >-
+              חוות דעת
+      "sidebar":
+        "default_title": >-
+          חוות דעת | שאלות ותשובות
+    "with_incentive":
+      "reviews":
+        "text": >-
+          כנראה הוצע תמריץ לנותן חוות הדעת הזו
+    "write_review": >-
+      לכתוב חוות דעת
+  "helpers":
+    "friendly_rating": >-
+      אין חוות דעת, עדיין
+    "label":
+      "customer":
+        "email": >-
+          אימייל לקוח
+        "name": >-
+          שם לקוח
+      "product_group":
+        "name": >-
+          שם
+    "placeholder":
+      "promotion":
+        "template": >-
+          משלוח חינם על כל ההזמנות בשבוע Black Friday!
+    "submit":
+      "product_group":
+        "create": >-
+          יצירת קבוצה
+        "update": >-
+          עדכון קבוצה
+      "question":
+        "create": >-
+          לשאול שאלה
+      "review":
+        "create": >-
+          שליחת חוות דעת
+  "layouts":
+    "mailer":
+      "front":
+        "manage_subscriptions": >-
+          ניהול הרשמה
+        "unsubscribe": >-
+          ביטול הרשמה
+  "load_more": >-
+    טען עוד
+  "privacy_policy": >-
+    מדיניות פרטיות
+  "question_facebook_post_template": "[customer_name]\r\nשאלה: [question]\r\nתשובה:
+    [answer]"
+  "question_tweet_template": "[customer_name]\r\nשאלה: [question]\r\nתשובה: [answer]"
+  "rating_1": >-
+    גרוע
+  "rating_2": >-
+    רע
+  "rating_3": >-
+    בסדר
+  "rating_4": >-
+    טוב
+  "rating_5": >-
+    מעולה
+  "read_less": >-
+    סגירה
+  "read_more": >-
+    חוות דעת מלאה
+  "recaptcha":
+    "errors":
+      "verification_failed": >-
+        אימות reCAPTCHA נכשל
+    "label": >-
+      עזור לנו להילחם בספאם
+  "report": >-
+    דיווח
+  "review_facebook_post_template": "תראה מה יש ל[customer_name] להגיד על [product_name]:\r\n\r\n[rating]\r\n\"[feedback]\""
+  "review_tweet_template": "[customer_name]:\r\n[product_name] - [rating], \"[feedback]\""
+  "settings":
+    "default":
+      "review_slider_c2a_text": >-
+        הצג הכל
+  "stars":
+    "one": >-
+      1 כוכב
+    "other": >-
+      %{count} כוכבים
+  "verified":
+    "agent":
+      "description": >-
+        %{author} עובד בחנות %{store}
+      "label": >-
+        %{store}
+    "customer":
+      "description": >-
+        %{author} רכש את המוצר הזה
+      "label": >-
+        לקוח מאומת

@@ -1,0 +1,44 @@
+@import "font-awesome";
+@import "lightgallery";
+
+.hc-widget {
+  line-height: 1.5;
+
+  box-sizing: border-box;
+
+  *, *:before, *:after {
+    box-sizing: inherit;
+  }
+
+  @import "../../_settings/colors";
+  @import "../../_settings/shared/**/*";
+
+  @import "wetsy/base";
+  @import "wetsy/components";
+  @import "wetsy/rules";
+
+  @import "wetsy_lacks_that";
+
+  // @import "../../helpful_components/colors";
+  // @import "../../helpful_components/flag";
+  // @import "../../helpful_components/highlight";
+  // @import "../../helpful_components/logo";
+  // @import "../../helpful_components/hc-paging";
+  // @import "../../helpful_components/rating-chart";
+  // @import "../../helpful_components/stars";
+  // @import "../../helpful_components/upvote";
+  // @import "../../helpful_components/utility_classes";
+  // TODO maybe individual imports are better? Some helpfulc componenets are not needed in front and in Ecwid
+
+  @import "../../helpful_components/**/*";
+
+  @import "../../front/components/*";
+  @import "../../front/hc-widgets/*";
+  @import "../../front/themes/dark/components";
+  @import "../../front/themes/light/components";
+  @import "../../front/reviews/*";               // TODO what we need from reviews should be moved to components
+  @import "../../front/questions/question-form"; // TODO what we need from questions should be moved to components
+
+  @import "../shared/resets/*";
+  @import "front/**/*";
+}

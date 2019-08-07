@@ -1,0 +1,50 @@
+tr.review-request data-model="review-request" data-id=review_request.hashid
+  td
+    i.review-request__status class="review-request__status--#{review_request.status}" title=review_request.status.humanize
+      = review_request_status_icon review_request.status
+
+  td = review_request.order.public_id if review_request.order.present?
+
+  td
+    ul.review-request__products
+      - review_request.transaction_items.each do |transaction_item|
+        - review = transaction_item.review
+        - reviewable = transaction_item.reviewable
+        - product = transaction_item.product
+
+        li.review-request__product
+          => stars_based_on(review.present? ? review.rating : 0)
+
+          - if review
+            = link_to back_review_path(review) do
+              =  review_request.get_highlights(:product_names, reviewable.name)
+              - if product
+                =< stamp_product_if_archived_or_hidden product
+
+          - else
+            =  review_request.get_highlights(:product_names, reviewable.name)
+            - if product
+              =< stamp_product_if_archived_or_hidden product
+            - if transaction_item.will_produce_repeated_review? && !review_request.store_accepts_repeated_reviews?
+              =< hc_icon 'repeat danger', title: 'Skipping this product as repeated reviews are disabled'
+
+  td
+    = mail_to review_request.customer.email do
+
+      => email_icon(review_request.customer)
+      =  review_request.get_highlights(:email, review_request.customer.email)
+
+
+  td data-role="events"
+    = render 'back/review_requests/events', review_request: review_request
+  td
+    - unless review_request.send_restricted?
+      => link_to send_now_back_review_request_path(review_request), class: 'review-request__action--send', remote: :true, method: :post,
+                data: { role: 'send-now', disable_with: "#{ spinner_icon } Sending" } do
+        => hc_icon 'paper-plane'
+        |  Send now
+
+    - if (review_request.scheduled_for.present? || review_request.on_hold?) && !review_request.suppressed?
+      = link_to cancel_back_review_request_path(review_request), class: 'review-request__action--cancel', remote: :true, method: :post do
+        => hc_icon 'times-circle'
+        |  Cancel

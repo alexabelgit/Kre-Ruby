@@ -1,0 +1,7 @@
+jQuery('[data-model="review-request"][data-id="<%= @review_request.hashid %>"]')
+        .replaceWith('<%= escape_javascript(render 'back/review_requests/item', review_request: @review_request) %>');
+jQuery('[data-model="review-request"][data-id="<%= @review_request.hashid %>"] [data-role="events"]')
+        .html('<%= escape_javascript(render 'back/review_requests/events', review_request: @review_request) %>');
+jQuery('[data-model="review-request"][data-id="<%= @review_request.hashid %>"] [data-role="send-now"]').spanify();
+jQuery('main .system-message').remove();
+jQuery('main').prepend('<%= escape_javascript(render 'shared/system_messages/flash') %>');

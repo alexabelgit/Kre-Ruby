@@ -1,0 +1,76 @@
+.hc-card
+  = form_for [:back, @discount_coupon],
+    url:     url,
+    :html => { :multipart => true },
+    method:  method do |f|
+
+    = render 'shared/form/errors', resource: @discount_coupon
+
+    .discount-coupon__form-fields
+      .hc-form__control
+        = f.label      :name, class: 'hc-form__label'
+        = f.text_field :name, class: 'hc-form__input', autofocus: true
+
+      .hc-form__control
+        div.hc-form__label Code type
+        - DiscountCoupon.code_types.keys.each do |code_type|
+          = f.radio_button :code_type,        code_type, required: true, class: 'discount-coupon__revealer', "data-reveals" => code_type
+          = f.label        :code_type, value: code_type, class: 'discount-coupon__revealer--label'
+
+        .hc-form__control.discount-coupon__option.discount-coupon__option--reusable.discount-coupon__option--after-radio
+          div Code
+          = text_field_tag 'coupon_code[code]', @discount_coupon.code, class: 'hc-form__input', autofocus: true
+          span.hc-form__hint Code for customers to use on checkout to get discount
+
+        .hc-form__control.discount-coupon__option.discount-coupon__option--reusable
+          = f.label        :limit, 'Limit'
+          = f.number_field :limit, class: 'hc-form__input', min: 1
+          span.hc-form__hint Can this coupon be issued a limited number of times? Indicate here or leave blank for unlimited
+
+        .hc-form__control.discount-coupon__option.discount-coupon__option--unique.discount-coupon__option--after-radio
+          div Codes (#{ link_to('download CSV template', ENV['COUPON_CODES_IMPORT_EXAMPLE']) })
+          - content_for :coupon_codes do
+            input {
+              type     = "file"
+              name     = "coupon_code[file]"
+              accept   = ".csv"
+              class    = "hc-upload-button__hidden-input"
+              data-hc-upload-button-input
+            }
+          = render 'helpful_components/upload_button', custom_input: yield(:coupon_codes)
+          - if @discount_coupon.persisted? && @discount_coupon.coupon_codes.any?
+            = link_to('View codes', back_discount_coupon_coupon_codes_path(@discount_coupon))
+
+      .hc-form__control--inline.discount-coupon__option--after-radio
+        =  f.label        :discount_amount, class: 'hc-form__label'
+        => f.number_field :discount_amount, class: 'hc-form__input hc-form__input--sm', placeholder: '15', min: 0, step: :any
+
+        = f.label      :discount_type, class: 'hide-unless-screen-reader'
+        = f.text_field :discount_type, class: 'hc-form__input hc-form__input--sm', placeholder: '%, $, USD'
+
+        - DiscountCoupon.discount_sequences.keys.each do |discount_sequence|
+          = f.radio_button :discount_sequence,        discount_sequence, required: true, class: 'discount-coupon__discount-sequence'
+          = f.label        :discount_sequence, value: discount_sequence, class: 'discount-coupon__discount-sequence--label'
+
+      .hc-form__control.hc-form__date-select
+        = f.label       :valid_from, class: 'hc-form__label'
+        = f.date_select :valid_from, class: '', order: DateFormat.select_format(@store.settings(:global).date_format)
+
+      .hc-form__control.hc-form__date-select
+        = f.label       :valid_until, class: 'hc-form__label'
+        = f.date_select :valid_until, class: '', include_blank: true, start_year: Date.current.year, order: DateFormat.select_format(@store.settings(:global).date_format)
+        span.hc-form__hint Leave blank for no end date
+
+      .hc-form__control
+        div.hc-form__label Send per
+        - DiscountCoupon.send_pers.keys.each do |send_per|
+          .hc-form__radio-group.hc-form__radio-group--inline
+            => f.radio_button :send_per,        send_per, required: true
+            => f.label        :send_per, value: DiscountCoupon::SEND_PER[send_per.to_sym]
+
+      .hc-form__actions
+        => button_tag 'Save',
+           data:      { disable_with: "#{spinner_icon} Saving" },
+           class:     'settings-form__submit'
+
+        =  link_to  'Cancel', back_discount_coupons_path, class: 'hc-secondary-button'

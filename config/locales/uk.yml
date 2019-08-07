@@ -1,0 +1,474 @@
+---
+"uk":
+  "activerecord":
+    "errors":
+      "models":
+        "abuse_report":
+          "attributes":
+            "additional_info":
+              "blank": >-
+                необхідно подати, якщо серед причин Ви обрали "інше"
+            "reason":
+              "blank": >-
+                ^Вам необхідно вибрати причину
+        "product":
+          "attributes":
+            "id_from_provider":
+              "taken": >-
+                ^ID повинен бути унікальним. Той, що Ви обрали, вже використовується
+                для іншого продукту.
+        "review":
+          "attributes":
+            "customer":
+              "must_be_authenticated": >-
+                ^Вам необхідно авторизуватися для того, щоб написати відгук
+            "product_ids":
+              "cannot_be_repeated": >-
+                ^Ви вже подавали відгук щодо цього продукту
+              "taken": >-
+                ^Ви вже подавали відгук щодо цієї покупки
+            "review_request_id":
+              "request_must_be_sent": >-
+                ^Ви не можете подати відгук щодо цієї покупки на даний момент
+            "source":
+              "cannot_be_voluntary": >-
+                ^Ви не можете подати відгук щодо цієї покупки на даний момент
+        "review_request":
+          "attributes":
+            "order_id":
+              "blank": >-
+                не можна створити без відповідного профілю клієнта. Будь ласка, надайте
+                дійсну адресу електронної пошти.
+    "models":
+      "comment":
+        "one": >-
+          коментар
+        "other": >-
+          коментарі
+      "customer":
+        "one": >-
+          клієнт
+        "other": >-
+          клієнти
+      "product":
+        "one": >-
+          продукт
+        "other": >-
+          продукти
+      "product_group":
+        "one": >-
+          група продуктів
+        "other": >-
+          групи продуктів
+      "question":
+        "one": >-
+          запитання
+        "other": >-
+          всі запитання
+      "review":
+        "one": >-
+          відгук
+        "other": >-
+          відгуки
+      "review_request":
+        "one": >-
+          запит на написання відгуку
+        "other": >-
+          запити на написання відгуків
+  "answer":
+    "one": >-
+      відповідь
+    "other": >-
+      відповіді
+  "cancel": >-
+    Відміна
+  "counterify":
+    "characters":
+      "exceeded": >-
+        Перевищено максимальну кількість символів
+      "remaining":
+        "one": >-
+          залишився 1 символ
+        "few": >-
+          залишилось %{count} символи
+        "other": >-
+          залишилось %{count} символів
+  "default_templates":
+    "email":
+      "critical_review_followup_mail_body": "<p>Привіт, [customer_name]!</p>\r\n<p>Дякуємо
+        за Ваш відгук.</p>\r\n<p>Команда [store_name].</p>"
+      "critical_review_followup_mail_subject": >-
+        Дякуємо за Ваш відгук.
+      "positive_review_followup_mail_body": "Привіт, [customer_name]!</p>\r\nДякуємо
+        за Ваш відгук.</p>\r\nКоманда [store_name].</p>"
+      "positive_review_followup_mail_subject": >-
+        Дякуємо за Ваш відгук.
+      "question_answer_mail_body": "<p>Привіт [customer_name],</p>\r\n<p>На Ваше запитання
+        щодо [product_name] відповів наш представник:</p>\r\n<p>[answer]</p>\r\n<p>Ваше
+        запитання:</p>\r\n<p>[question]</p>\r\n<p>[product_link]</p>\r\n<p>Команда
+        [store_name].</p>"
+      "question_answer_mail_subject": >-
+        На Ваш відгук у [store_name] відповіли
+      "repeat_review_request_mail_body": "<p>Привіт, [customer_name]!</p>\r\n<p>Все
+        ще не пізно розповісти нам, що Ви думаєте про Ваше нещодавнє замовлення.</p>\r\n<p>Натисніть,
+        будь ласка, на відповідну зірочку, щоб оцінити наскільки Ви поки що задоволені:</p>\r\n<p>[products]</p>\r\n<p>Не
+        задоволені? Будь ласка, зверніться до нас, щоб ми змогли Вам допомогти.</p>\r\n<p>Команда
+        [store_name].</p>"
+      "repeat_review_request_mail_subject": >-
+        Напишіть відгук до Вашого нещодавнього замовлення у [store_name]
+      "review_answer_mail_body": "<p>Привіт, [customer_name]!</p>\r\n<p>На Ваш відгук
+        щодо [product_name] відповів наш представник:</p>\r\n<p>[reply]</p>\r\n<p>Ваш
+        відгук:</p>\r\n<p>[review]</p>\r\n<p>[product_link]</p>\r\n<p>Команда [store_name].</p>"
+      "review_answer_mail_subject": >-
+        На Ваше відгук у [store_name] відповіли
+      "review_request_mail_body": "<p>Привіт, [customer_name]!</p>\r\n<p>Натисніть,
+        будь ласка, на відповідну зірочку, щоб оцінити наскільки Ви поки що задоволені:</p>\r\n<p>[products]</p>\r\n<p>Не
+        задоволені? Будь ласка, зверніться до нас, щоб ми змогли Вам допомогти.</p>\r\n<p>Команда
+        [store_name].</p>"
+      "review_request_mail_subject": >-
+        Напишіть відгук до Вашого нещодавнього замовлення у [store_name]
+  "embed": >-
+    Вбудувати
+  "errors":
+    "messages":
+      "already_confirmed": >-
+        вже було підтверджено, спробуйте увійти
+      "confirmation_period_expired": >-
+        необхідно підтвердити протягом визначеного періоду (%{period}), будь ласка,
+        подайте новий запит на підтвердження
+      "expired": >-
+        прострочено, створіть новий
+      "not_found": >-
+        не знайдено
+      "not_locked": >-
+        не було заблоковано
+      "not_saved":
+        "one": >-
+          1 помилка не дозволила зберегти введені дані щодо %{resource}:
+        "few": >-
+          %{count} помилки не дозволили зберегти введені дані щодо %{resource}:
+        "other": >-
+          %{count} помилок не дозволили зберегти введені дані щодо %{resource}:
+  "flash":
+    "submitted_successfully":
+      "question": >-
+        Дякуємо! Ми отримали Ваше запитання та ми повідомимо Вас, як тільки на нього
+        буде надано відповідь
+      "review": >-
+        Дякуємо! Ми отримали Ваш відгук
+      "subscribed": >-
+        Ви успішно оформили підписку на %{store}.
+      "unsubscribed": >-
+        Ви успішно відмінили підписку на %{store}.
+  "front":
+    "based_on_reviews_count":
+      "one": >-
+        1 відгук
+      "few": >-
+        %{count} відгуки
+      "other": >-
+        %{count} відгуків
+    "components":
+      "customer_form":
+        "email":
+          "hint": >-
+            Вашу електронну адресу не буде оприлюднено
+          "label": >-
+            Ваша електронна пошта
+        "name":
+          "hint": >-
+            Ваше ім'я виглядатиме як ініціали
+          "hint_update_html": >-
+            Ваше ім'я виглядатиме наступним чином: <strong>%{initials}</strong>
+          "label": >-
+            Ваше ім'я
+      "privacy_notice":
+        "link_content": >-
+          політика конфіденційності
+        "with_name":
+          "html": >-
+            Подаючи цю форму, Ви погоджуєтесь, що Ваше повідомлення та Ваше ім'я <strong>%{name}</strong>
+            можуть бути опубліковані онлайн відповідно до нашої політики %{link}.
+        "without_name":
+          "html": >-
+            Подаючи цю форму, Ви погоджуєтесь, що Ваше повідомлення та Ваше ім'я можуть
+            бути опубліковані онлайн відповідно до нашої політики %{link}.
+    "continue_shopping": >-
+      Продовжити покупки
+    "flags":
+      "new":
+        "already_flagged": >-
+          Ви вже позначили цей об'єкт %{item}
+        "flag_as_inappropriate": >-
+          Позначте цей об'єкт %{item}, як недоречний
+      "show":
+        "flag_submitted": >-
+          Дякуємо!
+    "mailer":
+      "excuses":
+        "question_answered_html": >-
+          Ви отримали цей електронний лист від %{helpfulcrowd}, щоб дізнатися оновлену
+          інформацію стосовно запитання, яке Ви поставили до %{store}.
+        "review_answered_html": >-
+          Ви отримали цей електронний лист від  %{helpfulcrowd}, щоб дізнатися оновлену
+          інформацію стосовно відгуку, який Ви залишили у %{store}.
+        "review_follow_up_html": >-
+          Ви отримали цей електронний лист від  %{helpfulcrowd} у відповідь на Ваш
+          нещодавній відгук у %{store}.
+        "review_request_html": >-
+          Ви отримали цей електронний лист від %{helpfulcrowd} у відповідь на Ваше
+          нещодавнє замовлення у %{store}.
+      "helpers":
+        "call_to_action":
+          "view_product": >-
+            Перейти на сторінку продукту
+    "products":
+      "questions":
+        "form":
+          "question_html": >-
+            Що Ви хочете дізнатися про %{product}?
+        "new":
+          "title": >-
+            Поставити запитання
+      "view_product": >-
+        Перейти на сторінку продукту
+    "review_requests":
+      "reviews":
+        "form":
+          "rating_html": >-
+            Оцініть Ваші враження щодо %{reviewable}
+        "new":
+          "already_reviewed_html": >-
+            Ви вже надали відгуки щодо %{reviewable}
+          "review_other_purchases":
+            "one": >-
+              Напишіть відгук про Вашу іншу покупку
+            "other": >-
+              Напишіть відгуки про Ваші інші покупки
+          "title": >-
+            Залишити відгук про Вашу покупку
+    "search":
+      "label": >-
+        Пошук:
+      "placeholder": >-
+        Ввести ключове слово
+    "share":
+      "button": >-
+        Поділитися
+    "sort_by": >-
+      Відсортувати за:
+    "sort_options":
+      "most_helpful": >-
+        Найкорисніші
+      "most_recent": >-
+        Найновіші
+      "rating_asc": >-
+        Рейтинг: найнижчий
+      "rating_desc": >-
+        Рейтинг: найвищий
+    "suppressions":
+      "manage_subscriptions":
+        "subscribe_question_html": >-
+          Чи хочете Ви, щоб платформа HelpfulCrowd відправляла Вам листи від імені
+          %{store}?
+        "unsubscribe_question_html": >-
+          Чи хочете Ви, щоб платформа HelpfulCrowd припинила відправляти Вам листи
+          від імені %{store}?
+    "votes":
+      "upvote": >-
+        Корисно
+      "upvotes_count":
+        "one": >-
+          %{count} особа вважає, що цей товар (%{item}) є корисним
+        "few": >-
+          %{count} особи вважають, що цей товар (%{item}) є корисним
+        "other": >-
+          %{count} осіб вважають, що цей товар (%{item}) є корисним
+    "widgets":
+      "products":
+        "rating":
+          "qa":
+            "html":
+              "one": >-
+                1 запитання
+              "few": >-
+                %{count} запитання
+              "other": >-
+                %{count} запитань
+          "reviews":
+            "html":
+              "one": >-
+                1 відгук
+              "few": >-
+                %{count} відгуки
+              "other": >-
+                %{count} відгуків
+        "summary":
+          "qa":
+            "html":
+              "one": >-
+                1 запитання
+              "few": >-
+                %{count} запитання
+              "other": >-
+                %{count} запитань
+            "new": >-
+              Поставити запитання
+          "reviews":
+            "html":
+              "one": >-
+                1 відгук
+              "other": >-
+                %{count} відгуків
+            "new": >-
+              Написати відгук
+        "tabs":
+          "questions":
+            "new": >-
+              Поставити питання
+            "search":
+              "label": >-
+                Пошук:
+              "placeholder": >-
+                Пошук у запитаннях та відповідях
+            "title": >-
+              Запитання та відповіді
+            "write_first": >-
+              Поставити перше запитання щодо цього продукту
+          "reviews":
+            "based_on_reviews":
+              "html": >-
+                За результатами %{reviews_count} відгуків
+            "media_gallery":
+              "images":
+                "one": >-
+                  1 фото
+                "other": >-
+                  %{count} фото
+              "search":
+                "label": >-
+                  Пошук:
+                "placeholder": >-
+                  Пошук у відгуках
+              "title": "Клієнт\r\nмедіа"
+              "videos":
+                "one": >-
+                  1 відео
+                "other": >-
+                  %{count} відео
+            "new": >-
+              Написати відгук
+            "rating": >-
+              %{rating} з 5 зірок
+            "title": >-
+              Відгуки клієнтів
+            "write_first": >-
+              Станьте першим, хто залишить відгук щодо цього продукту
+          "titles":
+            "questions": >-
+              Запитання та відповіді
+            "questions_responsive": >-
+              Запитання та відповіді
+            "reviews": >-
+              Відгуки та рейтинг
+            "reviews_responsive": >-
+              Відгуки
+      "sidebar":
+        "default_title": >-
+          Відгуки | Запитання та відповіді
+    "with_incentive":
+      "reviews":
+        "text": >-
+          Особі, яка надає відгук, можуть запропонувати заохочення за написання цього
+          відгуку
+    "write_review": >-
+      Написати відгук
+  "helpers":
+    "friendly_rating": >-
+      Поки що немає відгуків
+    "label":
+      "customer":
+        "email": >-
+          Електронна пошта клієнта
+        "name": >-
+          Ім'я клієнта
+      "product_group":
+        "name": >-
+          Ім'я
+    "placeholder":
+      "promotion":
+        "template": >-
+          Безкоштовна доставка на всі замовлення протягом Чорної п'ятниці!
+    "submit":
+      "product_group":
+        "create": >-
+          Створити групу
+        "update": >-
+          Оновити групу
+      "question":
+        "create": >-
+          Поставити запитання
+      "review":
+        "create": >-
+          Подати відгук
+  "layouts":
+    "mailer":
+      "front":
+        "manage_subscriptions": >-
+          Управління підписками
+        "unsubscribe": >-
+          Відписатися
+  "load_more": >-
+    Завантажити більше
+  "privacy_policy": >-
+    Політика конфіденційності
+  "question_facebook_post_template": "[customer_name]\r\nПитання: [question]\r\nВідповідь:
+    [answer]"
+  "question_tweet_template": "[customer_name]\r\nПитання: [question]\r\nВідповідь:
+    [answer]"
+  "rating_1": >-
+    Жахливо
+  "rating_2": >-
+    Погано
+  "rating_3": >-
+    Нормально
+  "rating_4": >-
+    Добре
+  "rating_5": >-
+    Чудово
+  "read_less": >-
+    Читати менше
+  "read_more": >-
+    відгук повністю
+  "recaptcha":
+    "errors":
+      "verification_failed": >-
+        Перевірка за системою reCAPTCHA пройшла невдало.
+    "label": >-
+      Допоможіть нам у боротьбі зі спамом
+  "report": >-
+    Пожалітися
+  "review_facebook_post_template": "Подивіться, що [customer_name] сказав про [product_name]:\r\n\r\n[rating]\r\n\"[feedback]\""
+  "review_tweet_template": "[customer_name]:\r\n[product_name] - [rating], \"[feedback]\""
+  "settings":
+    "default":
+      "review_slider_c2a_text": >-
+        Показати все
+  "stars":
+    "one": >-
+      1 зірка
+    "few": >-
+      %{count} зірки
+    "other": >-
+      %{count} зірок
+  "verified":
+    "agent":
+      "description": >-
+        %{author} працює у %{store}
+      "label": >-
+        %{store}
+    "customer":
+      "description": >-
+        %{author} придбав цей продукт
+      "label": >-
+        Перевірений покупець

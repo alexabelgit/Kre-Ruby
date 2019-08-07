@@ -1,0 +1,11 @@
+.product-details {
+
+}
+
+.product-details__header {
+  @extend %margin-bottom__md;
+}
+
+.product-details__heading {
+  @extend %margin-bottom__0;
+}

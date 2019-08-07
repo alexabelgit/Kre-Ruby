@@ -1,0 +1,36 @@
+/ avatar*
+/ store*
+/ thumb_image*
+/ thumb_heading*
+/ thumb_text*
+
+- handle = store.twitter_connected? ? store.settings(:social_accounts).twitter_username : 'YourTwitterHandle'
+// TODO when we are saving twitter screen_name we need to update .previewer__store-name with it if streo.twitter_connected?
+
+.previewer.previewer--twitter
+  .previewer__preview
+    .previewer__header
+      .previewer__avatar
+        = image_tag avatar
+      .previewer__store-name
+        = store.name
+      .previewer__twitter-handle
+        | @#{handle}
+
+    .previewer__text data-previewable="output" data-role="twitter"
+    .previewer__thumb
+      .previewer__thumb-image style="background-image: url(#{thumb_image})"
+      .previewer__thumb-content
+        .previewer__thumb-heading
+          = thumb_heading
+        .previewer__thumb-text
+          = truncate(thumb_text, length: 200)
+        .previewer__thumb-url
+          / TODO when we have subdomains this should be replaced with store subdomain
+          | app.helpfulcrowd.com
+
+    .previewer__date
+      = DateTime.current.strftime '%l:%M %p - %b  %d, %Y'
+
+    .previewer__actions
+      = image_tag 'https://res.cloudinary.com/helpfulcrowd/image/upload/v1533382095/app_assets/tweet_footer.png'

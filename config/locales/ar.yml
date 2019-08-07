@@ -1,0 +1,451 @@
+---
+"ar":
+  "activerecord":
+    "errors":
+      "models":
+        "abuse_report":
+          "attributes":
+            "additional_info":
+              "blank": >-
+                يجب أن يتم تقديمه في حال تم اختيار "سبب آخر" كسبب
+            "reason":
+              "blank": >-
+                ^عليك اختيار سبب
+        "product":
+          "attributes":
+            "id_from_provider":
+              "taken": >-
+                ^يجب أن يكون رقم المعرف فريداً، الرقم الذي أدخلته مستخدَم من قبل منتج
+                آخر.
+        "review":
+          "attributes":
+            "customer":
+              "must_be_authenticated": >-
+                ^عليك أن تسجل الدخول أولاً حتى تتمكن من كتابة مراجعة
+            "product_ids":
+              "cannot_be_repeated": >-
+                ^لقد قمت بكتابة مراجعة لهذا المنتج بالفعل
+              "taken": >-
+                ^لقد قمت بمراجعة طلب الشراء هذا بالفعل
+            "review_request_id":
+              "request_must_be_sent": >-
+                ^لا يمكنك مراجعة طلب الشراء هذا حالياً
+            "source":
+              "cannot_be_voluntary": >-
+                ^لا يمكنك مراجعة طلب الشراء هذا حالياً
+        "review_request":
+          "attributes":
+            "order_id":
+              "blank": >-
+                لا يمكن إنشاؤه دون وجود زبون متوافق. الرجاء توفير عنوان بريد إلكتروني
+                صالح.
+    "models":
+      "comment":
+        "one": >-
+          تعليق
+        "other": >-
+          تعليقات
+      "customer":
+        "one": >-
+          زبون
+        "other": >-
+          زبائن
+      "product":
+        "one": >-
+          منتج
+        "other": >-
+          منتجات
+      "product_group":
+        "one": >-
+          مجموعة المنتج
+        "other": >-
+          مجموعات المنتج
+      "question":
+        "one": >-
+          سؤال
+        "other": >-
+          أسئلة
+      "review":
+        "one": >-
+          مراجعة
+        "other": >-
+          مراجعات
+      "review_request":
+        "one": >-
+          طلب مراجعة
+        "other": >-
+          طلبات مراجعة
+  "answer":
+    "one": >-
+      إجابة
+    "other": >-
+      إجابات
+  "cancel": >-
+    إلغاء
+  "counterify":
+    "characters":
+      "exceeded": >-
+        تجاوزت عدد الأحرف المسموح به
+      "remaining":
+        "one": >-
+          بقي حرف واحد
+        "other": >-
+          باقي %{count} أحرف
+  "default_templates":
+    "email":
+      "critical_review_followup_mail_body": "<p>مرحباً [customer_name],</p>\r\n<p>شكراً
+        لك على تقديم المراجعة.</p>\r\n<p>فريق [store_name].</p>"
+      "critical_review_followup_mail_subject": >-
+        شكراً لك على تقديم المراجعة
+      "positive_review_followup_mail_body": "<p>مرحباً [customer_name],</p>\r\n<p>شكراً
+        لك على تقديم المراجعة.</p>\r\n<p>فريق [store_name].</p>"
+      "positive_review_followup_mail_subject": >-
+        شكراً لك على تقديم المراجعة
+      "question_answer_mail_body": "<p>مرحباً [customer_name],</p>\r\n<p>لقد تمت الإجابة
+        على سؤالك المتعلق بـ [product_name] من قبل ممثلنا:</p>\r\n<p>[answer]</p>\r\n<p>سؤالك</p>\r\n<p>[question]</p>\r\n<p>[product_link]</p>\r\n<p>فريق
+        [store_name].</p>"
+      "question_answer_mail_subject": >-
+        تمت الإجابة على سؤالك في [store_name]
+      "repeat_review_request_mail_body": "<p>مرحباً [customer_name],</p>\r\n<p>لم
+        يفت الأوان بعد لإخبارنا برأيك حول آخر طلب لك.</p>\r\n <p>:انقر على نجمة لتقييم
+        تجربتك إلى الآن مع </p>\r\n<p>[products]</p>\r\n<p>ألست راضياً؟ يُرجى التواصل
+        معنا أولاً حتى نقدم لك المساعدة</p>\r\n<p>فريق [store_name].</p>"
+      "repeat_review_request_mail_subject": >-
+        تذكير بمراجعة آخر طلب لك من [store_name]
+      "review_answer_mail_body": "<p>مرحباً [customer_name],</p>\r\n<p>تمت الإجابة
+        على مراجعتك بخصوص [product_name] من قِبل ممثلنا:</p>\r\n<p>[reply]</p>\r\n<p>مراجعتك:</p>\r\n<p>[review]</p>\r\n<p>[product_link]</p>\r\n<p>فريق
+        [store_name].</p>"
+      "review_answer_mail_subject": >-
+        تمت الإجابة على مراجعتك التي قدمتها في [store_name]
+      "review_request_mail_body": "<p>مرحباً [customer_name],</p>\r\n<p>انقر على نجمة
+        لتقييم تجربتك إلى الآن مع:</p>\r\n<p>[products]</p>\r\n<p>ألست راضياً؟ يُرجى
+        التواصل معنا أولاً حتى نقدم لك المساعددة.</p>\r\n<p>فريق [store_name].</p>"
+      "review_request_mail_subject": >-
+        راجع آخر طلباتك من [store_name]
+  "embed": >-
+    تضمين
+  "errors":
+    "messages":
+      "already_confirmed": >-
+        تم التأكيد عليه بنجاح، الرجاء محاولة تسجيل الدخول
+      "confirmation_period_expired": >-
+        بحاجة الى التفعيل خلال %{period}، الرجاء طلب التفعيل
+      "expired": >-
+        انتهت مدته، الرجاء طلب واحد جديد
+      "not_found": >-
+        لم يتم العثور عليه
+      "not_locked": >-
+        لم يتم إقفاله
+      "not_saved":
+        "one": >2-
+           خطأ واحد قد منع حفظ %{resource} :
+        "other": >-
+          %{count} أخطاء قد منعت حفظ %{resource}.
+  "flash":
+    "submitted_successfully":
+      "question": >-
+        شكراً لك! لقد استلمنا سؤالك. سنقوم بإرسال بريد إلكتروني لك فور الإجابة على
+        سؤالك.
+      "review": >-
+        شكراً لك! لقد استلمنا مراجعتك.
+      "subscribed": >-
+        لقد اشتركت بـ  %{store} بنجاح.
+      "unsubscribed": >-
+        لقد قمت بإلغاء اشتراكك من  %{store} بنجاح.
+  "front":
+    "based_on_reviews_count":
+      "one": >-
+        مراجعة واحدة
+      "other": >-
+        %{count} مراجعات
+    "components":
+      "customer_form":
+        "email":
+          "hint": >-
+            لن تتم مشاركة بريدك الإلكتروني علانية
+          "label": >-
+            بريدك الإلكتروني
+        "name":
+          "hint": >-
+            ستظهر الأحرف الأولى من اسمك
+          "hint_update_html": >-
+            سيظهر اسمك كـ <strong>%{initials}</strong>
+          "label": >-
+            اسمك
+      "privacy_notice":
+        "link_content": >-
+          سياسة الخصوصية
+        "with_name":
+          "html": "بإرسالك لهذا النموذج فأنت توافق على أن المحتوى الخاص بك واسمك\r\n<strong>%{name}</strong>
+            قد يتم نشرهما على شبكة الإنترنت بحسب \r\n%{link} الخاص بنا."
+        "without_name":
+          "html": >-
+            بإرسالك هذا النموذج فأنت توافق على أن المحتوى الخاص بك واسمك قد يتم نشرهما
+            على شبكة الإنترنت استناداً إلى  %{link}.
+    "continue_shopping": >-
+      استمر بالتسوق
+    "flags":
+      "new":
+        "already_flagged": >-
+          لقد قمت بالفعل بالإشارة إلى %{item} بكونه غير لائق.
+        "flag_as_inappropriate": >-
+          قم بالإشارة إلى %{item} بكونه غير لائق
+      "show":
+        "flag_submitted": >-
+          شكراً لك
+    "mailer":
+      "excuses":
+        "question_answered_html": >-
+          قام  %{helpfulcrowd} بإرسال بريد إلكتروني لك، وذلك لإطلاعك على التحديثات
+          المتعلقة بسؤالك الذي طرحته على %{store}.
+        "review_answered_html": >-
+          قام  %{helpfulcrowd} بإرسال بريد إلكتروني لك، وذلك لإطلاعك على التحديثات
+          المتعلقة بمراجعتك التي أرسلتها إلى %{store}.
+        "review_follow_up_html": >-
+          لقد تلقيت بريداً إلكترونياً من %{helpfulcrowd} استجابة لمراجعتك الأخيرة
+          في %{store}.
+        "review_request_html": >-
+          قام  %{helpfulcrowd} بإرسال بريد إلكتروني لك، ردأ على آخر طلبات الشراء الخاصة
+          بك من %{store}.
+      "helpers":
+        "call_to_action":
+          "view_product": >-
+            قم بزيارة صفحة المنتج
+    "products":
+      "questions":
+        "form":
+          "question_html": >-
+            ما الذي تريد أن تعرفه عن %{product}?
+        "new":
+          "title": >-
+            اسأل سؤالاً
+      "view_product": >-
+        اذهب إلى صفحة المنتج
+    "review_requests":
+      "reviews":
+        "form":
+          "rating_html": >-
+            قيّم تجربتك مع %{reviewable}
+        "new":
+          "already_reviewed_html": >-
+            لقد قمت بمراجعة %{reviewable} بالفعل.
+          "review_other_purchases":
+            "one": >-
+              قم بإرسال مراجعتك المتعلقة بعملية شراء أخرى
+            "other": >-
+              قم بإرسال مراجعتك المتعلقة بعمليات شراء أخرى
+          "title": >-
+            أرسل مراجعتك بخصوص عملية الشراء
+    "search":
+      "label": >-
+        بحث
+      "placeholder": >-
+        أدخل كلمة مفتاحية
+    "share":
+      "button": >-
+        مشاركة
+    "sort_by": >-
+      التصنيف حسب
+    "sort_options":
+      "most_helpful": >-
+        الأكثر إفادة
+      "most_recent": >-
+        الأحدث
+      "rating_asc": >-
+        التقييم: الأدنى
+      "rating_desc": >-
+        التقييم: الأعلى
+    "suppressions":
+      "manage_subscriptions":
+        "subscribe_question_html": >-
+          هل ترغب في تمكين HelpfulCrowd لإرسال رسائل البريد الإلكتروني لك بالنيابة
+          عن %{store}؟
+        "unsubscribe_question_html": >-
+          هل ترغب في أن يتوقف HelpfulCrowd  عن إرسال الرسائل الإلكترونية إليك بالنيابة
+          عن %{store}؟
+    "votes":
+      "upvote": >-
+        مفيد
+      "upvotes_count":
+        "one": >-
+          شخص %{count} وجد هذا %{item} مفيداً
+        "other": >-
+          %{count} أشخاص وجدوا هذا  %{item} مفيداً
+    "widgets":
+      "products":
+        "rating":
+          "qa":
+            "html":
+              "one": >-
+                سؤال واحد
+              "other": >-
+                أسئلة %{count}
+          "reviews":
+            "html":
+              "one": >-
+                مراجعة واحدة
+              "other": >-
+                %{count} مراجعات
+        "summary":
+          "qa":
+            "html":
+              "one": >-
+                سؤال واحد
+              "other": >-
+                %{count} أسئلة
+            "new": >-
+              اطرح سؤالاً
+          "reviews":
+            "html":
+              "one": >-
+                مراجعة واحدة
+              "other": >-
+                %{count} مراجعات
+            "new": >-
+              اكتب مراجعة
+        "tabs":
+          "questions":
+            "new": >-
+              اطرح سؤالاً
+            "search":
+              "label": >-
+                بحث
+              "placeholder": >-
+                البحث في الأسئلة والأجوية
+            "title": >-
+              الأسئلة والأجوبة
+            "write_first": >-
+              اطرح أول سؤال بخصوص هذا المنتج
+          "reviews":
+            "based_on_reviews":
+              "html": >-
+                بناءً على %{reviews_count}
+            "media_gallery":
+              "images":
+                "one": >-
+                  صورة واحدة
+                "other": >-
+                  صور
+              "search":
+                "label": >-
+                  بحث
+                "placeholder": >-
+                  البحث في المراجعات
+              "title": "الزبون\r\nالوسائط"
+              "videos":
+                "one": >-
+                  فيديو واحد
+                "other": >-
+                  فيديوهات
+            "new": >-
+              اكتب مراجعة
+            "rating": >-
+              %{rating} من 5 نجوم
+            "title": >-
+              مراجعات الزبائن
+            "write_first": >-
+              كن أول من يقدم مراجعة بخصوص هذا المنتج
+          "titles":
+            "questions": >-
+              الأسئلة والأجوبة
+            "questions_responsive": >-
+              الأسئلة والأجوبة
+            "reviews": >-
+              المراجعات والتقييمات
+            "reviews_responsive": >-
+              المراجعات
+      "sidebar":
+        "default_title": >-
+          مراجعات | أسئلة وأجوبة
+    "with_incentive":
+      "reviews":
+        "text": >-
+          من المحتمل أن يكون المُراجع قد تلقى حوافز لكتابة هذه المراجعة
+    "write_review": >-
+      اكتب مراجعة
+  "helpers":
+    "friendly_rating": >-
+      لا توجد مراجعات
+    "label":
+      "customer":
+        "email": >-
+          البريد الإلكتروني للزبون
+        "name": >-
+          اسم الزبون
+      "product_group":
+        "name": >-
+          الاسم
+    "placeholder":
+      "promotion":
+        "template": >-
+          شحن مجاني على جميع الطلبات خلال جمعة التنزيلات!
+    "submit":
+      "product_group":
+        "create": >-
+          إنشاء مجموعة
+        "update": >-
+          تحديث المجموعة
+      "question":
+        "create": >-
+          اسأل سؤالاً
+      "review":
+        "create": >-
+          أرسل مراجعتك
+  "layouts":
+    "mailer":
+      "front":
+        "manage_subscriptions": >-
+          إدارة الاشتراكات
+        "unsubscribe": >-
+          إلغاء الاشتراك
+  "load_more": >-
+    أكثر من
+  "privacy_policy": >-
+    سياسة الخصوصية
+  "question_facebook_post_template": "[customer_name]\r\nالسؤال: [question]\r\nالإجابة:
+    [answer]"
+  "question_tweet_template": "[customer_name]\r\nالسؤال: [question]\r\nالإجابة: [answer]"
+  "rating_1": >-
+    سيئ للغاية
+  "rating_2": >-
+    سيئ
+  "rating_3": >-
+    لا بأس به
+  "rating_4": >-
+    جيد
+  "rating_5": >-
+    رائع
+  "read_less": >-
+    أقرأ أقل
+  "read_more": >-
+    المراجعة بأكملها
+  "recaptcha":
+    "errors":
+      "verification_failed": >-
+        فشل التحقق reCAPTCHA
+    "label": >-
+      ساعدنا على مكافحة البريد المزعج
+  "report": >-
+    إبلاغ
+  "review_facebook_post_template": "اطّلع على ما قاله [customer_name] عن [product_name]:\r\n\r\n[rating]\r\n\"[feedback]\""
+  "review_tweet_template": "[customer_name]:\r\n[product_name] - [rating], \"[feedback]\""
+  "settings":
+    "default":
+      "review_slider_c2a_text": >-
+        إظهار الكل
+  "stars":
+    "one": >-
+      نجمة واحدة
+    "other": >-
+      %{count} نجوم
+  "verified":
+    "agent":
+      "description": >-
+        %{author} يعمل لدى %{store}
+      "label": >-
+        %{store}
+    "customer":
+      "description": >-
+        %{author} قام بشراء هذا المنتج
+      "label": >-
+        مشترٍ تم التحقق من هويته

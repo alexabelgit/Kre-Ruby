@@ -1,0 +1,13 @@
+.hc-actions {
+  @extend %flexbox--space-between;
+}
+
+.hc-actions__upvotes {
+  > a {
+    @extend %text-decoration__none;
+
+    &:hover {
+      @extend %text-decoration__underline;
+    }
+  }
+}

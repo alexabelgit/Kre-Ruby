@@ -1,0 +1,59 @@
+section.subscription__title
+  h1
+    span = title (@unsubscribed ? 'Subscribe' : 'Unsubscribe')
+
+  section.subscription-form-wrapper
+  
+    - if @unsubscribed
+    
+      - if @change
+        = render 'shared/system_messages/custom',
+          body:  t('unsubscribed',
+                   scope: 'flash.submitted_successfully',
+                   store: "#{@store.name}",
+                   default: t('unsubscribed',
+                              scope: 'flash.submitted_successfully',
+                              store: "#{@store.name}",
+                              locale: :en)),
+          type:   'success',
+          align:  'center'
+    
+      = form_for @suppression, url: front_suppression_path(@store.hashid, @suppression.hashid, customer_id: @customer.hashid, uid: @uid), method: :delete do |f|
+
+        p.subscription__text
+          = t('.subscribe_question_html',
+              store: link_to(@store.name, @store.url, target: '_blank'),
+              default: t('.subscribe_question_html',
+                         store: link_to(@store.name, @store.url, target: '_blank'),
+                         locale: :en))
+
+        = f.hidden_field :uid, value: @uid
+        = f.submit 'Subscribe', class: 'subscription-form__submit'
+        
+    - else
+    
+      - if @change
+        = render 'shared/system_messages/custom',
+          body:  t('subscribed',
+                   scope: 'flash.submitted_successfully',
+                   store: "#{@store.name}",
+                   default: t('subscribed',
+                              scope: 'flash.submitted_successfully',
+                              store: "#{@store.name}",
+                              locale: :en)),
+          type:  'success',
+          align: 'center'
+    
+      = form_for @suppression, url: front_suppressions_path(@store.hashid, customer_id: @customer.hashid, uid: @uid), method: :post do |f|
+
+        p.subscription__text
+          = t('.unsubscribe_question_html',
+              store: link_to(@store.name, @store.url, target: '_blank'),
+              default: t('.unsubscribe_question_html',
+                         store: link_to(@store.name, @store.url, target: '_blank'),
+                           locale: :en))
+
+        = f.hidden_field :uid, value: @uid
+        = f.submit 'Unsubscribe', class: 'subscription-form__submit'
+        
+        

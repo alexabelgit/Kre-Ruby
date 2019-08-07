@@ -1,0 +1,73 @@
+.social-accounts {
+
+}
+
+.social-account {
+  @extend %background-color__white;
+  @extend %margin-bottom__md;
+  @extend %border__1px__solid__secondary;
+  @extend %border-radius__base;
+
+  @extend .hc-targetable;
+}
+
+.social-account__header {
+  @extend %padding__md;
+  @include flexbox(
+    $align-items:     center,
+    $flex-wrap:       wrap,
+    $justify-content: space-between
+  );
+
+  > div {
+    @extend %flex__0__1__auto;
+    @extend %white-space__nowrap; // TODO test if child elements need white-space: normal;
+  }
+}
+
+.social-account__icon {
+  @extend %display__inline-block;
+
+  &.social-account__icon--facebook {
+    @extend %color__facebook;
+  }
+
+  &.social-account__icon--twitter {
+    @extend %color__twitter;
+  }
+
+}
+
+.social-account__heading {
+  @extend %display__inline-block;
+  @extend %margin-bottom__0;
+}
+
+.social-account__details {
+  @extend %padding__md;
+  @extend %border-top__1px__solid__secondary;
+}
+
+.social-accounts__connect-facebook {
+  @include button(
+    facebook,
+    light,
+    $width: 100pct
+  );
+}
+
+.social-accounts__connect-twitter {
+  @include button(
+    twitter,
+    light,
+    $width: 100pct
+  );
+}
+
+.social-accounts__connect-pinterest {
+  @include button(
+    pinterest,
+    light,
+    $width: 100pct
+  );
+}

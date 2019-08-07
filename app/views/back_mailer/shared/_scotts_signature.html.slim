@@ -1,0 +1,18 @@
+/ contact_us
+/ regards
+
+- contact_us ||= 'In case you have questions or need assistance, reach out to us anytime via our in-app chat or at <a href="mailto:support@helpfulcrowd.com">support@helpfulcrowd.com</a>.'
+- regards    ||= 'Thanks for teaming up and we look forward to doing more, together.'
+
+p.signature__contact-us
+  == contact_us
+
+p.signature__regards
+  == regards
+
+p.signature__signature
+  img src="https://res.cloudinary.com/helpfulcrowd/image/upload/v1504105650/app_assets/scotts_signature.png" alt='Scott'
+  br
+  | Scott Stewart,
+  br
+  | Founder and CEO

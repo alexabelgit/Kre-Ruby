@@ -1,0 +1,19 @@
+= content_for :header
+  h2 = render 'shared/logo'
+
+= content_for :main
+
+  = yield
+
+  p.signature__signature
+    | Kind regards,
+    br
+    | Your friends at
+    =< link_to 'HelpfulCrowd', root_url
+
+= content_for :footer
+  | You have received this email as a <b>HelpfulCrowd</b> admin.
+  br
+  => link_to 'Learn more', 'https://www.helpfulcrowd.com'
+
+= render template: 'layouts/mailer/base'

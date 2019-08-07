@@ -1,0 +1,5 @@
+.paypal-form {
+  @extend .hc-card;
+  @extend %margin-y__xl;
+  @extend %margin-x__auto;
+}

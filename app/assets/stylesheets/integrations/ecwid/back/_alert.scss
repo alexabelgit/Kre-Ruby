@@ -1,0 +1,3 @@
+.alert:not(:only-child) {
+  @extend %margin-bottom__md;
+}

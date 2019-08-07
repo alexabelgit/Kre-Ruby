@@ -1,0 +1,25 @@
+.default-title__control {
+  @extend %margin-top__xs;
+  @include flexbox(
+    $align-items: center
+  );
+  .default-title__change {
+    @extend %order__1;
+  }
+
+  .default-title__change {
+    @extend %margin-left__md;
+    @extend %margin-right__0;
+  }
+
+  .default-title__new {
+    @extend %display__none;
+    @extend %width__30rem;
+  }
+
+  .default-title__current {
+    @extend .hc-form__static-input;
+    @extend %width__30rem;
+  }
+}
+

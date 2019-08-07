@@ -1,0 +1,79 @@
+/ initial_display
+/ product*
+/ review*
+/ show_header
+
+- initial_display ||= 'none'
+- show_header     ||= false
+
+= tag.section class: "hc-review-form-wrapper #{review.errors.any? ? 'hc-display__block' : 'hc-display__' + initial_display}",
+              data: { model: "review",
+                      id:    product.hashid,
+                      role:  "voluntary-review-form" } do
+
+  = form_for   [:front, review],
+    url:       front_product_reviews_url( store_id:   product.store.hashid,
+                                          product_id: product.hashid,
+                                          format:     :js ),
+    html:      { class: 'hc-review-form' },
+    namespace: product.hashid,
+    method:    :post,
+    remote:    true do |f|
+
+    - if show_header
+      header.hc-review-form__header
+        = link_to product.url, target: '_blank' do
+          => image_tag product.featured_image.small.url.to_s,
+             alt:      product.name,
+             class:    'hc-review-form__product-image'
+
+    = render 'shared/form/errors', resource: review
+
+    .add-rating
+      h5.add-rating__title
+        = t 'rating_html',
+          scope:   'front.review_requests.reviews.form',
+          reviewable: link_to(product.name, product.url, target: '_blank')
+
+      .add-rating__stars
+        - 5.downto(1) do |i|
+          = f.radio_button :rating, i, required: true, class: 'add-rating__input'
+
+          = f.label "rating_#{i}".to_sym, class: 'add-rating__label' do
+            .add-rating__star--empty
+              = hc_icon 'star-o lg'
+            .add-rating__star--full
+              = hc_icon 'star lg'
+
+            span.add-rating__stars-count = i
+            span.add-rating__star-name   = t "rating_#{i}"
+
+    .hc-review-form__feedback
+      = f.label     :feedback, t('feedback', scope: 'front.review_requests.reviews.form'),  class: 'hc-review-form__feedback-label'
+      = f.text_area :feedback, required: true,  class: 'hc-review-form__feedback-input'
+
+      span.hc-review-form__feedback-hint data-role="character-count"
+
+    - if @store.media_reviews_enabled?
+      = render 'helpful_components/cloudinary/upload_widget_trigger'
+
+    = render('front/components/customer_form', store: @store)
+
+    - if @store.recaptcha_enabled?
+      .hc-form__control
+        label = t 'recaptcha.label'
+        div data-role="recaptcha" data-theme="#{product.store.settings(:design).theme}"
+        / = recaptcha_tags(required: true, theme: product.store.settings(:design).theme)
+
+    = render 'front/components/privacy_notice'
+
+    => button_tag t('helpers.submit.review.create'),
+       class:     'hc-review-form__submit',
+       data:      { disable_with: "#{spinner_icon} #{t 'helpers.submit.review.create'}" }
+
+    = link_to 'javascript:void(0);',
+      class:  'hc-secondary-button',
+      data:   { role:   'voluntary-review-form-toggle',
+                action: 'hide' } do
+
+      = t 'cancel'

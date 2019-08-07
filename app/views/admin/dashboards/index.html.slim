@@ -1,0 +1,78 @@
+- content_for :main_class, 'boxed'
+= render 'sub_nav'
+
+h1 = title 'Dashboard'
+
+section.dashboard__section
+  h2 User stats
+
+  .hc-row
+    .dashboard__sub-section.hc-card.hc-col.hc-1-2
+      h3 Number of users
+
+      .hc-donut.has-inside
+        .hc-donut__inside
+          | Total<br>#{ @stores.count }
+
+        - data = { 'Active'   => @stores.installed.count,
+                   'Inactive' => @stores.uninstalled.count }
+
+        = pie_chart data,
+          donut:    true,
+          colors:   [ color(:success), color(:danger) ]
+
+    .dashboard__sub-section.hc-card.hc-col.hc-1-2
+      h3 Growth rate (last 8 weeks)
+      = line_chart [ { name: 'Install',   data: @stores.group_by_week(:created_at, last: 8).count,           color: color(:success) },
+                     { name: 'Uninstall', data: @users.with_store.group_by_week(:deleted_at, last: 8).count, color: color(:danger) } ]
+      / TODO: sometimes this chart shows incorrect numbers
+
+section.dashboard__section
+  h2 Content
+
+  .hc-row
+    section.dashboard__sub-section.hc-card.hc-col.hc-1-2
+      h3 Distribution
+
+      .hc-donut.has-inside
+        .hc-donut__inside
+          | Total<br>#{ @reviews.count + @questions.count }
+
+        - data      = [ [ 'Reviews', @reviews.count],
+                        [ 'Q&A',     @questions.count ] ]
+
+        = pie_chart data,
+          donut:    true
+
+    section.dashboard__sub-section.hc-card.hc-col.hc-1-2
+      h3 Dynamics (last 8 weeks)
+
+      = line_chart [ { name: 'Reviews', data: @reviews.group_by_week(:created_at, last: 8).count },
+                     { name: 'Q&A',     data: @questions.group_by_week(:created_at, last: 8).count } ]
+
+section.dashboard__section
+  h2 Products
+
+  .hc-row
+    section.dashboard__sub-section.hc-card.hc-col.hc-1-2
+      h3 Reviewed / Not reviewed
+      - data      = [ [ 'Reviewed',     @products.reviewed.count ],
+                      [ 'Not reviewed', @products.count - @products.reviewed.count ] ]
+
+      = pie_chart data
+
+    section.dashboard__sub-section.hc-card.hc-col.hc-1-2
+      h3 Questioned / Not questioned
+      - data      = [ [ 'Questioned',     @products.questioned.count ],
+                      [ 'Not questioned', @products.count - @products.questioned.count ] ]
+
+      = pie_chart data
+
+section.dashboard__section
+  h2 Orders
+  - @providers.to_a.in_groups_of(2).each do |providers|
+    .hc-row
+      - providers.each do |provider|
+        section.dashboard__sub-section.hc-card.hc-col.hc-1-2
+          h3 = provider[0].to_s.capitalize
+          = line_chart provider[1]

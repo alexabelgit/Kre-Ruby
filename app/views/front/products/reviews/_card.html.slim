@@ -1,0 +1,130 @@
+/ hide_dates
+/ open_product_in_new_tab
+/ review*
+/ read_more_after
+/ show_actions
+/ show_comments
+/ show_dropdown
+/ show_media
+/ show_product
+
+- show_comment_date       ||= false
+- open_product_in_new_tab ||= false
+- product                   = review.product
+- read_more_after         ||= 300
+- review_url                = front_product_review_url(@store, product, review)                 # This is checked to see if it's the same as current page
+- review_shareable_url      = front_product_review_url(@store, product, review, redirect: true) # This is used for social shares, so it includes the redirect
+- show_actions            ||= false
+- show_comments           ||= false
+- show_dropdown           ||= false
+- show_media              ||= false
+- show_product            ||= false
+- show_date               ||= @store.settings(:reviews).show_date.to_b
+- grid_layout             ||= @store.settings(:reviews).grid_layout
+- card_media_layout         = @store.settings(:reviews).media_layout
+- published_media           = review.media.select { |m| m.published? && m.cloudinary_public_id.present? }
+- show_titles               = @store.settings(:reviews).show_titles.to_b
+
+/ Set the media layout to "grid" if the card layouts is single_column
+- if grid_layout == "single_column"
+  - card_media_layout = "grid"
+
+/ Override show/hide options based on store settings
+- if @store.hide_card_actions?
+  - show_dropdown = false
+  - show_actions  = false
+
+section.hc-widget-card {
+  data-model = "review"
+  data-id    = review.hashid
+}
+  - if show_media && @store.media_reviews_enabled? && card_media_layout == 'hero'
+    - unless published_media.blank?
+      .hc-media class="hc-media__#{card_media_layout}" data-lightgallery="true"
+        - published_media.each_with_index do | media, index |
+          = render 'front/products/reviews/media/show_single', medium: media, count: index, review: review
+
+  header.hc-widget-card__header
+    .hc-widget-card__header-content
+      .hc-widget-card__rating
+        = stars_based_on(review.rating, 'default', 'md')
+    - if show_date
+      .hc-widget-card__date
+        = humane_datetime review.review_date, hide_time: true
+
+    - if review.with_incentive?
+      .hc-widget-card__incentivized.hc-tooltip
+        = hc_icon 'hc-incentivised justified'
+        = hc_tooltip(review.with_incentive_text, position: 'left')
+
+  - if show_product
+    .hc-widget-card__product
+      = render 'front/products/card',
+        product: product,
+        hide_thumbnail: false,
+        open_product_in_new_tab: open_product_in_new_tab,
+        disable_product_links: disable_product_links
+
+  section.hc-widget-card__item
+    = render           'front/products/reviews/item',
+      review:          review,
+      read_more_after: read_more_after,
+      show_media:      show_media,
+      show_titles:     show_titles,
+      card_media_layout: card_media_layout,
+      published_media: published_media
+
+  - if show_comments && review.comment.present?
+    .hc-widget-card__comment
+      = render 'front/comments/show', comment: review.comment, commentable: review, show_date: show_comment_date
+
+  - if show_actions
+    - cache [@store, product, review, 'review-card__footer', I18n.locale] do
+      footer.hc-widget-card__footer
+        .hc-actions
+          = render  'front/votes/new',
+            object: review,
+            url:    front_product_review_votes_url(store_id: review.store.hashid, product_id: product.hashid, review_id: review.hashid, format: :js)
+
+          - if show_dropdown
+            .hc-widget-card__dropdown
+
+              = render 'helpful_components/dropdown', position: 'south-east' do
+
+                - if @store.easy_reviews?
+                  .hc-dropdown__item
+                    = link_to new_front_product_review_url(product.store.hashid, product.hashid),
+                      target: '_blank' do
+
+                      => hc_icon 'star justified'
+                      =  t 'front.write_review'
+
+                .hc-dropdown__item
+                  = render  'front/flags/new',
+                    object: review,
+                    url:    front_product_review_flags_url(store_id: review.store.hashid, product_id: product.hashid, review_id: review.hashid, format: :js)
+
+            - if review.published?
+              .hc-share
+                = render         'helpful_components/dropdown',
+                  trigger:       "#{ hc_icon 'hc-share', class: 'hc-share__icon' }",
+                  trigger_class: 'hc-link',
+                  position:      'north-east' do
+
+                  = link_to "https://www.facebook.com/dialog/share?app_id=#{ ENV['FACEBOOK_APP_ID'] }&href=#{ review_shareable_url }",
+                    class:  'hc-facebook-icon-button',
+                    target: '_blank' do
+
+                    = hc_icon 'facebook'
+
+                  = link_to "https://twitter.com/share?url=#{ review_shareable_url }",
+                    class:  'hc-twitter-icon-button',
+                    target: '_blank' do
+
+                    = hc_icon 'twitter'
+
+                  = link_to "mailto:?body=%0D%0A%0D%0A#{ review.display_name }%0D%0A#{ review.rating.to_stars }%0D%0A#{ review.feedback }%0D%0A%0D%0A#{ product.url }&subject=#{ review.rating.to_stars + ' ' + product.name }",
+                    class:  'hc-email-icon-button',
+                    target: '_blank' do
+
+                    = hc_icon 'envelope'

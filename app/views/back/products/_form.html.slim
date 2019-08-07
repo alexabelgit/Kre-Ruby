@@ -1,0 +1,25 @@
+- disabled = !current_store.manages_products?
+
+.hc-card.product-form data-behavior="product-page"
+  = form_for [:back, @product] do |f|
+    = render 'shared/form/errors', resource: @product
+
+    .hc-form__control
+      = f.label      :name, class: 'hc-form__label'
+      = f.text_field :name, class: 'hc-form__input hc-form__input--lg', disabled: disabled, autofocus: !disabled
+
+    .hc-form__control
+      = f.label      :id_from_provider, 'ID', class: 'hc-form__label'
+      = f.text_field :id_from_provider,       class: 'hc-form__input hc-form__input--lg', disabled: disabled
+
+    .hc-form__control
+      = f.label     :url, 'URL', class: 'hc-form__label'
+      = f.url_field :url,        class: 'hc-form__input hc-form__input--lg', disabled: disabled
+
+    - if @product.custom_image_allowed?
+      = render partial: 'featured_image', locals: { product: @product, form: f }
+    - else
+      = render partial: 'custom_store_featured_image', locals: { product: @product, form: f }
+
+    => render 'shared/form/submit', value: 'Save'
+    =  back_button 'Cancel'

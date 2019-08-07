@@ -1,0 +1,49 @@
+nav.nav
+  = active_link_to  back_root_path,
+    active:         [ ['back/dashboard'], [] ],
+    class_active:   'nav__button--active',
+    class_inactive: 'nav__button' do
+
+    => hc_icon 'line-chart'
+    =  'Dashboard'
+
+  = active_link_to  back_reviews_path,
+    active:         [ ['back/reviews', 'back/review_requests', 'back/review_requests/bulk_request', 'back/reviews/settings'], [] ],
+    class_active:   'nav__button--active',
+    class_inactive: 'nav__button' do
+
+    => hc_icon 'star-half'
+    =  'Reviews'
+
+  = active_link_to  back_questions_path,
+    active:         [ ['back/questions', 'back/questions/settings'], [] ],
+    class_active:   'nav__button--active',
+    class_inactive: 'nav__button' do
+
+    => hc_icon 'comments'
+    =  'Q&A'
+
+  = active_link_to  back_products_path,
+    active:         [ ['back/products', 'back/products/upload', 'back/product_groups'], [] ],
+    class_active:   'nav__button--active',
+    class_inactive: 'nav__button' do
+
+    => hc_icon 'shopping-cart'
+    =  'Products'
+
+  = active_link_to ((@store.present? && @store.promotions_enabled?) ? back_promotions_path : back_suppressions_path),
+    active:         [ ['back/tools', 'back/promotions', 'back/discount_coupons', 'back/suppressions', 'back/imported_reviews', 'back/imported_questions', 'back/imported_review_requests', 'back/abuse_reports'], [] ],
+    class_active:   'nav__button--active',
+    class_inactive: 'nav__button' do
+
+    => hc_icon 'wrench'
+    =  'Tools'
+
+
+  = active_link_to  general_back_settings_path,
+    active:         [ ['back/settings', 'back/settings/billing', 'back/users'], [] ],
+    class_active:   'nav__button--active',
+    class_inactive: 'nav__button' do
+
+    => hc_icon 'cog'
+    =  'Settings'

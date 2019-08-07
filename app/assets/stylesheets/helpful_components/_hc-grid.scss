@@ -1,0 +1,31 @@
+.hc-row:after {
+    @extend %content__-empty-;
+    @extend %clear__both;
+    @extend %display__table;
+}
+
+@media only screen {
+  .hc-col {
+    float: left;
+    width: 100%;
+  }
+}
+
+@media #{$above__sm} {
+  .hc-1-2 {
+    width: 48.5%; // no way this is perfect but it's an acceptable fallback for 640px screen width with up to 16px gutter
+    width: calc(50% - .5em);
+
+    &:nth-child(odd) {
+      margin-right: .5em;
+      clear: left;
+    }
+
+    &:nth-child(even) {
+      margin-left: .5em;
+    }
+  }
+
+	.hc-2-3 { width: 66.66%; }
+	.hc-1-3 { width: 33.33%; }
+}

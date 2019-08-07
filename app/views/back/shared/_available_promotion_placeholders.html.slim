@@ -1,0 +1,12 @@
+/ placeholders*
+
+- if placeholders.present?
+
+  .hc-well data-role="available-promotion-placeholders"
+    label.hc-form__label.margin-sm Available promo variables <span class="hc-hint">(click to copy)</span>
+    .template__placeholders-list
+      = placeholders.map{ |placeholder| "<span class='notranslate js-copy-to-clipboard' translate='no'>[#{ placeholder.to_s }]</span>" }.split(", ").join(", ").html_safe
+
+      .hc-tooltip.hc-tooltip__absolute-bottom-left
+        .hc-tooltip__content
+          span copied

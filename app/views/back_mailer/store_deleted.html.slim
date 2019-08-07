@@ -1,0 +1,8 @@
+= content_for :recipient
+  = @presenter.user_first_name
+
+p We're sorry to see you go!
+
+p Your account has been permanently deactivated.
+
+= render 'back_mailer/shared/contact_us_and_thank_you', hide_thank_you: true

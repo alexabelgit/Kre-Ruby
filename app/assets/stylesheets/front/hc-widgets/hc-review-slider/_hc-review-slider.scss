@@ -1,0 +1,111 @@
+.hc-review-slider {
+  @extend %margin-y__md;
+}
+
+.hc-review-slider__list-wrapper {
+  @extend %position__relative;
+  @extend %overflow__hidden;
+}
+
+.hc-review-slider__slide-left,
+.hc-review-slider__slide-right {
+  @extend %position__absolute;
+  @extend %height__100pct;
+  @extend %width__lg;
+  @extend %text-align__center;
+  @extend %transition__opacity;
+  @extend %opacity__0pt75;
+  @extend %cursor__pointer;
+  @extend %background-color__secondary;
+  @extend %z-index__1;
+
+  &:hover {
+    opacity: .9375;
+  }
+}
+
+.hc-review-slider__icon {
+  top: 45%;
+  top: calc(50% - 1rem);
+  @extend %position__relative;
+}
+
+.hc-review-slider__slide-left {
+  @extend %left__0;
+}
+
+.hc-review-slider__slide-right {
+  @extend %right__0;
+}
+
+.hc-review-slider__list {
+  @include flexbox(
+    $align-items: stretch
+  );
+
+  @extend %overflow-x__auto;
+  @extend %-ms-overflow-style__none;
+  @extend %white-space__nowrap;
+
+  > * {
+    @extend %white-space__normal;
+  }
+
+  &:before, &:after {
+    @extend %content__-empty-;
+    @extend %display__inline-block;
+    @extend %height__1px;
+    @extend %width__lg;
+    @extend %flex-shrink__0;
+  }
+
+  &::-webkit-scrollbar {
+    display: none; // This deliberately done without extend as it breaks whole rule for all selectors in Firefox
+  }
+}
+
+.hc-review-slider__c2a,
+.hc-review-slider .hc-review-slider__list .hc-widget-card {
+  @extend %display__inline-block;
+  @extend %margin-x__xs;
+  @extend %margin-bottom__0;
+  @extend %vertical-align__top;
+
+  @extend %flex-shrink__0;
+}
+
+.hc-review-slider .hc-review-slider__list .hc-widget-card {
+  @extend %width__300px;
+  max-width: calc(100vw - 3em);
+}
+
+.hc-review-slider__c2a {
+  @extend %text-align__center;
+  @extend %width__10em;
+
+  @extend %border-color__secondary;
+  @extend %border-style__solid;
+  @extend %border-width__1px;
+  @extend %background-color__lighter;
+}
+
+.hc-review-slider__c2a-button {
+  top: 45%;
+  top: calc(50% - 15px);
+  @extend %position__relative;
+  @extend %text-button;
+}
+
+.hc-review-slider {
+  .hc-review-slider__list {
+    .hc-review__feedback {
+      min-height: 44px;
+
+      min-height: #{ 2em * $line-height__base-value };
+
+      @extend %white-space__normal;
+      @extend %word-break__normal;
+      @extend %word-wrap__normal;
+    }
+  }
+}

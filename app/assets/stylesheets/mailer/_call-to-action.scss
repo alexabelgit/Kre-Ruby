@@ -1,0 +1,9 @@
+.call-to-action {
+  @extend %text-align__center;
+  @extend %display__block;
+  @extend %width__100pct;
+
+  a {
+    @extend %margin-y__xl;
+  }
+}

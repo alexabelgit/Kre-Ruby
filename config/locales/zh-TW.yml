@@ -1,0 +1,427 @@
+---
+"zh-TW":
+  "activerecord":
+    "errors":
+      "models":
+        "abuse_report":
+          "attributes":
+            "additional_info":
+              "blank": >-
+                必須在選擇“其他”作為原因時提供
+            "reason":
+              "blank": >-
+                ^您必須選擇一個理由
+        "product":
+          "attributes":
+            "id_from_provider":
+              "taken": >-
+                ^身份必須是獨一無二的。您所輸入的身份已經在另一個產品上使用。
+        "review":
+          "attributes":
+            "customer":
+              "must_be_authenticated": >-
+                ^您必須登錄才能撰寫評論
+            "product_ids":
+              "cannot_be_repeated": >-
+                ^您已經評論過此產品
+              "taken": >-
+                ^您已經審查了此次購買
+            "review_request_id":
+              "request_must_be_sent": >-
+                ^您目前無法評論此次購買
+            "source":
+              "cannot_be_voluntary": >-
+                ^您目前無法評論此次購買
+        "review_request":
+          "attributes":
+            "order_id":
+              "blank": >-
+                沒有相應的客戶就無法創建。 請提供一個有效的電子郵件地址。
+    "models":
+      "comment":
+        "one": >-
+          評論
+        "other": >-
+          評論
+      "customer":
+        "one": >-
+          顧客
+        "other": >-
+          顧客
+      "product":
+        "one": >-
+          產品
+        "other": >-
+          產品
+      "product_group":
+        "one": >-
+          產品組
+        "other": >-
+          產品組
+      "question":
+        "one": >-
+          問題
+        "other": >-
+          問題
+      "review":
+        "one": >-
+          評論
+        "other": >-
+          評論
+      "review_request":
+        "one": >-
+          審核請求
+        "other": >-
+          審核請求
+  "answer":
+    "one": >-
+      回答
+    "other": >-
+      回答
+  "cancel": >-
+    取消
+  "counterify":
+    "characters":
+      "exceeded": >-
+        超出了字符限制
+      "remaining":
+        "one": >-
+          剩下1個字符
+        "other": >-
+          剩餘％{count}個字符
+  "default_templates":
+    "email":
+      "critical_review_followup_mail_body": "<p>您好[customer_name]，</p>\r\n<p>感謝您的評論。</p>\r\n<p>[store_name]的團隊</p>"
+      "critical_review_followup_mail_subject": >-
+        感謝您的評論。
+      "positive_review_followup_mail_body": "<p>您好[customer_name]，</p>\r\n<p>感謝您的評論。</p>\r\n<p>[store_name]的團隊</p>"
+      "positive_review_followup_mail_subject": >-
+        感謝您的評論。
+      "question_answer_mail_body": "<p>您好[customer_name]，</p>\r\n<p>您關於[product_name]的問題已由我們的代表回答：</p>\r\n<p>[answer]</p>\r\n<p>您的問題：</p>\r\n<p>[question]</p>\r\n<p>[product_link]</p>\r\n<p>[store_name]的團隊</p>"
+      "question_answer_mail_subject": >-
+        您在[store_name]的問題已得到解答
+      "repeat_review_request_mail_body": "<p>您好[customer_name]，</p>\r\n<p>現在告訴我們您對最近訂單的看法還為時不晚。</p>\r\n<p>點擊星標來評估您迄今為止的體驗：</p>\r\n<p>[products]</p>\r\n<p>不開心？首先請聯繫我們，以便我們可以提供幫助。</p>\r\n<p>[store_name]的團隊</p>"
+      "repeat_review_request_mail_subject": >-
+        提醒您在[store_name]評論您最近的訂單
+      "review_answer_mail_body": "<p>您好[customer_name]，</p>\r\n<p>您關於[product_name]的問題已由我們的代表回答：</p>\r\n<p>[answer]</p>\r\n<p>您的問題：</p>\r\n<p>[question]</p>\r\n<p>[product_link]</p>\r\n<p>[store_name]的團隊</p>"
+      "review_answer_mail_subject": >-
+        您在[store_name]的評論已得到解答
+      "review_request_mail_body": "<p>您好[customer_name]，</p>\r\n<p>點擊星標來評估您迄今為止的體驗：</p>\r\n<p>[products]</p>\r\n<p>不開心？首先請聯繫我們，以便我們可以提供幫助。</p>\r\n<p>[store_name]的團隊</p>"
+      "review_request_mail_subject": >-
+        在[store_name]評論您最近的訂單
+  "embed": >-
+    嵌入式
+  "errors":
+    "messages":
+      "already_confirmed": >-
+        已經確認，請嘗試登錄
+      "confirmation_period_expired": >-
+        需要在%{period}內確認，請申請新的
+      "expired": >-
+        已過期，請申請新的
+      "not_found": >-
+        未找到
+      "not_locked": >-
+        沒被鎖定
+      "not_saved":
+        "one": >-
+          1錯誤禁止此%{resource}被保存:
+        "other": >-
+          %{count}個錯誤禁止此％{resource}被保存:
+  "flash":
+    "submitted_successfully":
+      "question": >-
+        謝謝！ 我們已收到您的問題，我們會在收到回復後通過電子郵件通知您
+      "review": >-
+        謝謝！ 我們已收到您的評論
+      "subscribed": >-
+        您已成功訂閱%{store}。
+      "unsubscribed": >-
+        您已成功取消%{store}的訂閱。
+  "front":
+    "based_on_reviews_count":
+      "one": >-
+        1條評論
+      "other": >-
+        ％{count}條評論
+    "components":
+      "customer_form":
+        "email":
+          "hint": >-
+            您的電子郵件不會被其他人共享
+          "label": >-
+            您的電子郵件
+        "name":
+          "hint": >-
+            您的名字將顯示為姓名縮寫
+          "hint_update_html": >-
+            您的姓名將顯示為<strong>%{initials} </ strong>
+          "label": >-
+            您的姓名
+      "privacy_notice":
+        "link_content": >-
+          隱私政策
+        "with_name":
+          "html": "提交這份表格即表示您同意您的內容和你的名字\r\n<strong>%{name}</ strong>可以根據我們在線發布\r\n%{link}."
+        "without_name":
+          "html": "提交此表單即表示您同意您的內容和姓名\r\n根據我們的 %{link}.在線發布。"
+    "continue_shopping": >-
+      繼續購物
+    "flags":
+      "new":
+        "already_flagged": >-
+          您已經標記了這個%{item}
+        "flag_as_inappropriate": >-
+          將此%{item}標記為不當內容
+      "show":
+        "flag_submitted": >-
+          謝謝
+    "mailer":
+      "excuses":
+        "question_answered_html": >-
+          您收到了來自%{helpfulcrowd} 的電子郵件，以向您提供有關您向%{store}提出的問題的最新信息。
+        "review_answered_html": >-
+          您收到了來自%{helpfulcrowd} 的電子郵件，以向您提供有關您在%{store}留下的評論的最新信息。
+        "review_follow_up_html": >-
+          您收到了來自%{helpfulcrowd} 的此電子郵件，以回复您最近在%{store}的評論。
+        "review_request_html": >-
+          您收到了來自%{helpfulcrowd} 的電子郵件，以回复您最近在%{store}的訂單。
+      "helpers":
+        "call_to_action":
+          "view_product": >-
+            訪問產品頁面
+    "products":
+      "questions":
+        "form":
+          "question_html": >-
+            您想了解%{product}的哪些信息？
+        "new":
+          "title": >-
+            詢問問題
+      "view_product": >-
+        訪問產品頁面
+    "review_requests":
+      "reviews":
+        "form":
+          "rating_html": >-
+            使用%{reviewable}為您的體驗評分
+        "new":
+          "already_reviewed_html": >-
+            您已經評論了%{reviewable}
+          "review_other_purchases":
+            "one": >-
+              評論您的其他購買
+            "other": >-
+              評論您的其他購買
+          "title": >-
+            評論您的購買
+    "search":
+      "label": >-
+        搜索：
+      "placeholder": >-
+        輸入關鍵字
+    "share":
+      "button": >-
+        分享
+    "sort_by": >-
+      排序方式：
+    "sort_options":
+      "most_helpful": >-
+        最有幫助的
+      "most_recent": >-
+        最近的
+      "rating_asc": >-
+        評級：最低
+      "rating_desc": >-
+        評級：最高
+    "suppressions":
+      "manage_subscriptions":
+        "subscribe_question_html": >-
+          您是否要讓HelpfulCrowd代表%{store}向您發送電子郵件？
+        "unsubscribe_question_html": >-
+          您是否希望 HelpfulCrowd 代表%{store}停止向您發送電子郵件？
+    "votes":
+      "upvote": >-
+        有幫助
+      "upvotes_count":
+        "one": >-
+          %{count} 人發現此 %{item}很有幫助
+        "other": >-
+          %{count} 人發現此 %{item}很有幫助
+    "widgets":
+      "products":
+        "rating":
+          "qa":
+            "html":
+              "one": >-
+                1個問題
+              "other": >-
+                ％{count}個問題
+          "reviews":
+            "html":
+              "one": >-
+                1條評論
+              "other": >-
+                ％{count}條評論
+        "summary":
+          "qa":
+            "html":
+              "one": >-
+                1問題
+              "other": >-
+                ％{count}問題
+            "new": >-
+              問第一個問題
+          "reviews":
+            "html":
+              "one": >-
+                根據1條評論
+              "other": >-
+                根據％{count}條評論
+            "new": >-
+              寫第一篇評論
+        "tabs":
+          "questions":
+            "new": >-
+              問問題
+            "search":
+              "label": >-
+                搜索:
+              "placeholder": >-
+                搜索問題與解答
+            "title": >-
+              問題與解答
+            "write_first": >-
+              首先詢問有關此產品的問題
+          "reviews":
+            "based_on_reviews":
+              "html": >-
+                根據%{reviews_count}
+            "media_gallery":
+              "images":
+                "one": >-
+                  1 張照片
+                "other": >-
+                  %{count} 張照片
+              "search":
+                "label": >-
+                  搜索:
+                "placeholder": >-
+                  搜索評論
+              "title": "顧客\r\n媒體"
+              "videos":
+                "one": >-
+                  1 個視頻
+                "other": >-
+                  %{count} 個視頻
+            "new": >-
+              寫評論
+            "rating": >-
+              %{rating} 滿分5星
+            "title": >-
+              顧客評論
+            "write_first": >-
+              成為第一個評論該產品
+          "titles":
+            "questions": >-
+              問題與解答
+            "questions_responsive": >-
+              問題與解答
+            "reviews": >-
+              評論
+            "reviews_responsive": >-
+              評論
+      "sidebar":
+        "default_title": >-
+          評論|問題與解答
+    "with_incentive":
+      "reviews":
+        "text": >-
+          評論者可能為了獎勵撰寫此審核
+    "write_review": >-
+      寫評論
+  "helpers":
+    "friendly_rating": >-
+      還沒有評論
+    "label":
+      "customer":
+        "email": >-
+          客戶電子郵件
+        "name": >-
+          顧客姓名
+      "product_group":
+        "name": >-
+          姓名
+    "placeholder":
+      "promotion":
+        "template": >-
+          黑色星期五週的所有訂單免運費！
+    "submit":
+      "product_group":
+        "create": >-
+          創建組
+        "update": >-
+          更新組
+      "question":
+        "create": >-
+          問問題
+      "review":
+        "create": >-
+          提交評論
+  "layouts":
+    "mailer":
+      "front":
+        "manage_subscriptions": >-
+          管理訂閱
+        "unsubscribe": >-
+          取消訂閱
+  "load_more": >-
+    加載更多
+  "privacy_policy": >-
+    隱私政策
+  "question_facebook_post_template": "[customer_name]\r\n問: [question]\r\n答: [answer]"
+  "question_tweet_template": "[customer_name]\r\n問: [question]\r\n答: [answer]"
+  "rating_1": >-
+    糟糕
+  "rating_2": >-
+    惡劣
+  "rating_3": >-
+    可以
+  "rating_4": >-
+    好
+  "rating_5": >-
+    很好
+  "read_less": >-
+    少閱讀
+  "read_more": >-
+    閱讀更多
+  "recaptcha":
+    "errors":
+      "verification_failed": >-
+        reCAPTCHA驗證失敗。
+    "label": >-
+      幫助我們打擊垃圾郵件
+  "report": >-
+    報告
+  "review_facebook_post_template": "查看[customer_name]對[product_name]的說法：\r\n\r\n[rating]\r\n\"[feedback]\""
+  "review_tweet_template": "[customer_name]:\r\n[product_name] - [rating], \"[feedback]\""
+  "settings":
+    "default":
+      "review_slider_c2a_text": >-
+        顯示全部
+  "stars":
+    "one": >-
+      1星
+    "other": >-
+      ％{count}個星
+  "verified":
+    "agent":
+      "description": >-
+        %{author}在%{store}工作
+      "label": >-
+        %{store}
+    "customer":
+      "description": >-
+        %{author}已購買此產品
+      "label": >-
+        驗證買家

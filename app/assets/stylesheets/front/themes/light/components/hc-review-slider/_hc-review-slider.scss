@@ -1,0 +1,9 @@
+.hc-review-slider__slide-left,
+.hc-review-slider__slide-right {
+  @extend %background-color__secondary;
+}
+
+.hc-review-slider__c2a {
+  @extend %border-color__secondary;
+  @extend %background-color__lighter;
+}

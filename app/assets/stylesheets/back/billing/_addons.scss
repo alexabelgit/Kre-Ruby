@@ -1,0 +1,70 @@
+.addon {
+  @extend %border__base;
+  @extend %border-radius__base;
+  @extend %background-color__white;
+  @extend %margin-bottom__md;
+}
+
+.addon__header {
+  @extend %margin-top__md;
+  @extend %padding-x__md;
+  @extend %position__relative;
+}
+
+.addon__name {
+  @extend %margin-right__2xl;
+}
+
+.addon__price {
+  @extend %background-color__brand-3;
+  @extend %color__white;
+  @extend %line-height__2;
+  @extend %padding-x__md;
+  @extend %position__absolute;
+  @extend %right__-0pt5rem;
+  @extend %top__0;
+
+  &:after {
+    @extend %position__absolute;
+    @extend %top__100pct;
+    @extend %right__0;
+    @extend %display__block;
+    @extend %content__-empty-;
+    border-width: 0.5em 0.5em 0 0;
+    border-color: $color-brand-3 transparent transparent transparent;
+    @extend %opacity_0pt5;
+    @extend %border-style__solid;
+  }
+
+  &:before {
+    @extend %position__absolute;
+    @extend %top__0;
+    @extend %right__100pct;
+    @extend %height__1pt5em;
+    @extend %display__block;
+    @extend %content__-empty-;
+    border-width: 1em 0 1em 0.5em;
+    border-color: $color-brand-3 $color-brand-3 $color-brand-3 transparent;
+    @extend %border-style__solid;
+  }
+}
+
+.addon__description {
+  @extend %padding-x__md;
+  @extend %margin__0;
+}
+
+.addon__footer {
+  @extend %border-top__1px__solid__secondary;
+  @extend %margin-y__md;
+  @extend %padding-x__md;
+  @extend %padding-top__md;
+  @include flexbox(
+    $justify-content: space-between,
+    $flex-wrap:       wrap
+  );
+}
+
+.addon__status {
+  @extend %color__info;
+}

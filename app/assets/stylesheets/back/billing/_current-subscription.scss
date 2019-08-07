@@ -1,0 +1,22 @@
+.current-subscription {
+  @extend .hc-card;
+  @extend %margin-bottom__xl;
+}
+
+.current-subscription__current-plan {
+  @extend %margin-bottom__md;
+}
+
+.current-subscription__usage {
+  @extend %margin-bottom__md;
+  @extend .hc-card;
+}
+
+
+.current-subscription__details {
+  @extend .hc-card;
+}
+
+.current-subscription__manage {
+  @extend %margin-top__md;
+}

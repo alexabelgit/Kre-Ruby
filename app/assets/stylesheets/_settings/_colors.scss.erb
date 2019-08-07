@@ -1,0 +1,49 @@
+// TODO Should this file go in stylesheets/erb folder?
+
+<% environment.context_class.instance_eval { include ApplicationHelper } %>
+// TOOD maybe we find a way to have ColorHelper to avoid including whole application_helper here?
+
+$color-primary:    <%= color(:primary) %>;
+$color-secondary:  <%= color(:secondary) %>;
+$color-info:       <%= color(:info) %>;
+$color-success:    <%= color(:success) %>;
+$color-warning:    <%= color(:warning) %>;
+$color-danger:     <%= color(:danger) %>;
+
+$color-dark:       <%= color(:dark) %>;
+$color-light:      <%= color(:light) %>;
+$color-warm:       <%= color(:warm) %>;
+$color-pale:       <%= color(:pale) %>;
+
+$color-link:       <%= color(:link) %>;
+$color-link-dark:  <%= color(:'link-dark') %>;
+$color-brand-1:    <%= color(:'brand-1') %>;
+$color-brand-2:    <%= color(:star) %>;
+$color-brand-3:    <%= color(:'brand-3') %>;
+$color-brand-4:		 <%= color(:'brand-4') %>;
+//$color-brand-4: #FFB400;
+
+// custom colors
+$color-facebook:   <%= color(:facebook) %>;
+$color-twitter:    <%= color(:twitter) %>;
+$color-pinterest:  <%= color(:pinterest) %>;
+$color-ecwid:      <%= color(:ecwid) %>;
+$color-shopify:    <%= color(:shopify) %>;
+$color-lemonstand: <%= color(:lemonstand) %>;
+
+$color-lighter:    <%= color(:lighter) %>;
+$color-darker:     <%= color(:darker) %>;
+
+$custom-colors: (
+  facebook:           $color-facebook,
+  twitter:            $color-twitter,
+  pinterest:          $color-pinterest,
+  ecwid:              $color-ecwid,
+  shopify:            $color-shopify,
+  lemonstand:         $color-lemonstand,
+
+  lighter:            $color-lighter,
+  darker:             $color-darker,
+
+  alert:              $color-danger // TODO this should be warning.. check if it has any uses so that the change won't break anything
+);

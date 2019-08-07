@@ -1,0 +1,57 @@
+= render 'back/products/sub_nav'
+
+
+header.header-with-action
+  h1
+    => title 'Product groups'
+    =  render 'back/shared/addon_icon'
+
+  = link_to new_back_product_group_path,
+    class: 'hc-primary-button' do
+
+    => hc_icon 'plus'
+    |  New group
+
+- if @product_groups.any?
+  .responsive-table
+    table.table.product-groups
+      thead
+        tr
+          th Group name
+          th Rating
+          th Reviews
+          th Questions
+          th Products
+          th
+
+      tbody
+        - @product_groups.each do |product_group|
+          tr.product-group
+            td =  link_to product_group.name, back_product_group_path(product_group)
+
+            td =  stars_and_rating(product_group.rating)
+
+            td =  product_group.reviews.published.count
+
+            td =  product_group.questions.published.count
+
+            td == product_group.products.a24z.map { |product| link_to(product.name, back_product_path(product)) }.join(', ')
+
+            td.table__actions
+              => edit_button edit_back_product_group_path(product_group), size: 'small'
+
+              =  link_to back_product_group_path(product_group),
+                 class:  'hc-danger-button--small',
+                 data:   { confirm: 'Are you sure you want to delete product group? This will not delete products inside the group.' },
+                 method: :delete do
+
+                 => hc_icon 'trash'
+                 |  Delete
+
+  = will_paginate @product_groups, class: 'hc-paging hc-paging--modern'
+
+- else
+  = render      'back/shared/no_records',
+    object:     'product_groups',
+    kb_article: 'product_groups',
+    action:     new_back_product_group_path

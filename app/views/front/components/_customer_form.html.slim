@@ -1,0 +1,28 @@
+/ store
+/ hidden
+
+= fields_for :customer do |cf|
+  .hc-customer-form
+    .hc-customer-form__name
+      = cf.label :name, t('label', scope: 'front.components.customer_form.name'),
+        class:   'hc-customer-form__name-label'
+
+      = cf.text_field :name,
+        required:     true,
+        class:        'hc-customer-form__name-input',
+        data:         { hc: 'display-name-text-field', 'hc-id': store.hashid },
+        value:        @guest_customer&.name
+
+      .hc-form__hint data-hc="display-name-hint-container"
+        = t 'hint', scope: 'front.components.customer_form.name'
+
+    .hc-customer-form__email
+      = cf.label :email, t('label', scope: 'front.components.customer_form.email'),
+        class:   'hc-customer-form__email-label'
+
+      = cf.email_field :email,
+        required:      true,
+        class:         'hc-customer-form__email-input',
+        value:         @guest_customer&.email
+
+      .hc-form__hint = t 'hint', scope: 'front.components.customer_form.email'

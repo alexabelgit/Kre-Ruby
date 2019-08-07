@@ -1,0 +1,36 @@
+.current-plan {
+  @include flexbox(
+    $flex-wrap:       wrap,
+    $justify-content: space-between
+  );
+  @extend %border-radius__sm;
+  @extend %padding__md;
+  @extend %background-color__primary;
+  @extend %color__white;
+  @extend %max-width__100pct;
+
+  &.current-plan--paid {
+    @extend %background-color__success;
+  }
+
+  &.current-plan--trial-ending,
+  &.current-plan--dunning,
+  &.current-plan--terminating {
+    @extend %background-color__warning;
+  }
+
+  &.current-plan--dunning-failed,
+  &.current-plan--trial-ended,
+  &.current-plan--withheld,
+  &.current-plan--archived,
+  &.current-plan--exceeded {
+    @extend %background-color__danger;
+  }
+}
+
+.current-plan__name {
+  @extend %text-transform__uppercase;
+  @extend %font-family__body-font-family;
+  @extend %margin__0;
+  @extend %line-height__1;
+}

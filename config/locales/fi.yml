@@ -1,0 +1,450 @@
+---
+"fi":
+  "activerecord":
+    "errors":
+      "models":
+        "abuse_report":
+          "attributes":
+            "additional_info":
+              "blank": >-
+                on toimitettava, kun 'jokin muu' on valittu syyksi
+            "reason":
+              "blank": >-
+                ^Sinun täytyy valita syy
+        "product":
+          "attributes":
+            "id_from_provider":
+              "taken": >-
+                ^ID:n pitää olla uniikki. Se, jonka laitoit on jo käytetty toisessa
+                tuotteessa.
+        "review":
+          "attributes":
+            "customer":
+              "must_be_authenticated": >-
+                ^Sinun täytyy olla kirjautunut sisään kirjoittaaksesi arvostelun
+            "product_ids":
+              "cannot_be_repeated": >-
+                ^Olet jo arvostellut tämän tuotteen
+              "taken": >-
+                ^Olet jo arvostellut tämän oston
+            "review_request_id":
+              "request_must_be_sent": >-
+                ^Et voi arvostella tätä ostoa tällä hetkellä
+            "source":
+              "cannot_be_voluntary": >-
+                ^Et voi arvostella tätä ostoa tällä hetkellä
+        "review_request":
+          "attributes":
+            "order_id":
+              "blank": >-
+                ei voida luoda ilman vastaavaa asiakasta. Annathan oikean sähköpostiosoitteen.
+    "models":
+      "comment":
+        "one": >-
+          kommentti
+        "other": >-
+          kommentit
+      "customer":
+        "one": >-
+          asiakas
+        "other": >-
+          asiakkaat
+      "product":
+        "one": >-
+          tuote
+        "other": >-
+          tuotteet
+      "product_group":
+        "one": >-
+          tuoteryhmä
+        "other": >-
+          tuoteryhmät
+      "question":
+        "one": >-
+          kysymys
+        "other": >-
+          kysymykset
+      "review":
+        "one": >-
+          arvostelu
+        "other": >-
+          arvostelut
+      "review_request":
+        "one": >-
+          arvostelupyyntö
+        "other": >-
+          arvostelupyynnöt
+  "answer":
+    "one": >-
+      vastaus
+    "other": >-
+      vastaukset
+  "cancel": >-
+    Hylkää
+  "counterify":
+    "characters":
+      "exceeded": >-
+        Merkkiraja ylitetty
+      "remaining":
+        "one": >-
+          1 merkki jäljellä
+        "other": >-
+          %{count} merkkiä jäljellä
+  "default_templates":
+    "email":
+      "critical_review_followup_mail_body": "<p>Hei [customer_name],</p>\r\n<p>Kiitos
+        arvostelustasi.</p>\r\n<p>Tiimi [store_name].</p>"
+      "critical_review_followup_mail_subject": >-
+        Kiitos arvostelustasi
+      "positive_review_followup_mail_body": "<p>Hei [customer_name],</p>\r\n<p>Kiitos
+        arvostelustasi.</p>\r\n<p>Tiimi [store_name].</p>"
+      "positive_review_followup_mail_subject": >-
+        Kiitos arvostelustasi
+      "question_answer_mail_body": "<p>Hei [customer_name],</p>\r\n<p>Kysymyksesi
+        liittyen [product_name] on vastannu meidän edustaja:</p>\r\n<p>[answer]</p>\r\n<p>Kysymyksesi:</p>\r\n<p>[question]</p>\r\n<p>[product_link]</p>\r\n<p>Tiimi
+        [store_name].</p>"
+      "question_answer_mail_subject": >-
+        Kysymykseesi [store_name] on vastattu
+      "repeat_review_request_mail_body": "<p>Hei [customer_name],</p>\r\n<p>Ei ole
+        vieläkään liian myöhäistä kertoa meille, mitä ajattelet viime tilauksestasi.</p>\r\n<p>Klikkaa
+        tähteä arvostellaksi kokemuksesi tähän mennessä:</p>\r\n<p>[products]</p>\r\n<p>Et
+        ole iloinen? Ota meihin yhteyttä ensiksi, jotta voimme auttaa.</p>\r\n<p>Tiimi
+        [store_name].</p>"
+      "repeat_review_request_mail_subject": >-
+        Muistutus arvostellaksesi viimeisimmän tilauksesi [store_name]
+      "review_answer_mail_body": "<p>Hei [customer_name],</p>\r\n<p>Sinun arvosteluusi
+        [product_name] on vastannut meidän edustaja:</p>\r\n<p>[reply]</p>\r\n<p>Arvostelusi:</p>\r\n<p>[review]</p>\r\n<p>[product_link]</p>\r\n<p>Tiimi
+        [store_name].</p>"
+      "review_answer_mail_subject": >-
+        Arvosteluusi [store_name] on vastattu
+      "review_request_mail_body": "<p>Hei [customer_name],</p>\r\n<p>Klikkaa tähteä
+        arvostellaksesi kokemuksesi tähän mennessä:</p>\r\n<p>[products]</p>\r\n<p>Et
+        ole iloinen? Ota meihin yhteyttä ensiksi, jotta voimme auttaa.</p>\r\n<p>Tiimi
+        [store_name].</p>"
+      "review_request_mail_subject": >-
+        Arvostele viimeisin tilauksesi [store_name]
+  "embed": >-
+    Upotettu
+  "errors":
+    "messages":
+      "already_confirmed": >-
+        oli jo vahvistettu, yritä kirjautua sisään
+      "confirmation_period_expired": >-
+        täytyy vahvistaa  %{period}, pyydä uutta
+      "expired": >-
+        on umpeutunut, pyydä uutta
+      "not_found": >-
+        ei löydetty
+      "not_locked": >-
+        ei ollut lukittu
+      "not_saved":
+        "one": >-
+          1 virhe kielletty tässä %{resource} tallennettu:
+        "other": >-
+          %{count} virheet kielletty tässä %{resource} tallennettu:
+  "flash":
+    "submitted_successfully":
+      "question": >-
+        Kiitos! Olemme saaneet kysymyksesi ja tulemme ilmoittamaan sinulle, kun siihen
+        on vastattu
+      "review": >-
+        Kiitos! Olemme saaneet arvostelusi
+      "subscribed": >-
+        Olet onnistuneesti tilannut %{store}.
+      "unsubscribed": >-
+        Olet onnistuneesti lopettanut  %{store} tilauksen.
+  "front":
+    "based_on_reviews_count":
+      "one": >-
+        1 arvostelu
+      "other": >-
+        %{count} arvostelua
+    "components":
+      "customer_form":
+        "email":
+          "hint": >-
+            Sähköpostiosoitettasi ei tulla jakamaan julki
+          "label": >-
+            Sähköpostiosoitteesi
+        "name":
+          "hint": >-
+            Nimesi tulee ilmestymään etunimenä
+          "hint_update_html": >-
+            Nimesi tulee ilmestymään <strong>%{initials}</strong>
+          "label": >-
+            Nimesi
+      "privacy_notice":
+        "link_content": >-
+          tietosuojakäytäntö
+        "with_name":
+          "html": "Lähettämällä tämän lomakkeen hyväksyt, että sisältösi ja nimesi\r\n<strong>%{name}</strong>
+            saatetaan julkaista netissä meidän mukaan\r\n%{link}."
+        "without_name":
+          "html": "Lähettämällä tämän lomakkeen hyväksyt, että sisältösi ja nimesi
+            saatetaan\r\njulkaista netissä meidän mukaan %{link}."
+    "continue_shopping": >-
+      Jatka ostoksia
+    "flags":
+      "new":
+        "already_flagged": >-
+          Olet jo ilmoittanut tämän %{item}
+        "flag_as_inappropriate": >-
+          Ilmoita tämä %{item} sopimattomaksi
+      "show":
+        "flag_submitted": >-
+          Kiitos
+    "mailer":
+      "excuses":
+        "question_answered_html": >-
+          Olet saanut tämän sähköpostin %{helpfulcrowd} antaakseen sinulle päivityksen
+          kysymykseen, jota pyysit %{store}.
+        "review_answered_html": >-
+          Olet saanut tämän sähköpostin %{helpfulcrowd} antaakseen sinulle päivityksen
+          arvostelusta, jonka jätit %{store}.
+        "review_follow_up_html": >-
+          Olet saanut tämän sähköpostin %{helpfulcrowd} vastauksena sinun viimeisimmälle
+          arvostelulle %{store}.
+        "review_request_html": >-
+          Olet saanut tämän sähköpostin %{helpfulcrowd} vastauksena sinun viimeisimmälle
+          tilaukselle %{store}.
+      "helpers":
+        "call_to_action":
+          "view_product": >-
+            Vieraile tuotesivulla
+    "products":
+      "questions":
+        "form":
+          "question_html": >-
+            Mitä haluaisit tietää %{product}?
+        "new":
+          "title": >-
+            Kysy kysymys
+      "view_product": >-
+        Mene tuotesivulle
+    "review_requests":
+      "reviews":
+        "form":
+          "rating_html": >-
+            Arvostele kokemuksesi %{reviewable}
+        "new":
+          "already_reviewed_html": >-
+            Olet jo arvostellut %{reviewable}
+          "review_other_purchases":
+            "one": >-
+              Arvostele toinen ostoksesi
+            "other": >-
+              Arvostele toiset ostoksesi
+          "title": >-
+            Arvostele ostoksesi
+    "search":
+      "label": >-
+        Etsi
+      "placeholder": >-
+        Anna avainsana
+    "share":
+      "button": >-
+        Jaa
+    "sort_by": >-
+      Lajiteltu
+    "sort_options":
+      "most_helpful": >-
+        Kaikista hyödyllisin
+      "most_recent": >-
+        Kaikista viimeisin
+      "rating_asc": >-
+        Arvostelu: matalin
+      "rating_desc": >-
+        Arvostelu: korkein
+    "suppressions":
+      "manage_subscriptions":
+        "subscribe_question_html": >-
+          Haluaisitko ottaa käyttöön HelpfulCrowdin lähettääkseen sinulle sähköposteja
+          %{store} puolesta?
+        "unsubscribe_question_html": >-
+          Haluaisitko HelpfulCrowdin lopettavan sähköpostien lähettämisen %{store}
+          puolesta?
+    "votes":
+      "upvote": >-
+        Hyödyllinen
+      "upvotes_count":
+        "one": >-
+          %{count} henkilöä löysi tämän %{item} hyödylliseksi
+        "other": >-
+          %{count} ihmistä löysi tämän %{item} hyödylliseksi
+    "widgets":
+      "products":
+        "rating":
+          "qa":
+            "html":
+              "one": >-
+                1 kysymys
+              "other": >-
+                %{count} kysymystä
+          "reviews":
+            "html":
+              "one": >-
+                1 arvostelu
+              "other": >-
+                %{count} arvostelua
+        "summary":
+          "qa":
+            "html":
+              "one": >-
+                1 kysymys
+              "other": >-
+                %{count} kysymystä
+            "new": >-
+              Kysy kysymys
+          "reviews":
+            "html":
+              "one": >-
+                1 arvostelu
+              "other": >-
+                %{count} arvostelua
+            "new": >-
+              Kirjoita arvostelu
+        "tabs":
+          "questions":
+            "new": >-
+              Kysy kysymys
+            "search":
+              "label": >-
+                Etsi:
+              "placeholder": >-
+                Etsi Q&A
+            "title": >-
+              Q&A
+            "write_first": >-
+              Kysy ensimmäinen kysymys tästä tuotteesta
+          "reviews":
+            "based_on_reviews":
+              "html": >-
+                Perustuu %{reviews_count}
+            "media_gallery":
+              "images":
+                "one": >-
+                  1 kuva
+                "other": >-
+                  %{count} kuvaa
+              "search":
+                "label": >-
+                  Etsi:
+                "placeholder": >-
+                  Etsi arvosteluja
+              "title": "Asiakas\r\nmedia"
+              "videos":
+                "one": >-
+                  1 video
+                "other": >-
+                  %{count} videota
+            "new": >-
+              Kirjoita arvostelu
+            "rating": >-
+              %{rating} 5 tähdestä
+            "title": >-
+              Asiakkaiden arvostelut
+            "write_first": >-
+              Ole ensimmäinen, joka arvostelee tämän tuotteen
+          "titles":
+            "questions": >-
+              Kysymykset & Vastaukset
+            "questions_responsive": >-
+              Q&A
+            "reviews": >-
+              Arvostelut & Arvosanat
+            "reviews_responsive": >-
+              Arvostelut
+      "sidebar":
+        "default_title": >-
+          Arvostelut | Q&A
+    "with_incentive":
+      "reviews":
+        "text": >-
+          Arvostelijaa saatettiin kannustaa tämän arvostelun kirjoittamiseen
+    "write_review": >-
+      Kirjoita arvostelu
+  "helpers":
+    "friendly_rating": >-
+      Ei arvosteluja vielä
+    "label":
+      "customer":
+        "email": >-
+          Asiakkaan sähköposti
+        "name": >-
+          Asiakkaan nimi
+      "product_group":
+        "name": >-
+          Nimi
+    "placeholder":
+      "promotion":
+        "template": >-
+          Ilmainen toimitus kaikkiin tilauksiin Black Friday viikolla!
+    "submit":
+      "product_group":
+        "create": >-
+          Luo ryhmä
+        "update": >-
+          Päivitä ryhmä
+      "question":
+        "create": >-
+          Kysy kysymys
+      "review":
+        "create": >-
+          Lähetä arvostelu
+  "layouts":
+    "mailer":
+      "front":
+        "manage_subscriptions": >-
+          Hallitse tilauksia
+        "unsubscribe": >-
+          Lopeta tilaus
+  "load_more": >-
+    Lataa lisää
+  "privacy_policy": >-
+    Tietosuojakäytäntö
+  "question_facebook_post_template": "[customer_name]\r\nQ: [kysymys]\r\nA: [vastaus]"
+  "question_tweet_template": "[customer_name]\r\nQ: [kysymys]\r\nA: [vastaus]"
+  "rating_1": >-
+    Hirveä
+  "rating_2": >-
+    Huono
+  "rating_3": >-
+    Okei
+  "rating_4": >-
+    Hyvä
+  "rating_5": >-
+    Loistava
+  "read_less": >-
+    lue vähemmän
+  "read_more": >-
+    kokonainen arvostelu
+  "recaptcha":
+    "errors":
+      "verification_failed": >-
+        reCAPTCHA varmistus epäonnistui.
+    "label": >-
+      Auta meitä torjumaan roskapostia
+  "report": >-
+    Ilmianna
+  "review_facebook_post_template": "Katso mitä [customer_name] sanoi [product_name]:\r\n\r\n[rating]\r\n\"[feedback]\""
+  "review_tweet_template": "[customer_name]:\r\n[product_name] - [rating], \"[feedback]\""
+  "settings":
+    "default":
+      "review_slider_c2a_text": >-
+        Näytä kaikki
+  "stars":
+    "one": >-
+      1 tähti
+    "other": >-
+      %{count} tähteä
+  "verified":
+    "agent":
+      "description": >-
+        %{author} työskentelee %{store}
+      "label": >-
+        %{store}
+    "customer":
+      "description": >-
+        %{author} on ostanut tämän tuotteen
+      "label": >-
+        Vahvistettu ostaja

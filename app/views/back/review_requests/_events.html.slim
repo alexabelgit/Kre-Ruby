@@ -1,0 +1,54 @@
+ul.review_request__sent-emails
+  - review_request.emails.each_with_index do |email, index|
+    - title = ""
+    - last_event = nil
+    - email.email_events.order(timestamp: :asc).each do |event|
+      - title += "#{humane_datetime(event[:timestamp].to_datetime, skip_time_tag: true)} - #{event[:event].capitalize} \n"
+      - last_event = event
+    li
+      - if last_event.present?
+        '  Email #{(index + 1).to_s}:
+        => last_event[:event].capitalize
+        =  hc_icon 'info-circle', title: title.html_safe
+      - else
+        / We probably need to save outbox record with it's timespamps and other stuff..
+        / and hide outbox from this view if other statuses exist
+        ' Email #{(index + 1).to_s}:
+        ' Outbox
+        = hc_icon 'info-circle', title: 'Email on the way, check again in a few moments.'
+      - if review_request.review_request_coupon_codes.any?
+        - rrcc = review_request.review_request_coupon_codes
+        - title = "Coupon#{rrcc.count > 1 ? 's' : ''} sent to customer\n"
+        - rrcc.each do | rr_cc |
+          - title += "#{rr_cc.coupon_code.discount_coupon.name} (code: #{rr_cc.coupon_code.code})\n"
+        = hc_icon 'hc-coupon', title: title
+  - if review_request.scheduled_for.present?
+    li {
+      title=humane_datetime(review_request.scheduled_for, skip_time_tag: true)
+    }
+      ' Upcoming:
+      - if review_request.suppressed?
+        ' Not sending due to unsubscribe
+      - elsif review_request.scheduled_for > Time.current
+        ' Sending in
+        = distance_of_time_in_words_to_now(review_request.scheduled_for)
+
+      - elsif Time.current - review_request.scheduled_for < 2.minutes
+        => spinner_icon
+        | Sending
+
+      - else
+        / TODO
+        / instead of showing ago, we should constantly check for failures
+        / and re-run those requests with a background job
+        => time_ago_in_words(review_request.scheduled_for)
+        | ago
+  - elsif review_request.cancelled?
+    li
+      | Not sent: request has been cancelled
+  - elsif review_request.on_hold?
+    li
+      | Not sent: request is on hold
+  - elsif !review_request.emails.any?
+    li
+      | Not sent

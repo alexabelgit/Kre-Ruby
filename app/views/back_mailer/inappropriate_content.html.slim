@@ -1,0 +1,9 @@
+= content_for :recipient
+  = @abuse_report.user.first_name
+
+.inappropriate_content
+  p A #{@abuse_report.abusable_type.humanize.downcase} was reported as inappropriate.
+  
+  p Report:
+  
+  = render 'abuse_report', :abuse_report => @abuse_report

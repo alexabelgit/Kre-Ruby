@@ -1,0 +1,51 @@
+module DiscountCoupons
+  class CreateDiscountCoupon < ApplicationCommand
+    string    :name,              default: nil
+    symbol    :code_type,         default: nil
+    date_time :valid_from,        default: nil
+    date_time :valid_until,       default: nil
+    integer   :discount_amount,   default: nil
+    string    :discount_type,     default: nil
+    symbol    :discount_sequence, default: nil
+    integer   :limit,             default: nil
+    symbol    :send_per,          default: nil
+    symbol    :status,            default: :visible
+
+    file      :file,              default: nil
+    string    :code,              default: nil
+
+    object    :store,             default: nil
+
+    def execute
+      discount_coupon = store.discount_coupons.new
+      ActiveRecord::Base.transaction do
+        discount_coupon.attributes = inputs.except(:store, :file, :code)
+        if file.present? && code_type == :unique
+          csv = Array.csv_to_array(file)
+          if csv
+            if csv.empty?
+              self.errors.add(:csv, 'The file is empty')
+            else
+              csv.uniq.each do |c|
+                discount_coupon.coupon_codes << CouponCode.new(code: c[c.keys.first])
+              end
+              discount_coupon.limit = discount_coupon.coupon_codes.size
+            end
+          else
+            self.errors.add(:csv, 'Invalid CSV format')
+          end
+        elsif code.present? && code_type == :reusable
+          coupon_code = CouponCode.new(code: code)
+          discount_coupon.coupon_codes << coupon_code
+          discount_coupon.make_code_current(coupon_code)
+        end
+        raise ActiveRecord::Rollback unless discount_coupon.save
+      end
+      errors.merge!(discount_coupon.errors)
+      discount_coupon.errors.clear
+      discount_coupon.errors.merge!(errors)
+
+      discount_coupon
+    end
+  end
+end

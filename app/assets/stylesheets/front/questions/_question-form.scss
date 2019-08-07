@@ -1,0 +1,67 @@
+.hc-question-form-wrapper {
+  @extend %background-color__white;
+  @extend %simple-card;
+  @extend %margin-bottom__md;
+}
+
+.hc-question-form__header {
+  @extend %margin-bottom__md;
+
+  .hc-question-form__product-image,
+  .hc-question-form__heading {
+    @extend %display__inline-block;
+    @extend %vertical-align__top;
+  }
+
+  .hc-question-form__heading {
+    @extend %margin-bottom__0;
+  }
+
+}
+
+.hc-question-form__product-image {
+  @extend %border__1px__solid__secondary;
+}
+
+.hc-question-form__body {
+  @extend %margin-bottom__md;
+}
+
+.hc-question-form__body-label {
+  @extend %display__block;
+  @extend %margin__0;
+  @extend %font-family__inherit;
+  @extend %font-weight__normal;
+  @extend %font-size__inherit;
+
+  a {
+    @extend %font-weight__bold;
+    @extend %color__inherit;
+    @extend %font-size__inherit;
+    @extend %underline-on-hover;
+  }
+}
+
+.hc-question-form__body-input {
+  @extend %display__block;
+  @extend %width__100pct;
+  @extend %min-height__5em;
+}
+
+// TODO why this one does not have hc- suffix?
+.question-form__body-hint {
+  @extend %color__pale;
+
+  &.warning {
+    @extend %color__warning;
+  }
+
+  &.error {
+    @extend %color__danger;
+  }
+}
+
+.hc-question-form__submit {
+  @extend .hc-primary-button;
+  @extend %white-space__nowrap;
+}

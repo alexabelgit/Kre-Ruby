@@ -1,0 +1,93 @@
+.hc-product-tab-filters {
+  @include flexbox(
+    $justify-content: space-between,
+    $align-items:     flex-start
+  );
+
+  @extend %margin-bottom__md;
+  @extend %margin-top__md;
+}
+
+.hc-product-tab-filters__item {
+  // @extend %max-width__50pct;
+  &.hc-product-tab-filters__sort{
+    @extend %min-width__200px;
+    @extend %text-align__right;
+  }
+  label {
+    @extend %display__inline-block;
+  }
+}
+
+.hc-product-tab-filters__search-form {
+
+}
+
+.hc-product-tab-filters__search {
+  // @extend %padding-right__md;
+  @extend %padding-right__20px;
+  @extend %padding-left__xs;
+  @extend %border__1px__solid__secondary;
+  @extend %border-radius__base;
+  @extend %background-color__lighter;
+
+  i {
+    @extend %position__absolute;
+    @extend %margin-top__3xs;
+  }
+
+  input.hc-product-tab-filters__search-input {
+    @extend %max-width__10em;
+    @extend %width__100pct;
+    @extend %border__0;
+    @extend %padding-left__22px;
+    &:focus, &:active {
+      @extend %outline__none;
+    }
+  }
+  &-reset {
+    @extend %color__pale;
+    @extend %cursor__pointer;
+    @extend %position__absolute;
+    .hc-icon {
+      @extend %margin-top__2xs;
+    }
+  }
+}
+
+.hc-product-tab-filters__list-sort {
+  @extend %max-width__100pct;
+  @extend %width__auto;
+  @extend %display__inline-block;
+}
+
+.hc-product-tab-filters__results {
+  a {
+    @extend %color__primary;
+    @extend %underline-on-hover;
+  }
+}
+
+// This media query brings the filters items into separate lines on small screens.
+@media only screen and (max-width: 420px) {
+  .hc-product-tab-filters {
+    flex-flow: column;
+  }
+  .hc-product-tab-filters__item {
+    flex-grow: 1;
+    width: 100%;
+    &:not(:last-child) {
+      margin-bottom: 5px;
+    }
+    label{
+      display: block;
+    }
+    .hc-product-tab-filters__list-sort {
+      width: 100%;
+    }
+    .hc-product-tab-filters__search-input {
+      max-width: 100% !important;
+      width: 100%;
+    }
+  }
+}

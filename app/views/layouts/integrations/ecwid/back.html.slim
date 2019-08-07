@@ -1,0 +1,30 @@
+doctype html
+html lang="en"
+
+  head
+    meta charset="utf-8"
+    meta name="viewport"              content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    meta http-equiv="x-ua-compatible" content="ie=edge"
+
+    title HelpfulCrowd
+
+    meta name="description" content="HelpfulCrowd"
+
+    = csrf_meta_tags
+
+    link  href="https://djqizrxa6f10j.cloudfront.net/ecwid-sdk/css/1.2.5/ecwid-app-ui.css" rel="stylesheet"
+    script src="https://djqizrxa6f10j.cloudfront.net/ecwid-sdk/js/1.2.4/ecwid-app.js"
+
+    = stylesheet_link_tag    'integrations/ecwid/back', media: 'all', 'data-turbolinks-track' => 'reload'
+    = javascript_include_tag 'integrations/ecwid/back',               'data-turbolinks-track' => 'reload'
+
+  body.normalized
+    header
+      = render 'integrations/ecwid/shared/flash'
+    main.hc-main
+      = yield
+
+    footer.hc-link
+      p
+        ' To do more go to
+        = link_to_blank root_url, root_url

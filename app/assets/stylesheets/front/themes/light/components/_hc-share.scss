@@ -1,0 +1,9 @@
+.hc-share {
+  .hc-dropdown__content {
+    @extend %box-shadow__none;
+
+    > a {
+      @extend %box-shadow__base;
+    }
+  }
+}

@@ -1,0 +1,29 @@
+.hc-paging--modern {
+  .page-item {
+    .page-link {
+      @extend %color__dark;
+      @extend %background-color__lighter;
+      @extend %border__1px__solid__light;
+      &:hover {
+        @extend %color__dark;
+        @extend %background-color__light;
+      }
+    }
+    &.disabled .page-link {
+      @extend %color__pale;
+    }
+    &.active .page-link {
+      @extend %color__light;
+      @extend %background-color__dark;
+      @extend %border__1px__solid__dark;
+      &:hover {
+        @extend %background-color__dark--lightened;
+      }
+    }
+  }
+  &.hc-paging--load-more {
+    .page-item {
+      @extend %color__link;
+    }
+  }
+}

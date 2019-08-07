@@ -1,0 +1,15 @@
+= content_for :recipient
+  = @presenter.user_first_name
+
+p = "In case you missed it, your free #{@presenter.formatted_trial_name} \
+     trial finished a few days ago."
+
+p = "To continue using HelpfulCrowd without interruption please choose a plan \
+     immediately:"
+
+= call_to_action 'Choose a plan', billing_back_settings_url
+
+p = "If you do not subscribe to a plan within next 5 days, your \
+     account will be suspended."
+
+= render 'back_mailer/shared/contact_us_and_thank_you', hide_thank_you: true, contact_who: 'billing'

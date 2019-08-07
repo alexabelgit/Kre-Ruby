@@ -1,0 +1,33 @@
+.info-with-label {
+  @include flexbox(
+    $flex-wrap: wrap
+  );
+}
+
+.info-with-label__label {
+  @extend %flex__1;
+}
+
+.info-with-label__info {
+  @extend %flex__1;
+}
+
+.info-with-label.flex__1-vs-3 {
+  .info-with-label__label {
+    @extend %flex__1;
+  }
+
+  .info-with-label__info {
+    @extend %flex__3;
+  }
+}
+
+.info-with-label.flex__3-vs-1 {
+  .info-with-label__label {
+    @extend %flex__3;
+  }
+
+  .info-with-label__info {
+    @extend %flex__1;
+  }
+}

@@ -1,0 +1,25 @@
+- custom_fonts ||= false
+
+doctype html
+html lang=I18n.locale
+
+  head
+    meta charset="utf-8"
+    meta name="viewport"              content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    meta http-equiv="x-ua-compatible" content="ie=edge"
+
+    = render 'shared/favicon'
+    = csrf_meta_tags
+
+    = stylesheet_link_tag     stylesheet, media: 'all', 'data-turbolinks-track' => 'reload'
+
+    = javascript_include_tag  javascript,               'data-turbolinks-track' => 'reload'
+
+    - if custom_fonts
+      link href="https://fonts.googleapis.com/css?family=Cabin:300,400,700"  rel="stylesheet"
+      link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700" rel="stylesheet"
+
+    = yield :head
+
+  body class=yield(:body_class) data-lang=I18n.locale
+    = yield :body

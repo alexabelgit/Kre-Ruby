@@ -1,0 +1,7 @@
+/ question*
+
+section.hc-question
+  p.hc-question__body = question.get_highlights(:body)
+
+  section.hc-question__author-and-date
+    = author_of_(question)

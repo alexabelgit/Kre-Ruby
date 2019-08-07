@@ -1,0 +1,59 @@
+/ question*
+/ product*
+/ hide_header
+/ render_hidden
+
+- hide_header   ||= false
+- render_hidden ||= false
+
+
+section.hc-question-form-wrapper data-model="question" data-id="#{ product.hashid }" data-role="question-form" class=(render_hidden ? 'hc-display__none' : 'hc-display__block')
+  = form_for   [:front, question],
+    url:       front_product_questions_url( store_id:   product.store.hashid,
+                                            product_id: product.hashid,
+                                            format:     :js ),
+    html:      { class: 'hc-question-form' },
+    namespace: product.hashid,
+    method:    :post,
+    remote:    true do |f|
+
+
+    - unless hide_header
+      header.hc-question-form__header
+        = link_to product.url, target: '_blank' do
+
+          = image_tag product.featured_image.small.url.to_s,
+            alt:      product.name,
+            class:    'hc-question-form__product-image'
+
+    = render 'shared/form/errors', resource: question
+
+    .hc-question-form__body
+      h5.hc-question-form__body-label
+        = f.label :body do
+          = t '.question_html', product: link_to(product.name, product.url, target: '_blank')
+
+      = f.text_area :body, required: true,  class: 'hc-question-form__body-input'
+
+      span.hc-question-form__body-hint data-role="character-count"
+
+    = render 'front/components/customer_form', store: @store
+
+    - if @store.recaptcha_enabled?
+      .hc-form__control
+        label = t 'recaptcha.label'
+        div data-role="recaptcha" data-theme="#{product.store.settings(:design).theme}"
+        / = recaptcha_tags(required: true)
+
+    = render 'front/components/privacy_notice'
+
+    => button_tag t('helpers.submit.question.create'),
+       class:     'hc-question-form__submit',
+       data:      { disable_with: "#{ spinner_icon } #{ t('helpers.submit.question.create') }" }
+
+    = link_to 'javascript:void(0);',
+      class:  'hc-secondary-button',
+      data:   { role:   'question-form-toggle',
+                action: 'hide' } do
+
+      = t 'cancel'

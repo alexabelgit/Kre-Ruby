@@ -1,0 +1,17 @@
+= content_for :recipient
+  = @presenter.user_first_name
+
+p = "Your HelpfulCrowd account has been suspended. Starting today, your reviews \
+     will no longer appear on your site and we will stop collecting new reviews \
+     on behalf of you."
+
+p = "It's still not too late to publish all your reviews and grow your business. \
+     Pick a plan now to reactivate your account:"
+
+= call_to_action 'Choose a plan', billing_back_settings_url
+
+p = "If you do not subscribe to a plan within next 20 days, your account will \
+     be permanently deactivated and all your content including reviews, Q&A \
+     and customer media will be lost."
+
+= render 'back_mailer/shared/contact_us_and_thank_you', hide_thank_you: true, contact_who: 'billing'

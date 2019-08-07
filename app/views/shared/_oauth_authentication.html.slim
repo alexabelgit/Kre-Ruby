@@ -1,0 +1,33 @@
+/ button_label         - { initial: 'Sign in', disabled: 'Signing in' }
+/ lemonstand_auth_link - provide path where Lemonstand button should lead. Ex: sign_up_with_lemonstand_path
+/ shopify_auth_link    - provide path where Shopify button should lead. Ex: sign_up_with_shopify_path
+
+- hide              ||= []
+- shopify_auth_link ||= sign_in_with_shopify_path
+- button_label      ||= { initial: 'Authenticate', disabled: 'Authenticating' }
+
+- unless hide.include? :ecwid
+
+  .auth-option.auth-option--ecwid
+    = link_to new_oauth_ecwid_session_path,
+      class:  'auth-option__button',
+      data:   { turbolinks:   false,
+                disable_with: "#{ spinner_icon } #{ button_label[:disabled] } with Ecwid" } do
+
+      => image_tag 'ecwid-icon.svg', class: 'auth-option__icon'
+      =  "#{ button_label[:initial] } with Ecwid"
+
+- unless hide.include? :shopify
+
+  .auth-option.auth-option--shopify
+    = link_to shopify_auth_link, class: "auth-option__button" do
+      => image_tag 'shopify-icon.svg', class: 'auth-option__icon'
+      =  "#{ button_label[:initial] } with Shopify"
+
+- unless hide.include? :lemonstand
+
+  .auth-option.auth-option--lemonstand
+
+    = link_to lemonstand_auth_link, class: "auth-option__button" do
+      => image_tag 'lemonstand-icon.svg', class: 'auth-option__icon'
+      =  "#{ button_label[:initial] } with LemonStand"

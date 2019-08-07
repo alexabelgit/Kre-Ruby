@@ -1,0 +1,8 @@
+.add-review__to-main-product > h1,
+.add-review__to-other-products > h2 {
+  @extend %heading-with-line;
+}
+
+.add-review__to-main-product {
+  @extend %margin-bottom__xl;
+}

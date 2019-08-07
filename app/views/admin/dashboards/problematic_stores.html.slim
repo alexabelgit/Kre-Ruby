@@ -1,0 +1,23 @@
+- content_for :main_class, 'boxed'
+= render 'sub_nav'
+
+section.dashboard__section
+  h2 Stores with API problems
+  .hc-row
+    section.dashboard__sub-section.hc-card
+      table.table
+        thead
+          tr
+            th Store name
+            th Synchronization error
+            th Last synchronization error
+            th Status
+            th Platform
+        tbody
+          - @stores.each do |store|
+            tr
+              td = link_to store.name, admin_store_path(store)
+              td = store.last_sync_error
+              td = humane_date(store.last_sync_error_at)
+              td = store.active? ? 'Active' : 'Disabled'
+              td = store.provider&.capitalize

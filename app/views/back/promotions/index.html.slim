@@ -1,0 +1,55 @@
+= render 'layouts/back/sub_navs/tools'
+
+header.heading-and-action
+  h1 = title 'Promotions'
+  
+  div
+    => link_to new_back_promotion_path, class: 'hc-primary-button' do
+      | #{hc_icon 'plus'} New promotion
+      
+    = link_to 'Manage coupons', back_discount_coupons_path,    class: 'hc-secondary-button'
+
+- if @promotions.any?
+  .responsive-table
+    table.table
+      thead
+        tr
+          th Name
+          th Active
+          th Duration
+          th Sent
+          th Incentive Notice
+          th Coupon
+          th Coupon Active
+          th
+      tbody
+        - @promotions.each do |promotion|
+          tr
+            td = link_to promotion.name, edit_back_promotion_path(promotion)
+            td
+              i.promotion__status class="promotion__status--#{promotion.active?.to_s}" title=promotion.active?.to_s.humanize
+                = promotion_status_icon promotion.active?.to_s
+            td
+              span.white-space__nowrap> = humane_date(promotion.starts_at)
+              | -
+              span.white-space__nowrap< = (promotion.ends_at.present? ? humane_date(promotion.ends_at) : '∞')
+            td = promotion.usage_count
+            td
+              i.promotion__incentive class="promotion__incentive--#{promotion.results_in_incentive?.to_s}" title=(promotion.results_in_incentive? ? 'Enabled' : 'Disabled' )
+                = promotion_incentive_icon promotion.results_in_incentive?.to_s
+            td = promotion.discount_coupon.present? ? link_to(promotion.discount_coupon.name, edit_back_discount_coupon_path(promotion.discount_coupon)) : ''
+            td
+              - if promotion.discount_coupon.present?
+                - is_active = promotion.discount_coupon.active?.to_s
+                i.discount-coupon__in-use class="discount-coupon__in-use--#{is_active}" title=is_active.humanize
+                  = discount_coupon_in_use_icon is_active
+            td.table__actions
+              => edit_button edit_back_promotion_path(promotion), size: 'small'
+              => delete_button back_promotion_path(promotion), size: 'small'
+
+    = will_paginate @promotions, class: "hc-paging hc-paging--modern"
+
+- else
+  = render      'back/shared/no_records',
+    object:     'promotions',
+    kb_article: 'promotions'

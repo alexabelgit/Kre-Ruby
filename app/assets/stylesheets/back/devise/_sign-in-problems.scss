@@ -1,0 +1,8 @@
+.sign-in-problems {
+  @extend %unstyled-list;
+  @extend %text-align__center;
+}
+
+.sign-in-problem {
+  @extend %text-button;
+}

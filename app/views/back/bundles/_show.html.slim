@@ -1,0 +1,30 @@
+.bundle data-purpose='bundle-info' data-bundle-id=bundle.bundle_id
+
+  section.bundle__section
+    .bundle__row
+      div #{ bundle.plan_name }
+      div #{ bundle.plan_price }
+
+  - if bundle.has_addons?
+    section.bundle__section
+      - bundle.enabled_addons.each do |addon|
+        .bundle__row
+          div #{ addon.name }
+          div #{ number_to_currency addon.price_in_dollars }
+
+  section.bundle__section
+
+    - if bundle.discounted?
+      .bundle__row
+        div Price
+        .bundle__prediscount-price = bundle.raw_price
+
+      .bundle__row
+        div Discount
+        div - #{ bundle.discount }
+
+    .bundle__row
+      div
+        strong Total price
+      div
+        strong #{ bundle.price }

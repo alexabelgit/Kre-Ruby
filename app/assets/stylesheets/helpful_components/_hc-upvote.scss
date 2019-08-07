@@ -1,0 +1,12 @@
+.hc-upvote {
+  @extend %flex__1;
+  a {
+    @extend %color__link;
+    @extend %underline-on-hover;
+    @extend %border__0;
+  }
+}
+
+.hc-upvote__d-already {
+  @extend %color__link;
+}

@@ -1,0 +1,55 @@
+= content_for :title
+  | Sign up
+
+section.auth-options__section
+  .auth-option.auth-option--email
+    = form_for resource,
+      as:      resource_name,
+      url:     user_registration_path,
+      url:     user_registration_path do |f|
+
+      = render 'shared/form/errors', resource: resource
+
+      .auth-form__control
+        = f.label      :first_name
+        = f.text_field :first_name, autofocus: true
+
+      .auth-form__control
+        = f.label      :last_name
+        = f.text_field :last_name
+
+      .auth-form__control
+        = f.label       :email
+        = f.email_field :email
+
+      .auth-form__control
+        = f.label          :password
+        = f.password_field :password, autocomplete: 'off'
+        span.hc-form__hint At least #{@minimum_password_length} characters
+
+      .auth-form__control
+        = f.label          :password_confirmation
+        = f.password_field :password_confirmation, autocomplete: 'off'
+
+      .auth-form__terms-and-privacy
+        => f.check_box :terms_and_privacy
+        =  f.label     :terms_and_privacy do
+          |
+            I have read and agree to
+            #{ link_to_tos content: 'terms of service' } and
+            #{ link_to_pp content: 'privacy policy' }
+
+      = button_tag class: 'hc-brand-1-button--block',
+                   data:  { disable_with: "#{ spinner_icon } Signing up with email" } do
+
+        => hc_icon 'envelope'
+        =  "Sign up with email"
+
+= render             'devise/shared/auth_options_alt',
+  button_label:      { initial:  'Sign up',
+                       disabled: 'Signing up' },
+  shopify_auth_link: sign_up_with_shopify_path
+
+.auth-form__toggle-sign-in-up
+  | Already have an account?
+  =< link_to 'Sign in', new_session_path(resource_name)

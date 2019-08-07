@@ -1,0 +1,19 @@
+- content_for :main_class, 'boxed'
+= render 'sub_nav'
+
+h1 = title 'Reporting'
+
+p
+  = link_to 'Resque dashboard', resque_web_path
+p
+  = link_to 'Toggle features on/off', flipper_path
+p
+  = link_to 'Export stores to csv', export_stores_to_csv_admin_reporting_index_path, method: :post
+p
+  = link_to 'Monthly reviews by store',  monthly_reviews_admin_reporting_index_path(format: :xlsx), method: :get
+p
+  = link_to 'Monthly requests by store', monthly_requests_admin_reporting_index_path(format: :xlsx), method: :get
+p
+  = link_to 'Monthly questions by store', monthly_questions_admin_reporting_index_path(format: :xlsx), method: :get
+p
+  = link_to 'Billing report', billing_admin_reporting_index_path(format: :xlsx), method: :get

@@ -1,0 +1,19 @@
+/ message*
+/ type
+/ title
+
+- type  ||= 'info'
+- title ||= false
+
+/ TODO would be better to avoid such switch statement and find a
+/ more elegant way to map our flash types with ecwid alert types
+- case type
+- when 'notice'
+  - type = 'info'
+- else
+  - type = type
+
+.alert class="alert-#{type}"
+  - if title
+    .title = title
+  = message.html_safe

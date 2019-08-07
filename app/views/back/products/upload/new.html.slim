@@ -1,0 +1,44 @@
+- content_for :main_class, 'boxed'
+= render 'back/products/sub_nav'
+
+.hc-card
+  - if current_store.settings(:background_workers).uploading_products
+    = render   'shared/system_messages/custom',
+      type:    'info',
+      persist: true,
+      body:    "#{spinner_icon} Processing uploaded file",
+      role:    'imported-products'
+
+  h1 = title 'Upload products'
+
+  p
+    |
+      You can upload multiple products with a CSV file. Use following
+      #{link_to 'template', ENV['PRODUCT_UPLOAD_EXAMPLE']}
+      to provide list of products. A few things to keep in mind:
+
+  ul
+    li
+      |
+        Make sure your file is in valid CSV format with UTF-8 encoding
+
+    li
+      |
+        In <strong>id</strong> column put the same product ID that you use on
+        your site to identify products
+
+  = form_tag(back_products_upload_path, method: :post, multipart: true) do |f|
+    .hc-form__control
+      - content_for :input do
+        input {
+          type     = "file"
+          name     = "upload[file]"
+          accept   = ".csv"
+          required = "true"
+          class    = "hc-upload-button__hidden-input"
+          data-hc-upload-button-input
+        }
+
+      = render 'helpful_components/upload_button', custom_input: yield(:input)
+
+    = render 'shared/form/submit', value: 'Upload'

@@ -1,0 +1,8 @@
+.hc-review-form-wrapper {
+  @extend %background-color__white;
+}
+.hc-review-form__submit,
+input.hc-review-form__submit {
+  @extend %background-color__dark;
+  @extend %color__light;
+}

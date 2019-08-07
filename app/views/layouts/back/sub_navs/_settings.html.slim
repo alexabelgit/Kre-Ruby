@@ -1,0 +1,11 @@
+- items = [ { name: 'General',  path: general_back_settings_path           },
+            { name: 'Features',         path: features_back_settings_path         },
+            { name: 'Design',          path: design_back_settings_path          },
+            { name: 'Widgets',         path: widgets_back_settings_path         },
+            { name: 'Social accounts', path: social_accounts_back_settings_path },
+            (@store.promotions_enabled? ? { name: 'Promotions',      path: promotions_back_settings_path } : nil),
+            { name: 'Billing',         path: billing_back_settings_path         },
+            { name: 'Account',         path: edit_back_user_path(current_user)  } ].compact
+
+= content_for :sub_nav
+  = render 'layouts/back/sub_nav', items: items

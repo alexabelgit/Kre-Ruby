@@ -1,0 +1,57 @@
+- if presenter.terminating?
+  - modifier = 'current-plan--terminating'
+  - price    = presenter.plan_price
+  - info     = "Canceling on #{presenter.subscription_expired_at}"
+
+- elsif presenter.dunning?
+  - modifier = 'current-plan--dunning'
+  - price    = presenter.plan_price
+  - info     = 'Failed to process payment. Please check your payment details.'
+
+- elsif presenter.dunning_failed?
+  - modifier = 'current-plan--dunning-failed'
+  - price    = nil
+  - debt     = presenter.total_debt
+  - info     = "We stopped your subscription due to problems with payments. \
+                Please resolve the issue to continue using HelpfulCrowd."
+
+- elsif presenter.plan_exceeded?
+  - modifier = 'current-plan--exceeded'
+  - price = presenter.plan_price
+  - info = presenter.next_payment_date_long
+
+- elsif presenter.active_subscription?
+  - modifier = 'current-plan--paid'
+  - price    = presenter.plan_price
+  - info     = presenter.next_payment_date_long
+
+- elsif presenter.withheld?
+  - modifier  = 'current-plan--withheld'
+  - price     = nil
+  - info      = 'Subscription on hold'
+
+- elsif presenter.expired?
+  - modifier = 'current-plan--archived'
+  - price    = nil
+  - info     = "Subscription expired on #{presenter.subscription_expired_at}"
+
+- elsif presenter.trial_ended?
+  - modifier = 'current-plan--trial-ended'
+  - price    = nil
+  - info     = "Trial expired on #{presenter.trial_expired_at}"
+
+- if @store.live?
+  - active_plan = ActivePlan.for_store(@store)
+  - if active_plan&.is_secret? && @store.orders_based_billing?
+    - orders_quota = active_plan.orders_limit
+    - quota_info = "Your plan includes #{orders_quota} in-plan orders. Upgrade now if you need more"
+    - info = info ? (quota_info + " " + info) : quota_info
+
+section.current-plan class=modifier
+  .current-plan__plan
+    = presenter.current_plan_name
+    =< " - #{price} / month" if price
+    =  ": #{debt}" if debt
+
+  .current-plan__info
+    == info

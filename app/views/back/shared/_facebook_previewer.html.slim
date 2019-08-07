@@ -1,0 +1,32 @@
+/ avatar*
+/ store*
+/ thumb_image*
+/ thumb_heading*
+/ thumb_text*
+
+- page = store.facebook_connected? ? store.settings(:social_accounts).facebook_page_name : store.name
+
+.previewer.previewer--facebook
+  .previewer__preview
+    .previewer__header
+      .previewer__avatar
+        = image_tag avatar
+      .previewer__page
+        = page
+      .previewer__date
+        = DateTime.current.strftime '%B %d'
+
+    .previewer__text data-previewable="output" data-role="facebook"
+    .previewer__thumb
+      = image_tag thumb_image
+      .previewer__thumb-content
+        .previewer__thumb-heading
+          = thumb_heading
+        .previewer__thumb-text
+          = truncate(thumb_text, length: 220)
+        .previewer__thumb-url
+          / TODO when we have subdomains this should be replaced with store subdomain
+          | app.helpfulcrowd.com
+
+    .previewer__actions
+      = image_tag 'https://res.cloudinary.com/helpfulcrowd/image/upload/v1533382094/app_assets/fb_post_footer.png'

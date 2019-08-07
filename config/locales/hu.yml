@@ -1,0 +1,455 @@
+---
+"hu":
+  "activerecord":
+    "errors":
+      "models":
+        "abuse_report":
+          "attributes":
+            "additional_info":
+              "blank": >-
+                szükséges megadni, ha okként a 'valami mást' választottad
+            "reason":
+              "blank": >-
+                ^Választanod kell egy okot
+        "product":
+          "attributes":
+            "id_from_provider":
+              "taken": >-
+                ^Az azonosítónak egyedinek kell lennie. Az általad megadott már használatban
+                van egy másik terméken.
+        "review":
+          "attributes":
+            "customer":
+              "must_be_authenticated": >-
+                ^Az értékelés írásához be kell jelentkezned
+            "product_ids":
+              "cannot_be_repeated": >-
+                ^Már értékelted ezt a terméket
+              "taken": >-
+                ^Már értékelted ezt a vásárlást
+            "review_request_id":
+              "request_must_be_sent": >-
+                ^Jelenleg nem tudod értékelni ezt a vásárlást
+            "source":
+              "cannot_be_voluntary": >-
+                ^Jelenleg nem tudod értékelni ezt a vásárlást
+        "review_request":
+          "attributes":
+            "order_id":
+              "blank": >-
+                nem hozható létre a hozzátartozó vásárló találata nélkül. Kérjük adj
+                meg egy érvényes e-mail címet.
+    "models":
+      "comment":
+        "one": >-
+          hozzászólás
+        "other": >-
+          hozzászólás
+      "customer":
+        "one": >-
+          vásárló
+        "other": >-
+          vásárló
+      "product":
+        "one": >-
+          termék
+        "other": >-
+          termék
+      "product_group":
+        "one": >-
+          termékcsoport
+        "other": >-
+          termékcsoport
+      "question":
+        "one": >-
+          kérdés
+        "other": >-
+          kérdés
+      "review":
+        "one": >-
+          értékelés
+        "other": >-
+          értékelés
+      "review_request":
+        "one": >-
+          értékelési felkérés
+        "other": >-
+          értékelési felkérés
+  "answer":
+    "one": >-
+      válasz
+    "other": >-
+      válasz
+  "cancel": >-
+    Mégse
+  "counterify":
+    "characters":
+      "exceeded": >-
+        Karakterhatár túllépve
+      "remaining":
+        "one": >-
+          1 karakter maradt hátra
+        "other": >-
+          %{count} karakter maradt hátra
+  "default_templates":
+    "email":
+      "critical_review_followup_mail_body": "<p>Kedves [customer_name],</p>\r\n<p>Köszönjük
+        az értékelésed.</p>\r\n<p>A(z) [store_name] csapata.</p>"
+      "critical_review_followup_mail_subject": >-
+        Köszönjük az értékelésed.
+      "positive_review_followup_mail_body": "<p>Kedves [customer_name],</p>\r\n<p>Köszönjük
+        az értékelésed.</p>\r\n<p>A(z) [store_name] csapata.</p>"
+      "positive_review_followup_mail_subject": >-
+        Köszönjük az értékelésed.
+      "question_answer_mail_body": "<p>Kedves [customer_name],</p>\r\n<p>Egyik képviselőnk
+        megválaszolta a(z) [product_name] termékkel kapcsolatos kérdésed:</p>\r\n<p>[answer]</p>\r\n<p>Kérdésed:</p>\r\n<p>[question]</p>\r\n<p>[product_link]</p>\r\n<p>A(z)
+        [store_name] csapata.</p>"
+      "question_answer_mail_subject": >-
+        Megválaszolták a(z) [store_name] üzlethez feltett kérdésed
+      "repeat_review_request_mail_body": "<p>Kedves [customer_name],</p>\r\n<p>Még
+        mindig nem késő elmondanod nekünk mit gondolsz a legutóbbi rendelésedről.</p>\r\n<p>Eddigi
+        tapasztalataid értékeléséhez, kattints az egyik csillagra:</p>\r\n<p>[products]</p>\r\n<p>Nem
+        vagy elégedett? Keress fel bennünket előbb, hogy segíteni tudjunk. </p>\r\n<p>A(z)
+        [store_name] csapata.</p>"
+      "repeat_review_request_mail_subject": >-
+        Ne felejtsd el értékelni a legutóbbi vásárlásod a(z) [store_name] üzlettől
+      "review_answer_mail_body": "<p>Kedves [customer_name],</p>\r\n<p>Egyik képviselőnk
+        megválaszolta a(z) [product_name] termékkel kapcsolatos értékelésed:</p>\r\n<p>[reply]</p>\r\n<p>Az
+        értékelésed:</p>\r\n<p>[review]</p>\r\n<p>[product_link]</p>\r\n<p>A(z) [store_name]
+        csapata.</p>"
+      "review_answer_mail_subject": >-
+        Megválaszolták a(z) [store_name] üzletről szóló értékelésed
+      "review_request_mail_body": "<p>Kedves [customer_name],</p>\r\n<p>Eddigi tapasztalataid
+        értékeléséhez, kattints az egyik csillagra:</p>\r\n<p>[products]</p>\r\n<p>Nem
+        vagy elégedett? Keress fel bennünket előbb, hogy segíteni tudjunk. </p>\r\n<p>A(z)
+        [store_name] csapata.</p>"
+      "review_request_mail_subject": >-
+        Értékeld a legutóbbi vásárlásod a(z) [store_name] üzlettől
+  "embed": >-
+    Beágyaz
+  "errors":
+    "messages":
+      "already_confirmed": >-
+        már meg van erősítve, kérjük próbálj bejelentkezni
+      "confirmation_period_expired": >-
+        %{period} időn belül meg kell erősítened, kérjük igényelj egy újat
+      "expired": >-
+        lejárt, kérjük igényelj egy újat
+      "not_found": >-
+        nem található
+      "not_locked": >-
+        nincs zárolva
+      "not_saved":
+        "one": >-
+          1 hiba miatt %{resource} mentése nem lehetséges:
+        "other": >-
+          %{count} hiba miatt %{resource} mentése nem lehetésges:
+  "flash":
+    "submitted_successfully":
+      "question": >-
+        Köszönjük! Sikeresen megkaptuk a kérdésed. E-mailben értesítünk, amint megválaszoltuk
+        azt.
+      "review": >-
+        Köszönjük! Sikeresen megkaptuk az értékelésed.
+      "subscribed": >-
+        Sikeresen feliratkoztál a(z) %{store} üzletre
+      "unsubscribed": >-
+        Sikeresen leiratkoztál a(z) %{store} üzletről
+  "front":
+    "based_on_reviews_count":
+      "one": >-
+        1 értékelés
+      "other": >-
+        %{count} értékelés
+    "components":
+      "customer_form":
+        "email":
+          "hint": >-
+            Az e-mail címed nem tesszük közzé
+          "label": >-
+            Az e-mail címed
+        "name":
+          "hint": >-
+            A neved kezdőbetűk formájában jelenik meg
+          "hint_update_html": >-
+            A neved a következőként jelenik meg: <strong>%{initials}</strong>
+          "label": >-
+            A neved
+      "privacy_notice":
+        "link_content": >-
+          adatvédelmi nyilatkozat
+        "with_name":
+          "html": >-
+            Az űrlap beadásával beleegyezel a tartalmad és a <strong>%{name}</strong>
+            neved közzétételéhez online, az %{link}unk szerint.
+        "without_name":
+          "html": >-
+            Az űrlap beadásával belegyezel abba, hogy a tartalmad és a neved közzétehetjük
+            online, az %{link}unk szerint.
+    "continue_shopping": >-
+      Vásárlás folytatása
+    "flags":
+      "new":
+        "already_flagged": >-
+          Már megjelölted ezt a terméket: %{item}
+        "flag_as_inappropriate": >-
+          Nem megfelelőként jelölted meg ezt a terméket: %{item}
+      "show":
+        "flag_submitted": >-
+          Köszönjük
+    "mailer":
+      "excuses":
+        "question_answered_html": >-
+          Ezt az e-mailt a %{helpfulcrowd}-tól a(z) %{store} üzlet számára feltett
+          kérdéseddel kapcsolatban kaptad.
+        "review_answered_html": >-
+          Ezt az e-mailt a %{helpfulcrowd}-tól a(z) %{store} üzlet számára hagyott
+          értékeléseddel kapcsolatban kaptad.
+        "review_follow_up_html": >-
+          Ezt az e-mailt a %{helpfulcrowd}-tól a(z) %{store} üzlet számára nemrégiben
+          hagyott értékelésed válaszaként kaptad.
+        "review_request_html": >-
+          Ezt az e-mailt a %{helpfulcrowd}-tól a(z) %{store} üzletnél nemrégiben leadott
+          rendelésed válaszaként kaptad.
+      "helpers":
+        "call_to_action":
+          "view_product": >-
+            Ellátogatás a termék oldalára
+    "products":
+      "questions":
+        "form":
+          "question_html": >-
+            Mit szeretnél tudni erről a termékről: %{product}?
+        "new":
+          "title": >-
+            Kérdés feltétele
+      "view_product": >-
+        Ugrás a termék oldalára
+    "review_requests":
+      "reviews":
+        "form":
+          "rating_html": >-
+            Értékeld a tapasztalatod a következővel: %{reviewable}
+        "new":
+          "already_reviewed_html": >-
+            Már értékelted a következőt: %{reviewable}
+          "review_other_purchases":
+            "one": >-
+              Másik vásárlás értékelése
+            "other": >-
+              Más vásárlások értékelése
+          "title": >-
+            Értékeld a vásárlásod
+    "search":
+      "label": >-
+        Keresés:
+      "placeholder": >-
+        Kulcsszó megadása
+    "share":
+      "button": >-
+        Megosztás
+    "sort_by": >-
+      Sorrend:
+    "sort_options":
+      "most_helpful": >-
+        Leghasznosabb
+      "most_recent": >-
+        Legújabb
+      "rating_asc": >-
+        Értékelés: legalacsonyabb
+      "rating_desc": >-
+        Értékelés: legmagasabb
+    "suppressions":
+      "manage_subscriptions":
+        "subscribe_question_html": >-
+          Szeretnéd engedélyezni, hogy a HelpfulCrowd a(z) %{store} üzlet nevében
+          küldjön neked e-maileket?
+        "unsubscribe_question_html": >-
+          Szeretnéd, hogy a HelpfulCrowd abbahagyja a(z) %{store} nevében küldött
+          e-mailek küldését?
+    "votes":
+      "upvote": >-
+        Hasznos
+      "upvotes_count":
+        "one": "%{count} személy találta ezt a terméket hasznosnak: %{item} "
+        "other": >-
+          %{count} személy találta ezt a terméket hasznosnak: %{item}
+    "widgets":
+      "products":
+        "rating":
+          "qa":
+            "html":
+              "one": >-
+                1 kérdés
+              "other": >-
+                %{count} kérdés
+          "reviews":
+            "html":
+              "one": >-
+                1 értékelés
+              "other": >-
+                %{count} értékelés
+        "summary":
+          "qa":
+            "html":
+              "one": >-
+                1 kérdés
+              "other": >-
+                %{count} kérdés
+            "new": >-
+              Kérdés feltétele
+          "reviews":
+            "html":
+              "one": >-
+                1 értékelés
+              "other": >-
+                %{count} értékelés
+            "new": >-
+              Írj értékelést
+        "tabs":
+          "questions":
+            "new": >-
+              Kérdés feltétele
+            "search":
+              "label": >-
+                Keresés:
+              "placeholder": >-
+                K-V keresés
+            "title": >-
+              Kérdés-Válasz
+            "write_first": >-
+              Tedd fel az első kérdést erről a termékről
+          "reviews":
+            "based_on_reviews":
+              "html": >-
+                %{reviews_count} alapján
+            "media_gallery":
+              "images":
+                "one": >-
+                  1 kép
+                "other": >-
+                  %{count} kép
+              "search":
+                "label": >-
+                  Keresés
+                "placeholder": >-
+                  Keresés az értékelésekben
+              "title": "Vásárló\r\nmédia"
+              "videos":
+                "one": >-
+                  1 videó
+                "other": >-
+                  %{count} videó
+            "new": >-
+              Értékelés írása
+            "rating": >-
+              %{rating} az 5 csillagból
+            "title": >-
+              Vásárlói értékelések
+            "write_first": >-
+              Légy te az első aki értékeli ezt a terméket
+          "titles":
+            "questions": >-
+              Kérdések-Válaszok
+            "questions_responsive": >-
+              K-V
+            "reviews": >-
+              Vélemények és értékelések
+            "reviews_responsive": >-
+              Értékelések
+      "sidebar":
+        "default_title": >-
+          Értékelések | Kérdés-Válasz
+    "with_incentive":
+      "reviews":
+        "text": >-
+          Előfordulhat, hogy az értékelés írásáért ösztönzést ajánlottak fel az értékelés
+          írója számára.
+    "write_review": >-
+      Értékelés írása
+  "helpers":
+    "friendly_rating": >-
+      Még nincsenek értékelések
+    "label":
+      "customer":
+        "email": >-
+          Vásárló e-mail címe
+        "name": >-
+          Vásárló neve
+      "product_group":
+        "name": >-
+          Név
+    "placeholder":
+      "promotion":
+        "template": >-
+          Ingyenes házhoz szállítás minden rendelésre a Fekete Péntek hetén!
+    "submit":
+      "product_group":
+        "create": >-
+          Csoport létrehozása
+        "update": >-
+          Csoport frissítése
+      "question":
+        "create": >-
+          Kérdés feltétele
+      "review":
+        "create": >-
+          Értékelés írása
+  "layouts":
+    "mailer":
+      "front":
+        "manage_subscriptions": >-
+          Előfizetések kezelése
+        "unsubscribe": >-
+          Leiratkozás
+  "load_more": >-
+    Több betöltése
+  "privacy_policy": >-
+    Adatvédelmi nyilatkozat
+  "question_facebook_post_template": "[customer_name]\r\nK: [question]\r\nV: [answer]"
+  "question_tweet_template": "[customer_name]\r\nK: [question]\r\nV: [answer]"
+  "rating_1": >-
+    Szörnyű
+  "rating_2": >-
+    Rossz
+  "rating_3": >-
+    Elmegy
+  "rating_4": >-
+    Jó
+  "rating_5": >-
+    Nagyszerű
+  "read_less": >-
+    kevesebb megjelenítése
+  "read_more": >-
+    teljes értékelés
+  "recaptcha":
+    "errors":
+      "verification_failed": >-
+        Sikertelen reCAPTCHA ellenőrzés.
+    "label": >-
+      Segíts nekünk a spam elleni harcban
+  "report": >-
+    Jelentés
+  "review_facebook_post_template": "Nézd meg mit mondott [customer_name] a(z) [product_name]
+    termékről:\r\n\r\n[rating]\r\n\"[feedback]"
+  "review_tweet_template": "[customer_name]:\r\n[product_name] - [rating], \"[feedback]\""
+  "settings":
+    "default":
+      "review_slider_c2a_text": >-
+        Összes megtekintése
+  "stars":
+    "one": >-
+      1 csillag
+    "other": >-
+      %{count} csillag
+  "verified":
+    "agent":
+      "description": >-
+        %{author} a(z) %{store} üzlet dolgozója
+      "label": >-
+        %{store}
+    "customer":
+      "description": >-
+        %{author} megvásárolta ezt a terméket
+      "label": >-
+        Ellenőrzött vásárló

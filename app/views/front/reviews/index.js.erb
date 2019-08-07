@@ -1,0 +1,12 @@
+<% @container_uuid ||= '' %>
+var selector = '[data-hc="review-journal-list-container"]';
+<% unless @container_uuid.blank? %>
+  selector += '[data-id="<%= @container_uuid %>"]';
+<% end %>
+<% if @load_more %>
+  jQuery(selector).find('.hc-paging').remove();
+  jQuery(selector).append('<%= escape_javascript( render 'front/reviews/list', reviews: @reviews, load_more: true, container_uuid: @container_uuid ) %>');
+<% else %>
+  jQuery(selector).html('<%= escape_javascript( render 'front/reviews/list', reviews: @reviews, container_uuid: @container_uuid, pagination: "ajax" ) %>');
+<% end %>
+jQuery(selector).remotify().hc_lightbox().hc_dropdown();

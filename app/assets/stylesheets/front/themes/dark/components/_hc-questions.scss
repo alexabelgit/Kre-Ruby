@@ -1,0 +1,6 @@
+.hc-question__footer {
+  @extend %border-color__dark;
+  .hc-actions a {
+  	@extend %color__pale--darkened;
+  }
+}

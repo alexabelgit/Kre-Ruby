@@ -1,0 +1,45 @@
+.footer {
+  @extend %padding__md;
+  @extend %background-color__dark;
+  @extend %color__light;
+  @extend %font-size__87pt5pct;
+}
+
+.footer__copyright {
+  @extend %display__inline-block;
+  @extend %margin-right__md;
+}
+
+.footer__links {
+  @extend %display__inline-block;
+  a {
+    @extend %color__inherit;
+    &:not(:last-of-type) {
+      @extend %margin-right__md;
+    }
+  }
+}
+
+
+// Sticky footer
+$footer-height: 47px;
+
+%margin-bottom__footer-height {
+  margin-bottom: $footer-height;
+}
+
+html {
+  @extend %min-height__100pct;
+  @extend %position__relative;
+}
+
+body {
+  @extend %margin-bottom__footer-height;
+}
+
+.footer {
+  @extend %position__absolute;
+  @extend %bottom__0;
+  @extend %width__100pct;
+  @extend %z-index__11;
+}

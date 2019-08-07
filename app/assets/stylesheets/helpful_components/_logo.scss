@@ -1,0 +1,41 @@
+.hc-logo {
+  @extend %display__inline-block;
+  @extend %font-weight__normal;
+  @extend %text-decoration__none;
+  @extend %white-space__nowrap;           // TODO test if child elements need white-space: normal;
+  @extend %font-family__body-font-family; // To override host font family when hc is embedded.
+                                          // TODO this needs more static value. Now it's changing
+                                          // based on Platform (we have different fonts in FB css
+                                          // manifest and Shopify for example)
+
+  &:hover {
+    @extend %text-decoration__none;
+  }
+}
+
+.hc-logo__image {
+  @extend %margin__0;
+  @extend %display__inline-block;
+  @extend %vertical-align__middle;
+
+  &.hc-normal {
+    @extend %width__lg--px;
+    @extend %height__lg--px;
+  }
+
+  &.hc-small {
+    // @extend %width__md--px;
+    // @extend %height__md--px;
+    width: 20px;
+    height: 20px;
+  }
+}
+
+.hc-logo__text {
+  @extend %display__inline-block;
+  @extend %color__dark;
+  @extend %margin-left__xs--px;
+  @extend %font-size__16px;        // pixels are used to ensure hc logo is of
+                                   // consistent size on websites with different
+                                   // body/html font-sizes
+}

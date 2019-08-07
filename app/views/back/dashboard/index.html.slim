@@ -1,0 +1,122 @@
+/ TODO: when dashboard will be redesined, Q&A section should be hidden if Q&A is disabled
+
+- content_for :main_class, 'dashboard'
+
+header
+  h1 = title 'Helpful dashboard'
+
+section.dashboard-messages
+
+  - if @presenter.pending_items?
+
+    - if @presenter.pending_reviews?
+      .dashboard-message--with-action
+        span
+          | You have
+          =<> link_to pluralize(@presenter.pending_reviews_count, 'pending review'),
+              back_reviews_path(status: :pending),
+              class: 'dashboard-message__link'
+
+        = button_to publish_all_pending_back_reviews_path,
+          class:    'dashboard-message__action' do
+
+          => hc_icon 'globe'
+          =  "Publish all (#{ @presenter.pending_reviews_count })"
+
+    - if @presenter.pending_questions?
+      .system-message.warning
+        => link_to pluralize(@presenter.pending_questions_count, 'unanswered question'),
+        back_questions_path(status: :pending),
+        class: 'dashboard-message__link'
+
+        | waiting for your action.
+
+  - if @presenter.abuse_reports?
+    .system-message.warning
+      span
+        => "You have"
+        => link_to pluralize(@presenter.abuse_reports_count, 'open report'),
+           back_abuse_reports_path,
+           class: 'dashboard-message__link'
+        =  "about potentially inappropriate content"
+
+- unless @presenter.onboarded?
+  section.dashboard-section
+    = render     'back/shared/onboarding_progress',
+      onboarding: @presenter.onboarding,
+      clickable:  true
+
+section.dashboard-products
+  header
+    h2 Product stats
+
+  section.dashboard-widget
+    .dashboard-products__overview
+      .dashboard-products__overview-item #{ @presenter.products_count } products
+
+      .dashboard-products__overview-item #{ @presenter.reviewed_products_count } with reviews
+
+      .dashboard-products__overview-item #{@presenter.without_reviews} without reviews
+
+  section.dashboard-products__widgets
+    .dashboard-products__chart
+      .hc-form__control
+        label> for="select-product" Select product
+
+        = select_tag :product_id,
+          @presenter.products_select_options,
+          include_blank: 'All products',
+          data:      { role: 'filter-rating' },
+          id:        'select-product',
+          class:     'hc-select-with-search'
+
+      div data-role="rating-chart"
+        = render 'shared/rating_chart', reviews: @presenter.published_reviews
+
+    .dashboard-products__top-rated
+      h3 Top rated
+
+      ul
+        - @presenter.top_rated_products.each do |product|
+          li.dashboard__top-rated-product
+            => stars_and_rating(product.rating)
+            ' -
+            = link_to back_product_path(product) do
+              =  product.name
+              =< stamp_product_if_archived_or_hidden(product)
+
+    .dashboard-products__poorly-rated
+      h3 Lowest rated
+
+      ul
+        - @presenter.lowest_rated_products.each do |product|
+          li.dashboard__poorly-rated-product
+            => stars_and_rating(product.rating)
+            ' -
+            = link_to back_product_path(product) do
+              =  product.name
+              =< stamp_product_if_archived_or_hidden(product)
+
+section.dashboard-reviews
+  header
+    h2 Review stats
+
+  section.dashboard-widget
+    .dashboard-reviews__overview
+      .dashboard-reviews__sent Review requests sent: #{ @presenter.sent_review_requests  }
+
+      .dashboard-reviews__received Reviews received: #{ @presenter.reviews_count }
+
+      .dashboard-reviews__ignored-requests Ignored review requests: #{ @presenter.pending_review_requests}
+
+section.dashboard-q_a
+  header
+    h2 Q&A stats
+
+  section.dashboard-widget
+    .dashboard-q_a__overview
+      .dashboard-q_a__total Total number of questions: #{ @presenter.questions_count }
+
+      .dashboard-q_a__answered Answered questions: #{ @presenter.answered_questions_count }
+
+      .dashboard-q_a__unanswered Unanswered questions: #{ @presenter.unanswered_questions_count }

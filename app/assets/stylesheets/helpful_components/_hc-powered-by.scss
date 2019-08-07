@@ -1,0 +1,48 @@
+.hc-powered-by {
+  @extend %color__pale;
+  // @extend %opacity__0pt8;
+  // transition: 200ms;
+  // filter: grayscale(100%);
+
+  @extend %padding-top__xs;
+  @extend %margin-top__md;
+  @extend %text-align__center;
+  @extend %font-size__10px; // To keep consistent with logo font-size
+
+  .hc-logo {
+    @extend %margin-top__3xs;
+    @extend %margin-left__2xs;
+    @extend %vertical-align__top;
+    @media #{ $below__md } {
+      margin-left: 0.5em;
+    }
+    &__image {
+      @extend %margin-top__-0pt125em;
+    }
+  }
+  // &:hover{
+  //   filter: grayscale(0%);
+  //   @extend %opacity__1;
+  // }
+  .hc-powered-by__pretext{
+    @extend %text-align__right;
+    @extend %line-height__1pt125;
+    @extend %display__inline-block;
+  }
+}
+
+// Settings for branding logo display on the backend.
+
+.settings-form__control {
+  .hc-powered-by {
+    @extend %border__base;
+    @extend %display__inline-block;
+    @extend %padding__sm;
+    @extend %background-color__light;
+    @extend %text-align__left;
+    @extend %font-size__12px;
+    .hc-logo {
+      @extend %margin-left__sm;
+    }
+  }
+}

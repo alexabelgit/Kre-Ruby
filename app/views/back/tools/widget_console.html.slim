@@ -1,0 +1,211 @@
+- content_for :main_class, 'widget-console'
+= render 'layouts/back/sub_navs/tools'
+
+/ Keep to auto-reload the page once injection/check is completed
+div*{ 'data-role' => 'auto-inject-reload' }
+div*{ 'data-role' => 'check-embed-reload' }
+div*{ 'data-role' => 'auto-remove-reload' }
+
+- title 'Widget console'
+
+h1 Widget console
+
+- if @store.show_shopify_check_installation?
+  section.widget-console__status-checking.system-message
+    h2
+      span
+        = hc_icon 'hc-spinner spin md success'
+        |&nbsp; Checking widgets installation...
+        span.small Please stay here till we finish :-)
+
+- elsif @store.shopify_storefront_is_set_up?
+  section.widget-console__status-success.system-message.success
+    h3
+      span
+        = hc_icon 'check-circle md success'
+        |&nbsp;All necessary code is injected properly.
+
+- else
+  section.widget-console__status
+    h2 Auto check and embed widgets
+    .system-message.warning
+      span
+        = hc_icon 'exclamation-circle lg warning'
+        |&nbsp;We were not able to detect all of the HelpfulCrowd code in your theme
+
+      - if product_exists? && storefront_open?
+        = render "widget_checker"
+
+    #widget-console__unable-to-check
+      - if !product_exists? || !storefront_open?
+        p To allow us check your installation:
+        ul.important-message
+          - unless product_exists?
+            li #{ link_to "Create and publish", shopify_link("admin/products/new"), target: "_blank" } at least one product.
+          - unless storefront_open?
+            li #{ link_to "Disable", shopify_link("admin/online_store/preferences"), target: "_blank" } the storefront password.
+
+      - elsif theme_supported?
+        p.important-message
+          |If you recently changed your theme, just re-inject the code. If we still can’t automatically inject the code, then your theme may be customized, so you’ll need to #{ link_to "use our manual process outlined below", "javascript:void(0)", id: "widget-console-link-to-manual-guide" }.
+
+      - else
+        p.important-message
+          |Unfortunately, your theme is not supported and we couldn't automatically inject all of our display widgets.
+          br
+          |Good news though, you can still #{ link_to "add the widgets with our manual process", "javascript:void(0)", id: "widget-console-link-to-manual-guide" }.
+
+    = link_to "Check installation",
+               check_embed_success_integrations_shopify_onboarding_path,
+               class: 'hc-primary-button',
+               remote: true,
+               method: :post,
+               data: { role: 'check-embed-success-button',
+               processing_text: 'Checking installation (this may take a few moments)' }
+
+    - if product_exists? && storefront_open?
+      = link_to "Reinject code", auto_injection_integrations_shopify_onboarding_path,
+                class: 'hc-primary-outlined-button',
+                remote: true,
+                method: :post,
+                role: 'primary',
+                data: { role: 'auto-inject-button',
+                       processing_text: 'Injecting code (this may take a few moments)' }
+
+
+= render layout: 'helpful_components/collapsible/item',
+         locals: { name:    'add-stylesheet-and-recommended-widgets-manually',
+                   title:   'Add stylesheet and recommended widgets manually',
+                   heading: :h2 } do
+
+  = link_to "Help", "javascript:void(0)", class: 'hc-warning-button intercom-custom'
+
+  section.widget-console__sub-step class="#{ manual_step_class(:stylesheet) }"
+    h3
+      = hc_icon(manual_step_icon(:stylesheet))
+      |&nbsp;
+      = t 'title', scope: 'onboarding.stylesheet_embedded'
+    p = t 'description.html', scope: 'onboarding.stylesheet_embedded'
+    - snippet = t "snippet", scope: 'onboarding.stylesheet_embedded'
+    = hc_code snippet[:code], snippet[:language]
+
+  .hc-text-align__center
+    = link_to "Check installation",
+               check_embed_success_integrations_shopify_onboarding_path,
+               class: 'hc-primary-button',
+               remote: true,
+               method: :post,
+               data: { role: 'check-embed-success-button',
+               processing_text: 'Checking installation (this may take a few moments)' }
+
+  section.widget-console__sub-step class="#{ manual_step_class(:product_summary) }"
+   = render            'embed_widget',
+     widget:           :product_summary
+
+
+  .hc-text-align__center
+    = link_to "Check installation",
+               check_embed_success_integrations_shopify_onboarding_path,
+               class: 'hc-primary-button',
+               remote: true,
+               method: :post,
+               data: { role: 'check-embed-success-button',
+               processing_text: 'Checking installation (this may take a few moments)' }
+
+  section.widget-console__sub-step class="#{ manual_step_class(:product_tabs) }"
+   = render            'embed_widget',
+     widget:           :product_tabs
+
+  .hc-text-align__center
+    = link_to "Check installation",
+               check_embed_success_integrations_shopify_onboarding_path,
+               class: 'hc-primary-button',
+               remote: true,
+               method: :post,
+               data: { role: 'check-embed-success-button',
+               processing_text: 'Checking installation (this may take a few moments)' }
+
+  section.widget-console__sub-step class="#{ manual_step_class(:product_rating) }"
+    = render            'embed_widget',
+      widget:           :product_rating
+
+  .hc-text-align__center
+    = link_to "Check installation",
+               check_embed_success_integrations_shopify_onboarding_path,
+               class: 'hc-primary-button',
+               remote: true,
+               method: :post,
+               data: { role: 'check-embed-success-button',
+               processing_text: 'Checking installation (this may take a few moments)' }
+
+
+= render layout: 'helpful_components/collapsible/item',
+         locals: { name:    'add-optional-widgets',
+                   title:   'Add optional widgets',
+                   heading: :h2 } do
+
+  = link_to "Help", "javascript:void(0)", class: 'hc-warning-button intercom-custom'
+
+  - widgets = %w{sidebar review_journal review_slider}
+
+  - widgets.each do |widget|
+    section.widget-console__sub-step
+      h3 Embed #{widget} widget
+      p = t 'description.html', scope: "back.widgets.#{widget}"
+
+      - widget_embed_guide   = "back.widgets.#{widget}.embed_guide.custom"
+      - snippet_key = "#{widget_embed_guide}.snippet"
+
+      - if I18n.exists?(snippet_key, :en)
+        - snippets = t(snippet_key)
+
+        - snippets.each do |snippet|
+
+          - snippet_language = snippet[:language].present? ? snippet[:language] : :html
+          - snippet_url      = integrations_widgets_url @store.hashid, widget: widget, format: :js
+          - snippet_code     = I18n.interpolate snippet[:code], url: snippet_url
+
+          .code-snippet
+            b
+              .code-snippet__label = snippet[:label].html_safe
+            .code-snippet__code = hc_code snippet_code, snippet_language
+
+            - if snippet[:hint].present?
+              .code-snippet__hint = form_hint snippet[:hint]
+
+          - if snippet[:example].present?
+
+            = render layout: 'helpful_components/collapsible/item',
+                     locals: { name:    "#{widget}_example",
+                               title:   'Example',
+                               heading: :h4  } do
+
+              - snippet[:example].each do | example |
+
+                - example_code = I18n.interpolate example[:code], url: snippet_url
+
+                .code-snippet
+                  .code-snippet__label = example[:label].html_safe
+                  .code-snippet__code = hc_code example_code, snippet_language
+
+
+= render layout: 'helpful_components/collapsible/item',
+         locals: { name:    'widget-console__cleanup',
+                   title:   'Widget cleanup tool',
+                   heading: :h2 } do
+
+  section.widget-console__sub-step
+    p If things don't work out, then we'd like to at least clean up after ourselves.
+    p After running, the clean-up tool should remove and delete all files and code snippets that we've automatically added to your theme on install.
+    p To be able to automatically clean up, our app still needs to be installed. If you've already uninstalled it, just #{ link_to "reinstall it", "https://apps.shopify.com/helpfulcrowd", target: "_blank" } then run the clean up.
+
+    = link_to 'Run clean-up', auto_remove_integrations_shopify_onboarding_path,
+      class:  'hc-form__submit',
+      remote: true,
+      method: :post,
+      data:   { role:             'auto-remove-button',
+                processing_text:  'Clean-up running (this may take a few moments)',
+                confirm: "Are you sure you want to run the clean-up? It will remove all the HelpfulCrowd widgets from your store." }
+
+    p
+      | If our widgets still appear on your site after running the clean-up tool, then they may have been added manually to your theme. In this case, you will need to locate and #{ kb_article 'uninstall_shopify', label: 'remove&nbsp;them&nbsp;manually'.html_safe, icon: false }.

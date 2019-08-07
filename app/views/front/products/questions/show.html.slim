@@ -1,0 +1,14 @@
+section.question-details
+  header.question-details__header
+
+    = link_to @product.url, target: '_blank' do
+      = image_tag @product.featured_image.small.url.to_s,
+        alt:      @product.name,
+        class:    'question-details__product-image'
+
+    h1 = @product.name
+
+  = render 'front/products/questions/item', question: @question, show_actions: true
+
+- content_for :footer
+  = render 'front/shared/go_to_product', url: @product.url

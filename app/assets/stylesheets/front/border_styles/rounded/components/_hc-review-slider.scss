@@ -1,0 +1,13 @@
+.hc-review-slider{
+	.hc-review-slider__slide-left{
+		@extend %border-top-left-radius__#{$rounded-borders_md};
+    @extend %border-bottom-left-radius__#{$rounded-borders_md};
+	}
+	.hc-review-slider__slide-right{
+		@extend %border-top-right-radius__#{$rounded-borders_md};
+    @extend %border-bottom-right-radius__#{$rounded-borders_md};
+	}
+	.hc-review-slider__c2a{
+		@extend %border-radius__#{$rounded-borders_md};
+	}
+}

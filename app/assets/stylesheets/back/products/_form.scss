@@ -1,0 +1,26 @@
+.product-form__featured-image {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.product-form__featured-image-upload {
+  margin-top: 8px;
+}
+
+.product-form__featured-image-preview {
+  flex: 1 0 100px;
+}
+
+.product-form__featured-image-settings {
+  flex: 2;
+
+  .hc-checkbox-toggle__label-title {
+    margin-bottom: 4px;
+  }
+}
+
+.product-form__custom-image-hint {
+  flex: 2;
+  font-size: 14px;
+}

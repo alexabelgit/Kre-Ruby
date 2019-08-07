@@ -1,0 +1,4 @@
+nav.sub-nav
+  - items.each do |item|
+    - active_disable = item[:active_disable] || false
+    = active_link_to item[:name], item[:path], active: item[:active], class: 'sub-nav-item', active_disable: active_disable

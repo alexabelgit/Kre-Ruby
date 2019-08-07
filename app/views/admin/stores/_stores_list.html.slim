@@ -1,0 +1,53 @@
+table.table
+  thead
+    tr
+      th Store
+      th Status
+      th Review requests
+      th Reviews
+      th Questions
+      th Products
+      th Onboarding
+      th Subscription
+      th Owner
+
+  tbody
+    - stores.each do |store|
+      tr
+        td
+          div
+            => link_to store.get_highlights(:name), admin_store_path(store)
+            = link_to store.url, target: '_blank' do
+              = hc_icon 'external-link'
+
+        td
+          = info_with_label(render('platform', store: store), 'App')
+          = info_with_label(store.status,                     'Backend')
+          = info_with_label(store.storefront_status,          'Storefront')
+
+        td
+          = info_with_label(store.review_requests.sent.count, 'Sent',      html_class: 'flex__3-vs-1')
+          = info_with_label(store.review_requests.count,      'Total',     html_class: 'flex__3-vs-1')
+
+        td
+          = info_with_label(store.reviews.published.count,    'Published', html_class: 'flex__3-vs-1')
+          = info_with_label(store.reviews.count,              'Total',     html_class: 'flex__3-vs-1')
+
+        td
+          = info_with_label(store.questions.published.count,  'Published', html_class: 'flex__3-vs-1')
+          = info_with_label(store.questions.count,            'Total',     html_class: 'flex__3-vs-1')
+
+        td = store.products.count
+        td = progress_bar store.onboarding[:progress]
+
+        td
+          = Admin::BillingPresenter.new(store, self).billing_status
+        td
+          => mail_to store.user.email do
+            = store.get_highlights(:user_name, store.user.full_name)
+
+          = link_to impersonate_admin_user_path(store.user), method: :post, class: 'hc-secondary-button--small float__right' do
+            => hc_icon 'user-secret'
+            |  Impersonate
+
+= will_paginate stores, class: 'hc-paging hc-paging--modern'

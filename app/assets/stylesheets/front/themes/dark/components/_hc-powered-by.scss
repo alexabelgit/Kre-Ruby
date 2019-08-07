@@ -1,0 +1,9 @@
+.hc-powered-by {
+  @extend %border-color__dark;
+  @extend %border__0;
+  @extend %margin-top__xs;
+  @extend %font-size__80pct;
+}
+.hc-powered-by .hc-logo{
+  @extend %border__0;
+}

@@ -1,0 +1,54 @@
+.bundle {
+  @extend %max-width__320px;
+  @extend %margin-x__auto;
+}
+
+.bundle__section {
+  @extend %margin-y__md;
+
+  &:not(:last-of-type) {
+    @extend %border-bottom__base;
+    @extend %padding-bottom__md;
+  }
+}
+
+.bundle__row {
+  @include flexbox();
+
+  > div {
+
+    &:first-child {
+      @extend %flex__2;
+      @extend %text-align__left;
+      @extend %margin-right__xs;
+    }
+
+    &:last-child {
+      @extend %flex__1;
+      @extend %text-align__right;
+      @extend %margin-left__xs;
+    }
+  }
+}
+
+.bundle__one_time_charges_section {
+  padding-top: 10px;
+  font-size: 14px;
+}
+
+.bundle__additional_info {
+  @include flexbox();
+
+  color: grey;
+  font-style: italic;
+  margin-top: 15px;
+
+  > div {
+    @extend %text-align__left;
+  }
+}
+
+
+.bundle__prediscount-price {
+  @extend %text-decoration__line-through;
+}

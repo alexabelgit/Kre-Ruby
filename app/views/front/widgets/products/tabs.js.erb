@@ -1,0 +1,3 @@
+var selector = '[data-hc="product-tabs"][data-hc-id="<%= @product.id_from_provider %>"]';
+jQuery(selector).html('<%= escape_javascript(render 'front/widgets/products/tabs', product: @product, reviews: @reviews, questions: @questions, reviews_with_media: @reviews_with_media, disable_product_links: false) %>');
+jQuery(selector).cloudify('<%= I18n.locale %>').remotify().modal_form().tabify().hc_filter_select().hc_display_name().hc_lightbox().hc_dropdown().recaptcha_multiplify().hc_reset_search();

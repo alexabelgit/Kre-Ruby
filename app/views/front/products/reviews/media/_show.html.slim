@@ -1,0 +1,34 @@
+/ medium*
+/ review*
+/ count*
+/ total_count*
+/ limit_count*
+
+- product_name = review.product.name
+
+- if medium.image?
+  .hc-media__medium class="#{media_class_name(count, limit_count, total_count)}" data-model="medium" data-id=medium.hashid data-src=cl_image_path(medium.cloudinary_public_id) data-sub-html=product_name
+    = cl_image_tag    medium.cloudinary_public_id,
+      transformation: [{width: 180, height: 100, crop: :fill }],
+      alt:            product_name,
+      class:          "hc-media__thumb"
+
+    - if (count == limit_count-1) and (total_count > limit_count)
+      .hc-media__thumb-icon
+        | + #{total_count-limit_count}
+- elsif medium.video?
+  - poster = cl_video_thumbnail_path(medium.cloudinary_public_id)
+  .hc-media__medium class="#{media_class_name(count, limit_count, total_count)}" data-model="medium" data-id=medium.hashid data-html="#hc-video-#{medium.hashid}" data-poster=poster data-sub-html=product_name
+    = cl_video_thumbnail_tag medium.cloudinary_public_id,
+      transformation:        [{ width: 180, height: 100, crop: :fill }],
+      alt:                   product_name,
+      class:                 "hc-media__thumb"
+
+    - if (count == limit_count-1) and (total_count > limit_count)
+      .hc-media__thumb-icon.hc-media__thumb-icon--count
+        | + #{total_count-limit_count}
+    - else
+      .hc-media__thumb-icon = hc_icon "video-indicator lg"
+
+    div id="hc-video-#{medium.hashid}" style="display:none;"
+      = cl_video_tag(medium.cloudinary_public_id, controls: true, source_types: ['mp4'], class: 'lg-video-object lg-html5')

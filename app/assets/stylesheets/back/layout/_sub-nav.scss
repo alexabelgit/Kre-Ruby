@@ -1,0 +1,41 @@
+.sub-nav {
+  @extend %background-color__white;
+  @extend %border-bottom__1px__solid__secondary;
+
+  @extend %max-width__100pct;
+  @extend %overflow__auto;
+  @extend %white-space__nowrap; // TODO test if child elements need white-space: normal;
+}
+
+.sub-nav-item {
+  @include button(
+    $background-color: 'transparent',
+    $border-color:     'transparent',
+    $border-radius:    '0',
+    $border-style:     'none',
+    $border-width:     '0',
+    $color:            'dark',
+    $padding-x:        $button--large__padding-x,
+    $padding-y:        $button--large__padding-y,
+    $text-decoration:  $text-button__text-decoration,
+
+    $hover-background-color: 'transparent',
+    $hover-text-decoration:  'none'
+  );
+
+  // TODO westy should allow doing this right from the button mixin.
+  transition: border color $transition-duration__base;
+  @extend %border-bottom__2px__solid__white;
+  @extend %max-height__2pt5rem;
+
+  &.active {
+    @extend %color__brand-1;
+    @extend %border-bottom__2px__solid__brand-1;
+  }
+
+  @include pseudo-classify(
+    color,
+    $hover:  $color-brand-1,
+    $active: $color-brand-1
+  )
+}

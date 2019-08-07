@@ -1,0 +1,14 @@
+.hc-dl {
+  @extend %margin__0;
+}
+
+.hc-dl__dt {
+  @extend %margin__0;
+  @extend %font-weight__bold;
+}
+
+.hc-dl__dd {
+  @extend %margin-x__0;
+  @extend %margin-top__0;
+  @extend %margin-bottom__md;
+}

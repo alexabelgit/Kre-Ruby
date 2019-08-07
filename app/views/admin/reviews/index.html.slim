@@ -1,0 +1,63 @@
+= render 'layouts/admin/sub_navs/reviews'
+
+h1 Reviews
+
+.responsive-table
+  table.table
+    thead
+      tr
+        th ID
+        th Review
+        th Product
+        th Store
+        th Customer
+        th Date
+        th Status
+        th Verification
+        th Source
+
+    tbody
+      - @reviews.each do |review|
+        tr
+          td
+            => link_to review.hashid, admin_review_path(review)
+            - if review.product.present?
+              =  link_to front_product_review_path(review.store, review.product, review), target: '_blank' do
+                = hc_icon 'external-link'
+                
+            / TODO ~ add link for business review as well
+            
+          td
+            => stars_based_on review.rating
+            => review.read_more(:feedback, ellipsis: true).excerpt
+            br
+            - review.media.with_cloudinary_id.each do |medium|
+              - if medium.video?
+                => link_to cl_video_path(medium.cloudinary_public_id), target: '_blank' do
+                  = hc_icon 'video-camera'
+              - if medium.image?
+                => link_to cl_image_path(medium.cloudinary_public_id), target: '_blank' do
+                  = hc_icon 'camera'
+
+            - review.social_posts.each do |social_post|
+              => link_to social_post.link, target: '_blank' do
+                - if social_post.facebook?
+                  = hc_icon 'facebook-official', class: 'hc-color__facebook'
+                - if social_post.twitter?
+                  = hc_icon 'twitter-square',    class: 'hc-color__twitter'
+          td
+            = link_to review.reviewable.url, target: '_blank' do
+              => review.reviewable.name
+              =  hc_icon 'external-link'
+          td = link_to review.store.name, admin_store_path(review.store)
+          td
+            = review.customer.name
+            br
+            => email_icon review.customer
+            = review.customer.email
+          td = review.review_date
+          td = review.status
+          td = review.verification
+          td = review.source
+
+= will_paginate @reviews, class: 'hc-paging hc-paging--modern'

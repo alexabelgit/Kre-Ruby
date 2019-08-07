@@ -1,0 +1,15 @@
+/ position      - north-east, north-west, south-east, south-west
+/ skin          - selectize
+/ trigger
+/ trigger_class
+
+- skin          ||= nil
+- position      ||= nil
+- trigger       ||= hc_icon 'hc-ellipsis-h justified'
+- trigger_class ||= nil
+
+.hc-dropdown data-hc-dropdown='' class="#{ 'hc-dropdown--' + skin if skin }"
+  .hc-dropdown__trigger data-hc-dropdown-trigger='' tabindex='0' class="#{ trigger_class } #{ 'hc-dropdown__trigger--' + skin if skin }"
+    == trigger
+  .hc-dropdown__content data-hc-dropdown-content='' class="#{ 'hc-dropdown__content--' + position if position } #{ 'hc-dropdown__content--' + skin if skin }"
+    = yield

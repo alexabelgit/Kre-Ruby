@@ -1,0 +1,90 @@
+article.question data-model="question" data-id=question.hashid
+  header.question__header
+    div
+      = link_to back_product_path(question.product), class: 'question__product' do
+        =  question.get_highlights(:product_name, question.product.name)
+        =< stamp_product_if_archived_or_hidden(question.product)
+
+    div
+      span.question__author>
+        => author_of_(question)
+      ' |
+      =< humane_date(question.submitted_at)
+
+  .question__wrapper
+    p.question__body = question.get_highlights(:body)
+
+  .question__author-email
+    = mail_to question.customer.email,
+      subject: "Re: Question about #{ question.product.name }",
+      body: "Dear #{ question.customer.name }, thank you for your interest in our product #{ question.product.name }.\n\nThis a copy of your question:\n\n#{ question.body }\n\nWe hope you will find the following information helpful:\n\n\n\nLink to product page: #{ question.product.url }",
+      title: 'Email customer' do
+      => email_icon(question.customer)
+      =  question.get_highlights(:customer_email, question.customer.email)
+
+  .question-comments
+    - if question.comment.present?
+      = render 'back/comments/show', comment: question.comment, commentable: question
+    - else
+      = render 'back/comments/form', comment: Comment.new(commentable: question)
+
+  footer.question-footer
+    .question-actions
+
+      .rqa-statuses
+        .rqa-status class="rqa-status--#{question.status}"
+          => rqa_status_icon question.status
+          =  question.status.capitalize
+
+        - unless question.published?
+          => link_to back_question_path(question, question: {status: :published}),
+             method: :put,
+             remote: true,
+             data:   { disable_with: "#{ spinner_icon } Publishing" },
+             class:  'rqa-statuses__publish' do
+
+            => hc_icon 'globe'
+            |  Publish
+
+        - unless question.archived?
+          = link_to back_question_path(question, question: {status: :archived}),
+            method: :put,
+            remote: true,
+            data:   { confirm:      question.social_posts.any? ? 'This question has associated social posts. If you archive it, those posts will be deleted from corresponding social channels. Proceed?' : nil,
+                      disable_with: "#{ spinner_icon } Archiving" },
+            class:  'rqa-statuses__archive' do
+
+            => hc_icon 'archive'
+            |  Archive
+
+      - social_connections ||= question.store.social_connections
+      = render 'back/shared/social_actions', postable: question, social_connections: social_connections if question.published?
+
+    .question-thumbs-and-flags
+
+      - question.votes.any?
+        .question-thumbs
+          => hc_icon 'thumbs-up'
+          =  question.votes_count
+
+      - question.flags.any?
+        .question-flags
+          => hc_icon 'flag'
+          =  question.flags.count
+
+      .hc-display__inline-block
+        = render 'helpful_components/dropdown', position: 'north-east' do
+          .hc-dropdown__item
+            = link_to front_product_question_url(question.store, question.product, question, redirect: true),
+              target: '_blank',
+              class:  'js-copy-to-clipboard',
+              data:   { copy_to_clipboard_content: "href",
+                        copy_to_clipboard_success: "#{ hc_icon 'check' } Copied" }  do
+
+              => hc_icon 'share'
+              =  'Copy shareable link'
+
+          .hc-dropdown__item
+            = link_to new_back_abuse_report_path(id: question.id, type: question.class.name) do
+              => hc_icon 'flag'
+              =  'Report as inappropriate'

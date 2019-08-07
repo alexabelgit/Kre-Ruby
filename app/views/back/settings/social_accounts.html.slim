@@ -1,0 +1,27 @@
+- content_for :main_class, 'social-accounts-page boxed'
+- render 'layouts/back/sub_navs/settings'
+
+header 
+  h1 = title 'Connect social accounts'
+
+.social-accounts
+
+  section.social-account#facebook
+    = render 'social_account_header', provider: 'facebook'
+    
+    - if current_store.facebook_connected?
+      .social-account__details = render 'select_facebook_page'
+
+  section.social-account#twitter
+    = render 'social_account_header', provider: 'twitter'
+
+    - if current_store.twitter_connected?
+      .social-account__details
+        ' Connected profile:
+        = link_to "@#{current_store.settings(:social_accounts).twitter_username}",
+          "https://twitter.com/#{current_store.settings(:social_accounts).twitter_username}",
+          target: '_blank'
+
+  / Hidden until pintegration  
+  / section.social-account#pinterest
+  /   = render 'social_account_header', provider: 'pinterest'

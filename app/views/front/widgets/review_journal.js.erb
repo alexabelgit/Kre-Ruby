@@ -1,0 +1,3 @@
+var selector = '[data-hc="review-journal"],[data-hc="review-book"]';
+jQuery(selector).html('<%= escape_javascript(render 'front/widgets/review_journal', reviews: @reviews) %>');
+jQuery(selector).remotify().hc_lightbox().hc_dropdown();

@@ -1,0 +1,72 @@
+@import "../../_settings/colors";
+@import "../../_settings/shared/**/*";
+
+@import "wetsy/base";
+@import "wetsy/components";
+@import "wetsy/rules";
+
+@import "wetsy_lacks_that";
+
+html body.modal {
+  &#cloudinary-overlay {
+    background-color: transparentize($color-dark, .1);
+  }
+
+  .widget#cloudinary-widget {
+    @extend %border-radius__base;
+    @extend %box-sizing__border-box;
+    @extend %line-height__1pt5;;
+
+    *, *:before, *:after {
+      @extend %box-sizing__inherit;
+    }
+
+    .header {
+      @extend %border-radius__base;
+      @extend %border-bottom__0;
+
+      .sources {
+        @extend %display__none;
+      }
+    }
+
+    .upload_button_holder {
+      @extend %overflow__visible;
+
+      .cloudinary_fileupload {
+        @extend %cursor__pointer;
+      }
+
+      a.button {
+        @extend %primary-button;
+        @extend %position__relative;
+
+        &.select_single {
+          @extend %display__none;
+        }
+      }
+
+      &:hover, &:active, &:focus {
+        a.button {
+          @extend %primary-button:hover;
+        }
+      }
+    }
+
+    .progress_bar {
+      @extend %background-color__secondary;
+      @extend %border__0;
+      @extend %border-radius__base;
+    }
+
+    .progress_done {
+      @extend %background-color__success;
+      @extend %border-bottom-left-radius__base;
+      @extend %border-top-left-radius__base;
+
+      &.rounded {
+        @extend %border-radius__base;
+      }
+    }
+  }
+}

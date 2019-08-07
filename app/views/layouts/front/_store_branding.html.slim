@@ -1,0 +1,9 @@
+/ store
+
+- store ||= @store
+
+section.store-branding
+  - if store.logo.present?
+    = render 'layouts/front/store_logo', store: store
+  - else
+    h2.store-branding__name = link_to store.name, store.url

@@ -1,0 +1,53 @@
+.bundle data-purpose='bundle-info' data-bundle-id=bundle.bundle_id
+
+  section.bundle__section
+    .bundle__row
+      div #{ bundle.plan_name }
+      div #{ bundle.plan_price }
+
+  - if bundle.has_addons?
+    section.bundle__section
+      - bundle.enabled_addons.each do |addon|
+        .bundle__row
+          div #{ addon.name }
+          div #{ number_to_currency addon.price_in_dollars }
+
+  section.bundle__section
+
+    - if bundle.discounted?
+      .bundle__row
+        div Price
+        .bundle__prediscount-price = bundle.raw_price
+
+      .bundle__row
+        div Discount
+        div - #{ bundle.discount }
+
+    .bundle__row
+      div
+        strong Monthly price
+      div
+        strong #{ bundle.price }
+
+  - if bundle.one_time_charges?
+    section.bundle__section
+      .bundle__row
+        div
+          span> One-time charges (
+          a data-behavior="toggle-one-time-charges" href="javascript: void(0)" show more
+          span )
+        div
+          strong = bundle.one_time_charges_total
+      .bundle__one_time_charges_section.hide-unless-screen-reader data-purpose="one-time-charges"
+        - bundle.added_addons_prices.each do |entry|
+          .bundle__row.bundle__one_time_charge
+            div = entry[:name]
+            div
+              strong = entry[:price]
+        - bundle.removed_addons_credits.each do |entry|
+          .bundle__row.bundle__one_time_charge
+            div = entry[:name]
+            div
+              strong = entry[:price]
+          .bundle__additional_info
+            div Negative charges are added as credits to your account.

@@ -1,0 +1,27 @@
+h1,h2,h3,h4,h5,h6 {
+  @extend %margin-top__0;
+  @extend %margin-bottom__md--px;
+}
+
+p {
+  @extend %margin-y__md--px;
+
+  &:first-of-type {
+    @extend %margin-top__0;
+  }
+
+  &:last-of-type {
+    @extend %margin-bottom__0;
+  }
+}
+
+blockquote {
+  @extend %padding__xs--px;
+  @extend %background-color__light;
+  @extend %color__dark--lightened;
+  @extend %margin-x__0;
+  @extend %margin-y__0;
+  @extend %white-space__pre-line;
+  @extend %word-break__break-word;
+  @extend %word-wrap__break-word;
+}

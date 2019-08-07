@@ -1,0 +1,27 @@
+@import "../../_settings/colors";
+@import "../../_settings/shared/**/*";
+
+@import "wetsy/base";
+@import "wetsy/components";
+@import "wetsy/rules";
+
+@import "wetsy_lacks_that";
+
+@import "../../helpful_components/utility_classes";
+@import "../../helpful_components/hc-code";
+@import "../../helpful_components/targetable";       // This is needed for hc-collapsible
+@import "../../helpful_components/hc-collapsible/*";
+@import "../../helpful_components/hc-icon";
+
+@import "back/**/*";
+
+// TODO import individual wetsy components without importing resets, so that this %hide-unless-screen-reader is available
+
+body {
+
+}
+
+.hc-footer {
+  @extend %margin-y__3xl;
+  @extend %margin-x__md;
+}

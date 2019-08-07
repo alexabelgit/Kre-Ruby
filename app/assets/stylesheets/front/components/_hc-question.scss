@@ -1,0 +1,18 @@
+// TODO split this into question-card and question, according to reviews
+.hc-question__metadata {
+  @include flexbox(
+    $flex-wrap:       wrap,
+    $justify-content: space-between
+  );
+}
+
+.hc-question__body {
+  @extend %margin-bottom__xs;
+  @extend %margin-top__0;
+  @extend %margin-x__0;
+  @extend %padding__0;
+
+  @extend %white-space__pre-line;
+  @extend %word-break__break-word;
+  @extend %word-wrap__break-word;
+}

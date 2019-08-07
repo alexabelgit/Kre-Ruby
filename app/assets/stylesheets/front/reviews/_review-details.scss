@@ -1,0 +1,12 @@
+.review-details {
+  @extend %background-color__white;
+  @extend %border-color__secondary;
+  @extend %border-style__solid;
+  @extend %border-width__1px;
+  @extend %border-radius__base;
+  @extend %padding__md;
+}
+
+.review-details__product-image {
+  @extend %border__1px__solid__secondary;
+}

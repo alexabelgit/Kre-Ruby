@@ -1,0 +1,11 @@
+/ resource*
+/ html_class
+
+- html_class ||= false
+
+- if resource.errors.any?
+  = content_tag :div, class: "system-message danger #{ html_class if html_class }", data: { system_message: '' } do
+    h5 = "#{ pluralize(resource.errors.count, 'error') } prohibited this form from being saved:"
+    ul
+      - resource.errors.full_messages.each do |message|
+        li = message

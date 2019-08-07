@@ -1,0 +1,20 @@
+= form_for [ :back, @abusable, @abuse_report ],
+  url:     back_abuse_reports_path do |f|
+
+  = render 'shared/form/errors', resource: @abuse_report
+
+  .hc-form__control
+    = field_set_tag "This #{ @abusable.class.name.downcase } is inappropriate because of" do
+      - AbuseReport.reasons.keys.each do |reason|
+        = label_tag nil, class: 'hc-form__label' do
+          => f.radio_button :reason, reason, required: true
+          =  AbuseReport.humane_enum_name(:reason, reason)
+
+  .hc-form__control
+    = f.label     :additional_info, class: 'hc-form__label'
+    = f.text_area :additional_info, class: 'hc-form__textarea'
+
+    = f.hidden_field :abusable_id,   value: @abusable.id
+    = f.hidden_field :abusable_type, value: @abusable.class.name
+
+  = f.submit 'Report', class: 'hc-form__submit'

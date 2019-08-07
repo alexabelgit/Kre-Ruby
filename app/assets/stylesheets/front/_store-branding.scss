@@ -1,0 +1,10 @@
+.store-branding {
+  @extend %text-align__center;
+}
+
+.store-branding__name {
+  @extend %margin-bottom__0;
+  a {
+    @extend %color__dark;
+  }
+}

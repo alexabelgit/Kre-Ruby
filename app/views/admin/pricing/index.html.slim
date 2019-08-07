@@ -1,0 +1,75 @@
+= content_for :sub_nav
+  = render 'layouts/admin/sub_nav', items: @presenter.navigation_items
+
+header.header-with-action
+  h2 = title 'Plans'
+  .header-with-action__wrapper
+    = link_to 'New plan', new_admin_plan_path, class: 'hc-primary-button'
+    = link_to 'Export as CSV', 'javascript:', class: 'hc-primary-button', data: { behavior: 'export-as-csv' }
+
+.header.header-with-action
+  h5 = title 'Platforms'
+  .header-with-action__wrapper
+    = active_link_to 'All', filter_link(ecommerce_platform: nil),
+            active: :exact,
+            class_active: 'pricing-dashboard__active-link'
+    = ' | '
+    - EcommercePlatform::SUPPORTED_PLATFORMS.each.with_index do |platform, index|
+      = active_link_to platform.capitalize,
+              filter_link(ecommerce_platform: platform),
+              active: :exact,
+              class_active: 'pricing-dashboard__active-link'
+      = ' | ' unless index == EcommercePlatform::SUPPORTED_PLATFORMS.size - 1
+
+.header.header-with-action
+  h5 = title 'Pricing model'
+  .header-with-action__wrapper
+    = active_link_to 'Products', filter_link(pricing_model: 'products'),
+            active: :exact, class_active: 'pricing-dashboard__active-link'
+    = ' | '
+
+    = active_link_to 'Orders', filter_link(pricing_model: 'orders'),
+            active: :exact, class_active: 'pricing-dashboard__active-link'
+
+table.table
+  thead
+    tr
+      th = check_box_tag 'plan_ids', 0, false, data: { behavior: 'select-all' }
+      th Plan name
+      th Slug
+      th Ecommerce platform
+      th Price
+      th Description
+      - unless @presenter.shopify_plans?
+        th Chargebee ID
+      - if @presenter.products_based_plans?
+        th Products range
+      - else
+        th Orders limit
+        th Extension price
+        th Orders per extension bundle
+        th Overages limit
+      th Is secret?
+      th
+  tbody
+    - @presenter.plans.each do |plan|
+      tr
+        td = check_box_tag 'plans_ids', plan.id, false, data: { behavior: 'plan-checkbox' }
+        td = plan.name
+        td = plan.slug
+        td = plan.ecommerce_platform.name
+        td = number_to_currency(plan.price_in_dollars)
+        td = plan.description
+        - unless @presenter.shopify_plans?
+          td = plan.chargebee_id
+        - if @presenter.products_based_plans?
+          td = "#{plan.min_products_limit}..#{plan.max_products_limit || '∞'}"
+        - else
+          td = plan.orders_limit
+          td = number_to_currency plan.extension_price_in_dollars
+          td = plan.extended_orders_limit
+          td = plan.ecommerce_platform.shopify? ? number_to_currency(plan.overages_limit) : '-'
+        td = plan.is_secret? ? "✓" : '-'
+        td = link_to edit_admin_plan_path(plan) do
+          = hc_icon 'pencil'
+

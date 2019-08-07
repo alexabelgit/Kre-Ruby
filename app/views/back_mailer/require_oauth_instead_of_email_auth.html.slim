@@ -1,0 +1,16 @@
+- provider = @store.provider.capitalize
+
+= content_for :recipient
+  = @user.first_name
+
+p
+  |
+    Looks like you recently tried to access HelpfulCrowd with your email.
+    Since your account is connected with your #{ provider } account, you need to
+    sign in with #{ provider } instead.
+
+p
+  |
+    Sign in by opening our app in your #{ provider } admin or by clicking
+    <strong>Sign in with #{ provider }</strong> on our
+    #{ link_to 'sign in', new_user_session_url } page.

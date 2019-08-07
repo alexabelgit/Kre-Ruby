@@ -1,0 +1,37 @@
+- content_for :main_class, 'boxed'
+= render 'layouts/back/sub_navs/tools'
+
+section
+  - if current_store.has_pending_imported_review_requests?
+    header.header-with-action
+      h1 = title 'Previewing imported transactions'
+
+      div
+        => link_to 'Discard all',
+           proceed_back_imported_review_requests_path(clear_all: true),
+           remote:  true,
+           method:  :post,
+           class:   'hc-secondary-button',
+           data:    { confirm: 'All uploaded review requests will be discarded and nothing will be imported. Proceed?' }
+
+        = link_to 'Import selected',
+          proceed_back_imported_review_requests_path,
+          method: :post,
+          class:  'header-with-action__action'
+
+    = card do
+      = tip("These are the review requests we generated based on your upload. Take a look and decide \
+             which ones should be imported and which ones should be discarded. Then click \
+             <strong>Import selected</strong> button to proceed. \
+             By default all items are preselected for import.", margin: false)
+
+    - @imported_review_requests.each do |imported_review_request|
+      = render 'back/imported_review_requests/show', imported_review_request: imported_review_request
+
+    = will_paginate @imported_review_requests, class: 'hc-paging hc-paging--modern'
+
+  - else
+    = render   'shared/system_messages/custom',
+      body:    "You don't have any uploaded review requests pending for import at the moment.",
+      action:  { name: 'Import review requests', url: back_bulk_request_index_path },
+      persist: true

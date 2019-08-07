@@ -1,0 +1,89 @@
+.questions {
+  @extend %flexbox;
+}
+
+.questions__filters {
+  @extend %flex__0__1__auto;
+  @extend %width__15rem;
+
+  // TODO make this and reviews__filter a single component
+}
+
+.questions__filter {
+  &:not(:last-of-type) {
+    @extend %margin-bottom__md;
+  }
+
+  label {
+    @extend %display__block;
+  }
+
+  select {
+    @extend %width__100pct;
+  }
+}
+
+.questions__list {
+  @extend %padding-left__md;
+  @extend %flex__1__1__auto;
+  @extend %width__100pct;
+}
+
+.question {
+  @extend %background-color__white;
+  @extend %border__1px__solid__secondary;
+  @extend %border-radius__base;
+  @extend %padding-bottom__md;
+
+  &:not(:last-of-type) {
+    @extend %margin-bottom__md;
+  }
+}
+
+.question__header {
+  @extend %padding-x__md;
+  @extend %margin-y__md;
+}
+
+.question__author {
+  @extend %display__inline-block;
+}
+
+.question__product {
+  @extend %font-weight__bold;
+  @extend %color__dark;
+}
+
+.question__wrapper {
+  @extend %padding-x__md;
+  @extend %margin-bottom__md;
+}
+
+.question__author-email {
+  @extend %padding-x__md;
+  @extend %margin-bottom__md;
+}
+
+.question-comments {
+  @extend %padding-x__md;
+  @extend %margin-bottom__md;
+}
+
+.question__body {
+  @extend %margin-y__0;
+  @extend %white-space__pre-line;
+  @extend %word-break__break-word;
+  @extend %word-wrap__break-word;
+}
+
+.question-footer {
+  @extend %border-top__1px__solid__secondary;
+  @extend %padding-top__md;
+  @extend %padding-x__md;
+  @extend %flexbox--space-between;
+  @extend %align-items__center;
+}
+
+.questions__paging {
+  @extend %paging;
+}

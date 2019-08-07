@@ -1,0 +1,4 @@
+body.hc-theme__dark {
+  @extend %background-color__darker--darkened;
+  @extend %color__light;
+}

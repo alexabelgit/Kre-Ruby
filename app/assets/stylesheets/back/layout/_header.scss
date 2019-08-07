@@ -1,0 +1,10 @@
+.header {
+  @extend %padding-x__md;
+  @extend %padding-y__xs;
+  @extend %background-color__white;
+  @include flexbox(
+    $align-items:     center,
+    $justify-content: space-between
+  );
+  // TODO add border-bottom when nav/subnav is not available (devise pages mostly)
+}

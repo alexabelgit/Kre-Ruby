@@ -1,0 +1,8 @@
+<%
+  view = @success ?
+  render('shared/system_messages/custom', body: t('review', scope: 'flash.submitted_successfully'), type: 'success', align: 'center') :
+  render('front/review_requests/reviews/form', review: @review, header: @header)
+%>
+var selector = '[data-model="review"][data-id="<%= @review.transaction_item.hashid %>"]';
+jQuery(selector).replaceWith('<%= escape_javascript(view) %>');
+jQuery(selector).cloudify('<%= I18n.locale %>').remotify();

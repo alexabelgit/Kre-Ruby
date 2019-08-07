@@ -1,0 +1,19 @@
+.hc-form__control.product-form__featured-image
+  .product-form__featured-image-preview
+    = form.label :featured_image, class: 'hc-form__label' do
+      | Featured image
+      span.hc-display__block = cl_image_tag product.featured_image_url(:small)
+
+  .product-form__featured-image-settings
+    .hc-checkbox-toggle.hc-checkbox-toggle--warning
+      = form.check_box :overwrite_featured_image, class: 'hc-checkbox-toggle__input', data: { behavior: 'overwrite-image-toggle'}
+      = render 'helpful_components/checkbox_toggle/label', label_for: 'product_overwrite_featured_image', txt: 'Overwrite product image'
+
+    .product-form__featured-image-upload data-behavior="upload-section" class="#{product.overwrite_featured_image ? '' : 'hidden'}"
+      = render 'helpful_components/upload_button', f: form, field: :featured_image
+      = form.hidden_field :featured_image_cache
+- if product.custom_image?
+  p.product-form__custom-image-hint
+    ' You're using custom image for this product. Disable "overwrite product image" to get back to
+    a> href="#{product.synced_image_backup_url(:small)}" original image
+    | or click 'Choose file' to set another image.

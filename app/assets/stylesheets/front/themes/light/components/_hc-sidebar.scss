@@ -1,0 +1,24 @@
+.hc-sidebar__wrapper {
+  // @extend %background-color__black;
+  // @extend %border-color__dark;
+}
+
+.hc-sidebar__header {
+  // @extend %background-color__dark;
+}
+
+
+.hc-sidebar__tab {
+  @extend %color__pale;
+  &.hc-product-tab--active {
+    @extend %color__dark;
+  }
+  .hc-badge{
+    @extend %background-color__lighter;
+  }
+  &.hc-product-tab--active {
+    .hc-badge{
+      @extend %background-color__secondary;
+    }
+  }
+}

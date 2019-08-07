@@ -1,0 +1,19 @@
+- content_for :main_class, 'boxed store-details'
+
+h1 Downloads
+
+section.store-details__section
+  table.table
+    thead
+      tr
+        th File
+        th Filetype
+        th Status
+        th
+    tbody.downloads
+      - @downloads.each do |download|
+        tr.downloads__item
+          td = download.ready? ? link_to(download.name, back_download_path(download.hashid), target: '_blank') : download.name
+          td = download.filetype
+          td = download.status
+          td = link_to 'Destroy', { action: :destroy, id: download.id }, method: :delete, data: { confirm: 'Are you sure?' }

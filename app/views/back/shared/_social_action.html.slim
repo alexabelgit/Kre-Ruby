@@ -1,0 +1,14 @@
+/ postable*
+/ social_connection*
+
+- provider  = social_connection[:provider]
+- sociopath = self.send("back_#{postable.class.name.downcase}_social_posts_path", postable, provider: provider)
+
+= link_to sociopath,
+  remote: true,
+  method: :post,
+  title:  postable.posted_on?(:provider) ? "Already posted on #{provider.capitalize}. Click to post again" : "Click to post on #{provider.capitalize}",
+  before: "jQuery(this).replaceWith('#{ spinner_icon } Posting');",
+  class:  "social-action #{provider} #{ 'active' if postable.posted_on?(provider) }" do
+
+  = hc_icon "#{ provider } lg"

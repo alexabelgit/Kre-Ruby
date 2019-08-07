@@ -1,0 +1,65 @@
+article.review data-model="imported_review" data-id=imported_review.hashid
+  section.import-toggle
+    .toggle class=(imported_review.marked_for_deletion? ? 'off' : 'on')
+      = form_for [:back, imported_review], remote: true do |f|
+
+        = f.hidden_field :marked_for_deletion, value: !imported_review.marked_for_deletion?
+
+        = button_tag(type: 'submit', class: 'toggle__button') do
+          - if imported_review.marked_for_deletion?
+            => hc_icon 'toggle-off xl'
+            | Discard
+
+          - else
+            => hc_icon 'toggle-on xl'
+            | Import
+
+  header.review__header
+    div
+      => stars_based_on(imported_review.rating)
+
+      - if imported_review.product.present?
+        = link_to back_product_path(imported_review.product),
+          class: 'review__product' do
+
+          =  imported_review.product.name
+          =< stamp_product_if_archived_or_hidden(imported_review.product)
+      - else
+        = @store.name
+
+    div
+      span.review__author>
+        => author_of_(imported_review)
+      ' |
+      = humane_date(imported_review.review_date)
+
+  .review__body
+    p.review__feedback = imported_review.feedback
+
+  .review__media
+    .hc-media data-lightgallery="true"
+      - imported_review.media.with_cloudinary_id.each do |medium|
+        = render 'back/imported_reviews/media/show',  medium: medium,
+                                                      imported_review: imported_review
+
+  - if imported_review.comment
+    .review-comments
+      article.comment
+        p.comment__body= imported_review.comment
+        .comment__author
+          .comment__author-avatar
+            = avatar_logo(imported_review) if @store.logo_visible?
+          .comment__author-text
+            span.bold
+              => @store.settings(:agents).default_name
+            div
+              = store_description(label:       t('verified.agent.label',       store:  @store.name),
+                                  description: t('verified.agent.description', author: @store.settings(:agents).default_name, store: @store.name))
+
+  footer.review-footer
+    .review-actions
+
+      .rqa-statuses
+        .rqa-status class="rqa-status--#{imported_review.status}"
+          = rqa_status_icon imported_review.status
+          =< imported_review.status.capitalize

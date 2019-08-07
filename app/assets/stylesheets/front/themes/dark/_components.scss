@@ -1,0 +1,9 @@
+.hc-theme__dark {
+	a {
+		@extend %color__pale;
+	}
+  @extend %color__light;
+  @extend %background-color__inherit;
+
+  @import 'components/**/*';
+}

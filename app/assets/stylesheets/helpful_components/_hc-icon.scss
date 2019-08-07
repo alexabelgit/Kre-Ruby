@@ -1,0 +1,82 @@
+.hc-icon {
+  @extend %display__inline-block;
+  @extend %height__1em;
+  @extend %width__1em;
+  @extend %fill__currentColor;
+  @extend %position__relative;
+  @extend %margin-top__-0pt125em;
+  @extend %vertical-align__middle;
+
+  &.hc-icon--currentColor {
+    @extend %fill__currentColor;
+  }
+
+  &.hc-icon--danger {
+    @extend %fill__danger;
+  }
+
+  &.hc-icon--pale {
+    @extend %fill__pale;
+  }
+
+  &.hc-icon--primary {
+    @extend %fill__primary;
+  }
+
+  &.hc-icon--secondary {
+    @extend %fill__secondary;
+  }
+
+  &.hc-icon--success {
+    @extend %fill__success;
+  }
+
+  &.hc-icon--warning {
+    @extend %fill__warning;
+  }
+
+  &.hc-icon--sm {
+    @extend %font-size__66pct;
+  }
+
+  &.hc-icon--md {
+    @extend %font-size__100pct;
+  }
+
+  &.hc-icon--lg {
+    @extend %font-size__133pct;
+  }
+
+  &.hc-icon--xl {
+    @extend %font-size__200pct;
+  }
+
+  &.hc-icon--spin {
+    @include animation(
+      $name:            spin,
+      $duration:        .75s,
+      $iteration-count: infinite,
+      $timing-function: linear
+    );
+  }
+}
+
+.hc-icon {
+  &.hc-icon--justified,               // Similar to Font-Awesome's .fa-fw
+  &.hc-icon--camera,                  // Bellow follows a set of wide icons that don't fit in square container and needs to be wider regardless of having --justified modifier
+  &.hc-icon--code,
+  &.hc-icon--credit-card,
+  &.hc-icon--line-chart,
+  &.hc-icon--toggle-on,
+  &.hc-icon--toggle-off,
+  &.hc-icon--cogs {
+    @extend %padding-right__0pt15em;
+    @extend %overflow__visible;
+  }
+}
+
+.hc-icon__transparent-background {
+  fill: transparent;
+  width: 100%;
+  height: 100%;
+}

@@ -1,0 +1,42 @@
+- content_for :main_class, 'boxed'
+
+h1 = title "Report ##{ @abuse_report.hashid }"
+
+
+section.hc-card
+  ul.hc-tabul
+    li.hc-tabul__row
+      span.hc-tabul__cell Reported item:
+      span.hc-tabul__cell
+        = link_to_blank "#{ @abuse_report.abusable.hashid } (#{ @abuse_report.abusable.class.name.downcase })",
+          controller:   "admin/#{ @abuse_report.abusable.class.name.tableize }",
+          action:       "show",
+          id:           @abuse_report.abusable.hashid
+
+    li.hc-tabul__row
+      span.hc-tabul__cell Store:
+      span.hc-tabul__cell = link_to_blank @abuse_report.store.name, admin_store_path(@abuse_report.store)
+
+    li.hc-tabul__row
+      span.hc-tabul__cell Reported by:
+      span.hc-tabul__cell = AbuseReport.humane_enum_name(:source, @abuse_report.source)
+
+    li.hc-tabul__row
+      span.hc-tabul__cell Reported at:
+      span.hc-tabul__cell = humane_datetime @abuse_report.created_at
+
+    li.hc-tabul__row
+      span.hc-tabul__cell Reason:
+      span.hc-tabul__cell = AbuseReport.humane_enum_name(:reason, @abuse_report.reason)
+
+    - if @abuse_report.additional_info
+      li.hc-tabul__row
+        span.hc-tabul__cell Additional details:
+        span.hc-tabul__cell = @abuse_report.additional_info
+
+    li.hc-tabul__row
+      span.hc-tabul__cell Status:
+      span.hc-tabul__cell = @abuse_report.status.humanize
+    li.hc-tabul__row
+      span.hc-tabul__cell Decision:
+      span.hc-tabul__cell = @abuse_report.decision.humanize

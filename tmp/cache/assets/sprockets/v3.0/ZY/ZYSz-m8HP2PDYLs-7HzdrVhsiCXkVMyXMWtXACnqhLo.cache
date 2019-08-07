@@ -1,0 +1,10 @@
+I"Ú(function() {
+  document.addEventListener('turbolinks:load', function(event) {
+    if (window.ga != null) {
+      ga('set', 'location', event.data.url);
+      return ga('send', 'pageview');
+    }
+  });
+
+}).call(this);
+:ET

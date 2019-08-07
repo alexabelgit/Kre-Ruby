@@ -1,0 +1,29 @@
+.hc-tip {
+
+  &.margin__0 {
+    @extend %margin__0;
+  }
+
+  &.info {
+    @extend %color__info;
+  }
+
+  &.succcess {
+    @extend %color__success;
+  }
+
+  &.warning {
+    @extend %color__warning;
+  }
+
+  &.alert {
+    @extend %color__alert;
+  }
+
+  &.pale {
+    @extend %color__pale;
+    a {
+      @extend %color__pale;
+    }
+  }
+}

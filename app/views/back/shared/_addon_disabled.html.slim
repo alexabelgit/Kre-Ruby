@@ -1,0 +1,7 @@
+.addon-disabled
+  .addon-disabled__content
+    h2.addon-disabled__text
+      ' This feature is available as an
+      = render 'back/shared/addon_icon'
+    = link_to billing_back_settings_path, class: 'addon-disabled__c2a' do
+      | Manage add-ons

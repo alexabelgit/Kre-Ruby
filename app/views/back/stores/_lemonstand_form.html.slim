@@ -1,0 +1,26 @@
+= form_for [:back, store],
+  url:     back_lemonstand_setup_path,
+  method:  method do |f|
+
+  = render 'shared/form/errors', resource: store
+
+  .auth-form__control
+    = f.label :url
+    .auth-form__lemonstand-input
+      = f.text_field :url, required: true, placeholder: "https://example.com"
+
+  .auth-form__control
+    = f.label :id_from_provider, 'LemonStand short name'
+    .auth-form__lemonstand-input
+      = f.text_field :id_from_provider, placeholder: 'your-awesome-store', required: true
+      span .lemonstand.com
+
+  .auth-form__control
+    = f.label :access_token, 'API token'
+    .auth-form__lemonstand-input
+      = f.text_field :access_token, required: true
+
+  = button_tag class: 'hc-lemonstand-button--block',
+               data:  { disable_with: "#{spinner_icon} Connecting" } do
+    => hc_icon 'hc-lemonstand', class: 'auth-option__icon', resize: 4.5
+    =  "Connect"

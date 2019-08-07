@@ -1,0 +1,44 @@
+products:
+  helpful:
+    name: Helpful
+    price_in_cents: 0
+    min_products_limit: 0
+    max_products_limit: 10
+    chargebee_id: helpful_custom
+  scoopful:
+    name: Scoopful
+    price_in_cents: 595
+    min_products_limit: 11
+    max_products_limit: 50
+    chargebee_id: scoopful_custom
+  handful:
+    name: Handful
+    price_in_cents: 995
+    min_products_limit: 51
+    max_products_limit: 100
+    chargebee_id: handful_custom
+  boxful:
+    name: Boxful
+    price_in_cents: 1495
+    min_products_limit: 101
+    max_products_limit: 500
+    chargebee_id: boxful_custom
+  bucketful:
+    name: Bucketful
+    price_in_cents: 2995
+    min_products_limit: 501
+    max_products_limit: 1500
+    chargebee_id: bucketful_custom
+  plentiful:
+    name: Plentiful
+    price_in_cents: 4995
+    min_products_limit: 1501
+    max_products_limit: 5000
+    chargebee_id: plentiful_custom
+  skyful:
+    name: Skyful
+    price_in_cents: 9995
+    min_products_limit: 5001
+    max_products_limit:
+    chargebee_id: skyful_custom
+    

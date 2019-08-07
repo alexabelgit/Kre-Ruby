@@ -1,0 +1,26 @@
+= form_for [:back, @store], url: back_store_path, method: :put, html: { class: 'settings-form' } do |f|
+  = render 'shared/form/errors', resource: @store
+
+  .settings-form__control
+    = f.label      :name, class: 'settings-form__label'
+    = f.text_field :name, class: 'settings-form__input', required: true
+
+  .settings-form__control
+    = f.label      :legal_name, class: 'settings-form__label'
+    = f.text_field :legal_name, class: 'settings-form__input', required: true
+    = form_hint 'This appears on invoices we send to stores on paid plans'
+
+  .settings-form__control
+    = f.label     :url, class: 'settings-form__label'
+    = f.url_field :url, class: 'settings-form__input', required: true
+
+  .settings-form__logo
+    = f.label :logo, class: 'settings-form__label' do
+      | Logo
+      span.hc-display__block = cl_image_tag @store.logo_url(:small)
+
+    = render 'helpful_components/upload_button', f: f, field: :logo
+    = f.hidden_field :logo_cache
+
+  .hc-form__actions
+    = f.submit 'Save', class: 'settings-form__submit'

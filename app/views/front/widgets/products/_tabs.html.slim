@@ -1,0 +1,61 @@
+/ product*
+/ reviews*
+/ reviews_with_media*
+/ questions*
+/ disable_product_links
+/ show_hc_branding
+
+- store               ||= @store
+- show_hc_branding    ||= store.settings(:design).show_hc_branding.to_b
+- actions             ||= true
+- questions_enabled     = store.settings(:questions).enabled.to_b
+- product_tabs_layout   = store.settings(:widgets).product_tabs_layout
+- product_tabs_style    = store.settings(:widgets).product_tabs_style
+- disable_product_links ||= false
+
+section#hc-product-tabs.hc-product-tabs data-role="tabs" data-id=product.id_from_provider class="hc-product-tabs--#{product_tabs_layout} hc-product-tabs--#{product_tabs_style}"
+  header.hc-product-tabs__header data-role="header" class=('hc-product-tabs__header--with-no-actions' unless actions)
+    .hc-product-tab data-tab="true" data-role="reviews"
+      a href="javascript:void(0);"
+        = hc_icon 'star md'
+        span.hide--below__sm #{t 'reviews', scope: 'front.widgets.products.tabs.titles'}
+        span.hide--above__sm #{t 'reviews_responsive', scope: 'front.widgets.products.tabs.titles'}
+        .hc-badge
+          = product.reviews_count
+
+    - if questions_enabled
+      .hc-product-tab data-tab="true" data-role="questions"
+        a href="javascript:void(0);"
+          = hc_icon 'hc-bubble justified md'
+          span.hide--below__sm #{t 'questions', scope: 'front.widgets.products.tabs.titles'}
+          span.hide--above__sm #{t 'questions_responsive', scope: 'front.widgets.products.tabs.titles'}
+          .hc-badge
+            = product.questions_count
+
+    .hc-product-tab.hc-product-tab--branding
+      - if show_hc_branding
+        = render 'front/components/hc_powered_by',
+          display_text: true
+
+  .hc-product-tabs__content data-role="tabs-container"
+    .hc-product-tab-content data-role="reviews" data-hc="reviews"
+      = render   'front/widgets/products/tabs/reviews',
+        store:   store,
+        product: product,
+        reviews: reviews,
+        reviews_with_media: reviews_with_media,
+        disable_product_links: disable_product_links
+
+    - if questions_enabled
+      .hc-product-tab-content data-role="questions" data-hc="questions"
+        = render     'front/widgets/products/tabs/questions',
+          store:     store,
+          product:   product,
+          questions: questions,
+          disable_product_links: disable_product_links
+
+  - if show_hc_branding
+    - cache 'hc-products-tabs__footer' do
+      footer.hc-product-tabs__footer
+        = render 'front/components/hc_powered_by',
+          display_text: true

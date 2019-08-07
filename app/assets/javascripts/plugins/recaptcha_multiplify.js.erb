@@ -1,0 +1,29 @@
+jQuery.fn.recaptcha_multiplify = function() {
+  if(typeof(grecaptcha) === 'undefined'){
+    jQuery.getScript('https://www.google.com/recaptcha/api.js?onload=hc_recaptcha_callback&render=explicit', function() {
+    });
+  } else {
+    hc_recaptcha_callback(this);
+  }
+  return this;
+};
+
+var hc_recaptcha_callback = function(el) {
+  if (typeof(el) === 'undefined')
+    el = document;
+
+  if (jQuery(window).width() > 500) {
+    var size = 'normal'
+  } else {
+    var size = 'compact'
+  }
+
+  jQuery(el).find('[data-role="recaptcha"]').each(function (){
+      var recaptcha_widget = jQuery(this);
+      grecaptcha.render(recaptcha_widget[0], {
+        'sitekey' : '<%= Recaptcha.configuration.site_key %>',
+        'theme'   : recaptcha_widget.attr('data-theme'),
+        'size'    : size
+      });
+  });
+};

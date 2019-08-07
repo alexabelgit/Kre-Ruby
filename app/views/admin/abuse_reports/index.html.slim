@@ -1,0 +1,50 @@
+header
+  h1 = title 'ContentGuard'
+
+.hc-margin-bottom__md.hc-display__inline-block
+  = render    'helpful_components/dropdown',
+    position: 'south-west',
+    trigger:  abuse_report_status(@status, @abuse_reports.count, true),
+    skin:     'selectize' do
+
+    - AbuseReport.statuses.keys.each do |status|
+      .hc-dropdown__item
+        = link_to admin_abuse_reports_path(status: status) do
+          = abuse_report_status(status, @counts[status])
+
+.responsive-table
+  table.table
+    thead
+      tr
+        th #
+        th Store
+        th Reported item
+        th Report reason
+        th Reported by
+        th Reported at
+        / th Status
+        - unless @status == 'open'
+          th Decision
+    tbody
+      - @abuse_reports.each do |abuse_report|
+        - abusable = abuse_report.abusable
+        tr
+          td
+            = link_to abuse_report.hashid, admin_abuse_report_path(abuse_report)
+          td
+            = link_to_blank abuse_report.store.name, admin_store_path(abuse_report.store)
+          td
+            = link_to_blank "#{ abusable.hashid }&nbsp;(#{ abusable.class.name.downcase })".html_safe,
+              controller:   "admin/#{ abusable.class.name.tableize }",
+              action:       "show",
+              id:           abusable.hashid
+            .hc-color__pale
+              small = abusable.status.humanize
+          td = AbuseReport.humane_enum_name(:reason, abuse_report.reason)
+          td = AbuseReport.humane_enum_name(:source, abuse_report.source)
+          td = humane_datetime abuse_report.created_at
+          / td = abuse_report.status.humanize
+          - unless @status == 'open'
+            td = abuse_report.decision.humanize
+
+  = will_paginate @abuse_reports, class: 'hc-paging hc-paging--modern'

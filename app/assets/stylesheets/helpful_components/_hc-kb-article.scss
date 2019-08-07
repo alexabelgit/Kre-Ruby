@@ -1,0 +1,9 @@
+.hc-kb-article {
+  &.color__inherit {
+    @extend %color__inherit;
+  }
+
+  &.hc-kb-article--nowrap {
+    @extend %white-space__nowrap;
+  }
+}

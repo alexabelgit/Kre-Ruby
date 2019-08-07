@@ -1,0 +1,8 @@
+<%- if @product.has_reviews? %>
+  jQuery('[data-hc="ld-json"]').remove();
+  var sdSnippet = document.createElement('script');
+  sdSnippet.setAttribute('type',    'application/ld+json');
+  sdSnippet.setAttribute('data-hc', 'ld-json');
+  sdSnippet.textContent = "<%= escape_javascript(raw(@product.json_ld.to_json)) %>";
+  document.body.appendChild(sdSnippet);
+<%- end %>

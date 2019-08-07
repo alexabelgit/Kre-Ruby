@@ -1,0 +1,289 @@
+// TODO this looks like a real component candidate, however in html version, it is a very specific use for tabs on product page.
+// TODO many non-wetsy rules. need extends
+
+// Tabs
+.hc-product-tabs {
+  @extend %line-height__1pt5;
+  @extend %text-align__initial;
+  @extend %width__100pct;
+
+  &__header {
+    @extend %display__flex;
+    @extend %flex-wrap__wrap;
+    @extend %margin-bottom__md;
+    &.hc-product-tabs__header--with-no-actions:after {
+      @extend %content__-empty-;
+      @extend %flex__1;
+      @extend %border-bottom__base;
+      @extend %order__1;
+    }
+    .hc-product-tab {
+      @extend %line-height__lg--px;
+      @extend %color__inherit;
+      @extend %order__1;
+      &:not(.hc-product-tab--actions) {
+        @extend %cursor__pointer;
+      }
+      &.hc-product-tab--active {
+        @extend %border-top-left-radius__base;
+        @extend %border-top-right-radius__base;
+      }
+      &:not(.hc-product-tab--branding) .hc-icon--md{
+        font-size: 0.9em;
+      }
+      .hc-badge {
+        @extend %margin-left__xs;
+      }
+      .hc-icon {
+        @extend %margin-right__2xs;
+      }
+      a {
+        @extend %color__inherit;
+        @extend %display__inline-block;
+        @extend %underline-on-hover;
+      }
+      &.hc-product-tab--active a {
+        @extend %color__inherit;
+      }
+      &--branding {
+        @extend %flex__1;
+        @extend %display__flex;
+        @extend %padding__0;
+        @extend %flex-direction__row-reverse;
+        .hc-powered-by{
+          @extend %margin-top__xs;
+          a {
+            @extend %line-height__1;
+            @extend %padding-x__xs;
+            @extend %padding-y__2xs;
+          }
+        }
+      }
+    }
+  }
+  &__content {}
+  &__footer {
+    .hc-powered-by{
+      @extend %display__none;
+    }
+  }
+  &.hc-product-tabs--boxed {
+    @extend %max-width__960px;
+    @extend %margin-x__auto;
+  }
+}
+
+// Tab Style - Classic
+.hc-product-tabs.hc-product-tabs--classic {
+  .hc-product-tabs__header {
+    // This makes header border full-width when we have no actions, are actions are displayed elsewhere
+    .hc-product-tab {
+      @extend %border-color__secondary;
+      @extend %border-style__solid;
+      @extend %padding-x__md;
+      @extend %border-width__0__0__1px__0;
+      &.hc-product-tab--active {
+        @extend %border-width__1px__1px__0__1px;
+      }
+      &:not(.hc-product-tab--branding) {
+        @extend %padding-y__xs;
+      }
+    }
+  }
+}
+
+// Tab Style - Modern
+.hc-product-tabs.hc-product-tabs--modern {
+  .hc-product-tabs__header {
+    @extend %border-bottom__base;
+    .hc-product-tab {
+      @extend %border-color__secondary;
+      @extend %border-style__solid;
+      @extend %padding-x__2xs;
+      @extend %border__0;
+      @extend %font-size__115pct;
+      @extend %line-height__2;
+      @extend %color__pale; // TODO: Add color settings to theme stylesheets;
+      &.hc-product-tab--active {
+        @extend %border-bottom__4px__solid__dark;
+        @extend %color__dark;
+        @extend %font-weight__bold;
+      }
+      .hc-badge {
+        @extend %vertical-align__top;
+        @extend %font-size__0pt75rem;
+      }
+      &:not(:last-child) {
+        @extend %margin-right__md;
+      }
+      &.hc-product-tab--branding {
+        .hc-powered-by {
+          @extend %margin-top__0;
+        }
+      }
+      &:not(.hc-product-tab--branding) {
+        @extend %padding-top__xs;
+      }
+    }
+  }
+  .hc-product-tab--actions a {
+    @extend %text-transform__uppercase;
+    @extend %padding-y__sm;
+    @extend %padding-x__sm;
+    .hc-icon {
+      @extend %font-size__16px;
+      margin-top: -4px;
+    }
+  }
+}
+
+// Action bar in the tab content
+.hc-product-tab {
+  &--actions {
+    @extend %flex__1;
+    @extend %padding__0;
+    @extend %display__flex;
+    @extend %align-items__center;
+    @extend %flex-direction__row-reverse;
+    a {
+      @extend %border__1px__solid;
+      @extend %border-color__dark;
+      @extend %background-color__dark;
+      @extend %border-radius__base;
+      @extend %color__light;
+      @extend %transition__color;
+      @extend %text-decoration__never;
+      @extend %padding-x__sm;
+      @extend %padding-y__xs;
+      @extend %line-height__1;
+      @extend %margin-left__2xs;
+      @extend %min-width__140px;
+      @extend %white-space__nowrap;
+      &:hover {
+        @extend %border__1px__solid;
+        @extend %background-color__white;
+        @extend %color__darker;
+      }
+    }
+    // This class is currently only used in Questions tabs layout as it has actions and filter on the same row.
+    &-bar {
+      @extend %display__flex;
+      .hc-product-tab--actions {
+        @extend %flex-direction__row-reverse;
+      }
+      .hc-product-tab-filters__results {
+        @extend %flex__1;
+        @extend %padding-left__sm;
+      }
+    }
+    @extend %padding-left__sm;
+  }
+}
+
+
+.hc-product-tab--branding {
+  @extend %flex__1;
+  @extend %padding__0;
+  @extend %display__flex;
+  @extend %flex-direction__row-reverse;
+
+  a {
+    @extend %line-height__1;
+    @extend %padding-x__xs;
+    @extend %padding-y__2xs;
+  }
+}
+
+.hc-product-tabs__content {}
+
+.hc-product-tabs__footer {
+  .hc-powered-by{
+    @extend %display__none;
+  }
+}
+
+.hc-product-tab__no-records {
+  @extend %display__flex;
+  @extend %margin-x__auto;
+  @extend %margin-y__lg;
+  @extend %vertical-align__middle;
+  // @extend .hc-card;
+  &-hint a {
+    @extend %color__dark;
+    @extend %underline-on-hover;
+  }
+}
+
+@media #{$below__md} {
+  .hc-product-tabs__content {
+    padding: 0.75em;
+  }
+}
+
+@media #{$below__sm} {
+  .hc-product-tabs {
+    .hc-product-tabs__header:after {
+      @extend %content__-empty---below__sm;
+      // @extend %flex__1--below__sm;
+      @extend %border-bottom__base--below__sm;
+      order:  0;
+    }
+    .hc-product-tabs__footer .hc-powered-by{
+      display: block;
+    }
+    .hc-product-tab--branding .hc-powered-by{
+      display: none;
+    }
+    .hc-reviews-overview__column .hc-product-tab--actions{
+      // float: none;
+      margin-top: 1em;
+      margin-bottom: 0;
+    }
+
+    .hc-product-tab--actions {
+      flex:            1 0 100%;
+      order:           0;
+      border:          0;
+      justify-content: center;
+      margin-bottom:   1em;
+    }
+  }
+  .hc-product-tabs.hc-product-tabs--modern {
+    .hc-product-tab:first-child {
+      margin-left: 0.50em;
+    }
+  }
+  .hc-product-tabs__header:after {
+    @extend %content__-empty---below__sm;
+    // @extend %flex__1--below__sm;
+    @extend %border-bottom__base--below__sm;
+    order:  0;
+  }
+  .hc-product-tabs__footer .hc-powered-by{
+    display: block;
+  }
+  .hc-product-tab--branding .hc-powered-by{
+    display: none;
+  }
+  .hc-reviews-overview__column .hc-product-tab--actions{
+    // float: none;
+    margin-top: 1em;
+    margin-bottom: 0;
+  }
+  .hc-product-tab--actions {
+    flex:            1 0 100%;
+    order:           0;
+    border:          0;
+    justify-content: right;
+    margin-bottom:   1em;
+  }
+  .hc-product-tab__no-records {
+    flex-direction: column;
+    text-align: center;
+    .hc-product-tab--actions {
+      margin-top: 15px;
+      justify-content: center;
+    }
+  }
+}
+

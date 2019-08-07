@@ -1,0 +1,21 @@
+.review
+  strong = review.display_name
+
+  // = stars(review.rating, 'lite') todo helpers don't work in mailer so w.e.t. here
+  .stars
+    - review.rating.to_i.times do
+      | ★
+    - if review.rating % 1 != 0
+      | ✮
+    - (5 - review.rating).to_i.times do
+      | ☆
+
+  = span_quote review.feedback
+
+  - if review.media.any?
+    .media
+      - review.media.video.with_cloudinary_id.each do |medium|
+        = cl_video_thumbnail_tag(medium.cloudinary_public_id, transformation: [{ width: 90, height: 60, crop: :fill }], alt: review.product.name )
+
+      - review.media.image.with_cloudinary_id.each do |medium|
+        = cl_image_tag(medium.cloudinary_public_id, transformation: [{ width: 90, height: 60, crop: :fill }], alt: review.product.name, class: "#{ 'explicit' if medium.explicit? }" )

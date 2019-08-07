@@ -1,0 +1,7 @@
+wb = xlsx_package.workbook
+wb.add_worksheet(name: "Monthly questions by store") do |sheet|
+  sheet.add_row @heading
+  @rows.each do |item|
+    sheet.add_row item
+  end
+end

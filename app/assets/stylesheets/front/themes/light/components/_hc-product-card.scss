@@ -1,0 +1,9 @@
+.hc-product-card {
+  @extend %color__pale--darkened;
+
+  @extend %border-color__secondary;
+
+  &:hover, &:active, &:focus {
+    @extend %border-color__secondary--darkened;
+  }
+}

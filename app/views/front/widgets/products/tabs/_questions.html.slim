@@ -1,0 +1,65 @@
+- questions_enabled  = store.settings(:questions).enabled.to_b
+- custom_title       = store.settings(:widgets).product_tabs_questions_header
+- default_title      = t 'questions.title', scope: 'front.widgets.products.tabs'
+- pagination_style      = @store.settings(:design).pagination_style
+
+section#hc-questions-tab.hc-questions-tab data-role="question-list"
+  - if store.product_tabs_show_questions_header?
+    header
+      h3 = custom_title.blank? ? default_title : custom_title
+
+  = render         'front/products/questions/form',
+    question:      Question.new(),
+    product:       product,
+    hide_header:   true,
+    render_hidden: true
+
+  - if product.questions.published.empty?
+    .hc-product-tab__no-records
+      .hc-product-tab__no-records-info
+        .hc-product-tab__no-records-text
+          = hc_icon 'hc-question lg'
+        .hc-product-tab__no-records-hint
+          = render   'front/widgets/products/tabs/question_form_link',
+            store:   store,
+            product: product,
+            text:    t('write_first', scope: 'front.widgets.products.tabs.questions')
+      .hc-product-tab--actions
+        - if storefront_reviews?
+          = render   'front/widgets/products/tabs/question_form_link',
+            store:   store,
+            product: product,
+            icon:    true,
+            text:    t('new', scope: 'front.widgets.products.tabs.questions')
+
+  - else
+    .hc-product-tab--actions-bar
+      - unless store.product_tabs_hide_filters?
+        = render     'front/products/questions/filter',
+          product:   product,
+          questions: questions
+      .hc-product-tab--actions
+
+        - if questions_enabled
+          = render   'front/widgets/products/tabs/question_form_link',
+            store:   store,
+            product: product,
+            icon:    true,
+            text:    t('new', scope: 'front.widgets.products.tabs.questions')
+
+    .hc-questions__list {
+      class     = "hc-questions__list--#{store.settings(:questions).grid_layout}"
+      data-role = "list-item-container"
+    }
+      - questions.each do |question|
+        = render        'front/products/questions/card',
+          question:     question,
+          product:      product,
+          show_actions: true
+    - pagination_class = "hc-paging hc-paging--#{pagination_style}"
+    = will_paginate  questions,
+      class:         pagination_class,
+      renderer:      HCAbsoluteLinkRenderer,
+      base_link_url: front_product_questions_url({ store_id:   product.store.hashid,
+                                                   product_id: product.hashid,
+                                                   format:     :js }.merge(request.query_parameters))

@@ -1,0 +1,455 @@
+---
+"ro":
+  "activerecord":
+    "errors":
+      "models":
+        "abuse_report":
+          "attributes":
+            "additional_info":
+              "blank": >-
+                trebuit introdus atunci când 'altceva' este selectat ca motiv
+            "reason":
+              "blank": >-
+                ^Trebuie să selectezi un motiv
+        "product":
+          "attributes":
+            "id_from_provider":
+              "taken": >-
+                ^ID-ul trebuie să fie unic. Cel pe care l-ai introdus este deja folosit
+                pentru un alt produs.
+        "review":
+          "attributes":
+            "customer":
+              "must_be_authenticated": >-
+                ^Trebuie să fii autentificat pentru a scrie o recenzie
+            "product_ids":
+              "cannot_be_repeated": >-
+                ^Ai scris deja o recenzie pentru produsul acesta
+              "taken": >-
+                ^Ai scris deja o recenzie pentru achiziția aceasta
+            "review_request_id":
+              "request_must_be_sent": >-
+                ^Momentan nu poți scrie o recenzie pentru achiziția aceasta
+            "source":
+              "cannot_be_voluntary": >-
+                ^Momentan nu poți scrie o recenzie pentru achiziția aceasta
+        "review_request":
+          "attributes":
+            "order_id":
+              "blank": >-
+                nu poate fi creată fără clientul corespunzător. Te rugăm să introduci
+                o adresă de e-mail validă.
+    "models":
+      "comment":
+        "one": >-
+          comentariu
+        "other": >-
+          comentarii
+      "customer":
+        "one": >-
+          client
+        "other": >-
+          clienți
+      "product":
+        "one": >-
+          produs
+        "other": >-
+          produse
+      "product_group":
+        "one": >-
+          grup de produse
+        "other": >-
+          grupuri de produse
+      "question":
+        "one": >-
+          întrebare
+        "other": >-
+          întrebări
+      "review":
+        "one": >-
+          recenzie
+        "other": >-
+          recenzii
+      "review_request":
+        "one": >-
+          solicitare de recenzie
+        "other": >-
+          solicitări de recenzie
+  "answer":
+    "one": >-
+      răspuns
+    "other": >-
+      răspunsuri
+  "cancel": >-
+    Anulare
+  "counterify":
+    "characters":
+      "exceeded": >-
+        Limită de caractere depășită
+      "remaining":
+        "one": >-
+          1 caracter rămas
+        "other": >-
+          %{count} caractere rămase
+  "default_templates":
+    "email":
+      "critical_review_followup_mail_body": "<p>Salut [customer_name],</p>\r\n<p>Îți
+        mulțumim pentru recenzie.</p>\r\n<p>Echipa [store_name].</p>"
+      "critical_review_followup_mail_subject": >-
+        Îți mulțumim pentru recenzie
+      "positive_review_followup_mail_body": "<p>Salut [customer_name],</p>\r\n<p>Îți
+        mulțumim pentru recenzie.</p>\r\n<p>Echipa [store_name].</p>"
+      "positive_review_followup_mail_subject": >-
+        Îți mulțumim pentru recenzie
+      "question_answer_mail_body": "<p>Salut [customer_name],</p>\r\n<p>Reprezentantul
+        nostru ți-a răspuns la întrebarea despre produsul [product_name]:</p>\r\n<p>[answer]</p>\r\n<p>Întrebarea
+        ta:</p>\r\n<p>[question]</p>\r\n<p>[product_link]</p>\r\n<p>Echipa [store_name].</p>"
+      "question_answer_mail_subject": >-
+        Ai primit un răspuns la întrebarea ta din [store_name]
+      "repeat_review_request_mail_body": "<p>Salut [customer_name],</p>\r\n<p>Încă
+        mai este timp să ne oferi părerea ta cu privire la ultima ta comandă.</p>\r\n<p>Dă
+        clic pe o stea, pentru a evalua experiența ta de până acum cu:</p>\r\n<p>[products]</p>\r\n<p>Nu
+        ești satisfăcut? Te rugăm să ne contactezi, mai întâi, ca să te putem ajuta.</p>\r\n<p>Echipa
+        [store_name].</p>"
+      "repeat_review_request_mail_subject": >-
+        Nu uita să scrii o recenzie pentru ultima ta comandă de la [store_name]
+      "review_answer_mail_body": "<p>Salut [customer_name],</p>\r\n<p>Reprezentantul
+        nostru a răspuns la recenzia ta pentru [product_name]:</p>\r\n<p>[reply]</p>\r\n<p>Recenzia
+        ta:</p>\r\n<p>[review]</p>\r\n<p>[product_link]</p>\r\n<p>Echipa [store_name].</p>"
+      "review_answer_mail_subject": >-
+        Ai primit un răspuns la recenzia ta de la [store_name]
+      "review_request_mail_body": "<p>Salut [customer_name],</p>\r\n<p>Dă clic pe
+        o stea, pentru a evalua experiența ta de până acum cu:</p>\r\n<p>[products]</p>\r\n<p>Nu
+        ești satisfăcut? Te rugăm să ne contactezi, mai întâi, ca să te putem ajuta.</p>\r\n<p>Echipa
+        [store_name].</p>"
+      "review_request_mail_subject": >-
+        Evaluează ultima ta comandă de la [store_name]
+  "embed": >-
+    Încorporare
+  "errors":
+    "messages":
+      "already_confirmed": >-
+        a fost deja confirmată, te rugăm să te autentifici
+      "confirmation_period_expired": >-
+        trebuie confirmată în %{period}, te rugăm să soliciți una nouă
+      "expired": >-
+        a expirat, te rugăm să soliciți una nouă
+      "not_found": >-
+        nu a fost găsită
+      "not_locked": >-
+        nu a fost blocat
+      "not_saved":
+        "one": >-
+          1 eroare nu a permis %{resource} să fie salvată:
+        "other": >-
+          %{count} erori nu au permis %{resource} să fie salvată:
+  "flash":
+    "submitted_successfully":
+      "question": >-
+        Îți mulțumim! Am primit întrebarea ta și te vom anunța prin e-mail când vei
+        primi un răspuns
+      "review": >-
+        Îți mulțumim! Am primit recenzia ta
+      "subscribed": >-
+        Te-ai abonat la %{store}.
+      "unsubscribed": >-
+        Te-ai dezabonat de la %{store}.
+  "front":
+    "based_on_reviews_count":
+      "one": >-
+        1 recenzie
+      "other": >-
+        %{count} recenzii
+    "components":
+      "customer_form":
+        "email":
+          "hint": >-
+            Adresa ta de e-mail nu va fi făcută publică
+          "label": >-
+            Adresa ta de e-mail
+        "name":
+          "hint": >-
+            Numele tău va fi afișat sub formă de inițiale
+          "hint_update_html": >-
+            Numele tău va fi afișat sub formă de <strong>%{initials}</strong>
+          "label": >-
+            Numele tău
+      "privacy_notice":
+        "link_content": >-
+          politică de confidențialitate
+        "with_name":
+          "html": >-
+            Prin trimiterea acestui formular, ești de acord cu posibilitatea ca numele
+            <strong>%{name}</strong> și conținutul tău să fie publicate online, în
+            conformitate cu %{link}.
+        "without_name":
+          "html": >-
+            Prin trimiterea acestui formular, ești de acord cu posibilitatea ca numele
+            și conținutul tău să fie publicate online, în conformitate cu %{link}.
+    "continue_shopping": >-
+      Continuă cumpărăturile
+    "flags":
+      "new":
+        "already_flagged": >-
+          Ai semnalizat deja această %{item}
+        "flag_as_inappropriate": >-
+          Semnalizează această %{item} ca fiind neadcvată
+      "show":
+        "flag_submitted": >-
+          Îți mulțumim
+    "mailer":
+      "excuses":
+        "question_answered_html": >-
+          Ai primit acest e-mail de la %{helpfulcrowd} privind noutăți în legătură
+          cu întrebarea adresată către %{store}.
+        "review_answered_html": >-
+          Ai primit acest e-mail de la %{helpfulcrowd} privind noutăți în legătură
+          cu recenzia ta scrisă pentru %{store}.
+        "review_follow_up_html": >-
+          Ai primit acest e-mail de la %{helpfulcrowd} ca răspuns la recenzia ta recentă
+          pentru %{store}.
+        "review_request_html": >-
+          Ai primit acest e-mail de la %{helpfulcrowd} ca răspuns la comanda ta recentă
+          de la %{store}.
+      "helpers":
+        "call_to_action":
+          "view_product": >-
+            Vizitează pagina produsului
+    "products":
+      "questions":
+        "form":
+          "question_html": >-
+            Ce ai dori să știi despre %{product}?
+        "new":
+          "title": >-
+            Pune o întrebare
+      "view_product": >-
+        Deplasează-te la pagina produsului
+    "review_requests":
+      "reviews":
+        "form":
+          "rating_html": >-
+            Evaluează experiența ta cu %{reviewable}
+        "new":
+          "already_reviewed_html": >-
+            Ai scris deja o recenzie pentru %{reviewable}
+          "review_other_purchases":
+            "one": >-
+              Evaluează-ți cealaltă achiziție
+            "other": >-
+              Evaluează-ți celelalte achiziții
+          "title": >-
+            Evaluează-ți achiziția
+    "search":
+      "label": >-
+        Căutare:
+      "placeholder": >-
+        Introducere cuvânt cheie
+    "share":
+      "button": >-
+        Distribuire
+    "sort_by": >-
+      Sortare după:
+    "sort_options":
+      "most_helpful": >-
+        Cea mai utilă
+      "most_recent": >-
+        Cea mai recentă
+      "rating_asc": >-
+        Evaluare: cea mai mică
+      "rating_desc": >-
+        Evaluare: cea mai mare
+    "suppressions":
+      "manage_subscriptions":
+        "subscribe_question_html": >-
+          Dorești ca HelpfulCrowd să îți trimită e-mailuri în numele %{store}?
+        "unsubscribe_question_html": >-
+          Dorești ca HelpfulCrowd să nu îți mai trimită e-mailuri în numele %{store}?
+    "votes":
+      "upvote": >-
+        Util
+      "upvotes_count":
+        "one": >-
+          %{count} persoană a considerat această %{item} utilă
+        "other": >-
+          %{count} persoane au considerat această %{item} utilă
+    "widgets":
+      "products":
+        "rating":
+          "qa":
+            "html":
+              "one": >-
+                1 întrebare
+              "other": >-
+                %{count} întrebări
+          "reviews":
+            "html":
+              "one": >-
+                1 recenzie
+              "other": >-
+                %{count} recenzii
+        "summary":
+          "qa":
+            "html":
+              "one": >-
+                1 întrebare
+              "other": >-
+                %{count} întrebări
+            "new": >-
+              Pune o întrebare
+          "reviews":
+            "html":
+              "one": >-
+                1 recenzie
+              "other": >-
+                %{count} recenzii
+            "new": >-
+              Scrie o recenzie
+        "tabs":
+          "questions":
+            "new": >-
+              Pune o întrebare
+            "search":
+              "label": >-
+                Căutare:
+              "placeholder": >-
+                Căutare întrebări și răspunsuri
+            "title": >-
+              Întrebări și răspunsuri
+            "write_first": >-
+              Pune prima întrebare despre acest produs
+          "reviews":
+            "based_on_reviews":
+              "html": >-
+                Bazat pe %{reviews_count}
+            "media_gallery":
+              "images":
+                "one": >-
+                  1 fotografie
+                "other": >-
+                  %{count} fotografii
+              "search":
+                "label": >-
+                  Căutare:
+                "placeholder": >-
+                  Căutare recenzii
+              "title": "Materiale media\r\nclienți"
+              "videos":
+                "one": >-
+                  1 videoclip
+                "other": >-
+                  %{count} videoclipuri
+            "new": >-
+              Scrie o recenzie
+            "rating": >-
+              %{rating} din 5 stele
+            "title": >-
+              Recenzii ale clienților
+            "write_first": >-
+              Fii prima persoană care scrie o recenzie pentru acest produs
+          "titles":
+            "questions": >-
+              Întrebări și răspunsuri
+            "questions_responsive": >-
+              Întrebări și răspunsuri
+            "reviews": >-
+              Evaluări
+            "reviews_responsive": >-
+              Recenzii
+      "sidebar":
+        "default_title": >-
+          Evaluări | Întrebări și răspunsuri
+    "with_incentive":
+      "reviews":
+        "text": >-
+          Este posibil ca persoana care a recenzat acest produs să fi primit un stimulent
+          pentru această recenzie
+    "write_review": >-
+      Scrie o recenzie
+  "helpers":
+    "friendly_rating": >-
+      Nicio recenzie încă
+    "label":
+      "customer":
+        "email": >-
+          Adresa de e-mail a clientului
+        "name": >-
+          Numele clientului
+      "product_group":
+        "name": >-
+          Nume
+    "placeholder":
+      "promotion":
+        "template": >-
+          Livrarea este gratuită la toate comenzile în săptămâna Black Friday!
+    "submit":
+      "product_group":
+        "create": >-
+          Creare grup
+        "update": >-
+          Actualizare grup
+      "question":
+        "create": >-
+          Pune o întrebare
+      "review":
+        "create": >-
+          Trimitere recenzie
+  "layouts":
+    "mailer":
+      "front":
+        "manage_subscriptions": >-
+          Gestionare abonamente
+        "unsubscribe": >-
+          Dezabonare
+  "load_more": >-
+    Încarcă mai mult
+  "privacy_policy": >-
+    Politică de confidențialitate
+  "question_facebook_post_template": "[customer_name]\r\nÎntrebare: [question]\r\nRăspuns:
+    [answer]"
+  "question_tweet_template": "[customer_name]\r\nÎntrebare: [question]\r\nRăspuns:
+    [answer]"
+  "rating_1": >-
+    Groaznic
+  "rating_2": >-
+    Rău
+  "rating_3": >-
+    Acceptabil
+  "rating_4": >-
+    Bun
+  "rating_5": >-
+    Excelent
+  "read_less": >-
+    citește mai puțin
+  "read_more": >-
+    recenzie completă
+  "recaptcha":
+    "errors":
+      "verification_failed": >-
+        Verificarea reCAPTCHA a eșuat.
+    "label": >-
+      Ajută-ne să combatem spamul.
+  "report": >-
+    Raport
+  "review_facebook_post_template": "Citește ce a spus [customer_name] despre [product_name]:\r\n\r\n[rating]\r\n\"[feedback]\""
+  "review_tweet_template": "[customer_name]:\r\n[product_name] - [rating], \"[feedback]\""
+  "settings":
+    "default":
+      "review_slider_c2a_text": >-
+        Afișare completă
+  "stars":
+    "one": >-
+      1 stea
+    "other": >-
+      %{count} stele
+  "verified":
+    "agent":
+      "description": >-
+        %{author} lucrează la %{store}
+      "label": >-
+        %{store}
+    "customer":
+      "description": >-
+        %{author} a cumpărat acest produs
+      "label": >-
+        Cumpărător verificat

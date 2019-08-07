@@ -1,0 +1,57 @@
+.admin-form
+  = form_for [ :admin, plan ] do |f|
+    = render 'shared/form/errors', resource: plan
+
+    .admin-form__control-group
+      = f.label :name, class: 'admin-form__label'
+      = f.text_field :name, class: 'admin-form__input', required: true
+
+    .admin-form__control-group
+      = f.label :description, class: 'admin-form__label'
+      = f.text_field :description, class: 'admin-form__input'
+
+    .admin-form__control-group
+      = f.label :ecommerce_platform, class: 'admin-form__label'
+      = f.select :ecommerce_platform, platforms, {}, data: { behavior: 'platform-select' }, class: 'admin-form__input'
+
+    .admin-form__control-group
+      = f.label :pricing_model, class: 'admin-form__label'
+      = f.select :pricing_model, Plan.pricing_models, {}, data: { behavior: 'pricing-model-select'}, class: 'admin-form__input'
+
+    .admin-form__control-group
+      = f.label "Price in cents", class: 'admin-form__label'
+      = f.text_field :price_in_cents, class: 'admin-form__input', required: true
+
+    .admin-form__control-group data-pricing="products"
+      = f.label 'Min products', class: 'admin-form__label'
+      = f.text_field :min_products_limit, class: 'admin-form__input'
+
+    .admin-form__control-group data-pricing="products"
+      = f.label 'Max products', class: 'admin-form__label'
+      = f.text_field :max_products_limit, class: 'admin-form__input'
+
+    .admin-form__control-group data-pricing="orders"
+      = f.label 'Orders limit', class: 'admin-form__label'
+      = f.text_field :orders_limit, class: 'admin-form__input'
+
+    .admin-form__control-group data-pricing="orders"
+      = f.label 'Extension price in cents', class: 'admin-form__label'
+      = f.text_field :extension_price_in_cents, class: 'admin-form__input'
+
+    .admin-form__control-group data-pricing="orders"
+      = f.label 'Orders per extension bundle', class: 'admin-form__label'
+      = f.text_field :extended_orders_limit, class: 'admin-form__input'
+
+    .admin-form__control-group data-pricing="orders" data-platform="shopify"
+      = f.label 'Overages limit in cents', class: 'admin-form__label'
+      = f.text_field :overages_limit_in_cents, value: plan.overages_limit_in_cents , class: 'admin-form__input'
+
+    .admin-form__control-group data-platform="!shopify"
+      = f.label 'Chargebee ID', class: 'admin-form__label'
+      = f.text_field :chargebee_id, class: 'admin-form__input'
+
+    .admin-form__control-group
+      = f.label 'Is secret?', class: 'admin-form__label'
+      = f.check_box :is_secret, class: 'admin-form__input'
+
+    = f.submit 'Save', class: 'admin-form__submit'

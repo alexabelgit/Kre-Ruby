@@ -1,0 +1,12 @@
+= content_for :recipient
+  = @question.store.user.first_name
+
+.flagged
+  p
+    | Following question about
+    =<> link_to @question.product.name, back_product_url(@question.product)
+    | has been flagged as inappropriate:
+
+  = render 'question', question: @question
+    
+= call_to_action('Go to question', back_question_url(@question))

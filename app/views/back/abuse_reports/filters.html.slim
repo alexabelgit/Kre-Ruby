@@ -1,0 +1,64 @@
+- content_for :main_class, 'boxed'
+= render 'layouts/back/sub_navs/tools'
+
+h1 = title 'Filters'
+
+= render  layout: 'helpful_components/collapsible/item',
+  locals: { name: 'profanity' } do
+
+  = form_for [ :back, @store.settings(:abuse_filters) ],
+    as:      :settings,
+    url:     { action:     :update,
+               anchor:     'profanity',
+               controller: 'back/tools' },
+    method:  :put,
+    html:    { id:     'profanity',
+               class:  'settings-form' } do |f|
+
+    = render 'shared/form/errors', resource: @store.settings(:abuse_filters)
+
+    input type="hidden" name="type"        value="abuse_filters"
+    input type="hidden" name="redirect_to" value= filters_back_abuse_reports_path
+    input type="hidden" name="view"        value="abuse_filters"
+
+    .settings-form__control
+      = f.label      :profanity, 'Profanity list', class: 'hc-form__label'
+      = f.text_area  :profanity,
+        class:       'hc-form__textarea hc-form__textarea--tall',
+        placeholder: 'Badword, &#10;Even worse phrase, &#10;the worst phrase ever'.html_safe
+
+      = form_hint 'Separate words and phrases with commas'
+
+    .hc-form__actions
+      = f.submit 'Save',
+        class:   'settings-form__submit'
+
+= render  layout: 'helpful_components/collapsible/item',
+  locals: { name: 'competitors' } do
+
+  = form_for [ :back, @store.settings(:abuse_filters) ],
+    as:      :settings,
+    url:     { action:     :update,
+               anchor:     'competitors',
+               controller: 'back/tools' },
+    method:  :put,
+    html:    { id:     'competitors',
+               class:  'settings-form' } do |f|
+
+    = render 'shared/form/errors', resource: @store.settings(:abuse_filters)
+
+    input type="hidden" name="type"        value="abuse_filters"
+    input type="hidden" name="redirect_to" value= filters_back_abuse_reports_path
+    input type="hidden" name="view"        value="abuse_filters"
+
+    .settings-form__control
+      = f.label      :competitors, 'Competitor list', class: 'hc-form__label'
+      = f.text_area  :competitors,
+        class:       'hc-form__textarea hc-form__textarea--tall',
+        placeholder: 'amazon.com, &#10;ebay'.html_safe
+
+      = form_hint 'Separate words and phrases with commas'
+
+    .hc-form__actions
+      = f.submit 'Save',
+        class:   'settings-form__submit'
